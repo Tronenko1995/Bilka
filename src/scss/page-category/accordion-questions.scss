@@ -1,0 +1,557 @@
+@import '../colors';
+
+.accordion-questions {
+	display: flex;
+	justify-content: center;
+	padding: 112px 0;
+	background: $mainBgColor;
+
+	&__wrap {
+		width: 885px;
+		display: flex;
+        flex-direction: column;
+	}
+	&__title {
+		font-family: Gilroy;
+		font-style: normal;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 43px;
+		color: $colorDark;
+        margin-bottom: 32px;
+    }
+    &__list {
+        padding: 0 69px 0 16px;
+    }
+    &__item {
+        position: relative;
+        padding: 20px 0 6px 0;
+
+        &::after {
+            content: '';
+            background: $color4;
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            left: 0;
+            top: 100%;
+        }
+        &-checkbox {
+            position: absolute;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0;
+
+            &:checked ~ .accordion-questions__item-title::after {
+                content: '-';
+            }
+
+            &:checked ~ .accordion-questions__item-list {
+                margin-top: 16px;
+            }
+
+            &:checked ~ .accordion-questions__item-list,
+            &:checked ~ .accordion-questions__item-text {
+                opacity: 1;
+                max-height: fit-content;
+                transform: translate(0, 0);
+            }
+            
+            &:hover ~ .accordion-questions__item-title {
+                color: $color3;
+            }
+
+            &:checked ~ .accordion-questions__item-title {
+                color: $color3;
+            }
+        }
+        &-title {
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 26px;
+            color: $colorDark;
+            position: relative;
+            
+            &::after {
+                width: 10px;
+                height: 20px;
+                content: '+';
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0;
+                color: $color3;
+            }
+        }
+        &-list {
+            opacity: 0;
+            max-height: 0;
+            margin-top: 0px;
+            transition: all 0.25s ease-in-out;
+            transform: translate(0, 50%);
+            overflow: hidden;
+
+            &-item {
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 13px;
+                line-height: 20px;
+                color: $colorDark;
+                padding-left: 12px;
+                margin-bottom: 16px;
+                position: relative;
+
+
+                &::before {
+                    width: 4px;
+                    height: 4px;
+                    background: $color3;
+                    border-radius: 50%;
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 8px;
+                }
+            }
+        }
+        &-text {
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+            color: $colorDark;
+            opacity: 0;
+            max-height: 0;
+            transition: all 0.25s ease-in-out;
+            transform: translate(0, 50%);
+            overflow: hidden;
+            margin-top: 16px;
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .accordion-questions {
+    //     display: flex;
+    //     justify-content: center;
+    //     padding: 112px 0;
+    //     background: $mainBgColor;
+    
+        &__wrap {
+            width: 810px;
+    //         display: flex;
+    //         flex-direction: column;
+        }
+        &__title {
+    //         font-family: Gilroy;
+    //         font-style: normal;
+    //         font-weight: 600;
+    //         font-size: 36px;
+    //         line-height: 43px;
+    //         color: $colorDark;
+    //         margin-bottom: 32px;
+        }
+        &__list {
+    //         padding: 0 69px 0 16px;
+        }
+        &__item {
+    //         position: relative;
+    //         padding: 20px 0 6px 0;
+    
+            &::after {
+    //             content: '';
+    //             background: $color4;
+    //             position: absolute;
+    //             width: 100%;
+    //             height: 1px;
+    //             left: 0;
+    //             top: 100%;
+            }
+            &-checkbox {
+    //             position: absolute;
+    //             cursor: pointer;
+    //             width: 100%;
+    //             height: 100%;
+    //             z-index: 1;
+    //             opacity: 0;
+    
+                &:checked ~ .accordion-questions__item-title::after {
+    //                 content: '-';
+                }
+    
+                &:checked ~ .accordion-questions__item-list {
+    //                 margin-top: 16px;
+                }
+    
+                &:checked ~ .accordion-questions__item-list,
+                &:checked ~ .accordion-questions__item-text {
+    //                 opacity: 1;
+    //                 max-height: fit-content;
+    //                 transform: translate(0, 0);
+                }
+                
+                &:hover ~ .accordion-questions__item-title {
+    //                 color: $color3;
+                }
+    
+                &:checked ~ .accordion-questions__item-title {
+    //                 color: $color3;
+                }
+            }
+            &-title {
+    //             font-family: Gilroy;
+    //             font-style: normal;
+    //             font-weight: 600;
+    //             font-size: 18px;
+    //             line-height: 26px;
+    //             color: $colorDark;
+    //             position: relative;
+                
+                &::after {
+    //                 width: 10px;
+    //                 height: 20px;
+    //                 content: '+';
+    //                 position: absolute;
+    //                 top: 50%;
+    //                 transform: translateY(-50%);
+    //                 right: 0;
+    //                 color: $color3;
+                }
+            }
+            &-list {
+    //             opacity: 0;
+    //             max-height: 0;
+    //             margin-top: 0px;
+    //             transition: all 0.25s ease-in-out;
+    //             transform: translate(0, 50%);
+    //             overflow: hidden;
+    
+                &-item {
+    //                 font-family: Gilroy;
+    //                 font-style: normal;
+    //                 font-weight: normal;
+    //                 font-size: 13px;
+    //                 line-height: 20px;
+    //                 color: $colorDark;
+    //                 padding-left: 12px;
+    //                 margin-bottom: 16px;
+    //                 position: relative;
+    
+    
+                    &::before {
+    //                     width: 4px;
+    //                     height: 4px;
+    //                     background: $color3;
+    //                     border-radius: 50%;
+    //                     content: '';
+    //                     position: absolute;
+    //                     left: 0;
+    //                     top: 8px;
+                    }
+                }
+            }
+            &-text {
+    //             font-family: Gilroy;
+    //             font-style: normal;
+    //             font-weight: normal;
+    //             font-size: 16px;
+    //             line-height: 24px;
+    //             color: $colorDark;
+    //             opacity: 0;
+    //             max-height: 0;
+    //             transition: all 0.25s ease-in-out;
+    //             transform: translate(0, 50%);
+    //             overflow: hidden;
+    //             margin-top: 16px;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .accordion-questions {
+    //     display: flex;
+    //     justify-content: center;
+    //     padding: 112px 0;
+    //     background: $mainBgColor;
+    
+        &__wrap {
+            width: 570px;
+    //         display: flex;
+    //         flex-direction: column;
+        }
+        &__title {
+    //         font-family: Gilroy;
+    //         font-style: normal;
+    //         font-weight: 600;
+    //         font-size: 36px;
+    //         line-height: 43px;
+    //         color: $colorDark;
+    //         margin-bottom: 32px;
+        }
+        &__list {
+    //         padding: 0 69px 0 16px;
+        }
+        &__item {
+    //         position: relative;
+    //         padding: 20px 0 6px 0;
+    
+            &::after {
+    //             content: '';
+    //             background: $color4;
+    //             position: absolute;
+    //             width: 100%;
+    //             height: 1px;
+    //             left: 0;
+    //             top: 100%;
+            }
+            &-checkbox {
+    //             position: absolute;
+    //             cursor: pointer;
+    //             width: 100%;
+    //             height: 100%;
+    //             z-index: 1;
+    //             opacity: 0;
+    
+                &:checked ~ .accordion-questions__item-title::after {
+    //                 content: '-';
+                }
+    
+                &:checked ~ .accordion-questions__item-list {
+    //                 margin-top: 16px;
+                }
+    
+                &:checked ~ .accordion-questions__item-list,
+                &:checked ~ .accordion-questions__item-text {
+    //                 opacity: 1;
+    //                 max-height: fit-content;
+    //                 transform: translate(0, 0);
+                }
+                
+                &:hover ~ .accordion-questions__item-title {
+    //                 color: $color3;
+                }
+    
+                &:checked ~ .accordion-questions__item-title {
+    //                 color: $color3;
+                }
+            }
+            &-title {
+    //             font-family: Gilroy;
+    //             font-style: normal;
+    //             font-weight: 600;
+    //             font-size: 18px;
+    //             line-height: 26px;
+    //             color: $colorDark;
+    //             position: relative;
+                
+                &::after {
+    //                 width: 10px;
+    //                 height: 20px;
+    //                 content: '+';
+    //                 position: absolute;
+    //                 top: 50%;
+    //                 transform: translateY(-50%);
+    //                 right: 0;
+    //                 color: $color3;
+                }
+            }
+            &-list {
+    //             opacity: 0;
+    //             max-height: 0;
+    //             margin-top: 0px;
+    //             transition: all 0.25s ease-in-out;
+    //             transform: translate(0, 50%);
+    //             overflow: hidden;
+    
+                &-item {
+    //                 font-family: Gilroy;
+    //                 font-style: normal;
+    //                 font-weight: normal;
+    //                 font-size: 13px;
+    //                 line-height: 20px;
+    //                 color: $colorDark;
+    //                 padding-left: 12px;
+    //                 margin-bottom: 16px;
+    //                 position: relative;
+    
+    
+                    &::before {
+    //                     width: 4px;
+    //                     height: 4px;
+    //                     background: $color3;
+    //                     border-radius: 50%;
+    //                     content: '';
+    //                     position: absolute;
+    //                     left: 0;
+    //                     top: 8px;
+                    }
+                }
+            }
+            &-text {
+    //             font-family: Gilroy;
+    //             font-style: normal;
+    //             font-weight: normal;
+    //             font-size: 16px;
+    //             line-height: 24px;
+    //             color: $colorDark;
+    //             opacity: 0;
+    //             max-height: 0;
+    //             transition: all 0.25s ease-in-out;
+    //             transform: translate(0, 50%);
+    //             overflow: hidden;
+    //             margin-top: 16px;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .accordion-questions {
+    //     display: flex;
+    //     justify-content: center;
+        padding: 100px 15px;
+    //     background: $mainBgColor;
+    
+        &__wrap {
+            width: 100%;
+    //         display: flex;
+    //         flex-direction: column;
+        }
+        &__title {
+    //         font-family: Gilroy;
+    //         font-style: normal;
+    //         font-weight: 600;
+    //         font-size: 36px;
+    //         line-height: 43px;
+    //         color: $colorDark;
+    //         margin-bottom: 32px;
+        }
+        &__list {
+            padding: 0;
+        }
+        &__item {
+    //         position: relative;
+    //         padding: 20px 0 6px 0;
+    
+            &::after {
+    //             content: '';
+    //             background: $color4;
+    //             position: absolute;
+    //             width: 100%;
+    //             height: 1px;
+    //             left: 0;
+    //             top: 100%;
+            }
+            &-checkbox {
+    //             position: absolute;
+    //             cursor: pointer;
+    //             width: 100%;
+    //             height: 100%;
+    //             z-index: 1;
+    //             opacity: 0;
+    
+                &:checked ~ .accordion-questions__item-title::after {
+    //                 content: '-';
+                }
+    
+                &:checked ~ .accordion-questions__item-list {
+    //                 margin-top: 16px;
+                }
+    
+                &:checked ~ .accordion-questions__item-list,
+                &:checked ~ .accordion-questions__item-text {
+    //                 opacity: 1;
+    //                 max-height: fit-content;
+    //                 transform: translate(0, 0);
+                }
+                
+                &:hover ~ .accordion-questions__item-title {
+    //                 color: $color3;
+                }
+    
+                &:checked ~ .accordion-questions__item-title {
+    //                 color: $color3;
+                }
+            }
+            &-title {
+    //             font-family: Gilroy;
+    //             font-style: normal;
+    //             font-weight: 600;
+    //             font-size: 18px;
+    //             line-height: 26px;
+    //             color: $colorDark;
+    //             position: relative;
+                
+                &::after {
+    //                 width: 10px;
+    //                 height: 20px;
+    //                 content: '+';
+    //                 position: absolute;
+    //                 top: 50%;
+    //                 transform: translateY(-50%);
+    //                 right: 0;
+    //                 color: $color3;
+                }
+            }
+            &-list {
+    //             opacity: 0;
+    //             max-height: 0;
+    //             margin-top: 0px;
+    //             transition: all 0.25s ease-in-out;
+    //             transform: translate(0, 50%);
+    //             overflow: hidden;
+    
+                &-item {
+    //                 font-family: Gilroy;
+    //                 font-style: normal;
+    //                 font-weight: normal;
+    //                 font-size: 13px;
+    //                 line-height: 20px;
+    //                 color: $colorDark;
+    //                 padding-left: 12px;
+    //                 margin-bottom: 16px;
+    //                 position: relative;
+    
+    
+                    &::before {
+    //                     width: 4px;
+    //                     height: 4px;
+    //                     background: $color3;
+    //                     border-radius: 50%;
+    //                     content: '';
+    //                     position: absolute;
+    //                     left: 0;
+    //                     top: 8px;
+                    }
+                }
+            }
+            &-text {
+    //             font-family: Gilroy;
+    //             font-style: normal;
+    //             font-weight: normal;
+    //             font-size: 16px;
+    //             line-height: 24px;
+    //             color: $colorDark;
+    //             opacity: 0;
+    //             max-height: 0;
+    //             transition: all 0.25s ease-in-out;
+    //             transform: translate(0, 50%);
+    //             overflow: hidden;
+    //             margin-top: 16px;
+            }
+        }
+    }
+
+}

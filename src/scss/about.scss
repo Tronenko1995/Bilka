@@ -1,0 +1,156 @@
+@import 'colors';
+
+.about {
+	display: flex;
+	justify-content: center;
+	padding-top: 112px;
+	background: $mainBgColor;
+
+	&__wrap {
+		width: 1170px;
+		max-width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	&__title {
+		font-family: Gilroy;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 36px;
+		line-height: 43px;
+		color: $colorDark;
+		margin-bottom: 32px;
+	}
+	&__center {
+		display: flex;
+		justify-content: space-between;
+
+		&-text {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 14px;
+			line-height: 20px;
+			color: $colorDark;
+			width: 600px;
+		}
+		&-for-img {
+			border: 1px solid rgba(146,146,153,.4);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding: 18px 64px 30px 64px;
+		}
+		&-description {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 18px;
+			line-height: 21px;
+			color: $color2;
+		}
+	}
+	&-bottom {
+
+	}
+}
+.about-bottom {
+	margin-top: 34px;
+
+	&__items {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__item {
+		width: 270px;
+
+		&-top {
+			display: flex;
+			align-items: center;
+			margin-bottom: 16px;
+
+			&-svg {
+				margin-right: 11px;
+				width: 24px;
+				height: 24px;
+			}
+			&-title {
+				font-family: Gilroy;
+				font-style: normal;
+				font-weight: 600;
+				font-size: 16px;
+				line-height: 19px;
+				color: $color3;
+			}
+		}
+		&-text {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 14px;
+			line-height: 20px;
+			color: $color2;
+			margin-bottom: 12px;
+		}
+		&-arrow {
+			width: 16px;
+			height: 16px;
+			fill: $color2;
+			cursor: pointer;
+
+			&:hover {
+				fill: $color3;
+			}
+		}
+	}
+}
+
+@media (max-width: 1170px) {
+	.about {
+		padding-top: 100px;
+
+		&__wrap {
+			padding: 0 15px;
+		}
+		&__center {
+			justify-content: center;
+			flex-direction: column;
+
+			&-description {
+				font-size: 14px;
+				line-height: 17px;
+			}
+
+			&-text {
+				order: 2;
+				margin-top: 24px;
+				padding-right: 21px;
+				width: 100%;
+			}
+			&-for-img {
+				order: 1;
+				padding: 26px 20px 26px 25px;
+			}
+		}
+	}
+	.about-bottom {
+
+		&__items {
+			justify-content: center;
+			flex-direction: column;
+		}
+		&__item {
+			width: 100%;
+			margin-bottom: 46px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			&-text {
+				padding-right: 75px;
+			}
+		}
+	}
+}

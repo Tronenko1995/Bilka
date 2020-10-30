@@ -1,0 +1,86 @@
+@import '../colors';
+
+.select {
+    position: relative;
+    display: block;
+	width: 200px;
+	background: #FFFFFF;
+	border: 1px solid #E5E5EC;
+    border-radius: 4px;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 15px;   
+    color: $colorDark;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+        border: 1px solid $color3;
+    }
+    &.open {
+        border-top: 1px solid $color3;
+        border-left: 1px solid $color3;
+        border-right: 1px solid $color3;
+        border-bottom: 1px solid transparent;
+        border-radius: 4px 4px 0 0;
+
+        & .select__head::after {
+            transform: translateY(50%) rotate(180deg);
+        }
+        & .select__list {
+            display: block;
+        }
+    }
+    &__head {
+        width: 200px;
+        padding: 12px 20px;
+    
+        &::after {
+            width: 24px;
+            height: 24px;
+            background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNMTIuMDAwMiAxMy4xNzE5TDE2Ljk1MDIgOC4yMjE5MkwxOC4zNjQyIDkuNjM1OTJMMTIuMDAwMiAxNS45OTk5TDUuNjM2MjMgOS42MzU5Mkw3LjA1MDIzIDguMjIxOTJMMTIuMDAwMiAxMy4xNzE5WiIgZmlsbD0iIzkyOTI5OSIvPg0KPC9zdmc+');
+            background-repeat: no-repeat;
+            position: absolute;
+            right: 16px;
+            bottom: 50%;
+            transform: translateY(50%);
+            content: '';
+            display: block;
+            transition: .2s ease-in;
+        }
+    }
+    &__list {
+        width: 200px;
+        border-bottom: 1px solid  $color3;
+        border-left: 1px solid  $color3;
+        border-right: 1px solid  $color3;
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: -1px;
+        right: 0;
+        background: #fff;
+        border-radius: 0px 0px 4px 4px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        z-index: 100;
+    }
+    &__item {
+        width: 200px;
+        position: relative;
+        padding: 12px 20px;
+        cursor: pointer;
+        list-style-type: none;
+
+        &:hover {
+            color: $color3;
+        }
+
+        & a {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+}

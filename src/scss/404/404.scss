@@ -1,0 +1,140 @@
+@import '../colors';
+
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__wrap {
+        width: 1000px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        &-img {
+            width: 493px;
+            height: 401px;
+        }
+    }
+    &__right {
+        margin-left: 106px;
+
+        &-top {
+
+            &-title {
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 144px;
+                line-height: 172px;
+                color: $color3;
+            }
+            &-text {
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 29px;
+                color: #000000;
+            }
+        }
+        &-center {
+            margin-top: 64px;
+
+            &-text {
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19px;
+                color: $colorDark;
+                margin-bottom: 8px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        &-bottom {
+            margin-top: 72px;
+            display: flex;
+
+            &-button {
+                background: $color3;
+                border-radius: 4px;
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 14px;
+                line-height: 17px;           
+                text-align: center; 
+                color: #FFFFFF;
+                padding: 11px 59px 10px 59px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .error {
+        
+        &__wrap {
+            flex-direction: column;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        &__left {
+
+            &-img {
+                width: 131px;
+                height: 123px;
+            }
+        }
+        &__right {
+            margin-left: 0;
+    
+            &-top {
+    
+                &-title {
+                    font-size: 100px;
+                    line-height: 119px;
+                }
+                &-text {
+                    margin-top: 8px;
+                    font-size: 18px;
+                    line-height: 21px;
+                }
+            }
+            &-center {
+                margin-top: 18px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+    
+                &-text {
+                    font-size: 12px;
+                    line-height: 14px;
+                    margin-bottom: 12px;
+                    width: 160px;
+                    text-align: center;
+    
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            &-bottom {
+                margin-top: 33px;
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}

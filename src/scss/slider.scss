@@ -1,0 +1,85 @@
+@import 'colors';
+
+/* config slider */
+.slick-dots {
+	display: flex;
+	position: absolute;
+	bottom: 44px;
+	right: 44px;
+	font-size: 0;
+	& li {
+		width: 8px;
+		height: 8px;
+		margin-right: 12px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+	
+	& li button {
+		color: transparent;
+		background: #fff;
+		opacity: 0.4;
+		border-radius: 50%;
+		width: 8px;
+		height: 8px;
+		cursor: pointer;
+		font-size: 0;
+	}
+	& .slick-active button {
+		opacity: 1;
+	}
+}
+
+/* slider */
+.slider {
+	display: flex;
+	justify-content: center;
+	padding-top: 56px;
+	background: $mainBgColor;
+
+	&__wrap {
+		width: 1198px;
+		position: relative;
+	}
+	&__item {
+
+	}
+	&__img {
+		width: 100%;
+	}
+}
+
+@media (max-width: 1198px) {
+
+.slick-dots {
+	bottom: 21px;
+	right: 21px;
+
+	& li {
+		width: 4.35px;
+		height: 4px;
+		margin-right: 6.53px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+	
+	& li button {
+		width: 4.35px;
+		height: 4px;
+	}
+}
+
+.slider {
+	padding-top: 16px;
+
+	&__wrap {
+		max-width: 92%;
+	}
+
+}
+
+}

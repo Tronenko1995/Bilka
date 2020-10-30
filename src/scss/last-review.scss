@@ -1,0 +1,238 @@
+@import 'colors';
+
+.last-review {
+	display: flex;
+	justify-content: center;
+	padding: 112px 0;
+	background: $mainBgColor;
+
+	&__wrap {
+		width: 1170px;
+		display: flex;
+		flex-direction: column;
+	}
+	&__title {
+		font-family: Gilroy;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 36px;
+		line-height: 43px;
+		color: $colorDark;
+		margin-bottom: 32px;
+	}
+}
+
+.last-review-slider {
+
+	position: relative;
+	margin: -15px -15px;//0 -15px;
+
+	&__item {
+		background: #FFFFFF;
+		box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+		border-radius: 4px;
+		width: 370px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 24px;
+		border: 1px solid transparent;
+
+		&:hover {
+			box-shadow: 0px 4px 17px rgba(157, 83, 28, 0.13);
+			border: 1px solid $color3;
+		}
+	}
+}
+
+.last-review-slider-item {
+
+&__top {
+	display: flex;
+	flex-direction: column;
+
+	&-top-1 {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 13px;
+
+		&-name {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 16px;
+			line-height: 24px;
+			color: $colorDark;
+		}
+		&-date {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 12px;
+			line-height: 14px;
+			color: $color2;
+			margin-left: 9px;
+		}
+		&-rating {
+			display: flex;
+			align-items: center;
+		}
+		&-rating-svg {
+			fill: $color4;
+
+			&--star {
+				fill: $color3;
+			}
+		}
+	}
+}
+	&__text {
+		font-family: Gilroy;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 14px;
+		line-height: 20px;
+		color: #202026;
+		max-height: 80px;
+		overflow: hidden;
+	}
+	&__bottom {
+		margin-top: 20px;
+		display: flex;
+		align-items: center;
+
+		&-img {
+			width: 48px;
+			height: 48px;
+			margin-right: 9px;
+		}
+		&-text {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 14px;
+			line-height: 20px;
+			color: $color2;
+		}
+	}
+}
+
+.last-review-slider .slick-slide {
+	padding: 15px 15px; //0 15px
+}
+.last-review-slider .slick-arrow {
+	font-size: 0;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+	border-radius: 50%;
+	padding: 9px 10px 9px 9px;
+	top: -72px;
+	z-index: 10;
+	cursor: pointer;
+
+	&:hover {
+		background: $color3;
+	}
+}
+.last-review-slider .slick-prev {
+	// background: url('../img/left-arrow.svg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	right: 52px;
+
+	&:after {
+		position: absolute;
+		content: '';
+		width: 7px;
+		height: 12px;
+		// padding: 14.17px 17.19px 14.17px 16px;
+		background: url('../img/left-arrow.svg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-repeat: no-repeat;
+		transform: translate(-50%, -50%);
+	}
+}
+.last-review-slider .slick-next {
+	// background: url('../img/left-arrow.svg');
+	transform: rotate(180deg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	right: 0;
+	&:after {
+		position: absolute;
+		content: '';
+		width: 7px;
+		height: 12px;
+		background: url('../img/left-arrow.svg');
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-repeat: no-repeat;
+		transform: translate(-50%, -50%);
+	}
+}
+
+.last-review-more {
+	background: #FFFFFF;
+	border: 1px solid $color3;
+	border-radius: 6px;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	padding: 17px 0;
+	margin-top: 32px;
+
+	&__svg {
+		width: 16px;
+		height: 16px;
+		stroke: $color3;
+		margin-right: 8px;
+	}
+	&__text {
+		font-family: Gilroy;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		line-height: 19px;
+		color: #000;
+	}
+}
+
+@media (max-width: 1170px) {
+
+	.last-review {
+		padding: 100px 0;
+
+		&__wrap {
+			padding: 0 15px;
+		}
+		&-slider {
+			margin: 0;
+
+			&__item {
+				width: 100%;
+			}
+			&__for-img {
+				display: flex;
+				justify-content: center;
+			}
+			&__for-item {
+				margin-bottom: 24px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+	.last-review-more {
+		display: flex;
+	}
+}
+

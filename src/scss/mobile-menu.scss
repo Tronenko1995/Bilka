@@ -1,0 +1,304 @@
+@import 'colors';
+
+.mobile-menu {
+	position: absolute;
+	width: 324px;
+	left: -324px;
+	background: #fff;
+	z-index: 100;
+	top: 0;
+	transition: left .7s, opacity .7s;
+	padding-bottom: 26px;
+
+	&__head {
+		padding: 5px 16px 8px 15px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background: $color4;
+
+		&-logo {
+			display: flex;
+		}
+	}
+	&__catalog {
+		padding: 19px 0 18px  15px;
+		display: flex;
+		align-content: center;
+		position: relative;
+
+		&-burger {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 30px;
+			margin-right: 15px;
+		}
+
+		&-button {
+			width: 30px;
+			padding: 8px 0;
+			cursor: pointer;
+		}
+
+		&-item {
+			width: 30px;
+			height: 2px;
+			background: $color3;
+			position: relative;
+
+			&::before {
+				content: '';
+				width: 100%;
+				height: 2px;
+				background: $color3;
+				position: absolute;
+				top: -8px;
+			}
+			&::after {
+				content: '';
+				width: 100%;
+				height: 2px;
+				background: $color3;
+				position: absolute;
+				top: 8px;
+			}
+		}
+		&-text {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 14px;
+			line-height: 17px;
+			color: $colorDark;
+		}
+
+		&:after {
+			content: '';
+			background: $color4;
+			height: 1px;
+			width: 100%;
+			position: absolute;
+			top: 100%;
+			left: 0;
+		}
+	}
+	&__nav {
+		display: flex;
+		flex-direction: column;
+		padding: 16px 0 19px 15px;
+		position: relative;
+
+		&-item {
+			padding-bottom: 19px;
+
+			&:last-child {
+				padding-bottom: 0;
+			}
+		}
+		&-link {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 16px;
+			color: $colorDark;
+		}
+		&:after {
+			content: '';
+			background: $color4;
+			height: 1px;
+			width: 100%;
+			position: absolute;
+			top: 100%;
+			left: 0;
+		}
+	}
+	&__comparison {
+		padding: 16px 0 16px 15px;
+		display: flex;
+		align-items: center;
+		position: relative;
+
+		&-for-svg {
+			display: flex;
+			padding: 14px 13px 13px 14px;
+			background: #FFFFFF;
+			border: 1px solid $color4;
+			border-radius: 4px;
+			position: relative;
+			margin-right: 22px;
+			cursor: default;
+			pointer-events: none;
+
+			&.active {
+				cursor: pointer;
+				pointer-events: auto;
+		
+				&:hover {
+					border: 1px solid $color3;
+				}
+			}
+		}
+		&-svg {
+			fill: $color2;
+		}
+		&-counter {
+			width: 19px;
+			height: 19px;
+			background: $color3;
+			border-radius: 50%;
+			color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: absolute;
+			top: -5px;
+			right: -5px;
+
+			&-text {
+				font-family: Gilroy;
+				font-style: normal;
+				font-weight: 600;
+				font-size: 12px;
+				line-height: 14px;
+				text-align: center;
+				color: #FFFFFF;
+			}
+		}
+		&-text {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 16px;
+			color: $colorDark;
+		}
+		&:after {
+			content: '';
+			background: $color4;
+			height: 1px;
+			width: 100%;
+			position: absolute;
+			top: 100%;
+			left: 0;
+		}
+	}
+	&__phones {
+		display: flex;
+		align-items: flex-start;
+		padding: 16px 0 0 15px;
+		
+		&-for-svg {
+			display: flex;
+			padding: 14px 13px 13px 14px;
+			background: #FFFFFF;
+			border: 1px solid $color4;
+			border-radius: 4px;
+			position: relative;
+			margin-right: 16px;
+		}
+		&-svg {
+			fill: $color2;
+		}
+		&-numbers {
+			display: flex;
+			flex-direction: column;
+		}
+		&-number {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 16px;
+			color: $colorDark;
+			padding-bottom: 7px;
+			display: flex;
+			align-items: center;
+
+			&:last-child {
+				padding-bottom: 0;
+			}
+
+			&:hover {
+				color: $colorLinks;
+			}
+		}
+	}
+	&__mail {
+		display: flex;
+		align-items: center;
+		margin-top: 19px;
+		padding-left: 15px;
+
+		&-for-svg {
+			display: flex;
+			padding: 14px 13px 13px 14px;
+			background: #fff;
+			border: 1px solid $color4;
+			box-sizing: border-box;
+			border-radius: 4px;
+			margin-right: 16px;
+		}
+		&-svg {
+			fill: #929299;
+		}
+
+		&-text {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 14px;
+			line-height: 17px;
+			color: $colorDark;
+			position: relative;
+
+			&:hover {
+				color: $colorLinks;
+			}
+
+			&:hover::after {
+				background:$colorLinks;
+			}
+
+			&::after {
+				content: '';
+				width: 100%;
+				height: 1px;
+				background: $color2;
+				opacity: 0.4;
+				position: absolute;
+				top: 100%;
+				left: 0;
+			}
+		}
+	}
+	&__adress {
+		display: flex;
+		align-items: flex-start;
+		padding-left: 17px;
+		margin-top: 24px;
+
+		&-svg {
+			fill: $color2;
+			margin-right: 12px;
+		}
+		&-for-text {
+			display: flex;
+			flex-direction: column;
+		}
+		&-text {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 12px;
+			line-height: 14px;
+			color: $gray4;
+			padding-bottom: 6px;
+
+			&:last-child {
+				padding-bottom: 0;
+			}
+		}
+	}
+}

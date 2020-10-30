@@ -1,0 +1,32 @@
+@import '../colors';
+
+.page-category {
+    display: flex;
+    justify-content: center;
+    background: $mainBgColor;
+
+    &__wrap {
+        width: 1185px;
+        padding-top: 56px;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .page-category {
+        // display: flex;
+        // justify-content: center;
+        // background: $mainBgColor;
+    
+        &__wrap {
+            // width: 1185px;
+            padding-top: 0px;
+            // display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    }
+
+}
