@@ -41,6 +41,7 @@ const cssFiles = [
   './src/scss/svg.scss',
   './src/scss/include/breadcrumb.scss',
   './src/scss/include/select.scss',
+  './src/scss/include/color.scss',
   './src/scss/404/404.scss',
   './src/scss/page-category/page-category.scss',
   './src/scss/page-category/sidebar.scss',

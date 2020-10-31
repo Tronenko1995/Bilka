@@ -114,22 +114,34 @@
                 height: 14px;
                 border-radius: 2px;
                 margin-bottom: 8px;
+                display: flex;
 
-                &--dark {
-                    background: $colorDark;
-                }
-                &--orange {
-                    background: $color3;
-                }
-                &--red {
-                    background: #EB5757;
-                }
-                &--green {
-                    background: #219653;
-                }
+                // &--dark {
+                //     background: $colorDark;
+                // }
+                // &--orange {
+                //     background: $color3;
+                // }
+                // &--red {
+                //     background: #EB5757;
+                // }
+                // &--green {
+                //     background: #219653;
+                // }
 
                 &:last-child {
                     margin-bottom: 0;
+                }
+
+                &-link {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    width: 14px;
+                    height: 14px;
+                    font-family: Gilroy;
+                    font-size: 15px;
                 }
             }
         }

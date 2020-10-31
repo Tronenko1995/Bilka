@@ -1,0 +1,121 @@
+.color {
+
+    &--white {//Пионы, белый
+        background: #fff;
+        border: 1px solid #000;
+    }
+
+    &--cyan {//Бирюзовый
+        background: #00FFFF;
+        border: 1px solid #00FFFF;
+    }
+    &--deepskyblue {//Голубой
+        background: #00BFFF;
+        border: 1px solid #00BFFF;
+    }
+    &--gold {//Золотой
+        background: #D4AF37;
+        border: 1px solid #D4AF37;
+    }
+    &--coffee {//Кофейный
+        background: #7B3F00;
+        border: 1px solid #7B3F00;
+    }
+    &--cream {//Кремовый
+        background: #FFFDD0;
+        border: 1px solid #FFFDD0;
+    }
+    &--lime {//Лайм
+        background: #CCFF00;
+        border: 1px solid #CCFF00;
+    }
+    &--magenta {//Малиновый
+        background: #FF00FF;
+        border: 1px solid #FF00FF;
+    }
+    &--coral {//Металлик
+        background: #FF7F50;
+        border: 1px solid #FF7F50;
+    }
+    &--purple {//Пурпурный
+        background: #C400AB;
+        border: 1px solid #C400AB;
+
+    }
+    &--pink {//Розовый
+        background: #FFC0CB;
+        border: 1px solid #FFC0CB;
+    }
+    &--roses {//Розы
+        background: #DA1732;
+        border: 1px solid #DA1732;
+    }
+    &--charteuse {//Салатовый
+        background: #7FFF00;
+        border: 1px solid #7FFF00;
+    }
+    &--blue {//Синий
+        background: #0000FF;
+        border: 1px solid #0000FF;
+    }
+    &--oldflower {//Старый цветок
+        background: #330FB9;
+        border: 1px solid #330FB9;
+    }
+    &--navy {//Темно-синий
+        background: #000080;
+        border: 1px solid #000080;
+    }
+    &--violet {//Фиолетовый
+        background: #8B00FF;
+        border: 1px solid #8B00FF;
+    }
+    &--yellow {//желтый
+        background:#FFFF00;
+        border: 1px solid #FFFF00;
+    }
+    &--darkgreen {//зеленый
+        background: #006400;
+        border: 1px solid #006400;
+    }
+    &--brown {//коричневый
+        background: #964B00;
+        border: 1px solid #964B00;
+    }
+    &--red {//красный
+        background: #FF0000;
+        border: 1px solid #FF0000;
+    }
+    &--orange {//оранжевый
+        background: #E94B24;
+        border: 1px solid #E94B24;
+    }
+    &--transparent {//прозрачный
+        background: #FEFEFE;
+        border: 1px solid #FEFEFE;
+    }
+    &--silver {//серебро
+        background: #C0C0C0;
+        border: 1px solid #C0C0C0;
+    }
+    &--gray {//серый
+        background: #808080;
+        border: 1px solid #808080;
+    }
+    &--black {//черный
+        background: #000;
+        border: 1px solid #000;
+    }
+    &--beige {//бежевый
+        background: #FCCF8A;
+        border: 1px solid #FCCF8A;
+    }
+    &--khaki {//Хаки
+        background:#78866B;
+        border: 1px solid #78866B;
+    }
+    &--mint {//Мятный
+        background: #98FF98;
+        border: 1px solid #98FF98;
+    }
+}
