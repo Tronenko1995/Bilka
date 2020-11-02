@@ -13,7 +13,7 @@
     font-size: 13px;
     line-height: 15px;   
     color: $colorDark;
-    cursor: pointer;
+    // cursor: pointer;
     user-select: none;
 
     &:hover {
@@ -36,6 +36,7 @@
     &__head {
         width: 200px;
         padding: 12px 20px;
+        cursor: pointer;
     
         &::after {
             width: 24px;
@@ -71,16 +72,17 @@
         width: 200px;
         position: relative;
         padding: 12px 20px;
-        cursor: pointer;
         list-style-type: none;
-
-        &:hover {
-            color: $color3;
-        }
-
+        
         & a {
-            color: inherit;
             text-decoration: none;
+            color: #000;
+            display: block;
+            width: 100%;
+
+            &:hover {
+                color: $color3;
+            }
         }
     }
 }

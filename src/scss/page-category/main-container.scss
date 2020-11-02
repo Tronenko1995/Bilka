@@ -172,6 +172,10 @@
                 width: 64px;
                 background: #EB5757;
             }
+            &--sale {
+                width: 64px;
+                background: darken($colorLinks, 20%);
+            }
         }
 
         &-img {

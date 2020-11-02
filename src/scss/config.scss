@@ -81,3 +81,22 @@ body {
     top: -40px;
     left: 0;
 }
+
+.for-slider-item {
+
+}
+.slider-item {
+    margin: 0 !important;
+}
+@media (max-width: 1170px) {
+    .for-slider-item {
+        margin-bottom: 24px !important;
+
+        &:last-child {
+            margin-bottom: 0 !important;
+        }
+    }
+    .slider-item {
+        width: 100% !important;
+    }
+}
