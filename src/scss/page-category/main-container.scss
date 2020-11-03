@@ -297,7 +297,7 @@
         }
     }
     &__more {
-        display: none;
+        display: flex;
         background: #FFFFFF;
         border: 1px solid $color3;
         border-radius: 6px;
@@ -323,6 +323,10 @@
             stroke: $color3;
             fill: none;
             margin-right: 8px;
+
+            &.active {
+                animation: .2s linear 0s normal none infinite running rot;
+            }
         }
         &-text {
             font-family: Gilroy;
