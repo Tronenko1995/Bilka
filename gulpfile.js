@@ -1,5 +1,5 @@
 //Название папки в OpenServer
-const domain = 'bilka.loc'
+const domain = 'bilka.loc';
 
 //Поключаем модули галпа
 const gulp = require('gulp');
@@ -48,7 +48,8 @@ const cssFiles = [
   './src/scss/page-category/main-container.scss',
   './src/scss/page-category/recommended-products.scss',
   './src/scss/page-category/accordion-info.scss',
-  './src/scss/page-category/accordion-questions.scss'
+  './src/scss/page-category/accordion-questions.scss',
+  './src/scss/page-card/page-card.scss'
 ]
 // //Порядок подключения js файлов
 // const jsFiles = [

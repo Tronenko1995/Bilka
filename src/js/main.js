@@ -225,6 +225,22 @@ $(document).on('click',function(e){
           }]
   });
 
+  $('.page-card__container-left-photo-slider').slick({
+    arrows: true,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      draggable: true
+  });
+
+  $('.page-card__container-left-customer_photos-slider').slick({
+    arrows: true,
+      infinite: true,
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      draggable: true
+  });
+
     $('.select').on('click',function () {
       if ($(this).hasClass('open')) {
           $(this).removeClass('open');

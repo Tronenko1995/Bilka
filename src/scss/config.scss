@@ -165,3 +165,24 @@ body {
         display: none;
     }
 }
+
+.sort-asc {
+    display: inline-block;
+    border: 4px solid transparent;
+    border-bottom: 4px solid black;
+    margin-left: 4px;
+    margin-top: 1px;
+    position: absolute;
+}
+.sort-desc {
+    display: inline-block;
+    border: 4px solid transparent;
+    border-top: 4px solid black;
+    margin-left: 4px;
+    margin-top: 6px;
+    position: absolute;
+}
+
+.disabled-link {
+    pointer-events: none !important;
+}
