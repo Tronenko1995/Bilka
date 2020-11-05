@@ -1,0 +1,39 @@
+@import '../colors';
+
+.new-label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000;  
+    cursor: pointer;        
+
+    &::before {
+        content: '';
+        display: inline-block;
+        width: 13px;
+        height: 13px;
+        border: 1px solid #d3d3d6;
+        border-radius: 2px;
+        margin-right: 12px;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    &:hover {
+        color: $color3;
+    }
+}
+.new-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+
+    &:checked+label::before {
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgd2lkdGg9IjkiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDkgOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cmVjdCB3aWR0aD0iOSIgaGVpZ2h0PSI5IiByeD0iMiIgZmlsbD0iI0YzN0EyMiIvPg0KPC9zdmc+');;
+    }
+}

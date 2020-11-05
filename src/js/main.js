@@ -226,6 +226,14 @@ $(document).on('click',function(e){
   });
 
   $('.page-card__container-left-photo-slider').slick({
+      arrows: true,
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      draggable: true
+  });
+
+  $('.page-card__kit-slider').slick({
     arrows: true,
       infinite: true,
       slidesToShow: 1,
@@ -238,7 +246,9 @@ $(document).on('click',function(e){
       infinite: true,
       slidesToShow: 5,
       slidesToScroll: 1,
-      draggable: true
+      draggable: false,
+      rows: 2,
+      slidesPerRow: 1
   });
 
     $('.select').on('click',function () {
