@@ -43,6 +43,8 @@ const cssFiles = [
   './src/scss/include/select.scss',
   './src/scss/include/checkbox.scss',
   './src/scss/include/color.scss',
+  './src/scss/include/rating.scss',
+  './src/scss/include/modal.scss',
   './src/scss/404/404.scss',
   './src/scss/page-category/page-category.scss',
   './src/scss/page-category/sidebar.scss',
@@ -164,7 +166,7 @@ function watch() {
   gulp.watch("./src/img/**/*.{png,jpg,jpeg}", images)
   gulp.watch("./src/img/**/*.svg", sprite)
   gulp.watch('./src/libs/**/*.**', libs);
-  gulp.watch("./*.php").on('change', server.reload);
+  gulp.watch("./*.html").on('change', server.reload);
 }
 
 gulp.task('clean', clean);

@@ -277,5 +277,28 @@ $(document).on('click',function(e){
   }
   });
 
+  /* Модалка написать отзыв jsWriteFeedback */
+  $('.jsWriteFeedback').on('click', function (event) {
+    event.preventDefault();
+    $.magnificPopup.open({
+        items: {
+            src: '#writeFeedback'
+        },
+        callbacks: {
+            open: function () {
+                if (document.body.clientWidth > 500) {
+                    $(this.container).find('.mfp-content').css({
+                        'width': '420px'
+                    });
+                } else {
+                    $(this.container).find('.mfp-content').css({
+                        'width': '300px'
+                    });
+                }
+                $(this.container).find('.mfp-close').addClass('new-close');
+            }
+        }
+    });
+});
 
 });

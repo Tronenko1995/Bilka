@@ -1,0 +1,52 @@
+@import '../colors';
+
+.modal {
+    &__write-feedback {
+        width: 570px;
+        &-head {
+            background: #E5E5EC;
+            border-radius: 4px 4px 0px 0px;
+            display: flex;
+            justify-content: center;
+            padding: 35px;
+            &-title {
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 16px;               
+                color: $colorDark;
+            }
+        }
+        &-body {
+            padding: 35px 32px 56px 32px;
+            background: #FFFFFF;
+            border-radius: 4px;
+
+            &-text {
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 16px;                
+                color: $colorDark;
+            }
+            .rating {
+                width: 214px;
+                margin-top: 12px;
+                flex-direction: row-reverse;
+                display: flex;
+                justify-content: flex-end;
+                .rating-svg {
+                    width: 30px;
+                    height: 30px;
+                    background-size: 30px 30px;
+                    margin-right: 16px;
+                    &:nth-child(2) {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
