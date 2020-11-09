@@ -301,4 +301,65 @@ $(document).on('click',function(e){
     });
 });
 
+/* Ретинг */
+let dafaultRateText = '';
+
+$('.jsRatingSvg').hover(
+  function() {
+    const rate = parseInt( $(this).attr('for') );
+    const rateText = $(this).siblings('.jsRatingText');
+    switch (rate) {
+      case 5:
+        rateText.text( rateText.attr('s5') );
+        console.log(rate);
+      break;
+      case 4:
+        rateText.text( rateText.attr('s4') );
+      break;
+      case 3:
+        rateText.text( rateText.attr('s3') );
+      break;
+      case 2:
+        rateText.text( rateText.attr('s2') );
+      break;
+      case 1:
+        rateText.text( rateText.attr('s1') );
+      break;
+    }
+  }, function() {
+    const rate = parseInt( $(this).attr('for') );
+    const rateText = $(this).siblings('.jsRatingText');
+    rateText.text(dafaultRateText);
+  }
+);
+$('.jsRatingSvg').on('click', function() {
+
+  const rate = parseInt( $(this).attr('for') );
+  const rateText = $(this).siblings('.jsRatingText');
+  switch (rate) {
+    case 5:
+      rateText.text( rateText.attr('s5') );
+      dafaultRateText = rateText.attr('s5');
+      console.log(dafaultRateText);
+    break;
+    case 4:
+      rateText.text( rateText.attr('s4') );
+      dafaultRateText = rateText.attr('s4');
+    break;
+    case 3:
+      rateText.text( rateText.attr('s3') );
+      dafaultRateText = rateText.attr('s3');
+    break;
+    case 2:
+      rateText.text( rateText.attr('s2') );
+      dafaultRateText = rateText.attr('s2');
+    break;
+    case 1:
+      rateText.text( rateText.attr('s1') );
+      dafaultRateText = rateText.attr('s1');
+    break;
+  }
+
+});
+
 });

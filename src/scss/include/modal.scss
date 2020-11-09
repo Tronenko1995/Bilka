@@ -37,14 +37,27 @@
                 flex-direction: row-reverse;
                 display: flex;
                 justify-content: flex-end;
+                position: relative;
                 .rating-svg {
                     width: 30px;
                     height: 30px;
                     background-size: 30px 30px;
                     margin-right: 16px;
+                    cursor: pointer;
                     &:nth-child(2) {
                         margin-right: 0;
                     }
+                }
+                .rating__text {
+                    position: absolute;
+                    left: 100%;
+                    margin-left: 32px;
+                    font-family: Gilroy;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 16px;                   
+                    color: $color2;
                 }
             }
         }

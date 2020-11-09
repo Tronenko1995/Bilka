@@ -1528,13 +1528,19 @@
         <p class="modal__write-feedback-head-title">Написать отзыв</p>
     </div>
     <div class="modal__write-feedback-body">
-        <p class="modal__write-feedback-text">Ваша оценка</p>
+        <p class="modal__write-feedback-body-text">Ваша оценка</p>
         <div class="rating">
-            <input type="radio" name="rating" value="5" id="5"><label class="rating-svg svg-star" for="5"></label>
-            <input type="radio" name="rating" value="4" id="4"><label class="rating-svg svg-star" for="4"></label>
-            <input type="radio" name="rating" value="3" id="3"><label class="rating-svg svg-star" for="3"></label>
-            <input type="radio" name="rating" value="2" id="2"><label class="rating-svg svg-star" for="2"></label>
-            <input type="radio" name="rating" value="1" id="1"><label class="rating-svg svg-star" for="1"></label>
+            <input class="jsRatingInput" type="radio" name="rating" value="5" id="5">
+            <label class="rating-svg svg-star jsRatingSvg" for="5"></label>
+            <input class="jsRatingInput" type="radio" name="rating" value="4" id="4">
+            <label class="rating-svg svg-star jsRatingSvg" for="4"></label>
+            <input class="jsRatingInput" type="radio" name="rating" value="3" id="3">
+            <label class="rating-svg svg-star jsRatingSvg" for="3"></label>
+            <input class="jsRatingInput" type="radio" name="rating" value="2" id="2">
+            <label class="rating-svg svg-star jsRatingSvg" for="2"></label>
+            <input class="jsRatingInput" type="radio" name="rating" value="1" id="1">
+            <label class="rating-svg svg-star jsRatingSvg" for="1"></label>
+            <p class="rating__text jsRatingText" s5="Отлично" s4="Хорошо" s3="Нормально" s2="Плохо" s1="Ужасно"></p>
         </div>
     </div>
 </div>
