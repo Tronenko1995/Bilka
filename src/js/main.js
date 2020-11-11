@@ -286,7 +286,7 @@ $(document).on('click',function(e){
         },
         callbacks: {
             open: function () {
-                if (document.body.clientWidth > 500) {
+                if (document.body.clientWidth > 420) {
                     $(this.container).find('.mfp-content').css({
                         'width': '420px'
                     });
@@ -299,6 +299,41 @@ $(document).on('click',function(e){
             }
         }
     });
+});
+
+  /* Модалка купить в один клик jsBuyOneClick */
+  $('.jsBuyOneClick').on('click', function (event) {
+    event.preventDefault();
+    $.magnificPopup.open({
+        items: {
+            src: '#buyOneClick'
+        },
+        callbacks: {
+            open: function () {
+                if (document.body.clientWidth > 420) {
+                    $(this.container).find('.mfp-content').css({
+                        'width': '420px'
+                    });
+                } else {
+                    $(this.container).find('.mfp-content').css({
+                        'width': '300px'
+                    });
+                }
+                $(this.container).find('.mfp-close').addClass('new-close');
+            }
+        }
+    });
+});
+
+/* Валидация телефона */
+$(".jsPhone").inputmask({
+  mask: "+380 (99) 999-99-99",
+//   greedy: false,
+  clearIncomplete: true,
+  placeholder: "_",
+//   rightAlign: false,
+  showMaskOnHover: false,
+//   showMaskOnFocus: true,
 });
 
 /* Ретинг */

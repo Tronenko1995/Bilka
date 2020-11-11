@@ -443,6 +443,12 @@
                             text-align: center;                           
                             color: $colorDark;
                             cursor: pointer;
+
+                            &:hover,
+                            &:focus {
+                                background: $color3;
+                                color: #fff;
+                            }
                         }
                         &-link {
                             margin-top: 8px;
