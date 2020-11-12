@@ -325,15 +325,22 @@ $(document).on('click',function(e){
     });
 });
 
-/* Валидация телефона */
-$(".jsPhone").inputmask({
-  mask: "+380 (99) 999-99-99",
-//   greedy: false,
-  clearIncomplete: true,
-  placeholder: "_",
-//   rightAlign: false,
-  showMaskOnHover: false,
-//   showMaskOnFocus: true,
+/*отлов сабмита в формах*/
+$('.modal__buy-one-click').on('submit','.modal__buy-one-click-form', function(e) {
+  e.preventDefault();
+  console.log('sub');
+  $(this).closest('.modal__buy-one-click').addClass('success');
+});
+
+$('.modal__buy-one-click').on('submit','.modal__buy-one-click-form--success', function(e) {
+  e.preventDefault();
+  console.log('sub2');
+  $.magnificPopup.close();
+});
+
+$('.modal__write-feedback').on('submit','.modal__write-feedback-form', function(e) {
+  e.preventDefault();
+  $.magnificPopup.close();
 });
 
 /* Ретинг */
@@ -395,6 +402,12 @@ $('.jsRatingSvg').on('click', function() {
     break;
   }
 
+});
+
+
+/* New Accordion */
+$('.new-accordion').on('click', function() {
+  $(this).toggleClass('active');
 });
 
 });

@@ -45,6 +45,7 @@ const cssFiles = [
   './src/scss/include/color.scss',
   './src/scss/include/rating.scss',
   './src/scss/include/modal.scss',
+  './src/scss/include/new-accordion.scss',
   './src/scss/404/404.scss',
   './src/scss/page-category/page-category.scss',
   './src/scss/page-category/sidebar.scss',
@@ -52,7 +53,9 @@ const cssFiles = [
   './src/scss/page-category/recommended-products.scss',
   './src/scss/page-category/accordion-info.scss',
   './src/scss/page-category/accordion-questions.scss',
-  './src/scss/page-card/page-card.scss'
+  './src/scss/page-card/page-card.scss',
+  './src/scss/page-about-shop/about-shop.scss',
+  './src/scss/page-pay-delivery/pay-delivery.scss'
 ]
 // //Порядок подключения js файлов
 // const jsFiles = [
@@ -147,7 +150,7 @@ function sprite() {
 
 
 function clear() {
-	return del(['css/*','js/*'])
+	return del(['css/*','js/*']);
 }
 
 function clean() {
@@ -163,8 +166,8 @@ function watch() {
   gulp.watch('./src/scss/**/*.scss', styles);
   gulp.watch('./src/js/**/*.js', scripts);
   // gulp.watch("./src/img/**/*.{png,jpg,jpeg}", gulp.series(images, webpfun))
-  gulp.watch("./src/img/**/*.{png,jpg,jpeg}", images)
-  gulp.watch("./src/img/**/*.svg", sprite)
+  gulp.watch("./src/img/**/*.{png,jpg,jpeg}", images);
+  gulp.watch("./src/img/**/*.svg", sprite);
   gulp.watch('./src/libs/**/*.**', libs);
   gulp.watch("./*.html").on('change', server.reload);
 }
