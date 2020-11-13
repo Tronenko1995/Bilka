@@ -37,3 +37,43 @@
         }
     }
 }
+
+@media (max-width: 1200px) {
+    .breadcrumb {
+        display: none;
+    
+        &__item {
+    
+            &::before {
+                // display: inline-block;
+                // margin-left: 5px;
+                // margin-right: 5px;
+                // color: $color2;
+                // content: "–";
+            }
+    
+            &:last-child .breadcrumb__link {
+                // color: #000;
+                // pointer-events: none;
+                &:hover {
+                    // color: $color3;
+                }
+            }
+            &:first-child::before {
+                // display: none;
+            }
+        }
+        &__link {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: normal;
+            // font-size: 12px;
+            // line-height: 14px;        
+            // color: $color2;
+    
+            &:hover {
+                // color: $color3;
+            }
+        }
+    }
+}

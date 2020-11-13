@@ -1,0 +1,94 @@
+@import '../colors';
+
+.contacts {
+    display: flex;
+    justify-content: center;
+    background: $mainBgColor;
+
+    &__wrap {
+        width: 1240px;
+        padding-top: 56px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 112px;
+    }
+    &__title {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 43px;        
+        color: #202026;
+    }
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 72px;
+    }
+    &__text {
+        width: 48%;
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;        
+        color: #202026;
+
+        &--bold {
+            font-weight: 600;
+        }
+    }
+    &__block {
+        display: flex;
+        flex-direction: column;
+        &-svg {
+            width: 24px;
+            height: 24px;
+        }
+        &-text {
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;            
+            color: $colorDark;
+            width: 479px;
+        }
+        &-subtext {
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 20px;        
+            color: $color2;
+            width: 479px;
+            margin-top: 16px;
+        }
+        &-column {
+            display: flex;
+            flex-direction: column;
+            margin-left: 12px;
+        }
+        &-link {
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;            
+            color: $colorDark;
+            
+            &:hover {
+                color: $hover1;
+            }
+        }
+        &-container {
+            display: flex;
+
+            &--next {
+                margin-top: 32px;
+            }
+        }
+    }
+}

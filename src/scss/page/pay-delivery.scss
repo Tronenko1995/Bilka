@@ -1,0 +1,562 @@
+@import '../colors';
+
+.pay-delivery {
+    display: flex;
+    justify-content: center;
+    background: $mainBgColor;
+
+    &__wrap {
+        width: 1240px;
+        padding-top: 56px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 112px;
+    }
+    &__for-text {
+        width: 814px;
+        align-self: center;
+    }
+    &__title {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 43px;        
+        color: $colorDark;
+        margin-top: 12px;
+    }
+    &__descriptions {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 26px;        
+        color: $color2;
+        margin-top: 8px;
+    }
+    &__text {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;        
+        color: $colorDark;
+        margin-top: 64px;
+    }
+    &__accordion {
+        margin-top: 32px;
+    }
+    &__list {
+        margin-top: 36px;
+        &-item {
+            display: flex;
+            align-items: center;
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 20px;            
+            color: $colorDark;
+            margin-bottom: 24px;
+            &:last-child {
+                margin-bottom: 0;
+                .pay-delivery__list-item-number {
+                    align-self: flex-start;
+                        &::after {
+                            display: none;
+                        }
+                        // &::before {
+                        //     position: absolute;
+                        //     content: '';
+                        //     width: 1px;
+                        //     background: rgba(#929299, .3);
+                        //     height: 100%;
+                        //     bottom: 100%;
+                        // }
+                }
+            }
+            &-number {
+                width: 47px;
+                min-width: 47px;
+                height: 47px;
+                background: #FFFFFF;
+                box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+                border-radius: 4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 24px;               
+                text-align: center;                
+                color: $color2;
+                margin-right: 21px;
+                position: relative;
+                &::after {
+                    position: absolute;
+                    content: '';
+                    width: 1px;
+                    background: rgba(#929299, .3);
+                    height: 100%;
+                    top: 100%;
+                }
+            }
+        }
+    }
+    &__item {
+        &-text {
+            margin-top: 40px;
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 20px;            
+            color: $colorDark;
+        }
+    }
+    &__subtext {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;       
+        color: $colorDark;
+        margin-top: 32px;
+
+        &--bold {
+            font-weight: 700;
+        }
+        &--orange {
+            color: $color3;
+        }
+    }
+}
+
+@media(max-width: 854px) {
+
+    .pay-delivery {
+        // display: flex;
+        // justify-content: center;
+        // background: $mainBgColor;
+    
+        &__wrap {
+            // width: 1240px;
+            // padding-top: 56px;
+            // display: flex;
+            // flex-direction: column;
+            // padding-left: 20px;
+            // padding-right: 20px;
+            // padding-bottom: 112px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        &__for-text {
+            width: 100%;
+            // align-self: center;
+        }
+        &__title {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            // font-size: 36px;
+            // line-height: 43px;        
+            // color: $colorDark;
+            // margin-top: 12px;
+        }
+        &__descriptions {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            // font-size: 18px;
+            // line-height: 26px;        
+            // color: $color2;
+            // margin-top: 8px;
+        }
+        &__text {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            // font-size: 24px;
+            // line-height: 29px;        
+            // color: $colorDark;
+            // margin-top: 64px;
+        }
+        &__accordion {
+            // margin-top: 32px;
+        }
+        &__list {
+            // margin-top: 36px;
+            &-item {
+                // display: flex;
+                // align-items: center;
+                // font-family: Gilroy;
+                // font-style: normal;
+                // font-weight: normal;
+                // font-size: 14px;
+                // line-height: 20px;            
+                // color: $colorDark;
+                // margin-bottom: 24px;
+                &:last-child {
+                    // margin-bottom: 0;
+                    .pay-delivery__list-item-number {
+                        // align-self: flex-start;
+                            &::after {
+                                // display: none;
+                            }
+                    }
+                }
+                &-number {
+                    // width: 47px;
+                    // min-width: 47px;
+                    // height: 47px;
+                    // background: #FFFFFF;
+                    // box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+                    // border-radius: 4px;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+                    // font-family: Gilroy;
+                    // font-style: normal;
+                    // font-weight: 500;
+                    // font-size: 24px;
+                    // line-height: 24px;               
+                    // text-align: center;                
+                    // color: $color2;
+                    // margin-right: 21px;
+                    // position: relative;
+                    &::after {
+                        // position: absolute;
+                        // content: '';
+                        // width: 1px;
+                        // background: rgba(#929299, .3);
+                        // height: 100%;
+                        // top: 100%;
+                    }
+                }
+            }
+        }
+        &__item {
+            &-text {
+                // margin-top: 40px;
+                // font-family: Gilroy;
+                // font-style: normal;
+                // font-weight: normal;
+                // font-size: 14px;
+                // line-height: 20px;            
+                // color: $colorDark;
+            }
+        }
+        &__subtext {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: normal;
+            // font-size: 14px;
+            // line-height: 20px;       
+            // color: $colorDark;
+            // margin-top: 32px;
+    
+            &--bold {
+                // font-weight: 700;
+            }
+            &--orange {
+                // color: $color3;
+            }
+        }
+    }
+
+}
+
+@media(max-width: 810px) {
+
+    .pay-delivery {
+        // display: flex;
+        // justify-content: center;
+        // background: $mainBgColor;
+    
+        &__wrap {
+            // width: 1240px;
+            // padding-top: 56px;
+            // display: flex;
+            // flex-direction: column;
+            // padding-left: 20px;
+            // padding-right: 20px;
+            // padding-bottom: 112px;
+            // padding-left: 20px;
+            // padding-right: 20px;
+        }
+        &__for-text {
+            // width: 100%;
+            // align-self: center;
+
+            & .new-accordion__block {
+
+                & .new-accordion {
+                    width: 100%;
+                }
+                & .new-accordion__block-item {
+
+                }
+            }
+        }
+        &__title {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            // font-size: 36px;
+            // line-height: 43px;        
+            // color: $colorDark;
+            // margin-top: 12px;
+        }
+        &__descriptions {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            // font-size: 18px;
+            // line-height: 26px;        
+            // color: $color2;
+            // margin-top: 8px;
+        }
+        &__text {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            // font-size: 24px;
+            // line-height: 29px;        
+            // color: $colorDark;
+            // margin-top: 64px;
+        }
+        &__accordion {
+            // margin-top: 32px;
+        }
+        &__list {
+            // margin-top: 36px;
+            &-item {
+                // display: flex;
+                // align-items: center;
+                // font-family: Gilroy;
+                // font-style: normal;
+                // font-weight: normal;
+                // font-size: 14px;
+                // line-height: 20px;            
+                // color: $colorDark;
+                // margin-bottom: 24px;
+                &:last-child {
+                    // margin-bottom: 0;
+                    .pay-delivery__list-item-number {
+                        // align-self: flex-start;
+                            &::after {
+                                // display: none;
+                            }
+                    }
+                }
+                &-number {
+                    // width: 47px;
+                    // min-width: 47px;
+                    // height: 47px;
+                    // background: #FFFFFF;
+                    // box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+                    // border-radius: 4px;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+                    // font-family: Gilroy;
+                    // font-style: normal;
+                    // font-weight: 500;
+                    // font-size: 24px;
+                    // line-height: 24px;               
+                    // text-align: center;                
+                    // color: $color2;
+                    // margin-right: 21px;
+                    // position: relative;
+                    &::after {
+                        // position: absolute;
+                        // content: '';
+                        // width: 1px;
+                        // background: rgba(#929299, .3);
+                        // height: 100%;
+                        // top: 100%;
+                    }
+                }
+            }
+        }
+        &__item {
+            &-text {
+                // margin-top: 40px;
+                // font-family: Gilroy;
+                // font-style: normal;
+                // font-weight: normal;
+                // font-size: 14px;
+                // line-height: 20px;            
+                // color: $colorDark;
+            }
+        }
+        &__subtext {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: normal;
+            // font-size: 14px;
+            // line-height: 20px;       
+            // color: $colorDark;
+            // margin-top: 32px;
+    
+            &--bold {
+                // font-weight: 700;
+            }
+            &--orange {
+                // color: $color3;
+            }
+        }
+    }
+
+}
+
+@media(max-width: 730px) {
+
+    .pay-delivery {
+        // display: flex;
+        // justify-content: center;
+        // background: $mainBgColor;
+    
+        &__wrap {
+            // width: 1240px;
+            // padding-top: 56px;
+            // display: flex;
+            // flex-direction: column;
+            // padding-left: 20px;
+            // padding-right: 20px;
+            // padding-bottom: 112px;
+            // padding-left: 20px;
+            // padding-right: 20px;
+        }
+        &__for-text {
+            // width: 100%;
+            // align-self: center;
+
+            & .new-accordion__block {
+
+                & .new-accordion {
+                    // width: 100%;
+                }
+                & .new-accordion__block-item {
+                }
+            }
+        }
+        &__title {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            // font-size: 36px;
+            // line-height: 43px;        
+            // color: $colorDark;
+            // margin-top: 12px;
+        }
+        &__descriptions {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            // font-size: 18px;
+            // line-height: 26px;        
+            // color: $color2;
+            // margin-top: 8px;
+        }
+        &__text {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            // font-size: 24px;
+            // line-height: 29px;        
+            // color: $colorDark;
+            // margin-top: 64px;
+        }
+        &__accordion {
+            // margin-top: 32px;
+        }
+        &__list {
+            // margin-top: 36px;
+            &-item {
+                // display: flex;
+                align-items: flex-start;
+                // font-family: Gilroy;
+                // font-style: normal;
+                // font-weight: normal;
+                // font-size: 14px;
+                // line-height: 20px;            
+                // color: $colorDark;
+                // margin-bottom: 24px;
+                &:last-child {
+                    // margin-bottom: 0;
+                    .pay-delivery__list-item-number {
+                        z-index: 1;
+                        // align-self: flex-start;
+                            &::after {
+                            display: block;
+                            top: -400%;
+                            height: 400%;
+                        }
+                    }
+                }
+                &-number {
+                    // width: 47px;
+                    // min-width: 47px;
+                    // height: 47px;
+                    // background: #FFFFFF;
+                    // box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+                    // border-radius: 4px;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+                    // font-family: Gilroy;
+                    // font-style: normal;
+                    // font-weight: 500;
+                    // font-size: 24px;
+                    // line-height: 24px;               
+                    // text-align: center;                
+                    // color: $color2;
+                    // margin-right: 21px;
+                    // position: relative;
+                    z-index: 2;
+                    &::after {
+                        // position: absolute;
+                        // content: '';
+                        // width: 1px;
+                        // background: rgba(#929299, .3);
+                        // height: 100%;
+                        // top: 100%;
+                    }
+                }
+            }
+        }
+        &__item {
+            &-text {
+                // margin-top: 40px;
+                // font-family: Gilroy;
+                // font-style: normal;
+                // font-weight: normal;
+                // font-size: 14px;
+                // line-height: 20px;            
+                // color: $colorDark;
+            }
+        }
+        &__subtext {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: normal;
+            // font-size: 14px;
+            // line-height: 20px;       
+            // color: $colorDark;
+            // margin-top: 32px;
+    
+            &--bold {
+                // font-weight: 700;
+            }
+            &--orange {
+                // color: $color3;
+            }
+        }
+    }
+
+}
