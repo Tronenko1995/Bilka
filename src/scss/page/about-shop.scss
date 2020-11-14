@@ -12,6 +12,7 @@
         flex-direction: column;
         padding-left: 20px;
         padding-right: 20px;
+        padding-bottom: 112px;
     }
     &__for-text {
         width: 814px;
@@ -138,7 +139,7 @@
             // font-size: 36px;
             // line-height: 43px;        
             // color: $colorDark;
-            // margin-top: 12px;
+            margin-top: 0px;
         }
         &__descriptions {
             // font-family: Gilroy;
@@ -196,11 +197,12 @@
     
         &__wrap {
             // width: 1240px;
-            // padding-top: 56px;
+            padding-top: 40px;
             // display: flex;
             // flex-direction: column;
-            // padding-left: 20px;
-            // padding-right: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-bottom: 100px;
         }
         &__for-text {
             // width: 100%;
@@ -251,7 +253,7 @@
             // font-size: 14px;
             // line-height: 20px;        
             // color: $colorDark;
-            // margin-top: 72px;
+            margin-top: 40px;
     
             &--bold {
                 // font-weight: 700;
@@ -384,104 +386,6 @@
         &__block {
             display: flex;
             justify-content: flex-end;
-        }
-    }
-}
-
-@media (max-width: 500px) {
-    .about-shop {
-        // display: flex;
-        // justify-content: center;
-        // background: $mainBgColor;
-    
-        &__wrap {
-            // width: 1240px;
-            // padding-top: 56px;
-            // display: flex;
-            // flex-direction: column;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-        &__for-text {
-            // width: 100%;
-            // align-self: center;
-            &-2 {
-                .about-shop__title {
-                    // font-size: 24px;
-                    // line-height: 29px;
-                    // margin-top: 64px;
-                }
-                .about-shop__text {
-                    // margin-top: 32px;
-                }
-            }
-            &-3 {
-                .about-shop__title {
-                    // font-size: 24px;
-                    // line-height: 29px;
-                    // margin-top: 32px;
-                }
-                .about-shop__text {
-                    // margin-top: 32px;
-                }
-            }
-        }
-        &__title {
-            // font-family: Gilroy;
-            // font-style: normal;
-            // font-weight: 600;
-            // font-size: 36px;
-            // line-height: 43px;        
-            // color: $colorDark;
-            // margin-top: 12px;
-        }
-        &__descriptions {
-            // font-family: Gilroy;
-            // font-style: normal;
-            // font-weight: 600;
-            // font-size: 18px;
-            // line-height: 21px;        
-            // color: $color2;
-            // margin-top: 4px;
-        }
-        &__text {
-            // font-family: Gilroy;
-            // font-style: normal;
-            // font-weight: normal;
-            // font-size: 14px;
-            // line-height: 20px;        
-            // color: $colorDark;
-            // margin-top: 72px;
-    
-            &--bold {
-                // font-weight: 700;
-            }
-        }
-        &__img {
-            // width: 100%;
-            // height: auto;
-            // border-radius: 4px;
-            // margin-top: 32px;
-    
-            &-2 {
-                // width: 243px;
-                // height: 269px;
-                // margin-top: 0;
-            }
-            &-3 {
-                // width: 244px;
-                // height: 190px;
-                // margin-top: 0;
-                // margin-left: 30px;
-            }
-        }
-        &__for-image {
-            // display: flex;
-            // margin-top: 64px;
-            // justify-content: space-between;
-            // align-items: flex-end;
-            // width: 517px;
-            // overflow-x: scroll;
         }
     }
 }

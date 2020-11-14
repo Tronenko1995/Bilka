@@ -54,7 +54,8 @@ const cssFiles = [
   './src/scss/page/about-shop.scss',
   './src/scss/page/pay-delivery.scss',
   './src/scss/page/warranty.scss',
-  './src/scss/page/contacts.scss'
+  './src/scss/page/contacts.scss',
+  './src/scss/page/privacy-policy.scss'
 ]
 // //Порядок подключения js файлов
 // const jsFiles = [
