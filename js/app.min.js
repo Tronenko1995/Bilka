@@ -279,20 +279,62 @@ if ($('.page-card__container-left-customer_photos-slider').length >= 1) {
 
 
 
-    $('.select').on('click',function () {
-      if ($(this).hasClass('open')) {
-          $(this).removeClass('open');
-      } else {
-        $(this).addClass('open');
-      }
-  });
+  //   $('.select').on('click',function () {
+  //     if ($(this).hasClass('open')) {
+  //         $(this).removeClass('open');
+  //     } else {
+  //       $(this).addClass('open');
+  //     }
+  // });
 
-  $('.select').on('click', '.select__item', function (event) {
-      event.stopPropagation();
-      $(this).parent().prev().text($(this).text());
-      $(this).parent().prev().prev().val($(this).text());
-      $(this).closest('.select').removeClass('open');
-  });
+  // $('.select').on('click', '.select__item', function (event) {
+  //     event.stopPropagation();
+  //     $(this).parent().prev().text($(this).text());
+  //     $(this).parent().prev().prev().val($(this).text());
+  //     $(this).closest('.select').removeClass('open');
+  // });
+
+  /* Открытие селекта */
+$('.select').on('click', function () {
+  $(this).toggleClass('open');
+});
+/* Открытие селекта табом */
+$('.select').keypress(function(e) {
+  if (e.which == 13) {
+      $(this).toggleClass('open');
+  }
+});
+
+/* Смена текста и значения по клику на итем селекта + закрытие селекта */
+$('.select').on('click', '.select__item', function (e) {
+  e.stopPropagation();
+
+  const itemText = $(this).text();
+  const select = $(this).closest('.select');
+
+  $(select).find('.select__head').text(itemText);
+  $(select).find('.select__input').val(itemText);
+  $(select).addClass('active').removeClass('open');
+  $(select).find('.select__list .active').removeClass('active');
+  $(this).addClass('active');
+});
+/* Смена текста и значения по клику на итем селекта + закрытие селекта табом */
+$('.select__item').keypress(function(e) {
+  e.stopPropagation();
+  const itemText = $(this).text();
+  const select = $(this).closest('.select');
+
+  $(select).find('.select__head').text(itemText);
+  $(select).find('.select__input').val(itemText);
+  $(select).addClass('active').removeClass('open');
+});
+
+/* Закрытие всех селектов при клике вне блока селектов */
+$(document).on('click', function (e) {
+  if ( !$('.select').is(e.target) && !$('.select').is(e.target) && $('.select').has(e.target).length === 0) {
+      $('.select').removeClass('open');
+  };
+});
 
   $('.jsWatchMore').on('click', function(e){
     e.preventDefault();
@@ -437,6 +479,12 @@ $('.jsRatingSvg').on('click', function() {
 $('.jsAccordion').on('click', function() {
   $(this).toggleClass('active');
   $(this).siblings('.jsAccordionItem').toggleClass('open');
+});
+
+/* NewsTabs */
+$('.jsTabs').on('click', function() {
+  $('.jsTabs').removeClass('active');
+  $(this).toggleClass('active');
 });
 
 });
