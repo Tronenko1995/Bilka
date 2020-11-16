@@ -1,6 +1,7 @@
 @import 'colors';
 
 .cart {
+    display: none;
     width: 540px;
     background: #fff;
     border-radius: 4px;
@@ -9,6 +10,10 @@
     right: 0;
     z-index: 100;
     box-shadow: 0 4px 17px rgba(0,0,0,.06);
+
+    &.active {
+        display: block;
+    }
 
     &__top {
         padding: 32px 34px 28px 32px;
@@ -375,16 +380,20 @@
 }
 
 
-@media (max-width: 550px) {
+@media (max-width: 1200px) {
 
 
     .cart {
+        display: block;
         width: 324px;
         right: unset;
         left: -324px;
         top:0;
         border-radius: 0;
         transition: left .7s;
+        &.active {
+            left: 0;
+        }
     
         &__top {
             padding: 15px;

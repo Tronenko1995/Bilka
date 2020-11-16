@@ -9,6 +9,9 @@
 	top: 0;
 	transition: left .7s;
 	// padding-bottom: 26px;
+	&.active {
+		left: 0;
+	}
 
 	&__head {
 		padding: 13px 15px 13px 15px;

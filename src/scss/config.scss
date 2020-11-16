@@ -25,7 +25,10 @@ body {
 	top: 0;
 	transition: right .7s;
 	height: 100%;
-	opacity: .2;
+    opacity: .2;
+    &.active {
+        right: 0;
+    }
 }
 .hide {
 	display: none !important;
@@ -185,4 +188,20 @@ body {
 
 .disabled-link {
     pointer-events: none !important;
+}
+
+@media (max-width: 840px) {
+    .hideCardTabsItem {
+        opacity: 0;
+        z-index: -1;
+        position: absolute;
+        left: -99999px;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .hideCard {
+        display: none !important;
+    }
 }

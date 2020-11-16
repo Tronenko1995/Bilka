@@ -3229,7 +3229,7 @@ msgstr "Правила отправки"
 msgid "Send after"
 msgstr "Отправлять через"
 
-msgid "Send for customer‘s first paid order only"
+msgid "Send for customer's first paid order only"
 msgstr "Отправлять только для первого оплаченного заказа покупателя"
 
 msgid "HTML + Smarty"
@@ -8004,7 +8004,7 @@ msgstr "Конец интервала времени доставки"
 msgid "Shipping date and time, for example: February 16, 10:00 - 20:30"
 msgstr "Дата и время доставки, например: 16 февраля, 10:00 - 20:30"
 
-msgid "Relative URL of ordered product‘s main image with specified size."
+msgid "Relative URL of ordered product's main image with specified size."
 msgstr "Относительный URL основного изображения заказанного товара с указанием размера."
 
 msgid "<code>$item</code> must be an item of <code>$order.items</code> array."
@@ -8025,10 +8025,10 @@ msgstr "Отправлять, только если статус заказа, �
 msgid "Social sharing URL (og:url)"
 msgstr "Ссылка для соцсетей (og:url)"
 
-msgid "If at least one og: value above is not empty, then you may keep this field empty for og:url meta tag to contain this storefront‘s URL by default. Or type a custom og:url value manually, if necessary."
+msgid "If at least one og: value above is not empty, then you may keep this field empty for og:url meta tag to contain this storefront's URL by default. Or type a custom og:url value manually, if necessary."
 msgstr "Если хотя бы одно из значений метатегов og: выше заполнено, то это поле можно оставить пустым — в метатег og:url по умолчанию подставится URL витрины. Или вручную отредактируйте значение og:url, если необходимо."
 
-msgid "Amount of customer‘s bonuses accumulated with the “Loyalty program” enabled in store settings"
+msgid "Amount of customer's bonuses accumulated with the “Loyalty program” enabled in store settings"
 msgstr "Количество бонусов, накопленных покупателем в рамках «Бонусной программы», включенной в настройках магазина"
 
 msgid "Total amount of money spent by a customer calculated in default currency. To add formatted amount expressed in the order currency, use <code>{shop_currency($customer.total_spent, null, $order.currency)}</code>."
@@ -8364,10 +8364,10 @@ msgstr "Показать все"
 msgid "Conventional commodity"
 msgstr "Обычный товар"
 
-msgid "To edit countries and regions, you need to access the “Settings” app‘s."
+msgid "To edit countries and regions, you need to access the “Settings” app's."
 msgstr "Чтобы редактировать страны и регионы, вам необходимо получить доступ к приложению «Настройки»."
 
-msgid "You can set up a directory of countries and regions in “<a href=\"%s\">Settings</a>” app‘s."
+msgid "You can set up a directory of countries and regions in “<a href=\"%s\">Settings</a>” app's."
 msgstr "Настроить справочник стран и регионов можно в приложении «<a href=\"%s\">Настройки</a>»."
 
 msgid "Working schedule"
@@ -9693,7 +9693,7 @@ msgstr "Редактирование заказов, добавленных вр
 msgid "Select which fields must available for the editing of orders with selected order source “%s”."
 msgstr "Выберите, какие поля должны быть доступны при редактировании заказов, для которых выбран источник «%s»."
 
-msgid "If a storefront is selected as an order‘s source then that storefront’s checkout settings define which fields are available for order editing."
+msgid "If a storefront is selected as an order's source then that storefront’s checkout settings define which fields are available for order editing."
 msgstr "Если в качестве источника заказа выбрана витрина, то при редактировании заказа доступны поля, включенные в настройках оформления заказа для этой витрины."
 
 msgid "Use custom settings"

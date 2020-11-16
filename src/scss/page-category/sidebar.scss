@@ -388,6 +388,9 @@
             // background: #fff;
             border-radius: 0px;
             padding: 12px 12px 30px 20px;
+            &.active {
+                left: 0;
+            }
 
             &.hide2 {
                 display: none;
