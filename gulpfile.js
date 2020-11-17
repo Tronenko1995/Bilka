@@ -56,7 +56,10 @@ const cssFiles = [
   './src/scss/page/warranty.scss',
   './src/scss/page/contacts.scss',
   './src/scss/page/privacy-policy.scss',
-  './src/scss/page/page-news.scss'
+  './src/scss/page/page-news.scss',
+  './src/scss/page/page-find.scss',
+  './src/scss/page/articles-news.scss',
+  './src/scss/page/one-step.scss'
 ]
 // //Порядок подключения js файлов
 // const jsFiles = [

@@ -303,6 +303,8 @@
             // width: 100%;
             // align-self: center;
             &-2 {
+                display: flex;
+                flex-direction: column;
                 .about-shop__title {
                     // font-size: 24px;
                     // line-height: 29px;
@@ -377,15 +379,17 @@
             // margin-top: 64px;
             // justify-content: space-between;
             // align-items: flex-end;
-            width: 345px;
+            width: 519px;
             overflow-x: scroll; /* Добавляем полосу прокрутки */
             white-space: nowrap; /* Запрещаем перенос строк */
-            position: relative;
-            left: 15px
         }
         &__block {
             display: flex;
             justify-content: flex-end;
+            position: relative;
+            left: 15px;
+            width: 345px;
+            align-self: flex-end;
         }
     }
 }

@@ -248,7 +248,18 @@ if ($('.page-card__container-left-customer_photos-slider').length >= 1) {
   });
 }
 
-
+if ($('.jsPhone').length >= 1) {
+  /* Валидация телефона */
+  $(".jsPhone").inputmask({
+    mask: "+380 (99) 999-99-99",
+  //   greedy: false,
+    clearIncomplete: true,
+    placeholder: "_",
+  //   rightAlign: false,
+    showMaskOnHover: false,
+    showMaskOnFocus: true,
+  });
+}
 
   //   $('.select').on('click',function () {
   //     if ($(this).hasClass('open')) {

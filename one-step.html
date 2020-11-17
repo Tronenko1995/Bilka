@@ -13,8 +13,6 @@
 	<meta property="og:url" content="http://alextr.pp.ua/bilka/categoty/">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="http://alextr.pp.ua/bilka/img/logo-bilka.png">
-    <link rel="stylesheet" href="libs/slick/slick.css">
-    <link rel="stylesheet" href="libs/magnific-popup/magnific-popup.css">
 	<link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
@@ -655,41 +653,50 @@
     </ul>
 </div>
 
-<div class="warranty">
-    <div class="warranty__wrap">
+<div class="one-step">
+    <div class="one-step__wrap">
 
         <ul class="breadcrumb">
             <li class="breadcrumb__item">
                 <a href="index.html" class="breadcrumb__link">Главная</a>
             </li>
             <li class="breadcrumb__item">
-                <a href="#" class="breadcrumb__link">Гарантия</a>
+                <a href="#" class="breadcrumb__link jsCatalog">Каталог</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link">Корзина</a>
             </li>
         </ul>
 
-
-        <div class="warranty__for-text">
-            <p class="warranty__title">Возврат и обмен товара</p>
-            <p class="warranty__descriptions">В соответствии с Законом Украины «О защите прав потребителей» в течение 14 дней со дня совершения покупки Вы можете осуществить возврат приобретенного в интернет-магазине Bilka.com.ua товара.<br><br>
-            Обмен товара производится на основании товарного чека в офисе нашего интернет магазина. Обмен производится в нашем офисе, обмен в других городах производится через транспортные компании.</p>
-            
-            <p class="warranty__subtitle">Возврат и обмен товара</p>
-            <p class="warranty__text">Возврат или обмен возможны при соблюдении следующих условий:</p>
-            <ul class="warranty__list">
-                <li class="warranty__item">товар новый - не был в эксплуатации и не имеет следов использования: царапин, потертостей и т.п.</li>
-                <li class="warranty__item">сохранена оригинальная упаковка, пломбы, фабричные ярлыки и стикеры.</li>
-            </ul>
-            
-            <p class="warranty__subtitle">Оплата транспортных расходов при возврате/обмене</p>
-            <p class="warranty__text"><span class="warranty__text--bold">Обмен или возврат товара</span> с выявленным браком производится на основаниях и в сроки, установленные Законом Украины «О защите прав потребителей». Расходы за доставку товара оплачивает интернет-магазин <a href="/" class="warranty__text--link">Bilka.com.ua</a>.<br><br>
-            В <span class="warranty__text--bold">случае обмена или возврата товара надлежащего качества</span>, заказанный товар был неверно выбран в интернет-магазине <a href="/" class="warranty__text--link">Bilka.com.ua</a>, расходы за доставку товара оплачивает получатель.</p>
-
-            <p class="warranty__subtitle">Как вернуть или заменить товар?</p>
-            <p class="warranty__text">Для возврата или обмена товара позвоните на контактный номер телефона <a class="warranty__text--link" href="tel:+380442278529">(044) 227 85 29</a> или напишите на почту <a href="mailto:info@bilka.com.ua" class="warranty__text--link">info@bilka.com.ua</a>. В сообщении укажите свое имя, контактный номер телефона (по возможности - номер заказа), а также опишите причину возврата или обмена. С Вами свяжется менеджер и поможет осуществить обмен или возврат товара.</p>
-            <a href="#" class="warranty__button">Наши контакты</a>
+        <p class="one-step__title">Оформление заказа</p>
+        <div class="one-step__row">
+            <div class="one-step__block">
+                <div class="one-step__item-uno">
+                    <div class="one-step__item-uno-top">
+                        <div class="one-step__item-uno-top-number">1</div>
+                        <p class="one-step__item-uno-top-title">Контактная информация</p>
+                    </div>
+                    <div class="one-step__item-uno-center">
+                        <label class="one-step__item-uno-center-label">
+                            <span class="one-step__item-uno-center-text">Имя</span>
+                            <input type="text" class="one-step__item-uno-center-input">
+                        </label>
+                        <label class="one-step__item-uno-center-label">
+                            <span class="one-step__item-uno-center-text">Фамилия</span>
+                            <input type="text" class="one-step__item-uno-center-input">
+                        </label>
+                        <label class="one-step__item-uno-center-label">
+                            <span class="one-step__item-uno-center-text">Телефон</span>
+                            <input type="text" class="one-step__item-uno-center-input jsPhone" placeholder="+380 (__) ___-__-__">
+                        </label>
+                        <label class="one-step__item-uno-center-label">
+                            <span class="one-step__item-uno-center-text">E-mail</span>
+                            <input type="text" class="one-step__item-uno-center-input">
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-
     </div>
 </div>
 
@@ -895,6 +902,7 @@
 </div>
 
 <script src="libs/jquery/jquery-3.5.1.min.js"></script>
+<script src="libs/inputmask/jquery.inputmask.min.js"></script>
 <script src="js/app.min.js"></script>
 </body>
 </html>

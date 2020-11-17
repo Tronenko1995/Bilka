@@ -1,0 +1,113 @@
+@import '../colors';
+
+.one-step {
+    display: flex;
+    justify-content: center;
+    background: $mainBgColor;
+
+    &__wrap {
+        width: 1240px;
+        padding-top: 56px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 112px;
+    }
+    &__title {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 43px;        
+        color: #202026;
+        margin-top: 12px;
+    }
+    &__row {
+        display: flex;
+        margin-top: 72px;
+    }
+    &__block {
+        
+    }
+    &__item-uno {
+        padding: 32px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+        border-radius: 4px;
+        width: 785px;
+        
+        &-top {
+            display: flex;
+            align-items: center;
+            &-number {
+                width: 20px;
+                height: 20px;
+                background: #E5E5EC;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 14px;
+                color: $colorDark;
+            }
+            &-title {
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 29px;                
+                color: $colorDark;
+                margin-left: 12px;
+            }
+        }
+        &-center {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            width: 750px;
+            &-label {
+                display: flex;
+                flex-direction: column;
+                margin-right: 30px;
+                margin-bottom: 24px;
+            }
+            &-text {
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 16px;                
+                color: $colorDark;
+            }
+            &-input {
+                margin-top: 8px;
+                background: rgba(#E5E5EC, .2);
+                border-radius: 4px;
+                border: 1px solid rgba(#929299, .2);
+                width: 345px;
+                height: 53px;
+                padding: 0 24px;
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 14px;
+                line-height: 16px;                    
+                color: $colorDark;
+
+                &::placeholder {
+                    font-family: Gilroy;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 16px;                    
+                    color: $color2;
+                }
+            }
+        }
+    }
+}
