@@ -1,0 +1,131 @@
+@import '../colors';
+
+.user-agreement {
+    display: flex;
+    justify-content: center;
+    background: $mainBgColor;
+
+    &__wrap {
+        width: 1240px;
+        padding-top: 56px;
+        display: flex;
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 112px;
+    }
+    &__title {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 43px;        
+        color: $colorDark;
+        margin-top: 12px;
+    }
+    &__description {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;        
+        color: $colorDark;
+        margin-top: 72px;
+        width: 700px;
+    }
+    &__subtitle {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;        
+        color: $colorDark;
+        margin-top: 64px;
+    }
+    &__text {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;        
+        color: $colorDark;
+        width: 700px;
+        margin-top: 32px;
+    }
+    &__subtext {
+        display: block;
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;        
+        color: $colorDark;
+        margin-left: 30px;
+    }
+    &__link {
+        color: $color3;
+        text-decoration: none;
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+@media (max-width: 740px) {
+
+    .user-agreement {
+        // display: flex;
+        // justify-content: center;
+        // background: $mainBgColor;
+    
+        &__wrap {
+            // width: 1240px;
+            padding-top: 40px;
+            // display: flex;
+            // flex-direction: column;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-bottom: 100px;
+        }
+        &__title {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            font-size: 32px;
+            line-height: 38px;        
+            // color: $colorDark;
+            margin-top: 0px;
+        }
+        &__description {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: normal;
+            // font-size: 14px;
+            // line-height: 20px;        
+            // color: $colorDark;
+            margin-top: 40px;
+            width: auto;
+        }
+        &__subtitle {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: 600;
+            // font-size: 24px;
+            // line-height: 29px;        
+            // color: $colorDark;
+            margin-top: 40px;
+        }
+        &__text {
+            // font-family: Gilroy;
+            // font-style: normal;
+            // font-weight: normal;
+            // font-size: 14px;
+            // line-height: 20px;        
+            // color: $colorDark;
+            width: auto;
+            // margin-top: 32px;
+        }
+    }
+
+}

@@ -171,6 +171,15 @@ $(document).on('click',function(e){
     equalHeight('top-sales-slider__item');
     equalHeight('last-review-slider__item');
     equalHeight('recommended-products-slider__item');
+    equalHeight('jsCompare1H');
+    equalHeight('jsCompare2H');
+    equalHeight('jsCompare3H');
+    equalHeight('jsCompare4H');
+    equalHeight('jsCompare5H');
+    equalHeight('jsCompare6H');
+    equalHeight('jsCompare7H');
+    equalHeight('jsCompare8H');
+    equalHeight('jsCompare9H');
 
     }
 
@@ -477,5 +486,22 @@ $('.jsCardTabs').on('click', function() {
   $('.jsCardTabsItem').addClass('hideCardTabsItem');
   $(`.${forTab}`).removeClass('hideCardTabsItem');
 });
+
+/* check radio one-step */
+
+$('input[name="delivery"').on('change', function() {
+  if(this.checked) {
+    $('.jsDeliveryItemText').addClass('hide');
+    $(this).closest('.jsDeliveryItem').find('.jsDeliveryItemText').removeClass('hide');
+  }
+});
+
+/* pay one-step */
+$('.jsPayOneStep').on('click', function() {
+  $('.jsPayOneStep').removeClass('active');
+  $(this).addClass('active');
+});
+
+
 
 });
