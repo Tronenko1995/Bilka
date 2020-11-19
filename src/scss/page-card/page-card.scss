@@ -210,6 +210,7 @@
                 }
             }
             &-customer_photos {
+                margin-top: 32px;
                 width: 485px;
 
                 &-title {
@@ -399,6 +400,12 @@
                     border-top: 1px solid $color4;
                     border-left: 1px solid $color4;
                     border-right: 1px solid $color4;
+
+                    &-form {
+                        display: flex;
+                        justify-content: space-between;
+                        width: 100%;
+                    }
                     
 
                     &:after {
@@ -418,6 +425,9 @@
                         font-size: 32px;
                         line-height: 24px;                      
                         color: $color3;
+                        &--currency {
+                            font-size: 18px;
+                        }
                     }
                     &-info {
                         display: flex;
