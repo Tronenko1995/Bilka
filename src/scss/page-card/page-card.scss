@@ -42,6 +42,7 @@
                 &-svg {
                     width: 16px;
                     height: 16px;
+                    background-size: 16px;
                 }
             }
             &-reviews {
@@ -438,8 +439,18 @@
                             font-style: normal;
                             font-weight: 500;
                             font-size: 12px;
-                            line-height: 14px;                           
-                            color: $green2;
+                            line-height: 14px;
+                            .stock {
+                                &-high {
+                                    color: $green2;
+                                }
+                                &-none {
+                                    color: $color2;
+                                }
+                                &-low {
+                                    color: $red;
+                                }
+                            }
                         }
                         &-button {
                             margin-top: 8px;
@@ -613,6 +624,14 @@
                             font-size: 16px;
                             line-height: 24px;                           
                             color: #FFFFFF;
+                        }
+                        &.is-added {
+                            background: #ccc !important;
+                            cursor: wait !important;
+                        }
+                        &[disabled] {
+                            background: #ccc !important;
+                            cursor: wait !important;
                         }
                     }
                 }
