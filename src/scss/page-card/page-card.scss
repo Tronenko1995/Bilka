@@ -74,6 +74,13 @@
                     background: $hover1;
                     opacity: .4;
                 }
+                &.none {
+                    color: $color2;
+                    pointer-events: none;
+                    &::after {
+                        display: none;
+                    }
+                }
             }
         }
         &-right {
@@ -167,9 +174,14 @@
                 background: #fff;
                 position: relative;
                 &-sticker {
+                    position: absolute;
                     left: 24px;
                     top: 24px;
                     z-index: 2;
+                    & .main-container__item-sticker {
+                        left: unset;
+                        top: unset;
+                    }
                 }
                 &-slider {
                     &-item {

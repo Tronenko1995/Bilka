@@ -735,6 +735,24 @@ class shopProductModel extends waModel
         return array(
             'new' => array(
                 'name' => _wd('shop', 'New!'),
+                'code' => '<div class="badge new main-container__item-sticker main-container__item-sticker--new"><span>' . _wd('shop','New!') . '</span></div>'
+            ),
+            'bestseller' => array(
+                'name' => _wd('shop', 'Bestseller!'),
+                'code' => '<div class="badge bestseller main-container__item-sticker main-container__item-sticker--top"><span>' . _wd('shop','Bestseller!') . '</span></div>'
+            ),
+            'lowprice' => array(
+                'name' => _wd('shop', 'Low price!'),
+                'code' => '<div class="badge low-price main-container__item-sticker main-container__item-sticker--sale"><span>' . _wd('shop','Low price!') . '</span></div>'
+            ),
+        );
+    }
+
+  /*  public static function badges()
+    {
+        return array(
+            'new' => array(
+                'name' => _wd('shop', 'New!'),
                 'code' => '<div class="main-container__item-sticker main-container__item-sticker--new">' . _wd('shop','New!') . '</div>'
             ),
             'bestseller' => array(
@@ -746,7 +764,7 @@ class shopProductModel extends waModel
                 'code' => '<div class="main-container__item-sticker main-container__item-sticker--sale">' . _wd('shop','Low price!') . '</div>'
             ),
         );
-    }
+    }*/
 
     /**
      * Get product ids and leave only allowed by rights.

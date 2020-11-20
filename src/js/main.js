@@ -493,6 +493,22 @@ $('.jsPayOneStep').on('click', function() {
   $(this).addClass('active');
 });
 
+/* скролл на якорь */
+function scrollToAnchor (idBlock,time) {
+  let block = $(`#${idBlock}`).offset().top;
+  $('body,html').animate({scrollTop: block}, time);
+}
 
+
+$('.jsReviewsDown').on("click", function (e) {
+  e.preventDefault();
+  scrollToAnchor('blockReviews',2000);
+});
+
+$('.jsDescriptionDown').on("click", function (e) {
+  e.preventDefault();
+  scrollToAnchor('blockDescription',2000);
+  $('.jsCardTabs[s1="jsCardTabs2"]').click();
+});
 
 });

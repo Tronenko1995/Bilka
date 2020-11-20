@@ -25,15 +25,15 @@
         return array(
             'new' => array(
                 'name' => _wd('shop', 'New!'),
-                'code' => '<div class="main-container__item-sticker main-container__item-sticker--new">' . _wd('shop','New!') . '</div>'
+                'code' => '<div class="badge new main-container__item-sticker main-container__item-sticker--new"><span>' . _wd('shop','New!') . '</span></div>'
             ),
             'bestseller' => array(
                 'name' => _wd('shop', 'Bestseller!'),
-                'code' => '<div class="main-container__item-sticker main-container__item-sticker--top">' . _wd('shop','Bestseller') . '</div>'
+                'code' => '<div class="badge bestseller main-container__item-sticker main-container__item-sticker--top"><span>' . _wd('shop','Bestseller!') . '</span></div>'
             ),
             'lowprice' => array(
                 'name' => _wd('shop', 'Low price!'),
-                'code' => '<div class="main-container__item-sticker main-container__item-sticker--sale">' . _wd('shop','Low price!') . '</div>'
+                'code' => '<div class="badge low-price main-container__item-sticker main-container__item-sticker--sale"><span>' . _wd('shop','Low price!') . '</span></div>'
             ),
         );
     }
