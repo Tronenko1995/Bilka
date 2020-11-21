@@ -359,6 +359,10 @@
                         line-height: 20px;                        
                         color: $colorDark;
                         width: 290px;
+                        
+                        &.value span {
+                            font-size: 0;
+                        }
                     }
                 }
             }

@@ -1,0 +1,975 @@
+{strip}
+
+<div class="page-card">
+    <div class="page-card__wrap">
+
+        <ul class="breadcrumb">
+            <li class="breadcrumb__item">
+                <a href="index.html" class="breadcrumb__link">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link jsCatalog">Каталог</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link">Автомобильные аксессуары</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link">Автомобильные держатели</a>
+            </li>
+        </ul>
+
+        <h1 class="page-card__title" itemprop="name">{$product.name|escape}</h1>
+
+        <div class="page-card__row">
+            <div class="page-card__row-left">
+                {$_rate = 0}
+                {if !empty($product.rating)}
+                    {$_rate = round($product.rating, 1)}
+                {/if}
+
+                <div class="page-card__row-left-rating">
+                    {for $_i = 0 to 4}
+                    {$_icon_class = "svg-star"}
+                    {if $_i < $_rate}
+                        {$_delta = $_rate - $_i}
+                        {if $_delta >= 1}
+                            {$_icon_class = "svg-star--active"}
+                        {elseif round($_delta) == 1}
+                            {$_icon_class = "svg-star--half"}
+                        {/if}
+                    {/if}
+                    <div class="page-card__row-left-rating-svg {$_icon_class}"></div>
+                    {/for}
+                </div>
+                
+                {if $reviews_total_count == 0}
+                <p class="page-card__row-left-reviews none">Нет отзывов</p>
+                {elseif $reviews_total_count == 1}
+                <p class="page-card__row-left-reviews jsReviewsDown">{$reviews_total_count} Отзыв</p>
+                {elseif $reviews_total_count >= 2 && $reviews_total_count <= 4}
+                <p class="page-card__row-left-reviews jsReviewsDown">{$reviews_total_count} Отзыва</p>
+                {elseif $reviews_total_count >= 5}
+                <p class="page-card__row-left-reviews jsReviewsDown">{$reviews_total_count} Отзывов</p>
+                {/if}
+                
+            </div>
+            <div class="page-card__row-right">
+
+                <a class="page-card__row-right-compare js-compare-product {if $wa->shop->inComparison($product.id)}is-active{/if}" href="javascript:void(0);" data-product="{$product.id}" title="{if $wa->shop->inComparison($product.id)}[`In comparison list`]{else}[`To comparison`]{/if}">
+                    <div class="page-card__row-right-compare-svg svg-compare"></div>
+                    <p class="page-card__row-right-compare-text">{if $wa->shop->inComparison($product.id)}[`In comparison list`]{else}[`To comparison`]{/if}</p>
+                </a>
+
+                <div class="page-card__row-right-share">
+                    <div class="page-card__row-right-share-svg svg-share"></div>
+                    <p class="page-card__row-right-share-text">Поделиться</p>
+                </div>
+
+                <div class="page-card__row-right-article">
+                    <p class="page-card__row-right-article-text">Код товара: <span>{$product.skus[$product.sku_id].sku|default:""|escape}</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-card__tabs">
+            <p class="jsCardTabs page-card__tabs-item active" s1="jsCardTabs1">Характеристики</p>
+            <p class="jsCardTabs page-card__tabs-item" s1="jsCardTabs2">Описание</p>
+            <p class="jsCardTabs page-card__tabs-item" s1="jsCardTabs3">Отзывы <span class="page-card__tabs-item--count">({$reviews_total_count})</span></p>
+        </div>
+
+        {$_video = $product->video}
+        {if empty($_video.images[0])}
+            {$_video = false}
+        {/if}
+
+        {$_thumb = $_video.images[0]}
+        {$_absolute_thumb_uri = "{$wa->url(true)}{$_thumb|substr:1}"}
+
+        <div class="page-card__container">
+            <div class="page-card__container-block jsCardTabsItem jsCardTabs1">
+                <div class="page-card__container-left">
+                    <div class="page-card__container-left-photo">
+
+                        {$badge_html = $wa->shop->badgeHtml($product.badge)} 
+
+                        {if !empty($badge_html)}
+                        <div class="page-card__container-left-photo-sticker">
+                            {$badge_html}    
+                        </div>           
+                            {/if}
+                
+                        
+                        <div class="page-card__container-left-photo-slider">
+                        
+                        {if $_video}
+                            <div class="s-video-wrapper" id="s-video-wrapper" itemscope itemtype="http://schema.org/VideoObject">
+                                <div itemprop="embedHTML">
+                                    <iframe src="{$_video.url}" width="{$_video.width}" height="{$_video.height}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                </div>
+                                <meta itemprop="width" content="{$_video.width}">
+                                <meta itemprop="height" content="{$_video.height}">
+                                <meta itemprop="name" content="{$product.name|default:""|escape}">
+                                <meta itemprop="description" content="{$product.description|default:""|escape}">
+                                <meta itemprop="uploadDate" content="{$product.create_datetime|default:""|escape}">
+                                <meta itemprop="thumbnailUrl" content="{$_absolute_thumb_uri|escape}" />
+                            </div>
+                        {/if}
+
+                        {foreach $product.images as $image}
+                            <!-- <li class="s-photo-thumb">
+                                {* @hint link id needed for change product image on sku change event *}
+                                <a id="s-image-{$image.id}" class="{if $image.id == $product.image_id && empty($_video)}is-selected{/if}" href="{$wa->shop->imgUrl($image, '970')}" data-index="{$image@index}">
+                                    {$wa->shop->imgHtml($image, '96x96')}
+                                </a>
+                            </li> -->
+                            <div class="page-card__container-left-photo-slider-item">
+
+                                <!-- <a id="s-image-{$image.id}" class="page-card__container-left-photo-img" href="{$wa->shop->imgUrl($image, '970')}" data-index="{$image@index}"> -->
+                                    <div class="page-card__container-left-photo-img">
+                                        {$wa->shop->imgHtml($image, '750')}
+                                    </div>
+                                    
+                                <!-- </a> -->
+                                <!-- <a class="{if $_video}is-hidden{/if}" id="s-photo-main" href="{$wa->shop->productImgUrl($product, '970')}">
+                                    {$wa->shop->productImgHtml($product, '750', [ 'itemprop' => 'image', 'alt' => $product.name|escape ])}
+                                </a> -->
+                            </div>
+                        {/foreach}
+                            <!-- <div class="page-card__container-left-photo-slider-item">
+                                <img class="page-card__container-left-photo-img" src="{$wa_theme_url}img/test/card-img-1.jpg" alt="">
+                            </div>
+                            <div class="page-card__container-left-photo-slider-item">
+                                <img class="page-card__container-left-photo-img" src="{$wa_theme_url}img/test/card-img-1.jpg" alt="">
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="page-card__container-left-customer_photos">
+                        <p class="page-card__container-left-customer_photos-title">Фото покупателей <span class="page-card__container-left-customer_photos-title--number">(<span>0</span>)</span></p>
+                        <div class="page-card__container-left-customer_photos-slider">
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                            <div class="page-card__container-left-customer_photos-slider-item">
+                                <div class="page-card__container-left-customer_photos-block">
+                                    <img class="page-card__container-left-customer_photos-block-img" src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]">
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+
+
+                {$wa->globals("hideSidebar", true)}
+                {$wa->globals("showBottomBanner", true)}
+                
+                {if empty($sku_features)}{$sku_features = []}{/if}
+                
+                {function name="_render_sku_features" _features=[]}
+                
+                    <!-- <div class="s-features-wrapper"> -->
+                        <!-- <h4 class="s-header">[`Features`]</h4> -->
+                        <!-- <table class="s-features-table"> -->
+                            {foreach $_features as $_feature_id => $_feature_value}
+                            <div class="page-card__container-center-characteristics-block">
+                                {$_true_params = ["weight", "brand", "model", "width", "height", "depth", "color", "manufacturer"]}
+                                {$_is_good_param = ($_feature_id|in_array:$_true_params)}
+                                {$_itemprop = ""}
+                                {if $_is_good_param}{$_itemprop = $_feature_id}{/if}
+                                {$_feature = ifset($sku_features, $_feature_id, null)}
+                                {if $_feature && $_feature.type == 'divider'}
+                                    <!-- <tr class="s-divider-column"> -->
+                                        <!-- <td colspan="2"> -->
+                                            <!-- <div> -->
+                                                <!-- <div class="s-divider">{ifset($_feature, 'name', $_feature_id)|escape}</div> -->
+                                                <p class="page-card__container-center-characteristics-block-title">{ifset($_feature, 'name', $_feature_id)|escape}</p>
+                                            <!-- </div> -->
+                                        <!-- </td> -->
+                                    <!-- </tr> -->
+                                {elseif $_feature}
+                                    <!-- <tr> -->
+                                        <!-- <td class="name"> -->
+                                            <!-- <div class="s-label-wrapper with-ornament"> -->
+                                                <p class="page-card__container-center-characteristics-block-title">{ifset($_feature, 'name', $_feature_id)|escape}</p>
+                                                <!-- <div class="s-label"></div> -->
+                                            <!-- </div> -->
+                                        <!-- </td> -->
+                                        <!-- <td class="value" itemprop="{$_itemprop|escape}"> -->
+                                            <p itemprop="{$_itemprop|escape}" class="page-card__container-center-characteristics-block-text">
+                                            {if is_array($_feature_value)}
+                                                {if $_feature.type == 'color'}
+                                                    {implode('<br>', $_feature_value)}
+                                                {else}
+                                                    {implode(', ', $_feature_value)}
+                                                {/if}
+                                            {else}
+                                                {$_feature_value}
+                                            {/if}
+
+                                        </p>
+
+                                        <!-- </td> -->
+                                    <!-- </tr> -->
+                                {/if}
+                                </div>
+                            {/foreach}
+                        <!-- </table> -->
+                    <!-- </div> -->
+                {/function}
+                
+                {$_skus_features_html = []}
+
+
+                <div class="page-card__container-center">
+                    <p class="page-card__container-center-title">Характеристики</p>
+                    <div class="page-card__container-center-colors">
+                        <p class="page-card__container-center-colors-text">Цвет:</p>
+                        <ul class="page-card__container-center-colors-list">
+                            <li class="page-card__container-center-colors-list-item page-card__container-center-colors-list-item--active">
+                                <a class="page-card__container-center-colors-list-item-link color--black" href=""></a>
+                            </li>
+                            <li class="page-card__container-center-colors-list-item">
+                                <a class="page-card__container-center-colors-list-item-link color--orange" href=""></a>
+                            </li>
+                            <li class="page-card__container-center-colors-list-item">
+                                <a class="page-card__container-center-colors-list-item-link color--red" href=""></a>
+                            </li>
+                            <li class="page-card__container-center-colors-list-item">
+                                <a class="page-card__container-center-colors-list-item-link color--darkgreen" href=""></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="page-card__container-center-characteristics">
+
+
+                        {foreach $product.skus as $_sku}
+                        {if !empty($_sku.features)}
+                            {_render_sku_features _features=$_sku.features}
+                            {$_skus_features_html[$_sku.id] = $_sku_features_html}
+                        {/if}
+                    {/foreach}
+
+
+                    <!-- <div class="s-features-section js-features-section">
+                        {if !empty($_skus_features_html[$product.sku_id])}{$_skus_features_html[$product.sku_id]}{/if}
+                    </div> -->
+
+
+                    </div>
+                    <div class="page-card__container-center-link">
+                        <a href="#blockDescription" class="page-card__container-center-link-text jsDescriptionDown">Перейти к описанию</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-card__container-right">
+
+                <!-- <div class="page-card__container-right-block">
+                    <div class="page-card__container-right-block-top">
+                        <div class="page-card__container-right-block-top-price">115 ₴</div>
+                        <div class="page-card__container-right-block-top-info">
+                            <p class="page-card__container-right-block-top-info-text">Есть в наличии</p>
+                            <button class="page-card__container-right-block-top-info-button jsBuyOneClick">Купить в 1 клик</button>
+                            <p class="page-card__container-right-block-top-info-link">
+                                <span class="page-card__container-right-block-top-info-link-text">Оплатить частями</span>
+                                <span class="page-card__container-right-block-top-info-link-svg"></span>
+                                <span class="page-card__container-right-block-top-info-link-block">
+                                    <span class="page-card__container-right-block-top-info-link-block-text">Информация</span>
+                                </span>
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="page-card__container-right-block-center">
+                        <ul class="page-card__container-right-block-center-list">
+                            <li class="page-card__container-right-block-center-list-item">
+                                <input type="checkbox" class="new-checkbox page-card__container-right-block-center-checkbox" name="name1" id="id1" value="yes">
+                                <label for="id1" class="new-label page-card__container-right-block-center-checkbox-label">
+                                    <span class="page-card__container-right-block-center-checkbox-text">Поклейка защитного стекла при самовывозе (+50 ₴)</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="page-card__container-right-block-bottom">
+                        <button class="page-card__container-right-block-bottom-button">
+                            <span class="svg-basket page-card__container-right-block-bottom-button-svg"></span>
+                            <span class="page-card__container-right-block-bottom-button-text">Добавить в корзину</span>
+                        </button>
+                    </div>
+                </div> -->
+
+                {include file="product.cart.html" inline}
+                
+                <div class="page-card__container-right-info_block">
+                    <div class="page-card__container-right-info_block-item">
+                        <p class="page-card__container-right-info_block-item-title">Доставка</p>
+                        <p class="page-card__container-right-info_block-item-name page-card__container-right-info_block-item-name--color_3 page-card__container-right-info_block-item-name--fw600">От 750 ₴ - <span class="page-card__container-right-info_block-item-name--description">бесплатно</span></p>
+                        <p class="page-card__container-right-info_block-item-name">По Киеву - <span class="page-card__container-right-info_block-item-name--description">65 ₴ <span class="page-card__container-right-info_block-item-name--color_2">(на следующий день)</span></span></p>
+                        <p class="page-card__container-right-info_block-item-name">По Украине - <span class="page-card__container-right-info_block-item-name--description">согласно тарифам перевозчика</span></p>
+                        <p class="page-card__container-right-info_block-item-name">Самовывоз - <a href="" class="page-card__container-right-info_block-item-name--description page-card__container-right-info_block-item-name--description--link">м. Шулявская</a></p>
+                        <p class="page-card__container-right-info_block-item-text"></p>
+                    </div>
+
+                    <div class="page-card__container-right-info_block-item">
+                        <p class="page-card__container-right-info_block-item-title">Оплата</p>
+                        <p class="page-card__container-right-info_block-item-text">Наличными, картой через терминал, безналичным расчетом, наложенным платежем, перевод через Приват24</p>
+                    </div>
+
+                    <div class="page-card__container-right-info_block-item">
+                        <p class="page-card__container-right-info_block-item-title">Возврат</p>
+                        <p class="page-card__container-right-info_block-item-text">Возврат или обмен товара возможен в течение 14 дней. Возврат или обмен возможны при наличии чека и упаковки товара.</p>
+                    </div>
+
+                    <div class="page-card__container-right-info_block-item page-card__container-right-info_block-item--info">
+                        <p class="page-card__container-right-info_block-item-text">Доп. информация</p>
+                        <span class="page-card__container-right-info_block-item-svg svg-info-2">
+                            <span class="page-card__container-right-info_block-item-svg-block">
+                                <span class="page-card__container-right-info_block-item-svg-block-text">Оттенок товара может отличаться от изображения на сайте из-за особенностей настроек экрана и браузера.
+                                    <br><br>Комплектация изделия может быть изменена производителем без предварительного уведомления
+                                    <br><br>Уточнить комплектацию, характеристики и наличие конкретного товара Вы сможете у консультантов интернет-магазина.</span>
+                            </span>
+                        </span>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="page-card__kit">
+            <p class="page-card__kit-title">Вместе дешевле</p>
+            <div class="page-card__kit-slider">
+
+                <div class="page-card__kit-slider-item">
+                    <div class="page-card__kit-slider-item-row">
+                        <div class="page-card__kit-slider-item-row-block page-card__kit-slider-item-row-block-1">
+                            <div class="page-card__kit-slider-item-row-block-left">
+                                <img src="{$wa_theme_url}img/test/holder.png" alt="">
+                            </div>
+                            <div class="page-card__kit-slider-item-row-block-right">
+                                <p class="page-card__kit-slider-item-row-block-right-title">Автомобильный держатель (холдер) на вентиляцию JHD-23HD08 (3,5"-6,3")</p>
+                                <p class="page-card__kit-slider-item-row-block-right-price">115 ₴</p>
+                            </div>
+                        </div>
+                        <p class="page-card__kit-slider-item-row-plus">+</p>
+                        <div class="page-card__kit-slider-item-row-block page-card__kit-slider-item-row-block-2">
+                            <div class="page-card__kit-slider-item-row-block-left">
+                                <img src="{$wa_theme_url}img/test/holder.png" alt="">
+                            </div>
+                            <div class="page-card__kit-slider-item-row-block-right">
+                                <p class="page-card__kit-slider-item-row-block-right-title">Автомобильный держатель (холдер) на вентиляцию JHD-23HD08 (3,5"-6,3")</p>
+                                <p class="page-card__kit-slider-item-row-block-right-price">115 ₴</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="page-card__kit-slider-item">
+                    <div class="page-card__kit-slider-item-row">
+                        <div class="page-card__kit-slider-item-row-block page-card__kit-slider-item-row-block-1">
+                            <div class="page-card__kit-slider-item-row-block-left">
+                                <img src="{$wa_theme_url}img/test/holder.png" alt="">
+                            </div>
+                            <div class="page-card__kit-slider-item-row-block-right">
+                                <p class="page-card__kit-slider-item-row-block-right-title">Автомобильный держатель (холдер) на вентиляцию JHD-23HD08 (3,5"-6,3")</p>
+                                <p class="page-card__kit-slider-item-row-block-right-price">115 ₴</p>
+                            </div>
+                        </div>
+                        <p class="page-card__kit-slider-item-row-plus">+</p>
+                        <div class="page-card__kit-slider-item-row-block page-card__kit-slider-item-row-block-2">
+                            <div class="page-card__kit-slider-item-row-block-left">
+                                <img src="{$wa_theme_url}img/test/holder.png" alt="">
+                            </div>
+                            <div class="page-card__kit-slider-item-row-block-right">
+                                <p class="page-card__kit-slider-item-row-block-right-title">Автомобильный держатель (холдер) на вентиляцию JHD-23HD08 (3,5"-6,3")</p>
+                                <p class="page-card__kit-slider-item-row-block-right-price">115 ₴</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-card__kit-slider-item">
+                    <div class="page-card__kit-slider-item-row">
+                        <div class="page-card__kit-slider-item-row-block page-card__kit-slider-item-row-block-1">
+                            <div class="page-card__kit-slider-item-row-block-left">
+                                <img src="{$wa_theme_url}img/test/holder.png" alt="">
+                            </div>
+                            <div class="page-card__kit-slider-item-row-block-right">
+                                <p class="page-card__kit-slider-item-row-block-right-title">Автомобильный держатель (холдер) на вентиляцию JHD-23HD08 (3,5"-6,3")</p>
+                                <p class="page-card__kit-slider-item-row-block-right-price">115 ₴</p>
+                            </div>
+                        </div>
+                        <p class="page-card__kit-slider-item-row-plus">+</p>
+                        <div class="page-card__kit-slider-item-row-block page-card__kit-slider-item-row-block-2">
+                            <div class="page-card__kit-slider-item-row-block-left">
+                                <img src="{$wa_theme_url}img/test/holder.png" alt="">
+                            </div>
+                            <div class="page-card__kit-slider-item-row-block-right">
+                                <p class="page-card__kit-slider-item-row-block-right-title">Автомобильный держатель (холдер) на вентиляцию JHD-23HD08 (3,5"-6,3")</p>
+                                <p class="page-card__kit-slider-item-row-block-right-price">115 ₴</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="page-card__kit-buy">
+                <button class="page-card__kit-buy-button">Купить комплект</button>
+                <p class="page-card__kit-buy-price">230 ₴</p>
+            </div>
+        </div>
+
+        <div class="page-card__info">
+            <div id="blockDescription" class="page-card__info-description jsCardTabs2 hideCardTabsItem jsCardTabsItem">
+                <p class="page-card__info-description-title">Описание</p>
+                <p class="page-card__info-description-text">
+                    {if !empty($product.description)}
+                    {$product.description}
+                    {else}
+                    Описание отсутствует
+                    {/if}
+                </p>
+            </div>
+            <div id="blockReviews" class="page-card__info-reviews jsCardTabs3 hideCardTabsItem jsCardTabsItem">
+                <div class="page-card__info-reviews-row">
+                    <p class="page-card__info-reviews-row-title">Отзывы <span class="page-card__info-reviews-row-title--number">{$reviews_total_count}</span></p>
+                    <button class="page-card__info-reviews-row-button jsWriteFeedback">Написать отзыв</button>
+                    <!-- reviews/?add=1 -->
+                </div>
+                <div class="page-card__info-reviews-items">
+                
+                {if !empty($reviews)}
+                        {foreach $reviews as $review}
+                        {if $review@iteration > 3}{break}{/if}
+
+                    <div class="page-card__info-reviews-item">
+                        <div class="page-card__info-reviews-item-row">
+                            <div class="page-card__info-reviews-item-row-left">
+                                <p class="page-card__info-reviews-item-row-left-name">{$review.author.name}</p>
+
+                                {if !$review.parent_id && !empty($review.rate)}  
+                                    {$_review_rate = round($review.rate,1)}
+
+                                <div class="rating">
+
+                                    {for $_i = 0 to 4}
+                                    {$_icon_class = "svg-star"}
+                                    {if $_i < $_review_rate}
+                                        {$_delta = $_review_rate - $_i}
+                                        {if $_delta >= 1}
+                                            {$_icon_class = "svg-star--active"}
+                                        {elseif round($_delta) == 1}
+                                            {$_icon_class = "svg-star--half"}
+                                        {/if}
+                                    {/if}
+
+                                    <div class="rating-svg {$_icon_class}"></div>
+
+                                    {/for}
+                                </div>
+                                {/if}
+
+                            </div>
+                            <p class="page-card__info-reviews-item-row-date">{$review.datetime|wa_datetime:"humandatetime"}</p>
+                        </div>
+                        <div class="page-card__info-reviews-item-block">
+                            {if $review.text}
+                            <p class="page-card__info-reviews-item-block-text">{$review.text}</p>
+                            {/if}
+                        </div>
+                        <meta itemprop="itemReviewed" content="{$product.name|escape}">
+                        <meta itemprop="datePublished" content="{$review.datetime|date_format:'Y-m-d'}">
+                        <meta itemprop="ratingValue" content="{$_review_rate}">
+                    </div>
+                    {/foreach}
+
+                    <div class="page-card__info-reviews-more">
+                        <a href="reviews/" class="page-card__info-reviews-more-link">Еще отзывы</a>
+                    </div>
+                    {else}
+                        <div class="page-card__info-reviews-item">
+                            <p class="page-card__info-description-text">Оставьте <a href="#" class="jsWriteFeedback">отзыв об этом товаре</a> первым!</p>
+                        </div>
+                    {/if}
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+{* RecItems (Рекомендованные товары) *}
+    
+{$productsRI = $wa->shop->productSet("RecItems")} <!-- Вытащить весь товар из списка RecItems (Топ продаж) -->
+{$allSkusRI = $wa->shop->skus(array_keys($productsRI))}
+
+{if !empty($productsRI)} <!-- если есть товары в списке -->
+
+<div class="recommended-products">
+    <div class="recommended-products__wrap">
+        <div class="recommended-products__title">Рекомендованные товары</div>
+        <div class="recommended-products-slider">
+
+            {foreach $productsRI as $productRI}
+            {$available = $wa->shop->settings('ignore_stock_count') || $productRI.count === null || $productRI.count > 0}
+            {$badge_html = $wa->shop->badgeHtml($productRI.badge)}
+            {$productRI_image_src = $wa->shop->productImgUrl($productRI, "200")|default:"`$wa_theme_url`img/svg/empty_photo.svg"}
+        
+            {if !empty($productRI.skus) && !empty($productRI.skus[$productRI.sku_id])}
+                {$sku = $productRI.skus[$productRI.sku_id]}
+                {if empty($sku.available) && (count($productRI.skus) === 1)}{$available = false}{/if}
+            {/if}
+        
+            {$skusRI = $allSkusRI[$productRI.id]}
+        
+                <div class="main-container__for-slider-item for-slider-item">
+                <div class="main-container__item slider-item" data-product-id="{$productRI.id}">
+        
+                {*if !empty($_show_compare)}
+                <a class="s-compare-button main-container__item-compare-box {if $wa->shop->inComparison($productRI.id)}is-active{/if}" href="javascript:void(0);" data-product="{$productRI.id}" title="{if $wa->shop->inComparison($productRI.id)}[`In comparison list`]{else}[`To comparison`]{/if}">
+                    <svg class="main-container__item-compare-box-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.05 12.05L21 17L16.05 21.95L14.636 20.536L17.172 17.999L4 18V16H17.172L14.636 13.464L16.05 12.05ZM7.95 2.04999L9.364 3.46399L6.828 5.99999H20V7.99999H6.828L9.364 10.536L7.95 11.95L3 6.99999L7.95 2.04999Z"/>
+                    </svg>
+                </a>
+                {/if*}
+         
+        
+                {if $productRI.sku_count > 1}
+                <ul class="main-container__item-colors" data-sku-count="{$productRI.sku_count}">
+                    {foreach from=$skusRI item=color}
+        
+                        {if $color.name == "Пионы"}<li class="main-container__item-colors-item color--white" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Пионы"></a></li>
+                            {elseif $color.name == "белый"}<li class="main-container__item-colors-item color--white" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Белый"></a></li>
+                            {elseif $color.name == "Бирюзовый"}<li class="main-container__item-colors-item color--cyan" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Бирюзовый"></a></li>
+                            {elseif $color.name == "Голубой"}<li class="main-container__item-colors-item color--deepskyblue" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Голубой"></a></li>
+                            {elseif $color.name == "Золотой"}<li class="main-container__item-colors-item color--gold" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Золотой"></a></li>
+                            {elseif $color.name == "Кофейный"}<li class="main-container__item-colors-item color--coffee" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Кофейный"></a></li>
+                            {elseif $color.name == "Кремовый"}<li class="main-container__item-colors-item color--cream" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Кремовый"></a></li>
+                            {elseif $color.name == "Лайм"}<li class="main-container__item-colors-item color--lime" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Лайм"></a></li>
+                            {elseif $color.name == "Малиновый"}<li class="main-container__item-colors-item color--magenta" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Малиновый"></a></li>
+                            {elseif $color.name == "Металлик"}<li class="main-container__item-colors-item color--coral" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Металлик"></a></li>
+                            {elseif $color.name == "Пурпурный"}<li class="main-container__item-colors-item color--purple" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Пурпурный"></a></li>
+                            {elseif $color.name == "Розовый"}<li class="main-container__item-colors-item color--pink" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Розовый"></a></li>
+                            {elseif $color.name == "Розы"}<li class="main-container__item-colors-item color--roses" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Розы"></a></li>
+                            {elseif $color.name == "Салатовый"}<li class="main-container__item-colors-item color--charteuse" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Салатовый"></a></li>
+                            {elseif $color.name == "Синий"}<li class="main-container__item-colors-item color--blue" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Синий"></a></li>
+                            {elseif $color.name == "Старый цветок"}<li class="main-container__item-colors-item color--oldflower" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Старый цветок"></a></li>
+                            {elseif $color.name == "Темно-синий"}<li class="main-container__item-colors-item color--navy" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Темно-синий"></a></li>
+                            {elseif $color.name == "Фиолетовый"}<li class="main-container__item-colors-item color--violet" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Фиолетовый"></a></li>
+                            {elseif $color.name == "желтый"}<li class="main-container__item-colors-item color--yellow" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="желтый"></a></li>
+                            {elseif $color.name == "зеленый"}<li class="main-container__item-colors-item color--darkgreen" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="зеленый"></a></li>
+                            {elseif $color.name == "коричневый"}<li class="main-container__item-colors-item color--brown" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="коричневый"></a></li>
+                            {elseif $color.name == "красный"}<li class="main-container__item-colors-item color--red" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="красный"></a></li>
+                            {elseif $color.name == "оранжевый"}<li class="main-container__item-colors-item color--orange" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="оранжевый"></a></li>
+                            {elseif $color.name == "прозрачный"}<li class="main-container__item-colors-item color--transparent" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="прозрачный"></a></li>
+                            {elseif $color.name == "серебро"}<li class="main-container__item-colors-item color--silver" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="серебро"></a></li>
+                            {elseif $color.name == "серый"}<li class="main-container__item-colors-item color--gray" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="серый"></a></li>
+                            {elseif $color.name == "черный"}<li class="main-container__item-colors-item color--black" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="черный"></a></li>
+                            {elseif $color.name == "бежевый"}<li class="main-container__item-colors-item color--beige" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="бежевый"></a></li>
+                            {elseif $color.name == "Хаки"}<li class="main-container__item-colors-item color--khaki" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Хаки"></a></li>
+                            {elseif $color.name == "Мятный"}<li class="main-container__item-colors-item color--mint" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Мятный"></a></li>
+                            {else}<li class="main-container__item-colors-item color--black" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Неизвестный цвет">?</a></li>
+                        {/if}
+        
+                    {/foreach}
+                    <!-- <li class="main-container__item-colors-item main-container__item-colors-item--orange"></li>                          
+                    <li class="main-container__item-colors-item main-container__item-colors-item--red"></li>
+                    <li class="main-container__item-colors-item main-container__item-colors-item--green"></li>                          -->
+                </ul>
+                {/if}
+                {if !empty($badge_html)}
+                    {$badge_html}
+                {/if}
+                <img src="{$productRI_image_src}" itemprop="image" width="200" height="200" alt="{$productRI.name}" image_id="{$productRI.image_id}" class="main-container__item-img">
+                <p class="main-container__item-code">Код товара: <span class="jsItemCode">{$productRI.sku_id}</span></p>
+                <a class="main-container__item-full-link" href="{$productRI.frontend_url}" title='{$productRI.name}'><p itemprop="name" class="main-container__item-text">{$productRI.name}</p></a>
+        
+                {$_rate = 0}
+                {if !empty($productRI.rating)}
+                    {$_rate = round($productRI.rating, 1)}
+                {/if}
+        
+                <div class="main-container__item-for-rating">
+                    {for $_i = 0 to 4}
+                        {$_icon_class = "svg-star"}
+                        {if $_i < $_rate}
+                            {$_delta = $_rate - $_i}
+                            {if $_delta >= 1}
+                                {$_icon_class = "svg-star--active"}
+                            {elseif round($_delta) == 1}
+                                {$_icon_class = "svg-star--half"}
+                            {/if}
+                        {/if}
+                        <div class="main-container__item-for-rating-svg {$_icon_class}"></div>
+                    {/for}
+                    
+                    <p class="main-container__item-for-rating-text">? Отзывов</p>
+                </div>
+        
+                <div class="main-container__item-for-price">
+                    <meta itemprop="price" content="{shop_currency($productRI.price, null, null, 0)}">
+                    <meta itemprop="priceCurrency" content="{$wa->shop->currency()}">
+                    <p class="main-container__item-for-price-text">{shop_currency_html($productRI.price)}</p>
+                    {if $available}
+                            <form class="main-container__item-for-price-form add-to-cart" {if $productRI.sku_count > 1}data-url="{$productRI.frontend_url}{if strpos($productRI.frontend_url, '?')}&{else}?{/if}cart=1"{/if} method="post" action="{$wa->getUrl('/frontendCart/add')}">
+                            {/if}
+                    <button class="main-container__item-for-price-box js-add-button" type="submit" value="{_wd('shop', 'Buy')}" {if !$available}disabled{/if}>
+                        <svg class="main-container__item-for-price-box-svg" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.99996 6.41402L0.756958 3.17202L2.17196 1.75702L5.41396 5.00002H20.656C20.8118 5.00001 20.9655 5.03643 21.1048 5.10639C21.2441 5.17634 21.3651 5.27788 21.4582 5.40291C21.5513 5.52795 21.6138 5.673 21.6409 5.82651C21.6679 5.98001 21.6587 6.13771 21.614 6.28702L19.214 14.287C19.1522 14.4931 19.0257 14.6738 18.8531 14.8022C18.6805 14.9307 18.4711 15 18.256 15H5.99996V17H17V19H4.99996C4.73474 19 4.48039 18.8947 4.29285 18.7071C4.10531 18.5196 3.99996 18.2652 3.99996 18V6.41402ZM5.49996 23C5.10213 23 4.7206 22.842 4.4393 22.5607C4.15799 22.2794 3.99996 21.8978 3.99996 21.5C3.99996 21.1022 4.15799 20.7207 4.4393 20.4394C4.7206 20.1581 5.10213 20 5.49996 20C5.89778 20 6.27931 20.1581 6.56062 20.4394C6.84192 20.7207 6.99996 21.1022 6.99996 21.5C6.99996 21.8978 6.84192 22.2794 6.56062 22.5607C6.27931 22.842 5.89778 23 5.49996 23ZM17.5 23C17.1021 23 16.7206 22.842 16.4393 22.5607C16.158 22.2794 16 21.8978 16 21.5C16 21.1022 16.158 20.7207 16.4393 20.4394C16.7206 20.1581 17.1021 20 17.5 20C17.8978 20 18.2793 20.1581 18.5606 20.4394C18.8419 20.7207 19 21.1022 19 21.5C19 21.8978 18.8419 22.2794 18.5606 22.5607C18.2793 22.842 17.8978 23 17.5 23Z"/>
+                            </svg>                                
+                    </button>
+                    {if $available}
+                    <input type="hidden" name="product_id" value="{$productRI.id}">
+                </form>
+                {/if}
+                </div>
+            </div>
+        </div>
+        {/foreach}
+
+        </div>
+
+        <div class="recommended-products-more">
+            <svg class="recommended-products-more__svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 4.5625C10 4.5625 10.7613 4.1875 8 4.1875C7.0111 4.1875 6.0444 4.48074 5.22215 5.03015C4.39991 5.57956 3.75904 6.36045 3.3806 7.27408C3.00217 8.18771 2.90315 9.19305 3.09608 10.163C3.289 11.1329 3.76521 12.0238 4.46447 12.723C5.16373 13.4223 6.05465 13.8985 7.02455 14.0914C7.99446 14.2844 8.99979 14.1853 9.91342 13.8069C10.827 13.4285 11.6079 12.7876 12.1573 11.9654C12.7068 11.1431 13 10.1764 13 9.1875"stroke-miterlimit="10" stroke-linecap="round"/>
+                <path d="M8 1.8125L10.5 4.3125L8 6.8125" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="new-tems-more__text">Показать еще</div>
+
+        </div>
+    </div>
+</div>
+{/if}
+
+
+{* PRODUCT PAGE *}
+<article class="s-product-page" id="js-product-page" itemscope itemtype="http://schema.org/Product">
+
+    <header class="s-product-header">
+        <div class="s-layout">
+            <div class="s-column">
+
+                <h2 class="s-header" itemprop="name">{$product.name|escape}</h2>
+
+                {if !empty($product.summary)}
+                    <div class="s-summary">{$product.summary}</div>
+                {/if}
+
+            </div>
+            <div class="s-column s-column-right">
+
+                <div class="s-sku-wrapper" style="{if empty($product.skus[$product.sku_id].sku)}display:none;{/if}">
+                    <span class="s-label">[`SKU`]</span>
+                    <span class="s-sku js-product-sku">{$product.skus[$product.sku_id].sku|default:""|escape}</span>
+                </div>
+
+                <div class="s-rating-wrapper">
+                    {$_product_rate = round($product.rating, 1)}
+                    {for $_i = 0 to 4}
+                        {$_icon_class = "star-empty"}
+                        {if $_i < $_product_rate}
+                            {$_delta = $_product_rate - $_i}
+                            {if $_delta >= 1}
+                                {$_icon_class = "star"}
+                            {elseif round($_delta) == 1}
+                                {$_icon_class = "star-half"}
+                            {/if}
+                        {/if}
+
+                        <i class="s-rate-item svg-icon {$_icon_class} size-11"></i>
+                    {/for}
+
+                    <a class="s-link" href="reviews/">{$reviews_total_count}</a>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+
+    <div class="s-layout fixed">
+        <div class="s-column">
+
+            {* OVERVIEW *}
+            {capture assign="_description"}
+                {if !empty($product.description)}
+                    <div class="s-product-desc">
+                        <h4 class="s-header">[`Overview`]</h4>
+                        <div class="s-desc" itemprop="description">{$product.description}</div>
+                    </div>
+                {/if}
+            {/capture}
+
+            {* PAGES *}
+            {capture assign="_pages"}
+                {if $product.pages}
+                    <div class="s-product-pages">
+                        {foreach $product.pages as $page}
+                            <a href="{$wa->shop->productUrl($product, 'page', ['page_url' => $page.url])}">
+                                {$page.name|escape}
+                            </a>
+                        {/foreach}
+                    </div>
+                {/if}
+            {/capture}
+
+
+
+            {* IMAGE GALLERY *}
+            {if $product.images}
+
+
+
+                <figure class="s-product-photos" id="s-product-photos">
+                    <div class="s-layout fixed">
+                        <div class="s-column">
+
+                            {* MAIN IMAGE *}
+                            <div class="s-photo-main">
+                                {*if $_video}
+                                    <div class="s-video-wrapper" id="s-video-wrapper" itemscope itemtype="http://schema.org/VideoObject">
+                                        <div itemprop="embedHTML">
+                                            <iframe src="{$_video.url}" width="{$_video.width}" height="{$_video.height}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                        </div>
+                                        <meta itemprop="width" content="{$_video.width}">
+                                        <meta itemprop="height" content="{$_video.height}">
+                                        <meta itemprop="name" content="{$product.name|default:""|escape}">
+                                        <meta itemprop="description" content="{$product.description|default:""|escape}">
+                                        <meta itemprop="uploadDate" content="{$product.create_datetime|default:""|escape}">
+                                        <meta itemprop="thumbnailUrl" content="{$_absolute_thumb_uri|escape}" />
+                                    </div>
+                                {/if*}
+                                <a class="{if $_video}is-hidden{/if}" id="s-photo-main" href="{$wa->shop->productImgUrl($product, '970')}">
+                                    {$wa->shop->productImgHtml($product, '750', [ 'itemprop' => 'image', 'alt' => $product.name|escape ])}
+                                </a>
+
+
+                            </div>
+                            
+                            {$_description}
+                            {$_pages}
+                            
+
+                        </div>
+                        <div class="s-column s-photos-aside right">
+
+                            {* THUMBS *}
+                            {if count($product.images) > 1 || (count($product.images) === 1 && $_video)}
+                                <ul class="s-photos-list" id="s-photos-list">
+                                    {foreach $product.images as $image}
+                                        <li class="s-photo-thumb">
+                                            {* @hint link id needed for change product image on sku change event *}
+                                            <a id="s-image-{$image.id}" class="{if $image.id == $product.image_id && empty($_video)}is-selected{/if}" href="{$wa->shop->imgUrl($image, '970')}" data-index="{$image@index}">
+                                                {$wa->shop->imgHtml($image, '96x96')}
+                                            </a>
+                                        </li>
+                                    {/foreach}
+                                    {if $_video}
+                                        <li class="s-photo-thumb">
+                                            {* @hint link id needed for change product image on sku change event *}
+                                            <a class="is-selected is-video" href="{$_video.url}">
+                                                <img src="{$_video.images[0]}" alt="">
+                                            </a>
+                                        </li>
+                                    {/if}
+                                </ul>
+                            {/if}
+
+                        </div>
+                    </div>
+                    <script>
+                        ( function($) {
+                            new window.waTheme.init.shop.ProductPhotos({
+                                $wrapper: $("#s-product-photos")
+                            });
+                        })(jQuery);
+                    </script>
+                </figure>
+            {else}
+                <div id="s-photo-main">
+                    <img src="{$wa_active_theme_url}img/svg/empty_photo.svg" alt="[`Empty photo`]" style="width: 100%; max-height: 200px;">
+                </div>
+
+                {$_description}
+                {$_pages}
+                {$_features}
+
+            {/if}
+
+        </div>
+        <div class="s-product-aside s-column">
+
+            {* PRODUCT CART *}
+            <div class="s-product-cart-area">
+
+                {include file="product.cart.html" inline}
+
+                {if !empty($frontend_product)}
+                    {* @event frontend_product.%plugin_id%.cart *}
+                    {foreach $frontend_product as $_}{$_.cart}{/foreach}
+
+                    {* @event frontend_product.%plugin_id%.block_aux *}
+                    <div class="s-product-aux">
+                        {foreach $frontend_product as $_}{$_.block_aux}{/foreach}
+                    </div>
+                {/if}
+            </div>
+
+            {* TAGS *}
+            {if $product.tags}
+                <div class="s-product-tags">
+                    <span class="s-label">[`Tags`]:</span>
+                    {foreach $product.tags as $t}
+                        <div class="s-tag-wrapper">
+                            <a href="{$wa->getUrl('/frontend/tag', ['tag' => urlencode($t)])}">{$t}</a>
+                        </div>
+                    {/foreach}
+                </div>
+            {/if}
+
+        </div>
+    </div>
+
+    {* @event frontend_product.%plugin_id%.menu *}
+    {foreach $frontend_product as $_}{$_.menu}{/foreach}
+
+    {* @event frontend_product.%plugin_id%.block *}
+    {foreach $frontend_product as $_}{$_.block}{/foreach}
+
+    {* RELATED PRODUCTS *}
+    {$crossselling = $product->crossSelling(12)}
+    {if !empty($crossselling)}
+        <section class="s-related-products">
+            {$_title = sprintf('[`Customers who bought %s also bought`]', $product.name|escape)}
+            {include file="./products.html" products=$crossselling slider=true short=true section_title=$_title inline}
+        </section>
+    {/if}
+
+    {* RELATED PRODUCTS *}
+    {$upselling = $product->upSelling(12)}
+    {if !empty($upselling)}
+        {$compare_ids = array_merge(array($product.id), array_keys($upselling))}
+        <section class="s-related-products">
+            {$_title = "[`See also`]"}
+            {include file="./products.html" products=$upselling slider=true short=true section_title=$_title inline}
+        </section>
+    {/if}
+
+    <div id="writeFeedback" class="modal__write-feedback mfp-hide">
+        <div class="modal__write-feedback-head">
+            <p class="modal__write-feedback-head-title">Написать отзыв</p>
+        </div>
+        <form action="" class="modal__write-feedback-form">
+            <div class="modal__write-feedback-body">
+                <p class="modal__write-feedback-body-text">Ваша оценка</p>
+                <div class="rating">
+                    <input class="jsRatingInput" type="radio" name="rating" value="5" id="5" required>
+                    <label class="rating-svg svg-star jsRatingSvg" for="5"></label>
+                    <input class="jsRatingInput" type="radio" name="rating" value="4" id="4" required>
+                    <label class="rating-svg svg-star jsRatingSvg" for="4"></label>
+                    <input class="jsRatingInput" type="radio" name="rating" value="3" id="3" required>
+                    <label class="rating-svg svg-star jsRatingSvg" for="3"></label>
+                    <input class="jsRatingInput" type="radio" name="rating" value="2" id="2" required>
+                    <label class="rating-svg svg-star jsRatingSvg" for="2"></label>
+                    <input class="jsRatingInput" type="radio" name="rating" value="1" id="1" required>
+                    <label class="rating-svg svg-star jsRatingSvg" for="1"></label>
+                    <p class="rating__text jsRatingText" s5="Отлично" s4="Хорошо" s3="Нормально" s2="Плохо" s1="Ужасно"></p>
+                </div>
+                <p class="modal__write-feedback-body-text modal__write-feedback-body-text-2">Ваше имя</p>
+                <input class="modal__write-feedback-body-input" type="text" required >
+                <p class="modal__write-feedback-body-text modal__write-feedback-body-text-3">Ваш коментарий</p>
+                <textarea class="modal__write-feedback-body-textarea" name="" id="" cols="30" rows="10" required></textarea>
+                <button class="modal__write-feedback-body-button" type="submit">Оставить отзыв</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        ( function($, waTheme) {
+            waTheme.init.shop.initProductPage({
+                $wrapper: $("#js-product-page"),
+                skus_features_html: {$_skus_features_html|json_encode}
+            });
+        })(jQuery, window.waTheme);
+    </script>
+</article>
+
+{/strip}
