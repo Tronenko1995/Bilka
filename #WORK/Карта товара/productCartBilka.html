@@ -1,0 +1,559 @@
+<script type="text/javascript" src="{$wa_app_static_url}js/rate.widget.js"></script>
+
+{if !empty($breadcrumbs)}
+<nav class="breadcrumbs">
+    {if !$wa->globals('isMyAccount')}
+    <a href="{$wa_app_url}" title="домой"><i class="fa fa-home"></i></a>  <span class="rarr">&rarr;</span>
+    {else}
+    {* within My Account we exclude first node from navigation because links are on the page already *}
+    {$breadcrumbs[0] = null}
+    {/if}
+    {foreach $breadcrumbs as $breadcrumb}
+    {if $breadcrumb}
+    {if $breadcrumb.url == '/'}
+    <a href="{$breadcrumb.url}" title="{$breadcrumb.name|escape}"><i class="fa fa-home"></i></a> <span class="rarr">&rarr;</span>
+    {else}
+    <a href="{$breadcrumb.url}" title="{$breadcrumb.name|escape}">{$breadcrumb.name|escape}</a> <span class="rarr">&rarr;</span>
+    {/if}
+    {/if}
+    {/foreach}
+    {$category.name|escape}
+</nav>
+{/if}
+
+
+<h1 style="color: #5A5656; font-weight: 700; text-align: left; font-size: 35px" itemprop="name">{$product.name|escape}</h1>
+<meta itemprop="url" content="https://bilka.com.ua/product/{$product.url}">
+{foreach $product.skus as $sku}
+{$sku_available =  $product.status && $sku.available && ($wa->shop->settings('ignore_stock_count') || $sku.count === null || $sku.count > 0)}
+<meta itemprop="sku" content="{$sku.sku|escape}">
+<meta itemprop="MPN" content="{$sku.sku|escape}">
+{/foreach}
+{foreach $product.features as $f_code => $f_value}
+{if $f_code === 'proizvoditel1'}<meta itemprop="brand" content="{implode(', ', $f_value)}">{/if}
+{/foreach}
+
+<meta itemprop="productID" content="{$product.id}">
+<form id="cartform" method="post" action="{$wa->getUrl('/frontendCart/add')}">
+    <div class="cart-box">
+        <div class="cart-box-left">
+            <!-- list all SKUs for Schema.org markup -->
+            <ul>
+                {foreach $product.skus as $sku}
+                <li style="list-style: none" class="{$sku.id} allskus">
+                    <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <meta itemprop="url" content="https://bilka.com.ua/product/{$product.url}">
+                        {$sku_available =  $product.status && $sku.available && ($wa->shop->settings('ignore_stock_count') || $sku.count === null || $sku.count > 0)}
+                        {if $sku.name}<meta itemprop="name" content="{$sku.name|escape}">{/if}
+                        <meta itemprop="price" content="{$sku.price}">
+                        <meta itemprop="priceCurrency" content="{$product.currency}">
+                        <meta itemprop="" content="warningurl">
+                        <p class="hint "><b>Код товара:</b><span itemprop="sku"> {$sku.sku|escape} </span></p>
+                        <meta itemprop="MPN" content="{$sku.sku|escape}">
+                        <link itemprop="availability" href="http://schema.org/InStock" />
+                    </div>
+                </li>
+
+
+                {/foreach}
+            </ul>
+            {if count($product.skus) < 2}
+            <style>.allskus { display: block!important; } </style>
+            {/if}
+            {if count($product.skus) > 1}
+
+            {* SKU radio buttons *}
+
+            <ul class="skus" style="display: none;">
+
+            </ul>
+
+            {else}
+
+            {* in case there is only one SKU, don't display the selector *}
+
+
+            {/if}
+            {if $product.sku_type}
+
+            <!-- SELECTABLE FEATURES selling mode -->
+            {$default_sku_features = $product.sku_features}
+            {$product_available = $product.status}
+
+            {if $theme_settings.selectable_features_control == 'inline'}
+            <div class="options">
+
+
+                {foreach $features_selectable as $f}
+                <div class="inline-select{if $f.type == 'color'} color{/if}">
+                    <strong style="font-size: 120%">Цвет:</strong><br /> {foreach $f.values as $v_id => $v}
+                    {if !isset($default_sku_features[$f.id])}{$default_sku_features[$f.id]=$v_id}{/if}
+                    <a data-value="{$v_id}" href="#"{if $v_id == ifset($default_sku_features[$f.id])} class="selected"{/if}{if $f.type == 'color'} style="{$v->style}; margin-bottom: 20px;"{/if} title=" b">
+                    {if $f.type == 'color'}&nbsp;<i class="fa fa-check-circle-o fa-2x color_checkmark"></i>{/if}
+                    {if $f.type == 'color'}&nbsp;<span class="color_name">{strip_tags($v)}</span>{else}{$v}{/if}
+                    </a>
+                    {/foreach}
+                    <input type="hidden" data-feature-id="{$f.id}" class="sku-feature" name="features[{$f.id}]" value="{ifset($default_sku_features[$f.id])}">
+                </div>
+
+                {/foreach}
+            </div>
+            {else}
+            <div class="options">
+                {foreach $features_selectable as $f}
+                {$f.name}:
+                <select data-feature-id="{$f.id}" class="sku-feature" name="features[{$f.id}]">
+                    {foreach $f.values as $v_id => $v}
+                    <option value="{$v_id}" {if $v_id == ifset($default_sku_features[$f.id])}selected{/if}>{$v}</option>
+                    {/foreach}
+                </select>
+                <br>
+                {/foreach}
+            </div>
+            {/if}
+
+
+            {/if}
+            {$video = $product->video}
+
+            {if $product.images || $video}
+            <link rel="stylesheet" href="{$wa_theme_url}magnificPopup/magnific-popup.css">
+            <script type="text/javascript" src="{$wa_theme_url}magnificPopup/magnific-popupv1.1.0.js"></script>
+            <script>
+                var isGallery;
+            </script>
+            <figure class="product-gallery">
+                {if $product.images}
+
+                {if $video}
+                <div id="video-container" class="video-container" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+                    <div itemprop="embedHTML">
+                        <iframe src="{$video.url}" width="{$video.width}" height="{$video.height}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                    <meta itemprop="width" content="{$video.width}">
+                    <meta itemprop="height" content="{$video.height}">
+                </div>
+                {/if}
+
+                <!-- main image -->
+                <div class="image" id="product-core-image">
+                <div class="corner top right">
+                    {$wa->shop->badgeHtml($product.badge)}
+                </div>
+                <a href="{$wa->shop->productImgUrl($product, '970')}">
+                    {$wa->shop->productImgHtml($product, '750', [ 'itemprop' => 'image', 'id' => 'product-image', 'alt' => $product.name|escape ])}
+                </a>
+                <div id="switching-image" style="display: none;"></div>
+
+
+
+        </div>
+        {/if}
+        <!-- thumbs -->
+        {if count($product.images) > 1 || (count($product.images) === 1 && $video)}
+            <script>
+                var isGallery = true;
+            </script>
+            <div class="more-images" id="product-gallery">
+                {foreach $product.images as $image}
+                    <div class="image{if $image.id == $product.image_id } selected{/if}">
+                        <a id="product-image-{$image.id}" href="{$wa->shop->imgUrl($image, '970')}" class="swipebox">
+                            {$wa->shop->imgHtml($image, '96x96')}
+                        </a>
+                    </div>
+                {/foreach}
+                {if $video}
+                    <div class="image video">
+                        <a id="product-image-video" href="{$video.url}" class="swipebox">
+                            <img src="{$video.images[0]}">
+                            <svg class="play-icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+                            	<g>
+                            		<path style="fill:#ffffff;" d="M8,0C3.5,0,0,3.5,0,8s3.5,8,8,8s8-3.5,8-8S12.5,0,8,0z M8,14c-3.5,0-6-2.5-6-6s2.5-6,6-6s6,2.5,6,6
+                            			S11.5,14,8,14z"/>
+                            		<polygon style="fill:#ffffff;" points="6,12 11,8 6,4 		"/>
+                            	</g>
+                        	</svg>
+                        <!--<img class="play-icon" src="/wa-data/public/shop/img/press-play-button_icon-icons.com_53919.svg">-->
+                        </a>
+                    </div>
+                {/if}
+            </div>
+        {/if}
+    </figure>
+    <script>
+        if(isGallery) {
+            function getGalleryItems () {
+                var itemSelectedHref = $("#product-core-image>a")[0].href;
+                var itemSelectedTitle = $("#product-core-image>a")[0].children[0].title;
+                console.log(itemSelectedTitle);
+                var items = [{
+                    src: itemSelectedHref,
+                    title: itemSelectedTitle
+                }];
+                $(".swipebox").each(function(i){
+                    var path = this.href;
+                    var titleImg = this.children[0].title;
+                    if(path!==itemSelectedHref) {
+                        items.push({
+                            src: path,
+                            title: titleImg
+                        });
+                    }
+                });
+                return items;
+            }
+            $("#product-image").on("click", function(e){
+                e.preventDefault();
+                var items = getGalleryItems ();
+                $.magnificPopup.open({
+                    items,
+                    gallery: {
+                        enabled: true
+                    },
+                    type: 'image',
+                    callbacks: {
+                        open: function() {
+                          document.body.style.overflow = "hidden";
+                        },
+                        close: function() {
+                          document.body.style.overflow = "auto";
+                        }
+                    }
+                });
+            });
+        } else {
+            $("#product-image").on("click", function(e){
+                e.preventDefault();
+                $.magnificPopup.open({
+                    items: {
+                        src: e.target.src,
+                        title: e.target.title
+                    },
+                    type: 'image',
+                    callbacks: {
+                        open: function() {
+                          document.body.style.overflow = "hidden";
+                        },
+                        close: function() {
+                          document.body.style.overflow = "auto";
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+{/if}
+
+
+
+    </div>
+    <div class="cart-box-right">
+        <div class="cart-purchase--block">
+            <!-- price -->
+            <div class="add2cart">
+                {if $product.compare_price > 0}
+                <span class="compare-at-price nowrap">{shop_currency_html($product.compare_price)} </span>
+                {/if}
+                <div>
+                    <div>
+                        <input type="hidden" form="cartform" name="product_id" value="{$product.id}">
+                            <div class="flex-container flex-container--vertical-align-center flex-container--mob-column">
+                                <p data-price="{shop_currency($product.price, null, null, 0)}" class="price nowrap"><img src="/wa-data/public/shop/themes/default/img/price-tag-svgrepo-com 1.svg"><span> {shop_currency_html($product.price)}</span></p>
+                                <button type="submit" id="addtocartBtn" class="addtocartBtn" form="cartform">В корзину</button>
+                            </div>
+                        <span class="added2cart" style="display: none; margin-bottom:20px;">{sprintf('[`%s Товар добавлен в корзину.<a href="%s" title="Товар добавлен в корзину"><strong>Перейти</strong></a>`]', $p.name, $wa->getUrl('shop/frontend/cart'))}</span>
+                    </div>
+                    {shopBistrozakazPlugin::button($product)}
+                </div>
+            </div>
+            <br style="clear: both"  />
+            {if $services}
+            <!-- services -->
+            <div class="services">
+                {foreach $services as $s}
+                <div class="service-{$s.id}">
+                    <label class="checkbox">
+                        <input data-price="{shop_currency($s.price, $s.currency, null, 0)}" type="checkbox" name="services[]" value="{$s.id}"> {$s.name|escape} {if $s.price && !isset($s.variants)}(+<span class="service-price">{shop_currency_html($s.price, $s.currency)}</span>){/if}
+                    </label>
+                    {if isset($s.variants)}
+                    <select data-variant-id="{$s.variant_id}" class="service-variants" name="service_variant[{$s.id}]" disabled>
+                        {foreach $s.variants as $v}
+                        <option {if $s.variant_id == $v.id}selected{/if} data-price="{shop_currency($v.price, $s.currency, null, 0)}" value="{$v.id}">{$v.name|escape} (+{shop_currency($v.price, $s.currency)})</option>
+                        {/foreach}
+                    </select>
+                    {else}
+                    <input type="hidden" name="service_variant[{$s.id}]" value="{$s.variant_id}">
+                    {/if}
+                </div>
+                {/foreach}
+            </div>
+            {/if}
+                <div id="tabsContainer">
+                    <div class="tabs-nav">
+                        <ul>
+                            <li class="active"><a href="#tab1">Доставка</a></li>
+                            <li><a href="#tab2">Оплата</a></li>
+                            <li><a href="#tab3">Важно знать</a></li>
+                            <li><a href="#tab4">Возврат</a></li>
+                        </ul>
+                    </div>
+                    <div class="tabs-content">
+                        <div id="tab1" class="tabs-content-item">
+                            <ul class="prod-props">
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/car.svg" alt="">
+                                        </div>
+                                        <span>по Киеву</span>
+                                    </div>
+                                    <p>65 грн. (на следующий день)</p>
+                                </li>
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/ukraine.svg" alt="">
+                                        </div>
+                                        <span>по Украине</span>
+                                    </div>
+                                    <p>согласно тарифам перевозчика</p>
+                                </li>
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/free-delivery-free-svgrepo-com 1.svg" alt="">
+                                        </div>
+                                        <span>от 750 грн.</span>
+                                    </div>
+                                    <p>доставка бесплатная.</p>
+                                </li>
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/point.svg" alt="">
+                                        </div>
+                                        <span>самовывоз</span>
+                                    </div>
+                                    <p>метро Шулявская <a href="/auxpage_contacts/" rel="nofollow" title="подробная карта проезда"> (карта проезда)</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="tab2" class="tabs-content-item">
+                            <ul class="prod-props">
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/kash.svg" alt="">
+                                        </div>
+                                        <span>Наличными</span>
+                                    </div>
+                                </li>
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/privat24 1.svg" alt="">
+                                        </div>
+                                        <span>Перевод Приват24</span>
+                                    </div>
+                                </li>
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/visa.svg" alt="">
+                                        </div>
+                                        <span>Картой через терминал</span>
+                                    </div>
+                                </li>
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/invoice-svgrepo-com 1.svg" alt="">
+                                        </div>
+                                        <span>Безналичный расчет</span>
+                                    </div>
+                                </li>
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/pocket.svg" alt="">
+                                        </div>
+                                        <span>Наложенный платеж</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="tab3" class="tabs-content-item">
+                            <ul class="prod-props">
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/monitor.svg" alt="">
+                                        </div>
+                                        <span>Оттенок товара может отличаться от изображения на сайте из-за особенностей настроек экрана и браузера.</span>
+                                    </div>
+                                </li>
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/box.svg" alt="">
+                                        </div>
+                                        <span>Комплектация изделия может быть изменена производителем без предварительного уведомления</span>
+                                    </div>
+                                </li>
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/operator.svg" alt="">
+                                        </div>
+                                        <span>Уточнить комплектацию, характеристики и наличие конкретного товара Вы сможете у консультантов интернет-магазина.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="tab4" class="tabs-content-item">
+                            <ul class="prod-props">
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/return 1.svg" alt="">
+                                        </div>
+                                        {if $product.badge}
+                                        <span>Возврат или обмен товара возможен по гарантии в течение 12 месяцев.</span>
+                                        {else}
+                                        <span>Возврат или обмен товара возможен в течение 14 дней.</span>
+                                        {/if}
+                                    </div>
+                                </li>
+                                <li class="prod-props__item">
+                                    <div class="prod-props__left-side">
+                                        <div class="prod-props__img">
+                                            <img src="/wa-data/public/shop/themes/default/img/receipt 1.svg" alt="">
+                                        </div>
+                                        <span>Возврат или обмен возможны при наличии чека и упаковки товара.</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    $(function() {
+                        $('.tabs-nav a').click(function() {
+            
+                            //Check if the tabs menu has active class
+                            $('.tabs-nav li').removeClass('active');
+                            $(this).parent().addClass('active');
+            
+                            // Display active tab
+                            var currentTab = $(this).attr('href');
+                            $('.tabs-content .tabs-content-item').hide();
+                            $(currentTab).show();
+            
+                            return false;
+                        });
+                    });
+                </script>
+        </div>
+    </div>
+    {if $product.features}
+    <div style="padding: 5px; background: rgba(255,204,0,.1); border-bottom: 4px solid #ff742a; margin-bottom: 10px;width:100%;">
+        <h5 style="padding: 5px; background: #f26d25; color: #fff; margin-bottom: 0px">Характеристики:</h5>
+        <table class="features">
+            {foreach $product.features as $f_code => $f_value}
+
+            {if strpos($features[$f_code].name, "Модели") === false && strpos($features[$f_code].name, "Nokia") === false}
+            {if is_array($f_value)}
+            <tr{if $features[$f_code].type == 'divider'} class="divider"{/if}>
+
+            <td class="name" style="font-weight: 600">
+                <span class="fa-stack fa-lg" style="font-size:12px;"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-info fa-stack-1x"></i></span> {$features[$f_code].name|escape}: &nbsp;
+            </td><td class="value">{implode(', ', $f_value)}</td></tr>
+            {else}
+            <tr{if $features[$f_code].type == 'divider'} class="divider"{/if}>
+            <td class="name" style="font-weight: 600">
+                <span class="fa-stack fa-lg" style="font-size:12px;"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-info fa-stack-1x"></i></span> {$features[$f_code].name|escape}: &nbsp;
+            </td><td class="value">{$f_value}</td></tr>
+            {/if}
+            {else}
+            {foreach $breadcrumbs as $breadcrumb}
+            {if $breadcrumb}
+            {if $breadcrumb.name === "аккумуляторы" || $breadcrumb.name === "защитные стекла" || $breadcrumb.name === "защитные пленки" || $breadcrumb.name === "чехлы"}                        <tr{if $features[$f_code].type == 'divider'} class="divider"{/if}>
+            <td class="name" style="font-weight: 600">
+                <span class="fa-stack fa-lg" style="font-size:12px;"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-info fa-stack-1x"></i></span> {$features[$f_code].name|escape}: &nbsp;
+            </td><td class="value" style="font-size: 12px;">Проверена совместимость с {implode(', ', $f_value)}</td></tr>{/if}
+            {/if}
+            {/foreach}
+            {/if}
+
+            {/foreach}
+        </table>
+    </div>
+    {/if}
+    <a href="/primerka-chekhlov/" target="_blank">
+        <img class="temp-banner" src="/wa-data/public/shop/images/banner.jpg" alt="">
+        <img class="temp-banner-mob" src="/wa-data/public/shop/images/banner-mob.jpg" alt="">
+    </a>
+    <style>
+    .temp-banner-mob {
+        display:none;
+    }
+    @media(max-width:400px) {
+        .temp-banner {
+            display:none;
+        }
+        .temp-banner-mob {
+            display:block;
+        }
+    }
+    </style>
+    <div style="width: 100%;">
+        {if $product.description}
+        <div class="description" id="product-description" itemprop="description">{$product.description}</div>
+        {/if}
+
+
+        {if $wa->get('cart')}
+        {$wa->shop->productImgHtml($product, '96x96', [ 'itemprop' => 'image', 'id' => 'product-image', 'alt' => $product.name|escape ])}
+        {/if}
+
+        <!-- tags -->
+        {if $product.tags}
+        <p class="tags" id="product-tags">
+            [`Tags`]:
+            {foreach $product.tags as $t}
+            <a href="{$wa->getUrl('/frontend/tag', ['tag' => urlencode($t)])}">{$t}</a>
+            {/foreach}
+        </p>
+        {/if}
+        <!-- product features -->
+
+    </div>
+
+
+    <script type="text/javascript" src="{$wa_theme_url}product.js?v{$wa_theme_version}"></script>
+    <script type="text/javascript">
+        $(function () {
+            new Product('#cartform', {
+                currency: {json_encode($currency_info)}
+            {if count($product.skus) > 1 or $product.sku_type}
+        ,services: {json_encode($sku_services)}
+            {/if}
+                {if $product.sku_type}
+            ,features: {json_encode($sku_features_selectable)}
+                {/if}
+                });
+        });
+    </script>
+    <script>
+        $( document ).ready(function() {
+            var compat = $('.compatibility').text();
+            var res = compat.replace(new RegExp("~",'g'), "");
+            var res = res.replace(new RegExp("\\*",'g'), "");
+            $('.compatibility').html(res);
+        });
+        $( document ).on( "ok.bistrozakaz.order", function() {
+            fbq('track', 'Purchase', { content_ids: {$product.id}, content_type: 'product', value:{math equation={$product.price} format='%.2f'}});
+        });
+
+    </script>
