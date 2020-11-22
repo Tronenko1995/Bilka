@@ -89,6 +89,18 @@
             &-compare {
                 cursor: pointer;
                 display: flex;
+                &.is-active {
+                    
+                    cursor: not-allowed !important;
+
+                    .page-card__row-right-compare-svg {
+                        background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQo8cGF0aCBkPSJNMTAuNyA4LjAzMzM0TDE0IDExLjMzMzNMMTAuNyAxNC42MzMzTDkuNzU3MzMgMTMuNjkwN0wxMS40NDggMTEuOTk5M0wyLjY2NjY3IDEyVjEwLjY2NjdIMTEuNDQ4TDkuNzU3MzMgOC45NzZMMTAuNyA4LjAzMzM0Wk01LjMgMS4zNjY2N0w2LjI0MjY3IDIuMzA5MzRMNC41NTIgNEgxMy4zMzMzVjUuMzMzMzRINC41NTJMNi4yNDI2NyA3LjAyNEw1LjMgNy45NjY2N0wyIDQuNjY2NjdMNS4zIDEuMzY2NjdaIiBmaWxsPSIjY2NjY2NjIi8+DQo8L3N2Zz4NCg==') !important;
+                        background-repeat: no-repeat !important;
+                    }
+                    .page-card__row-right-compare-text {
+                        color: #ccc !important;
+                    }
+                }
                 &-svg {
                     width: 16px;
                     height: 16px;
