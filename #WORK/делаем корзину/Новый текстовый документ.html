@@ -1,0 +1,202 @@
+{if $wa->shop}
+<!-- shopping cart info -->
+{$cart_total = $wa->shop->cart->total()}
+{$cart_count = $wa->shop->cart->count()}
+<div id="cart">
+    <a href="{if $cart_count}{$wa->getUrl('shop/frontend/cart')}{else}javascript:void(0){/if}" {if !$cart_count}data-url="{$wa->getUrl('shop/frontend/cart')|escape}"{/if} class="cart-total"><span class="value">{if $cart_count}{if $theme_settings.ruble == 'html'}{wa_currency_html($cart_total, $wa->shop->currency())}{else}{wa_currency($cart_total, $wa->shop->currency())}{/if}{else}[`Cart is empty`]{/if}</span></a>
+</div>
+{/if}
+
+
+
+{if $wa->shop}
+{include file="cart-block.html"}
+{/if}
+
+<div class="cart-block">
+    <div class="cart-block-content" {if !$cart_total}style='display: none;'{/if}>
+         {$break = 0}
+         {if $cart_total}
+         {$cart_items = $wa->shop->cart->items()}
+         {if $cart_items}
+         {if (int)$theme_settings.products_per_fly <= 0}{$theme_settings.products_per_fly = 3}{/if}
+         {$count = 0}
+         {foreach $cart_items as $ci}
+         {$price = shop_currency($ci.price, $ci.currency, null, false)* $ci.quantity}
+         {if isset($ci.services)}
+         {foreach $ci.services as $cis}
+         {$price = $price + $cis.price*$cis.quantity}
+         {/foreach}
+         {/if}
+         <div class="cart-block-row" {if $count >= (int)$theme_settings.products_per_fly}{$break = 1}style='display:none;'{/if} data-id="{$ci.id}">
+            <div class="cart-block-image">
+                <a href="{$wa->shop->productUrl($ci.product)}">
+                    {$wa->shop->productImgHtml($ci.product, '77x0', ['itemprop' => 'image', 'alt' => $ci.product.name|escape, 'default' => "`$wa_theme_url`img/dummy77.jpg"])}
+                </a>
+            </div>
+            <div class="cart-block-title"><a href="{$wa->shop->productUrl($ci.product)}">{$ci.name|escape}</a></div>
+            <div class="cart-block-quantity">[`quantity`]: <a href="javascript:void(0)" title="[`decrease`]" class="f-minus"><i class="icon16 ig minus"></i></a><input type="text" value="{$ci.quantity}" class="qty" /> <a href="javascript:void(0)" title="[`increase`]" class="f-plus"><i class="icon16 ig plus"></i></a></div>
+            <div class="price">{if $theme_settings.ruble == 'html'}{shop_currency_html($price, true)}{else}{shop_currency($price, true)}{/if}</div>
+            <a href="javascript:void(0)" class="delete" title="[`Delete`]" rel="{$ci.id}"><i class="icon16 ig close-bw"></i></a>
+        </div>
+        {$count = $count + 1}
+        {/foreach}
+        {/if}
+        {/if}
+        {$discount = $wa->shop->cart->discount()}
+        <div class="cart-block-discount" {if !$discount}style='display: none'{/if}><i class="icon16 ig discount"></i> [`Discount`]: <span>{if $theme_settings.ruble == 'html'}{shop_currency_html($discount, true)}{else}{shop_currency($discount, true)}{/if}</span></div>
+        <div class="show-all align-center" {if !$break}style='display: none;'{/if}><a href="{$wa->getUrl('shop/frontend/cart')}" title="[`Show all products`]">[`Show all products`]</a></div>
+    </div>
+    <div class="buttons" {if !$cart_total}style='display: none;'{/if}>
+         
+        {* Plugin Quickorder. Link: http://www.webasyst.ru/store/plugin/shop/quickorder/
+             Put code below: {shopQuickorderPlugin::submitCart()}  *}
+        {if $wa->shop && $wa->app() == 'shop' && $wa->setting('update_time','','shop.quickorder') && $theme_settings.quickorder_plugin} 
+            {shopQuickorderPlugin::submitCart(0)}
+        {/if}
+        
+        <a href="{$wa->getUrl('shop/frontend/cart')}" class="button theme">[`Place order`]</a>
+    </div>
+    <div class="cart-sheet">
+        <div class="count-block">
+            (<span class="count">{$wa->shop->cart->count()}</span>)
+        </div>
+        <i class="icon32 ig cart-bw"></i>
+    </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        var updateFlyCart = function(data) {
+            $("#cart .cart-total .value").html(data.total);
+            $(".cart .cart-total").html(data.total);
+            if (data.discount_numeric > 0) {
+                $(".cart-block-discount").show().find("span").html(data.discount);
+            } else {
+                $(".cart-block-discount").hide();
+            }
+            $(".cart .cart-discount").html("&minus" + data.discount);
+        };
+        // Удаление товаров из летающей корзины
+        $(document).on("click", ".cart-block a.delete", function() {
+            var btn = $(this);
+            var id = btn.attr('rel');
+            var cartBlock = $(".cart-block");
+            var calculateBlockHeight = function(cartBlock) {
+                var height = cartBlock.outerHeight();
+                cartBlock.stop().animate({
+                    bottom: "-" + height + "px"
+                }, 500, function() {
+                    $("#cart").addClass("open");
+                    cartBlock.addClass("open");
+                });
+            };
+            if (!confirm("[`Do you really want to delete product from cart?`]")) {
+                calculateBlockHeight(cartBlock);
+                return false;
+            }
+            calculateBlockHeight(cartBlock);
+            btn.find("i").removeClass("ig close-bw close").addClass("loading");
+            $.post('{$wa->getUrl("shop/frontend/cart")}delete/', { id: id }, function(response) {
+                btn.find("i").addClass("ig close-bw").removeClass("loading");
+                btn.parents(".cart-block-row").remove();
+                $(".count-block .count").text(response.data.count);
+                if (response.data.count > 0) {
+                    calculateBlockHeight($(".cart-block"));
+                    updateFlyCart(response.data);
+                    var hiddenRow = $(".cart-block-row:hidden");
+                    var hiddenRowCount = hiddenRow.length;
+                    if ($(".cart-block-row:visible").length < $.multishop.productsPerFly && hiddenRowCount) {
+                        hiddenRow.first().show();
+                        if (hiddenRowCount - 1 == 0) {
+                            $(".cart-block .show-all").hide();
+                        }
+                    }
+                    $(".cart tr[data-id='" + id + "']").remove();
+                } else {
+                    $("#cart .cart-total span").html("[`Cart is empty`]");
+                    $(".cart-block-content").prepend("<p class='empty'>[`Cart is empty`]</p>").hide().next().hide();
+                    $(".cart-block").css('bottom', '0');
+                    var cartForm = $(".cart").parents("form");
+                    if (cartForm.length) {
+                        cartForm.before("<p>[`Your cart is empty`].</p>");
+                        cartForm.remove();
+                    }
+                }
+            }, "json");
+            return false;
+        });
+
+        // Изменение количества товаров
+        var changeQuantity = function(that, callback) {
+            var cartBlockRow = that.parents(".cart-block-row");
+            var id = cartBlockRow.data("id");
+            var tr = $(".cart tr[data-id='" + id + "']");
+            var cartQty = tr.find(".qty");
+            if (that.val() > 0) {
+                if (that.val()) {
+                    that.prop("disabled", true);
+                    $.post('{$wa->getUrl("shop/frontend/cart")}save/', { id: cartBlockRow.data('id'), quantity: that.val() }, function(response) {
+                        that.prop("disabled", false);
+                        cartBlockRow.find('.price').html(response.data.item_total);
+                        tr.find(".item-total").html(response.data.item_total);
+                        $(".count-block .count").text(response.data.count);
+                        if (response.data.q) {
+                            that.val(response.data.q);
+                        }
+                        cartQty.val(that.val());
+                        if (response.data.error) {
+                            alert(response.data.error);
+                        }
+                        if (callback) {
+                            callback.call();
+                        }
+                        updateFlyCart(response.data);
+                    }, "json");
+                }
+            } else {
+                that.val(1);
+                cartQty.val(1);
+                cartBlockRow.find("input.qty").change();
+            }
+        };
+        $(document).on("change", ".cart-block-quantity input.qty", function() {
+            changeQuantity($(this));
+        });
+        $(document).on("click", ".f-minus", function() {
+            var btn = $(this);
+            var i = btn.find("i");
+            var qty = btn.next();
+            if (!i.hasClass("loading")) {
+                i.removeClass("minus").addClass("loading");
+                qty.val(function(i, oldval) {
+                    if (parseInt(oldval, 10) > 1) {
+                        return --oldval;
+                    } else {
+                        return 1;
+                    }
+                });
+                changeQuantity(qty, function() {
+                    i.removeClass("loading").addClass("minus");
+                });
+            }
+        });
+        $(document).on("click", ".f-plus", function() {
+            var btn = $(this);
+            var i = btn.find("i");
+            var qty = btn.prev();
+            if (!i.hasClass("loading")) {
+                i.removeClass("plus").addClass("loading");
+                qty.val(function(i, oldval) {
+                    if (parseInt(oldval, 10) < 1) {
+                        return 1;
+                    } else {
+                        return ++oldval;
+                    }
+                });
+                changeQuantity(qty, function() {
+                    i.removeClass("loading").addClass("plus");
+                });
+            }
+        });
+    });
+</script>

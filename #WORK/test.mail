@@ -1,0 +1,24 @@
+info@bilka.com.ua
+info@bilka.com.ua
+SMTP
+mail.adm.tools
+465
+info@bilka.com.ua
+94MXSl39lprB
+SSL/TSL
+
+
+Сервер входящей почты (IMAP)	
+imap.gmail.com
+Требуется SSL: да
+Порт: 993
+Сервер исходящей почты (SMTP)	
+smtp.gmail.com
+Требуется SSL: да
+Требуется TLS: да (при наличии)
+Требуется аутентификация: да
+Порт для SSL: 465
+Порт для TLS/STARTTLS: 587
+Полное или отображаемое имя	Ваше имя
+alex.tr.test@gmail.com
+Пароль

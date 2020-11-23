@@ -1,0 +1,83 @@
+{strip}
+
+{$_is_dialog = $wa->get('cart')}
+
+{if $_is_dialog}
+    {include file="./product.cart.dialog.html" inline}
+
+{else}
+
+{function name=in_stock n=0 low=5}
+        {if $n > $low or $n === null}
+            <span class="stock-high">Есть в наличии</span>
+        {elseif $n <= $low and $n >= 1}
+            <span class="stock-low">{* _w("Only %d left in stock", "Only %d left in stock", $n) *}{_w("Only a few items left")}</span>
+        {else}
+            <span class="stock-none">{if $wa->shop->settings('ignore_stock_count')}Под заказ{else}Нет в наличии{/if}</span>
+        {/if}
+{/function}
+
+<form class="page-card__container-right-block jsFormCard" method="post" action="{$wa->getUrl('/frontendCart/add')}">
+    <div class="page-card__container-right-block-top">
+        <div class="page-card__container-right-block-top-price js-product-price" data-price="{shop_currency($product.price, null, null, 0)}">{shop_currency($product.price, null, null, 0)}  <span class="page-card__container-right-block-top-price--currency">₴</span></div>
+        <div class="page-card__container-right-block-top-info">
+            <p class="page-card__container-right-block-top-info-text">{in_stock n=$stock_count low=$stock.low_count critical=$stock.critical_count}</p>
+            <button class="page-card__container-right-block-top-info-button jsBuyOneClick">Купить в 1 клик</button>
+            <p class="page-card__container-right-block-top-info-link">
+                <span class="page-card__container-right-block-top-info-link-text">Оплатить частями</span>
+                <span class="page-card__container-right-block-top-info-link-svg"></span>
+                <span class="page-card__container-right-block-top-info-link-block">
+                    <span class="page-card__container-right-block-top-info-link-block-text">Информация</span>
+                </span>
+            </p>
+
+        </div>
+    </div>
+    <div class="page-card__container-right-block-center">
+        <ul class="page-card__container-right-block-center-list">
+            <li class="page-card__container-right-block-center-list-item">
+                <input type="checkbox" class="new-checkbox page-card__container-right-block-center-checkbox" name="name1" id="id100" value="yes">
+                <label for="id100" class="new-label page-card__container-right-block-center-checkbox-label">
+                    <span class="page-card__container-right-block-center-checkbox-text">Поклейка защитного стекла при самовывозе (+50 ₴)</span>
+                </label>
+            </li>
+        </ul>
+    </div>
+    <div class="page-card__container-right-block-bottom">
+        <button class="page-card__container-right-block-bottom-button js-submit-button" type="submit">
+            <span class="svg-basket page-card__container-right-block-bottom-button-svg"></span>
+            <span class="page-card__container-right-block-bottom-button-text">Добавить в корзину</span>
+        </button>
+    </div>
+    <input type="hidden" name="product_id" value="{$product.id}">
+</form>
+
+<div id="buyOneClick" class="modal__buy-one-click mfp-hide">
+    <div class="modal__buy-one-click-head">
+        <p class="modal__buy-one-click-head-title">Купить в 1 клик</p>
+        <p class=" modal__buy-one-click-head-title modal__buy-one-click-head-title--success">Спасибо за заказ!</p>
+    </div>
+    <form action="" class="modal__buy-one-click-form">
+        <div class="modal__buy-one-click-body">
+            <p class="modal__buy-one-click-body-title">Введите ваш телефон и в ближайшее время 
+                мы вам перезвоним</p>
+            <p class="modal__buy-one-click-body-text">Ваш телефон</p>
+            <input class="modal__buy-one-click-body-input jsPhone" placeholder="+380 (__) ___-__-__" type="text" required>
+            <div class="modal__buy-one-click-body-checkbox">
+                <input type="checkbox" class="new-checkbox" name="name" id="id1" value="yes" required>
+                <label for="id1" class="new-label">Я соглашаюсь с </label>
+                <a href="#" class="modal__buy-one-click-body-checkbox-link">Политикой конфиденциальноси</a>
+            </div>
+            <button class="modal__buy-one-click-body-button" type="submit">Купить</button>
+        </div>
+    </form>
+    <form action="" class="modal__buy-one-click-form--success">
+        <div class="modal__buy-one-click-body">
+            <div class="modal__buy-one-click-body-img"></div>
+            <p class="modal__buy-one-click-body-title">Ваш заказ обрабатывается.<br> Наш менеджер свяжется с вами, или ожидайте<br> номер накладной.</p>
+            <button class="modal__buy-one-click-body-button" type="submit">Хорошо</button>
+        </div>
+    </form>
+</div>
+{/if}
+{/strip}
