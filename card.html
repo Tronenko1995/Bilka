@@ -1564,8 +1564,8 @@
         <p class="modal__buy-one-click-head-title">Купить в 1 клик</p>
         <p class=" modal__buy-one-click-head-title modal__buy-one-click-head-title--success">Спасибо за заказ!</p>
     </div>
-    <form action="" class="modal__buy-one-click-form">
-        <div class="modal__buy-one-click-body">
+    <div class="modal__buy-one-click-body">
+        <form action="" class="modal__buy-one-click-form" style="display: flex; flex-direction: column; align-items: flex-start;">
             <p class="modal__buy-one-click-body-title">Введите ваш телефон и в ближайшее время 
                 мы вам перезвоним</p>
             <p class="modal__buy-one-click-body-text">Ваш телефон</p>
@@ -1576,15 +1576,13 @@
                 <a href="#" class="modal__buy-one-click-body-checkbox-link">Политикой конфиденциальноси</a>
             </div>
             <button class="modal__buy-one-click-body-button" type="submit">Купить</button>
-        </div>
-    </form>
-    <form action="" class="modal__buy-one-click-form--success">
-        <div class="modal__buy-one-click-body">
-            <div class="modal__buy-one-click-body-img"></div>
-            <p class="modal__buy-one-click-body-title">Ваш заказ обрабатывается.<br> Наш менеджер свяжется с вами, или ожидайте<br> номер накладной.</p>
-            <button class="modal__buy-one-click-body-button" type="submit">Хорошо</button>
-        </div>
-    </form>
+        </form>
+        <form action="" class="modal__buy-one-click-form--success">
+                <div class="modal__buy-one-click-body-img"></div>
+                <p class="modal__buy-one-click-body-title">Ваш заказ обрабатывается.<br> Наш менеджер свяжется с вами, или ожидайте<br> номер накладной.</p>
+                <button class="modal__buy-one-click-body-button" type="submit">Хорошо</button>
+        </form>
+    </div>
 </div>
 
 <script src="libs/jquery/jquery-3.5.1.min.js"></script>

@@ -148,9 +148,11 @@
                 }
             }
             .modal__buy-one-click-form {
-                display: none;
+                display: none !important;
                 &--success {
-                    display: block;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
                 }
             }
             .modal__buy-one-click-body {
