@@ -7,6 +7,7 @@
 
 	&__wrap {
 		width: 1198px;
+		min-height: 63px;
 		display: flex;
 		justify-content: space-between;
 		position: relative;
@@ -508,6 +509,7 @@
 	.navigation__wrap {
 		padding: 6px 15px 5px 14px;
 		width: 100%;
+		min-height: 50px;
 	}
 	.catalog-button {
 		display: none;

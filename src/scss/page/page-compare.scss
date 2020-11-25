@@ -26,6 +26,18 @@
     &__row {
         display: flex;
         margin-top: 72px;
+        &-none {
+            justify-content: center;
+            &-text {
+                text-align: center;
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+                color: #202026;
+            }
+        }
         &-block {
             width: 245px;
             // margin-top: 72px;
@@ -85,7 +97,7 @@
             height: 365px;
             margin-left: 30px;
 
-            &-uno {
+            &:nth-child(2) {
                 margin-left: 70px;
             }
 
@@ -102,10 +114,13 @@
                 max-width: 151px;
                 max-height: 151px;
                 display: flex;
-                flex-direction: column;
                 align-items: center;
                 margin-left: 36px;
                 margin-right: 20px;
+                min-height: 151px;
+                min-width: 151px;
+                display: flex;
+                justify-content: center;
             }
 
             &-img {
@@ -123,6 +138,7 @@
                 overflow-x: hidden;
                 overflow-y: auto;
                 max-height: 72px;
+                min-height: 72px;
                 scrollbar-color: #f37a22 #e5e5ec;
                 scrollbar-width: thin;
                 
@@ -178,6 +194,18 @@
                 box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
                 &:first-child {
                     width: 285px;
+                }
+                & span {
+                    font-size: 0;
+                    & .icon16.color {
+                        width: 14px;
+                        min-width: 14px;
+                        height: 14px;
+                        min-height: 14px;
+                        margin-bottom: 0;
+                        margin-right: 12px;
+                        border-radius: unset;
+                    }
                 }
                 &-first {
                     font-weight: 600;  
@@ -309,7 +337,7 @@
                 margin-left: 0px;
                 margin-top: 16px;
     
-                &-uno {
+                &:nth-child(2) {
                     margin-left: 0px;
                     margin-top: 40px;
                 }

@@ -1,0 +1,134 @@
+{strip}
+
+{$wa->globals("hideSidebar", true)}
+{$wa->globals("isComparePage", true)}
+{$wa->globals("globalHeader", "[`Compare products`]")}
+
+<div class="page-compare" id="jsComparePage">
+    <div class="page-compare__wrap">
+
+        <ul class="breadcrumb">
+            <li class="breadcrumb__item">
+                <a href="index.html" class="breadcrumb__link">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link">Сравнить товары</a>
+            </li>
+        </ul>
+
+        <p class="page-compare__title">Сравнить товары</p>
+
+        <div class="page-compare__row">
+
+                <div class="page-compare__row-block">
+                    <div class="page-compare__row-block-list">
+                        <div class="page-compare__row-block-item">
+                            <input type="radio" class="new-checkbox" name="characteristics" id="id1" value="yes" checked>
+                            <label for="id1" class="new-label">Все характеристики</label>
+                        </div>
+                        <div class="page-compare__row-block-item">
+                            <input type="radio" class="new-checkbox" name="characteristics" id="id2" value="yes">
+                            <label for="id2" class="new-label">Различающиеся</label>
+                        </div>
+                    </div>
+                    <button class="page-compare__row-block-button js-reset-compare">Очистить список</button>
+                </div>
+
+                {foreach $products as $_product}
+                {$_available = $wa->shop->settings('ignore_stock_count') || $_product.count === null || $_product.count > 0}
+                <div class="page-compare__row-product" data-id="{$_product.id}" href="{$wa->getUrl('/frontend/product/', ['product_url' => $_product.url])}">
+                    <a class="page-compare__row-product-close svg-close js-remove-button" href="{$_product.delete_url}"></a>
+                    <div class="page-compare__row-product-for-img">
+                        {$wa->shop->productImgHtml($_product, '96x96', [
+                                                            'itemprop' => 'image',
+                                                            'default' => "`$wa_theme_url`img/svg/empty_photo.svg"
+                                                        ])}
+                        <!-- <img class="page-compare__row-product-img" src="img/car_holder.jpg" alt=""> -->
+                    </div>
+                    <p class="page-compare__row-product-text">{$_product.name}</p>
+                    {$_product_rate = round($_product.rating, 1)}
+                    <div class="main-container__item-for-rating">
+                    {for $_i = 0 to 4}
+                    {$_icon_class = "svg-star"}
+                    {if $_i < $_product_rate}
+                        {$_delta = $_product_rate - $_i}
+                        {if $_delta >= 1}
+                            {$_icon_class = "svg-star--active"}
+                        {elseif round($_delta) == 1}
+                            {$_icon_class = "svg-star--half"}
+                        {/if}
+                    {/if}
+                    <div class="main-container__item-for-rating-svg svg-star {$_icon_class}"></div>
+                    {/for}
+                    </div>
+                    <p class="page-compare__row-product-price">{shop_currency_html($_product.price, null, null, 0)} <span class="page-card__container-right-block-top-price--currency">₴</span></p>
+                    <input type="hidden" name="product_id" value="{$_product.id}">
+                </div>
+                {$_product_names[] = $_product.name}
+                {/foreach}
+
+        </div>
+
+        <div class="page-compare__row page-compare__row-2">
+
+                <div class="page-compare__row-block-2">
+                    <ul class="page-compare__row-block-2-list">
+                        <li class="page-compare__row-block-2-item">
+                            <ul class="page-compare__row-block-2-list-2">
+                                <li class="page-compare__row-block-2-item-2 page-compare__row-block-2-item-2-first">Характеристики</li>
+                                {if $products|@count >= 1}
+                                <li class="page-compare__row-block-2-item-2 page-compare__row-block-2-item-2-first">&nbsp;</li>
+                                {/if}
+                                {if $products|@count >= 2}
+                                <li class="page-compare__row-block-2-item-2 page-compare__row-block-2-item-2-first">&nbsp;</li>
+                                {/if}
+                                {if $products|@count >= 3}
+                                <li class="page-compare__row-block-2-item-2 page-compare__row-block-2-item-2-first">&nbsp;</li>
+                                {/if}
+                            </ul>
+
+                            
+                            
+                            <ul class="page-compare__row-block-2-list-2">
+                                <li class="page-compare__row-block-2-item-2">Тип устройства</li>
+                                {foreach $products as $_product}       
+                                    {if $_product.features}
+                                        {foreach $_product.features as $f_code => $f_value}
+                                            {if strpos($features[$f_code].name, "Модели") === false && strpos($features[$f_code].name, "Nokia") === false}
+                                                {if $features[$f_code].code == 'tip_ustroystva'}
+                                                    {if is_array($f_value)}
+                                <li class="page-compare__row-block-2-item-2"><p class="page-compare__row-block-2-item-2-name">{$_product.name}</p>{implode(', ', $f_value)}</li>
+                                                    {else}
+                                <li class="page-compare__row-block-2-item-2"><p class="page-compare__row-block-2-item-2-name">{$_product.name}</p>{$f_value}</li>
+                                                    {/if}
+                                                {/if}
+                                            {/if}
+                                        {/foreach}
+                                    {/if}
+                                {/foreach}
+                            </ul>
+
+
+                    </div>
+
+
+    </div>
+
+            <script>
+                ( function($, waTheme) {
+                    new waTheme.init.shop.ComparePage({
+                        $wrapper: $("#jsComparePage"),
+                        locales: {
+                            added: "[`Added`]",
+                            buy: "[`Buy`]"
+                        }
+                    });
+                })(jQuery, window.waTheme);
+            </script>
+        </div>
+</div>
+
+
+{wa_tpl_vars}
+
+{/strip}
