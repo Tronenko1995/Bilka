@@ -252,14 +252,51 @@ if ($('.jsPhone').length >= 1) {
   /* Валидация телефона */
   $(".jsPhone").inputmask({
     mask: "+380 (99) 999-99-99",
-  //   greedy: false,
     clearIncomplete: true,
     placeholder: "_",
-  //   rightAlign: false,
     showMaskOnHover: false,
     showMaskOnFocus: true,
   });
 }
+
+/* Валидация имени */
+$('.jsName').keyup(function() {
+	this.value = this.value.replace(/[^a-zA-Zа-яА-ЯёЁіІєЄїЇ\-\'\s]/g, "");
+});
+
+/* Валидация фамилии */
+$('.jsSurname').keyup(function() {
+	this.value = this.value.replace(/[^a-zA-Zа-яА-ЯёЁіІєЄїЇ\-\'\s]/g, "");
+});
+
+/* Валидация email */
+$('.jsMail').keyup(function() {
+	this.value = this.value.replace(/[^a-zA-Z@\.\-\d]/g, "");
+});
+
+/* Валидация Даты */
+if ($('.jsDate').length >= 1) {
+  /* Валидация телефона */
+  $(".jsDate").inputmask({
+    mask: "99/ 99/ 9999",
+    clearIncomplete: true,
+    placeholder: "ДД/ ММ/ ГГГГ",
+    showMaskOnHover: false,
+    showMaskOnFocus: true
+  });
+}
+
+/* Показать/скрыть пароль */
+$('.jsPasswordShow').on('click', function() {
+  $(this).siblings('.jsPassword').attr('type','text');
+  $(this).toggleClass('hide');
+  $(this).siblings('.jsPasswordHide').toggleClass('hide');
+});
+$('.jsPasswordHide').on('click', function() {
+  $(this).siblings('.jsPassword').attr('type','password');
+  $(this).toggleClass('hide');
+  $(this).siblings('.jsPasswordShow').toggleClass('hide');
+});
 
   //   $('.select').on('click',function () {
   //     if ($(this).hasClass('open')) {
@@ -375,6 +412,42 @@ $(document).on('click', function (e) {
             }
         }
     });
+});
+
+  /* Модалка вход */
+  $('.jsPrivateLogin').on('click', function (event) {
+    event.preventDefault();
+    $.magnificPopup.open({
+        items: {
+            src: '#privateLogin'
+        },
+        callbacks: {
+            open: function () {
+                if (document.body.clientWidth > 610) {
+                    $(this.container).find('.mfp-content').css({
+                        'width': '570px'
+                    });
+                } else {
+                    $(this.container).find('.mfp-content').css({
+                        'width': '345px'
+                    });
+                }
+                $(this.container).find('.mfp-close').addClass('new-close');
+            }
+        }
+    });
+});
+
+/* Модалка вход -> рега */
+$('.jsPrivateReg').on('click', function (event) {
+  event.preventDefault();
+  $('#privateLogin').addClass('reg');
+});
+
+/* Модалка рега -> вход */
+$('.jsPrivateLogin2').on('click', function (event) {
+  event.preventDefault();
+  $('#privateLogin').removeClass('reg');
 });
 
 /*отлов сабмита в формах*/

@@ -1,0 +1,85 @@
+{* custom placement code *}
+<div class="bz-settings-js-events">
+    <h5>JS(jQuery.event) события:</h5>
+    - <strong>"ok.bistrozakaz.order"</strong> - Вызывается после успешного заказа. Передаёт объект данныя из ответа сервера.<br>
+    - <strong>"signed.bistrozakaz.contract"</strong> - Вызывается после того, как, пользователь согласился <br>на обработку личных данных.<br>
+</div>
+Код для вывода кнопки, в любом месте карточки товара.<br>
+<p id="bistrozakaz-everywhere-code">
+    В редакторе дизайна - файл: <strong>product.cart.html</strong>
+    <span>{literal}{shopBistrozakazPlugin::button($product)}{/literal}</span>
+</p>
+
+<pre><p>{$bz_app_info|default:''}</p></pre>
+{* /custom placement code *}
+
+<a href="#" id="bz-show-editor">Редактировать CSS стили</a>
+<div id="bz-editor-wrap">
+    <div id="bz-editor">{$bz_button_css|escape:'html'|default:''}</div>
+    <p id="bz-css-2default-wrap"><a href="#" id="bz-css-2default">
+            <i class="icon16 rotate-right"></i> восстановить стили по умолчанию</a></p>
+</div>
+
+<style type="text/css" media="screen">
+    #bz-editor {
+        border: 1px solid #DDDDDD;
+        border-radius: 3px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+    }
+    #bz-editor-wrap {
+        position: relative;
+        min-width: 400px;
+        height: 740px;
+    }
+    #bz-show-editor {
+        display: inline-block;
+        margin-bottom: 15px;
+        font-size: 24px;
+        text-decoration: none;
+        border-bottom: 1px dashed #387cff;
+    }
+    #bistrozakaz-everywhere-code {
+        padding: 9px 5px;
+        margin-bottom: 5px;
+        background: rgb(250, 241, 63);
+        text-align: right;
+    }
+    #bistrozakaz-everywhere-code span {
+        display: inline-block;
+        font-weight: bold;
+        background: #a4e532;
+        padding: 3px 7px;
+        border-radius: 5px;
+    }
+    input[type=submit] {
+        float: right;
+        clear: both;
+    }
+    #bz-css-2default-wrap {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        bottom: -40px;
+        left: 10px;
+        font-size: 11px;
+    }
+    .bz-settings-js-events {
+        padding: .5em;
+        padding-bottom: 1em;
+    }
+</style>
+
+{* js *}
+<script type="text/javascript">
+    var bzsettingsVars = {
+        bzDataUrl: "{$bz_data_url}"
+    };
+</script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/bistrozakaz/js/bistrozakaz.settings.min.js"></script>
+{* /js *}

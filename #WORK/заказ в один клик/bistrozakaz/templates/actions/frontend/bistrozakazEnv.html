@@ -1,0 +1,15 @@
+{* csrf *}
+{$wa->csrf()}
+{* env vars *}
+<script type="text/javascript">
+    $.bistrozakaz = {
+        $wa_url: "{$wa_url}",
+        $wa_app_url: "{$wa_app_url}",
+        $wa_app_static_url: "{$bz_view_vars.wa_app_static_url}",
+        $wa_is_auth: "{$bz_view_vars.wa_is_auth}",
+        $mode: "{$bz_view_vars.mode|default:"phone"}",
+        success_text: "",
+        error_text: "",
+        fail_text: ""
+    };
+</script>

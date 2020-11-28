@@ -1,0 +1,88 @@
+/* Поле ввода телефона или email */
+#bistrozakaz-contact {
+    padding: 5px 5px 5px 35px;
+    display: inline-block;
+    border: 2px solid #f26d25;
+    border-radius: 0;
+    width: 100%;
+}
+/* Цвет индикатора посыла запроса. Т.к. индикатор это шрифт, достаточно указать цвет(color). */
+.bz-color {
+color: #f1433f;
+}
+/* Кнопка "Заказ в 1 клик" */
+button#bistrozakaz-button {
+font-family: "Verdana", serif;
+color: #353535;
+text-shadow: none;
+background-image: linear-gradient(to top, #eeebe5 0%, #faf7f0 100%);
+text-align: center;
+padding: 6px 20px;
+text-transform: uppercase;
+width: 41%;
+/* Цвет рамки кнопки. */
+border: 1px solid #f26d25;
+border-radius: 0;
+outline: none;
+cursor: pointer;
+}
+/* Цвет заднего фона кнопки, при наведении на неё курсором. */
+button#bistrozakaz-button:not([disabled="disabled"]):hover {
+box-shadow: none;
+background: #f1433f none;
+color: white;
+}
+/* Отключенная кнопка. */
+button#bistrozakaz-button[disabled="disabled"] {
+border: 1px solid darkgray;
+border-radius: 0;
+color: #818181;
+box-shadow: none;
+background: #F2F2F2 none;
+}
+/* Отключенное поле контакта. */
+#bistrozakaz-contact[disabled="disabled"] {
+color: darkgrey;
+
+}
+/* Контейнер */
+#bistrozakaz-wrap {
+    display: flex;
+padding: 5px 0;
+position: relative;
+width: 100%;
+min-width: 100%;
+height: 40px;
+}
+/* Иконки контакта email и телефон. */
+.bz-contact-phone, .bz-contact-mail {
+color: darkgrey;
+position: absolute;
+top: 30%;
+left: .7em;
+content: "\e607";
+}
+/* Текст сообщения. */
+#bistrozakaz-message p {
+margin: 0;
+padding: 0;
+}
+/* Сообщения контейнер. */
+#bistrozakaz-message {
+padding: 10px;
+border-radius: 0;
+color: white;
+background: white;
+}
+/* Успешный заказ - сообщение.*/
+.bistrozakaz-success {
+background: #7FC309 !important;
+}
+/* Сообщение об ошибке. */
+.bistrozakaz-error, .bistrozakaz-fail {
+background: #DA4606 !important;
+}
+/* Для ie. */
+#bistrozakaz-contact::-ms-clear {
+display: none;
+}

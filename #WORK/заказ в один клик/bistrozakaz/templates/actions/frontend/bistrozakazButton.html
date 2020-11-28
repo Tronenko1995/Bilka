@@ -1,0 +1,23 @@
+<div id="bistrozakaz-wrap"
+     data-contract-is-enabled="{if $wa->setting('contract_is_enabled', false, 'shop.bistrozakaz')}true{else}false{/if}"
+     data-contract-localstorage-key="{$wa->setting('contract_namespace', 'shop/bistrozakaz-contract', 'shop.bistrozakaz')}"
+     product_id="{$product.id}"
+     count="{if $product.sku_count > 1}{$product.skus[$product.sku_id].count}{else}{$product.count}{/if}">{assign var=bzMode value=$wa->setting('mode', 'phone', 'shop.bistrozakaz')}
+    {if $bzMode == 'phone'}<span class="bz-input-wrap bz-phone-listen2 bz-contact-phone bz-rotate-90">{else}<span class="bz-input-wrap bz-mail bz-contact-mail">{/if}<input id="bistrozakaz-contact" type="text" autocomplete="off" placeholder="" value="{if $wa->user()->isAuth() && $wa->user($bzMode, 'default') != ''}{$wa->user($bzMode, 'default')}{else}{if $bzMode == 'phone'}{$wa->setting('prefix_value', '7', 'shop.bistrozakaz')}{/if}{/if}"></span>
+    {if $wa->setting('quantity_value', false, 'shop.bistrozakaz')}<input id="bistrozakaz-quantity" type="text" value="1" placeholder="1" size="1">{/if}
+    <span id="bistrozakaz-coax"><span class="bz-ellipsis bz-color hvr-buzz">...</span></span>
+    <button class="modal__buy-one-click-body-button" id="bistrozakaz-button" disabled="disabled">Купить</button>
+</div>
+{if $wa->setting('contract_is_enabled', false, 'shop.bistrozakaz')}<div id="bistrozakaz-contract" style="display: none;">
+    <label for="bistrozakaz-contact-toggle">
+        <input type="checkbox" name="bistrozakaz-contract-toggle" id="bistrozakaz-contact-toggle">
+        <span>{$wa->setting('contract_text', 'Согласен с ', 'shop.bistrozakaz')}<a href="{$wa->setting('contract_link', '#contract-link', 'shop.bistrozakaz')}"{if $wa->setting('contract_link_is_blank', false, 'shop.bistrozakaz')} target="_blank"{/if}>{$wa->setting('contract_link_text', 'условиями', 'shop.bistrozakaz')}</a></span></label>
+</div>{/if}
+<div id="bistrozakaz-message" style="display: none;"></div>
+<script>
+    var bistrozakazFeatures = {
+    {if $product.sku_type}
+        features: {json_encode($sku_features_selectable)}
+    {/if}
+    };
+</script>

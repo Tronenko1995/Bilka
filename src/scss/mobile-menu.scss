@@ -187,6 +187,53 @@
 			left: 0;
 		}
 	}
+	&__private-office {
+		padding: 16px 0 16px 15px;
+		display: flex;
+		align-items: center;
+		position: relative;
+
+		&-for-svg {
+			display: flex;
+			padding: 14px 13px 13px 14px;
+			background: #FFFFFF;
+			border: 1px solid $color4;
+			border-radius: 4px;
+			position: relative;
+			margin-right: 22px;
+			cursor: default;
+			pointer-events: none;
+
+			&.active {
+				cursor: pointer;
+				pointer-events: auto;
+		
+				&:hover {
+					border: 1px solid $color3;
+				}
+			}
+		}
+		&-svg {
+			fill: $color2;
+		}
+		&-text {
+			font-family: Gilroy;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 16px;
+			color: $colorDark;
+		}
+		&:after {
+			content: '';
+			background: $color4;
+			height: 1px;
+			width: 100%;
+			position: absolute;
+			top: 100%;
+			left: 0;
+		}
+	}
 	&__phones {
 		display: flex;
 		align-items: flex-start;

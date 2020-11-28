@@ -1,0 +1,115 @@
+/* Поле ввода телефона или email */
+#bistrozakaz-contact {
+    padding: 5px 5px 5px 18px;
+    display: inline-block;
+    max-width: 220px;
+    width: auto;
+    /* Цвет рамки поля контакта. */
+    border: 3px solid #f1433f;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* Цвет индикатора посыла запроса. Т.к. индикатор это шрифт, достаточно указать цвет(color). */
+.bz-color {
+    color: #f1433f;
+}
+
+/* Кнопка "Заказ в 1 клик" */
+button#bistrozakaz-button {
+    font-family: "Verdana", serif;
+    color: #353535;
+    text-shadow: none;
+    box-shadow: 0 1px 2px rgba(4, 4, 4, .07);
+    background-image: linear-gradient(to top, #eeebe5 0%, #faf7f0 100%);
+    padding: 6px 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    /* Цвет рамки кнопки. */
+    border: 1px solid #f1433f;
+    border-radius: 3px;
+    outline: none;
+}
+
+/* Цвет фокуса на кнопке. */
+button#bistrozakaz-button:focus {
+    box-shadow: 0 0 1pt 1pt #f1433f;
+}
+
+/* Цвет заднего фона кнопки, при наведении на неё курсором. */
+button#bistrozakaz-button:not([disabled="disabled"]):hover {
+    box-shadow: none;
+    background: #f1433f none;
+    color: white;
+}
+
+/* Отключенная кнопка. */
+button#bistrozakaz-button[disabled="disabled"] {
+    border: 1px solid darkgray;
+    color: #818181;
+    box-shadow: none;
+    background: #F2F2F2 none;
+}
+
+/* Отключенное поле контакта. */
+#bistrozakaz-contact[disabled="disabled"] {
+    color: darkgrey;
+}
+
+/* Контейнер */
+#bistrozakaz-wrap {
+    padding: 5px 0;
+    position: relative;
+    width: 100%;
+    min-width: 100%;
+}
+
+/* Иконки контакта email и телефон. */
+.bz-contact-phone:before, .bz-contact-mail:before {
+    color: darkgrey;
+    position: absolute;
+    top: 21%;
+    left: .5em;
+}
+
+/* Текст сообщения. */
+#bistrozakaz-message p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Сообщения контейнер. */
+#bistrozakaz-message {
+    padding: 10px;
+    border-radius: 3px;
+    color: white;
+    background: white;
+}
+
+/* Успешный заказ - сообщение.*/
+.bistrozakaz-success {
+    background: #7FC309 !important;
+}
+
+/* Чекбокс - "Согласен с условиями на обработку данных"*/
+#bistrozakaz-contract > label[for="bistrozakaz-contact-toggle"] {
+    display: inline-block;
+    padding: .4em;
+}
+
+/* Чекбокс - "Согласен с условиями на обработку данных" выделенный */
+#bistrozakaz-contract.bistrozakaz-contract-on-fire {
+    background: rgb(255, 255, 153);
+    border: 1px solid #ffd884;
+    border-radius: 2px;
+}
+
+/* Сообщение об ошибке. */
+.bistrozakaz-error, .bistrozakaz-fail {
+    background: #DA4606 !important;
+}
+
+/* Для ie. */
+#bistrozakaz-contact::-ms-clear {
+    display: none;
+}
