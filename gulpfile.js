@@ -61,7 +61,8 @@ const cssFiles = [
   './src/scss/page/page-find.scss',
   './src/scss/page/articles-news.scss',
   './src/scss/page/one-step.scss',
-  './src/scss/page/page-compare.scss'
+  './src/scss/page/page-compare.scss',
+  './src/scss/page/private-office.scss'
 ]
 // //Порядок подключения js файлов
 // const jsFiles = [

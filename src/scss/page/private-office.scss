@@ -1,0 +1,171 @@
+@import '../colors';
+
+.private-office {
+    display: flex;
+    justify-content: center;
+    background: $mainBgColor;
+
+    &__wrap {
+        width: 1240px;
+        padding-top: 84px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 112px;
+    }
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        padding-bottom: 24px;
+        &::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 1px;
+            top: 100%;
+            left: 0;
+            background: $color4;
+        }
+        &-title {
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 43px;            
+            color: $colorDark;
+        }
+        &-right {
+            display: flex;
+            align-items: center;
+            &-tabs {
+                display: flex;
+            }
+            &-tab {
+                background: rgba(#C3C3CB, 0.2);
+                border: 1px solid rgba(#929299, 0.2);
+                border-radius: 4px 0 0 4px;
+                padding: 14px 24px;
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 19px;
+                color: $colorDark;
+                &--2 {
+                    border-radius: 0 4px 4px 0;
+                }
+                &.active {
+                    background: $color3;
+                    color: #fff;
+                }
+            }
+            &-exit {
+                margin-left: 24px;
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 19px;
+                color: $color3;
+                position: relative;
+                padding-bottom: 1px;
+                &::after {
+                    position: absolute;
+                    content: '';
+                    width: 100%;
+                    height: 1px;
+                    top: 100%;
+                    left: 0;
+                    background: $color3;
+                    opacity: 0.4;
+                }
+                &:hover {
+                    color: $hover2;
+                    &::after {
+                        background: $hover2;
+                    }
+                }
+            }
+        }
+    }
+    &__profile {
+
+        &-row {
+            display: flex;
+        }
+        &-block {
+            margin-top: 32px;
+            background: #FFFFFF;
+            box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+            border-radius: 4px;
+            padding: 40px 47px 49px 32px;
+            &--info {
+                margin-left: 30px;
+            }
+
+            &-title {
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 29px;
+                color: $colorDark;
+            }
+            &-row {
+                display: flex;
+                margin-top: 32px;
+                align-items: center;
+            }
+            &-avatar {
+                width: 169px;
+                height: 169px;
+                border-radius: 50%;
+                &-img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            &-buttons {
+                display: flex;
+                flex-direction: column;
+                margin-left: 31px;
+            }
+            &-button {
+                border: 1px solid $color3;
+                padding: 11px 52px 10px 52px;
+                background: $color3;
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 14px;
+                line-height: 17px;
+                text-align: center;
+                color: #FFFFFF;
+                margin-bottom: 12px;
+                border-radius: 4px;
+                cursor: pointer;
+                &:hover,
+                &:focus {
+                    outline: none;
+                    background: $hover2;
+                    border: 1px solid $hover2;
+                }
+                &--inversely {
+                    border: 1px solid $color3;
+                    background: #fff;
+                    color: $color3;
+                    &:hover,
+                    &:focus {
+                        outline: none;
+                        background: $color3;
+                        border: 1px solid $color3;
+                        color: #fff;
+                    }
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
