@@ -179,3 +179,18 @@
         margin-right: -20px;
     }
 }
+
+.svg-mark {
+    position: relative;
+    &::before {
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYuNjY2NSAxMC4xMTVMMTIuNzk0NSAzLjk4NjMzTDEzLjczNzggNC45Mjg5OUw2LjY2NjUgMTIuMDAwM0wyLjQyMzgzIDcuNzU3NjZMMy4zNjY1IDYuODE0OTlMNi42NjY1IDEwLjExNVoiIGZpbGw9IiMyMTk2NTMiLz4KPC9zdmc+Cg==');
+        background-repeat: no-repeat;
+        width: 16px;
+        min-width: 16px;
+        height: 16px;
+        min-height: 16px;
+        content: '';
+        // display: block;
+        margin-right: 8px;
+    }
+}

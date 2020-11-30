@@ -3,6 +3,8 @@ $(document).ready(function() {
   const screenWidth = document.body.clientWidth;
   const dark = $('.mobile-darkness');
 
+  /* Кнопка назад */
+  onclick="history.back();return false;
      
     /* Декстоп вызов меню-каталог */
     $('.jsCatalog').on('click', function(){
@@ -583,5 +585,17 @@ $('.jsDescriptionDown').on("click", function (e) {
   scrollToAnchor('blockDescription',2000);
   $('.jsCardTabs[s1="jsCardTabs2"]').click();
 });
+
+/* Private Office*/
+
+/* CardTabs */
+$('.jsPrivateTabs').on('click', function() {
+  const forTab = $(this).attr('s1');
+  $('.jsPrivateTabs').removeClass('active');
+  $(this).toggleClass('active');
+  $('.jsPrivateTabsItem').addClass('hide');
+  $(`#${forTab}`).removeClass('hide');
+});
+
 
 });
