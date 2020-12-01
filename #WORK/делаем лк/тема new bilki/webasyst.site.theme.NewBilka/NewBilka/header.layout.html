@@ -1,0 +1,826 @@
+{strip}
+
+{if $wa->shop}
+    {$_cart_url = $wa->getUrl('shop/frontend/cart')}
+    {if method_exists($wa->shop, 'checkout')}
+        {$_cart_url = $wa->shop->checkout()->cartUrl()}
+    {/if}
+{/if}
+
+{*$_is_personal_area = $wa->globals("isMyAccount")*}
+{$current_user_id = $wa->userId()}
+
+<header class="header">
+    <div class="menu">
+        <ul class="menu__nav">
+            <li class="menu__item">
+                <a class="menu__link" href="{$wa_url}">Главная</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="{$wa_url}about-shop/">О магазине</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="{$wa_url}contacts/">Контакты</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="{$wa_url}pay-and-delivery/">Оплата и доставка</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="{$wa_url}warranty/">Гарантия</a>
+            </li>
+            <li class="menu__item">
+                <a class="menu__link" href="{$wa_url}articles/">Новости</a>
+            </li>
+        </ul>
+        <div class="menu__adress">
+                <svg  class="menu__adress-svg" viewBox="0 0 12 15" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.2427 10.576L6 14.8187L1.75734 10.576C0.918228 9.73688 0.346791 8.66778 0.115286 7.5039C-0.11622 6.34002 0.00260456 5.13362 0.456732 4.03727C0.91086 2.94092 1.6799 2.00385 2.66659 1.34456C3.65328 0.685277 4.81332 0.333385 6 0.333385C7.18669 0.333385 8.34672 0.685277 9.33342 1.34456C10.3201 2.00385 11.0891 2.94092 11.5433 4.03727C11.9974 5.13362 12.1162 6.34002 11.8847 7.5039C11.6532 8.66778 11.0818 9.73688 10.2427 10.576ZM6 7.66667C6.35362 7.66667 6.69276 7.52619 6.94281 7.27614C7.19286 7.02609 7.33334 6.68696 7.33334 6.33333C7.33334 5.97971 7.19286 5.64057 6.94281 5.39052C6.69276 5.14048 6.35362 5 6 5C5.64638 5 5.30724 5.14048 5.05719 5.39052C4.80715 5.64057 4.66667 5.97971 4.66667 6.33333C4.66667 6.68696 4.80715 7.02609 5.05719 7.27614C5.30724 7.52619 5.64638 7.66667 6 7.66667Z"/>
+                </svg>
+                <div class="menu__adress-text">Киев, м. Шулявская, ул. Академика Янгеля 2</div>
+        </div>
+        <div class="menu__timetable">Пн-Пт: 10:00-19:00, Сб: 10:00 - 14:00, Вс - выходной</div>
+    </div>
+</header>
+
+<div class="description">
+    <div class="description__wrap">
+        <div class="description__left">
+            <a href="{$wa_url}">
+                <img class="description__left-img" width="300" height="73" src="{$wa_theme_url}img/logo-bilka_1.png" alt="logo">
+            </a>    
+            <div class="description__left-text">Аксессуары для мобильных телефонов и планшетов</div>
+        </div>
+
+        <div class="description__right">
+            <div class="description__mail">
+                <div class="description__mail-for-svg">
+                    <svg class="description__mail-svg" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.99992 2H13.9999C14.1767 2 14.3463 2.07024 14.4713 2.19526C14.5963 2.32029 14.6666 2.48986 14.6666 2.66667V13.3333C14.6666 13.5101 14.5963 13.6797 14.4713 13.8047C14.3463 13.9298 14.1767 14 13.9999 14H1.99992C1.82311 14 1.65354 13.9298 1.52851 13.8047C1.40349 13.6797 1.33325 13.5101 1.33325 13.3333V2.66667C1.33325 2.48986 1.40349 2.32029 1.52851 2.19526C1.65354 2.07024 1.82311 2 1.99992 2ZM8.03992 7.78867L3.76525 4.15867L2.90192 5.17467L8.04859 9.54467L13.1026 5.17133L12.2306 4.16267L8.04059 7.78867H8.03992Z"/>
+                    </svg>
+
+                </div>
+                <a href="mailto:info@bilka.com.ua" class="description__mail-text">info@bilka.com.ua</a>
+            </div>
+            <div class="description__phone">
+                <div class="description__phone-for-svg">
+                    <svg class="description__phone-svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.9991 11.9289V15.072C15.9992 15.297 15.914 15.5138 15.7605 15.6784C15.6071 15.843 15.397 15.9434 15.1725 15.9591C14.7841 15.9858 14.4668 16 14.2214 16C6.36676 16 0 9.63289 0 1.77778C0 1.53244 0.0133326 1.21511 0.0408866 0.826667C0.056639 0.602172 0.156952 0.39201 0.321585 0.238586C0.486218 0.0851616 0.702915 -0.000101718 0.927949 2.28071e-07H4.07089C4.18114 -0.000111408 4.28749 0.0407636 4.36929 0.114685C4.4511 0.188606 4.5025 0.290296 4.51353 0.4C4.53397 0.604445 4.55264 0.767111 4.57041 0.890667C4.74706 2.12349 5.10905 3.32252 5.64413 4.44711C5.72857 4.62489 5.67346 4.83733 5.51347 4.95111L3.59536 6.32178C4.76814 9.05462 6.94588 11.2325 9.67857 12.4053L11.0474 10.4907C11.1033 10.4124 11.185 10.3563 11.278 10.3321C11.3711 10.3079 11.4697 10.3172 11.5567 10.3582C12.6811 10.8923 13.8797 11.2534 15.1121 11.4293C15.2356 11.4471 15.3983 11.4667 15.6009 11.4862C15.7105 11.4975 15.8119 11.549 15.8857 11.6307C15.9594 11.7125 16.0001 11.8188 16 11.9289H15.9991Z"/>
+                    </svg>
+                </div>
+                <div class="description__phone-text phone-text">
+                    <div class="phone-text__col phone-text__col-1">
+                        <a href="tel:+380984742319" class="phone-text__col-number">(098) 474 23 19</a>
+                        <a href="tel:+380442278529" class="phone-text__col-number">(044) 227 85 29</a>
+                    </div>
+                    <div class="phone-text__col phone-text__col-2">
+                        <a href="tel:+380664500093" class="phone-text__col-number">(066) 450 00 93</a>
+                        <a href="tel:+380638062942" class="phone-text__col-number">(063) 806 29 42
+                        <svg class="phone-text__col-svg" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                            <path d="M8.40022 0H5.59986C2.89762 0 0.699234 2.19838 0.699234 4.90063V7.0009C0.699234 8.89804 1.79337 10.6197 3.49959 11.4295V13.7684C3.49959 13.9715 3.75364 14.0777 3.89796 13.9334L5.92985 11.9015H8.40019C11.1024 11.9015 13.3008 9.70315 13.3008 7.0009V4.90063C13.3008 2.19838 11.1024 0 8.40022 0Z" fill="#665CAC"/>
+                            <path d="M4.19967 11.4295C2.49345 10.6196 1.39932 8.89801 1.39932 7.00088V4.9006C1.39932 2.19838 3.59773 0 6.29994 0H5.59986C2.89762 0 0.699234 2.19838 0.699234 4.90063V7.0009C0.699234 8.89804 1.79337 10.6197 3.49959 11.4295V13.7684C3.49959 13.9715 3.75364 14.0777 3.89796 13.9334L4.19967 13.6317V11.4295Z" fill="#523494"/>
+                            <path d="M10.5232 8.69808L10.3134 7.5615C10.2961 7.46761 10.2233 7.39375 10.1297 7.37502L8.47959 7.04501C8.40295 7.02975 8.32398 7.05368 8.26877 7.10883L7.59838 7.77924C6.46887 7.27314 5.84199 6.64489 5.29041 5.46689L5.95863 4.79869C6.01379 4.74351 6.03774 4.66438 6.02245 4.58787L5.69244 2.93773C5.67371 2.84413 5.59986 2.77134 5.50596 2.75401L4.36939 2.54423C4.33827 2.53851 4.30622 2.53911 4.27533 2.54614C3.97523 2.61431 3.70141 2.76552 3.48345 2.98353C3.10605 3.36093 2.96181 3.91163 3.06638 4.57611C3.2419 5.6919 3.78855 7.2447 4.79713 8.25732L4.81091 8.27099C5.82274 9.27886 7.37556 9.82557 8.4914 10.0011C8.63198 10.0233 8.76736 10.0342 8.89718 10.0342C9.38103 10.0342 9.7864 9.88159 10.084 9.58401C10.302 9.36603 10.4533 9.09221 10.5214 8.79216C10.5283 8.76124 10.529 8.72925 10.5232 8.69808Z" fill="white"/>
+                            <path d="M5.73048 5.02685L5.95864 4.79867L5.95888 4.79842L5.73045 5.02683L5.73048 5.02685Z" fill="#E5E5E5"/>
+                            <path d="M8.26879 7.10858L8.0384 7.33897L8.03844 7.33901L8.26883 7.10862L8.26879 7.10858Z" fill="#E5E5E5"/>
+                            <path d="M9.33717 9.59413C9.20734 9.59413 9.07196 9.58317 8.93139 9.56102C7.81557 9.38547 6.26275 8.83876 5.25089 7.8309L5.23711 7.81722C4.22854 6.8046 3.68188 5.25181 3.50636 4.13602C3.4219 3.59918 3.49999 3.13666 3.73211 2.77974C3.64322 2.83905 3.55979 2.90708 3.48337 2.98351C3.10597 3.3609 2.96173 3.91161 3.06629 4.57609C3.24181 5.69188 3.78847 7.24467 4.79704 8.25729L4.81082 8.27097C5.82265 9.27883 7.37548 9.82554 8.49132 10.0011C8.63189 10.0232 8.76727 10.0342 8.8971 10.0342C9.38095 10.0342 9.78632 9.8816 10.084 9.58399C10.1604 9.50756 10.2284 9.42416 10.2877 9.33527C10.0242 9.50666 9.70317 9.59413 9.33717 9.59413Z" fill="#E5E5E5"/>
+                            <path d="M7.4667 3.96717C7.33783 3.96717 7.23335 4.07165 7.23335 4.20052C7.23335 4.32939 7.33783 4.43387 7.4667 4.43387C7.98142 4.43387 8.40016 4.85262 8.40016 5.36733C8.40016 5.49448 8.50637 5.60069 8.63352 5.60069C8.76066 5.60069 8.86687 5.49448 8.86687 5.36733C8.86689 4.59526 8.23878 3.96717 7.4667 3.96717Z" fill="white"/>
+                            <path d="M7.46671 3.03371C7.38039 3.03371 7.29327 3.03849 7.20774 3.04793C7.07963 3.06206 6.98724 3.17737 7.00137 3.3055C7.01551 3.43364 7.13107 3.52579 7.25895 3.51187C7.32753 3.50429 7.39742 3.50044 7.46671 3.50044C8.49612 3.50044 9.3336 4.33792 9.3336 5.36734C9.3336 5.43665 9.32975 5.50654 9.32217 5.57512C9.30823 5.70148 9.40212 5.81878 9.52853 5.8327C9.65492 5.84662 9.77214 5.75275 9.78611 5.62634C9.79555 5.54081 9.80033 5.45369 9.80033 5.36734C9.80033 4.08059 8.75348 3.03371 7.46671 3.03371Z" fill="white"/>
+                            <path d="M7.46714 2.10027C7.38374 2.10027 7.29928 2.10345 7.21615 2.10976C7.08764 2.1195 6.99133 2.23161 7.00107 2.36009C7.01077 2.48861 7.12327 2.58491 7.2514 2.57518C7.32285 2.56974 7.39545 2.567 7.46714 2.567C9.01127 2.567 10.2675 3.82323 10.2675 5.36736C10.2675 5.58584 10.2423 5.80333 10.1926 6.01376C10.1641 6.13435 10.2383 6.25969 10.3579 6.29245C10.4837 6.3269 10.6168 6.24802 10.6468 6.12112C10.7048 5.87554 10.7342 5.62196 10.7342 5.36736C10.7342 3.56587 9.26863 2.10027 7.46714 2.10027Z" fill="white"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0">
+                            <rect width="14" height="14" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+			<div class="vertiacal-line"></div>
+			<div class="description__private-office">
+				<div class="description__private-office-link">
+					<div class="description__private-office-for-svg">
+						<svg class="description__private-office-svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M2.66675 14.6665C2.66675 13.252 3.22865 11.8955 4.22885 10.8953C5.22904 9.89507 6.58559 9.33317 8.00008 9.33317C9.41457 9.33317 10.7711 9.89507 11.7713 10.8953C12.7715 11.8955 13.3334 13.252 13.3334 14.6665H2.66675ZM8.00008 8.6665C5.79008 8.6665 4.00008 6.8765 4.00008 4.6665C4.00008 2.4565 5.79008 0.666504 8.00008 0.666504C10.2101 0.666504 12.0001 2.4565 12.0001 4.6665C12.0001 6.8765 10.2101 8.6665 8.00008 8.6665Z" fill="#F37A22"/>
+						</svg>
+					</div>
+					<div class="description__private-office-for-text">
+                        {if !empty($current_user_id)}
+                        <p class="description__private-office-text active">Здравствуйте,<br><a class="description__private-office-text-link" href="/my/profile">{$wa->user('name')}</a></p>
+                        {else}
+                        <p class="jsPrivateLogin description__private-office-text">Войти/<br>Регистрация</p>
+                        {/if}
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="navigation">
+    <div class="navigation__wrap">
+        <button class="catalog-button jsCatalog">
+			<span  class="catalog-button__burger"></span>
+			<span class="catalog-button__text">Каталог</span>
+		</button>
+		
+        <div class="catalog-button__for-list hide">
+
+                {$_categories = $wa->shop->categories(0, null, true, true)}
+                
+                <ul class="catalog-button__list">
+
+                {foreach $_categories as $_category}
+            
+                
+                    <li class="catalog-button__item">
+                        <span class="catalog-button__link">
+                            <a class="catalog-button__link-text" rel="category" href="{$_category.url}">{$_category.name}</a>
+                            <svg class="catalog-button__svg" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.1719 12L8.22192 7.04999L9.63592 5.63599L15.9999 12L9.63592 18.364L8.22192 16.95L13.1719 12Z"/>
+                            </svg>
+                        </span>
+
+                        {if !empty($_category.childs)}
+
+                        <div class="catalog-button__item-child item-child hide">
+                            <div class="item-child-top">
+                                <img class="item-child-top__img" src="{$wa_theme_url}img/{$_category.params.imageSrc}" alt="{$_category.params.imageName}">
+                                <div class="item-child-top__text">{$_category.name}</div>
+                            </div>
+                            <div class="item-child-for-center">
+                                <ul class="item-child-center">
+
+                               {foreach $_category.childs as $_sub1_category}
+                               {if $_sub1_category@iteration > 18}{break}{/if}
+
+                                    <li class="item-child-center__item"><a href="{$_sub1_category.url}" rel="sub_category" class="item-child-center__link">{$_sub1_category.name}</a></li>
+
+                               {/foreach}
+                                </ul>
+                            <div class="item-child-center-for-discount">
+                                <a href="#" class="item-child-center-discount">
+                                    <span class="item-child-center-discount__top">
+                                        <img class="item-child-center-discount__top-img" src="{$wa_theme_url}img/samsung_img1.png" alt="">
+                                        <span class="item-child-center-discount__top-percent">-20%</span>
+                                    </span>
+                                    <span class="item-child-center-discount__text">Автодержатели для Samsung</span>
+                                </a>
+                                <a href="#" class="item-child-center-discount">
+                                    <span class="item-child-center-discount__top">
+                                        <img class="item-child-center-discount__top-img" src="{$wa_theme_url}img/samsung_img1.png" alt="">
+                                        <span class="item-child-center-discount__top-percent">-20%</span>
+                                    </span>
+                                    <span class="item-child-center-discount__text">Зарядки для Samsung</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item-child-bottom">
+                            <a href="{$_category.url}" class="item-child-bottom__link">
+                            <span class="item-child-bottom__text">Все категории</span>
+                            <svg class="item-child-bottom__svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.7814 7.33336L7.20541 3.75736L8.14808 2.8147L13.3334 8.00003L8.14808 13.1854L7.20541 12.2427L10.7814 8.6667H2.66675V7.33336H10.7814Z"/>
+                            </svg>
+                            </a>
+                        </div>
+                        </div>
+                {/if}
+            </li>
+                {/foreach}
+                </ul>
+        </div>
+		<div class="mobile">
+			<div class="mobile__button jsMobMenu">
+				<div class="mobile__button-item"></div>
+			</div>
+        </div>
+<style>
+.search {
+    display: flex !important;
+    align-items: center !important;
+    margin: 10px 0 !important;
+}
+.searchpro__field-container {
+    height: 43px !important;
+    border: none !important;
+}
+.searchpro__field-input {
+    width: 720px !important;/*259*/
+    background: #fff !important;
+    border-radius: 4px !important;
+    padding: 14px 0 13px 47px !important;
+    font-family: Gilroy !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+    color: #929299 !important;
+}
+.searchpro__field-button {
+    position: absolute !important;
+    left: 20px !important;
+    top: 50% !important;
+    -webkit-transform: translateY(-50%) !important;
+    transform: translateY(-50%) !important;
+    cursor: pointer !important;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgdHlwZT0ic3VibWl0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCgk8cGF0aCBkPSJNNy4zMzMyNSAxLjMzMzMzQzEwLjY0NTMgMS4zMzMzMyAxMy4zMzMzIDQuMDIxMzMgMTMuMzMzMyA3LjMzMzMzQzEzLjMzMzMgMTAuNjQ1MyAxMC42NDUzIDEzLjMzMzMgNy4zMzMyNSAxMy4zMzMzQzQuMDIxMjUgMTMuMzMzMyAxLjMzMzI1IDEwLjY0NTMgMS4zMzMyNSA3LjMzMzMzQzEuMzMzMjUgNC4wMjEzMyA0LjAyMTI1IDEuMzMzMzMgNy4zMzMyNSAxLjMzMzMzWk03LjMzMzI1IDEyQzkuOTExMjUgMTIgMTEuOTk5OSA5LjkxMTMzIDExLjk5OTkgNy4zMzMzM0MxMS45OTk5IDQuNzU0NjYgOS45MTEyNSAyLjY2NjY2IDcuMzMzMjUgMi42NjY2NkM0Ljc1NDU5IDIuNjY2NjYgMi42NjY1OSA0Ljc1NDY2IDIuNjY2NTkgNy4zMzMzM0MyLjY2NjU5IDkuOTExMzMgNC43NTQ1OSAxMiA3LjMzMzI1IDEyWk0xMi45ODk5IDEyLjA0NzNMMTQuODc1OSAxMy45MzI3TDEzLjkzMjYgMTQuODc2TDEyLjA0NzMgMTIuOTlMMTIuOTg5OSAxMi4wNDczWiIgZmlsbD0iIzkyOTI5OSI+DQoJPC9wYXRoPg0KPC9zdmc+) no-repeat !important;;
+    width: 16px !important;;
+    height: 16px !important;;
+    font-size: 0 !important;;
+}
+@media (max-width: 1200px) {
+    .searchpro__field-input {
+        width: 100% !important;
+        padding: 12px 0 11px 34px !important;
+    }
+    .searchpro__field-container {
+        height: 39px !important;
+    }
+    .js-searchpro__field-wrapper {
+        width: 100% !important;
+    }
+    .searchpro__field-button {
+        left: 12px !important;
+    }
+}
+
+</style>
+        <div class="search">
+            {shopSearchproPluginViewHelper::field()}
+        </div>
+        <!-- <form method="GET" action="/search/" class="search">
+            <input class="search__input" type="text" placeholder="Поиск по сайту" maxlength="100" name="query">
+            <input class="search__button" type="submit">
+        </form> -->
+        
+        
+
+        {$_is_active = $wa->globals("isComparePage")}
+
+        {$_compare_item_classes = []}
+        {if !empty($_is_active)}
+        {$_compare_item_classes[] = "is-active"}
+        {/if}
+     
+        <div class="vertiacal-line"></div>
+
+        <a class='comparison {$_compare_item_classes|join:" "} jsComparison' href='{$wa->getUrl("shop/frontend")}compare/' title="[`Compare`]">
+            <svg class="comparison__svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.7 8.03334L14 11.3333L10.7 14.6333L9.75733 13.6907L11.448 11.9993L2.66667 12V10.6667H11.448L9.75733 8.976L10.7 8.03334ZM5.3 1.36667L6.24267 2.30934L4.552 4H13.3333V5.33334H4.552L6.24267 7.024L5.3 7.96667L2 4.66667L5.3 1.36667Z"/>
+            </svg>
+            <span class="counter s-count js-count">0</span>
+                            
+        </a>
+        
+        <div class="vertiacal-line"></div>
+        
+        {$_cart_total = $wa->shop->cart->total()}
+        {$_cart_count = $wa->shop->cart->count()}
+        {$_price = "[`Empty`]"}
+        {if !empty($_cart_total)}
+            {$_price = wa_currency_html($_cart_total, $wa->shop->currency())}
+            {elseif !empty($_cart_count)}
+            {$_price = wa_currency_html(0, $wa->shop->currency())}
+        {/if}
+                        
+        <div id="js-cart-wrapper" class="for-basket">
+            <button class="basket {if !empty($_cart_count)}active{/if} jsCart" title="[`Cart`]" >
+                <svg class="basket__svg" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.00002 6.414L0.757019 3.172L2.17202 1.757L5.41402 5H20.656C20.8119 4.99999 20.9656 5.03642 21.1049 5.10637C21.2442 5.17632 21.3652 5.27787 21.4583 5.4029C21.5513 5.52793 21.6139 5.67299 21.6409 5.82649C21.668 5.97999 21.6588 6.13769 21.614 6.287L19.214 14.287C19.1523 14.4931 19.0257 14.6738 18.8531 14.8022C18.6806 14.9307 18.4712 15 18.256 15H6.00002V17H17V19H5.00002C4.7348 19 4.48045 18.8946 4.29291 18.7071C4.10538 18.5196 4.00002 18.2652 4.00002 18V6.414ZM5.50002 23C5.10219 23 4.72066 22.842 4.43936 22.5607C4.15805 22.2794 4.00002 21.8978 4.00002 21.5C4.00002 21.1022 4.15805 20.7206 4.43936 20.4393C4.72066 20.158 5.10219 20 5.50002 20C5.89784 20 6.27938 20.158 6.56068 20.4393C6.84198 20.7206 7.00002 21.1022 7.00002 21.5C7.00002 21.8978 6.84198 22.2794 6.56068 22.5607C6.27938 22.842 5.89784 23 5.50002 23ZM17.5 23C17.1022 23 16.7207 22.842 16.4394 22.5607C16.1581 22.2794 16 21.8978 16 21.5C16 21.1022 16.1581 20.7206 16.4394 20.4393C16.7207 20.158 17.1022 20 17.5 20C17.8978 20 18.2794 20.158 18.5607 20.4393C18.842 20.7206 19 21.1022 19 21.5C19 21.8978 18.842 22.2794 18.5607 22.5607C18.2794 22.842 17.8978 23 17.5 23Z"/>
+                </svg>
+                <span class="counter jsCartCount">{if !empty($_cart_count)}{$_cart_count}{else}0{/if}</span>
+            </button>
+            <div class="cost-info">
+                <div class="cost-info__value">Товаров (<span class="jsCartCount">{if !empty($_cart_count)}{$_cart_count}{else}0{/if}</span>):</div>
+                <div class="cost-info__price jsTotalPrice">{$_price}</div>
+            </div>
+
+            {$cart_total = $wa->shop->cart->total()}
+            {$cart_count = $wa->shop->cart->count()}
+
+            {$cart.items = $wa->shop->cart->items()}
+            {$_subtotal = 0}
+
+            <div class="cart">
+
+
+
+
+                <div class="cart__top">
+					<div class="cart__top-left">
+						<p class="cart__top-title">Корзина</p>
+						<p class="cart__top-text">Товаров: <span class="jsCartCount">{if !empty($_cart_count)}{$_cart_count}{else}0{/if}</span></p>
+					</div>
+					<svg class="mobile-menu__head-close jsCart cart__top-close" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 10.586L16.95 5.63599L18.364 7.04999L13.414 12L18.364 16.95L16.95 18.364L12 13.414L7.05 18.364L5.636 16.95L10.586 12L5.636 7.04999L7.05 5.63599L12 10.586Z" fill="#202026"></path>
+					</svg>
+                </div>
+				<div class="cart__center">
+					<div class="cart__center-items">
+
+                        {foreach $cart.items as $item}
+                        {*$price = shop_currency($item.price, $item.currency, null, false)* $item.quantity*}
+                        {$price = ($item.price * $item.quantity)}
+
+                        {foreach $item.services as $itemser}
+                        {$price = $price + $itemser.price*$itemser.quantity}
+                        {/foreach}
+
+						<div class="cart__center-item" data-id="{$item.id}" product-id="{$item.product.id}">
+							<div class="cart__center-item-left">
+                                {* IMAGE *}
+
+                                
+                                <a class="cart__center-item-left-img" href="{$wa->shop->productUrl($item.product)}" title="{$item.product.name|escape}">
+                                    {$wa->shop->productImgHtml($item.product, '96x96', ['default' => "`$wa_theme_url`img/svg/empty_photo.svg"])}
+                                </a>
+							</div>
+							<div class="cart__center-item-right">
+								<div class="cart__center-item-right-top">
+                                    {* NAME *}
+                                    <p class="cart__center-item-right-top-text">{$item.product.name|escape}</p>
+                                    <div rel="{$item.id}" class="cart__center-item-right-top-svg svg-close jsItemDelete" width="16" height="16"></div>
+								</div>
+                                <div class="cart__center-item-right-bottom">
+									<div class="cart__center-item-right-bottom-calculator">
+                                        <div class="jsMinus cart__center-item-right-bottom-calculator-button">-</div>
+                                        <input type="text" class="jsQuant cart__center-item-right-bottom-calculator-input" value="{$item.quantity}">
+										<p class="cart__center-item-right-bottom-calculator-text">шт.</p>
+                                        <div class="jsPlus cart__center-item-right-bottom-calculator-button">+</div>
+                                    </div>
+                                    <p class="jsItemPrice cart__center-item-right-bottom-price">{$price} грн.</p>
+								</div>
+							</div>
+                        </div>
+                        {/foreach}             
+
+					</div>
+				</div>
+				<div class="cart__bottom">
+					<div class="cart__bottom-for-text">
+						<p class="cart__bottom-for-text-left">Всего:</p>
+						<p class="cart__bottom-for-text-right jsTotalPrice">{$_price}</p>
+                    </div>
+
+					<div class="cart__bottom-for-text">
+						<p class="cart__bottom-for-text-left">Доставка:</p>
+						<p class="cart__bottom-for-text-right">Бесплатно</p>
+					</div>
+					<div class="cart__bottom-for-text hide">
+						<p class="cart__bottom-for-text-left">Промокод <span class="cart__bottom-for-text-left--promocode">-10%</span>:</p>
+						<p class="cart__bottom-for-text-right cart__bottom-for-text-right--promocode">-34.50 ₴</p>
+					</div>
+					<div class="cart__bottom-for-price">
+						<p class="cart__bottom-for-price-left">Итого:<span class="cart__bottom-for-price-left--price jsTotalPrice">{$_price}</span></p>
+						<a href="{$wa->getUrl('shop/frontend/cart')}" class="cart__bottom-for-price-button">Оформить заказ</a>
+					</div>
+					<div class="cart__bottom-promocode">
+						<a href="#" class="cart__bottom-promocode-link">Есть промокод на скидку?</a>
+					</div>
+				</div>
+			</div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="mobile-darkness"></div>
+<div class="mobile-menu">
+	<div class="mobile-menu__head">
+		<a class="mobile-menu__head-logo" href="index.html">
+			<img class="mobile-menu__head-logo-img" width="152" height="37" src="/img/logo-bilka_1.png" alt="logo">
+		</a>
+		<svg class="mobile-menu__head-close jsMobMenu" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M12 10.586L16.95 5.63599L18.364 7.04999L13.414 12L18.364 16.95L16.95 18.364L12 13.414L7.05 18.364L5.636 16.95L10.586 12L5.636 7.04999L7.05 5.63599L12 10.586Z" fill="#202026"/>
+		</svg>
+	</div>
+	<div class="mobile-menu__catalog">
+		<div class="mobile-menu__catalog-burger">
+			<div class="mobile-menu__catalog-button js-mobile-button-2">
+				<div class="mobile-menu__catalog-item"></div>
+			</div>
+		</div>
+		<div class="mobile-menu__catalog-text">Каталог</div>
+	</div>
+	<ul class="mobile-menu__nav">
+		<li class="mobile-menu__nav-item">
+			<a class="mobile-menu__nav-link" href="{$wa_url}">Главная</a>
+        </li>
+		<li class="mobile-menu__nav-item">
+			<a class="mobile-menu__nav-link" href="{$wa_url}about-shop/">О магазине</a>
+		</li>
+		<li class="mobile-menu__nav-item">
+			<a class="mobile-menu__nav-link" href="{$wa_url}contacts/">Контакты</a>
+		</li>
+		<li class="mobile-menu__nav-item">
+			<a class="mobile-menu__nav-link" href="{$wa_url}pay-and-delivery/">Оплата и доставка</a>
+		</li>
+		<li class="mobile-menu__nav-item">
+			<a class="mobile-menu__nav-link" href="{$wa_url}warranty/">Гарантия</a>
+		</li>
+		<li class="mobile-menu__nav-item">
+			<a class="mobile-menu__nav-link" href="{$wa_url}articles/">Новости</a>
+		</li>
+	</ul>
+	<div class="mobile-menu__comparison">
+		<a class='jsComparison mobile-menu__comparison-for-svg {$_compare_item_classes|join:" "}' href='{$wa->getUrl("shop/frontend")}compare/' title="[`Compare`]">
+			<svg class="mobile-menu__comparison-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+				<path d="M10.7 8.03337L14 11.3334L10.7 14.6334L9.75733 13.6907L11.448 11.9994L2.66667 12V10.6667H11.448L9.75733 8.97603L10.7 8.03337ZM5.3 1.3667L6.24267 2.30937L4.552 4.00003H13.3333V5.33337H4.552L6.24267 7.02403L5.3 7.9667L2 4.6667L5.3 1.3667Z"/>
+			</svg>
+			<div class="mobile-menu__comparison-counter">
+				<div class="mobile-menu__comparison-counter-text s-count js-count">0</div>
+			</div>
+		</a>
+		<p class="mobile-menu__comparison-text">Сравнение</p>
+	</div>
+	<div class="mobile-menu__phones">
+		<div class="mobile-menu__phones-for-svg">
+			<svg class="mobile-menu__phones-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+				<path d="M15.9991 11.9289V15.072C15.9992 15.297 15.914 15.5138 15.7605 15.6784C15.6071 15.843 15.397 15.9434 15.1725 15.9591C14.7841 15.9858 14.4668 16 14.2214 16C6.36676 16 0 9.63289 0 1.77778C0 1.53244 0.0133326 1.21511 0.0408866 0.826667C0.056639 0.602172 0.156952 0.39201 0.321585 0.238586C0.486218 0.0851616 0.702915 -0.000101718 0.927949 2.28071e-07H4.07089C4.18114 -0.000111408 4.28749 0.0407636 4.36929 0.114685C4.4511 0.188606 4.5025 0.290296 4.51353 0.4C4.53397 0.604445 4.55264 0.767111 4.57041 0.890667C4.74706 2.12349 5.10905 3.32252 5.64413 4.44711C5.72857 4.62489 5.67346 4.83733 5.51347 4.95111L3.59536 6.32178C4.76814 9.05462 6.94588 11.2325 9.67857 12.4053L11.0474 10.4907C11.1033 10.4124 11.185 10.3563 11.278 10.3321C11.3711 10.3079 11.4697 10.3172 11.5567 10.3582C12.6811 10.8923 13.8797 11.2534 15.1121 11.4293C15.2356 11.4471 15.3983 11.4667 15.6009 11.4862C15.7105 11.4975 15.8119 11.549 15.8857 11.6307C15.9594 11.7125 16.0001 11.8188 16 11.9289H15.9991Z"/>
+			</svg>
+		</div>
+		<div class="mobile-menu__phones-numbers">
+			<a href="tel:+380984742319" class="mobile-menu__phones-number">(098) 474 23 19</a>
+			<a href="tel:+380442278529" class="mobile-menu__phones-number">(044) 227 85 29</a>
+						<a href="tel:+380664500093" class="mobile-menu__phones-number">(066) 450 00 93</a>
+						<a href="tel:+380638062942" class="mobile-menu__phones-number">(063) 806 29 42
+						<svg class="phone-text__col-svg" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g clip-path="url(#clip0)">
+							<path d="M8.40022 0H5.59986C2.89762 0 0.699234 2.19838 0.699234 4.90063V7.0009C0.699234 8.89804 1.79337 10.6197 3.49959 11.4295V13.7684C3.49959 13.9715 3.75364 14.0777 3.89796 13.9334L5.92985 11.9015H8.40019C11.1024 11.9015 13.3008 9.70315 13.3008 7.0009V4.90063C13.3008 2.19838 11.1024 0 8.40022 0Z" fill="#665CAC"/>
+							<path d="M4.19967 11.4295C2.49345 10.6196 1.39932 8.89801 1.39932 7.00088V4.9006C1.39932 2.19838 3.59773 0 6.29994 0H5.59986C2.89762 0 0.699234 2.19838 0.699234 4.90063V7.0009C0.699234 8.89804 1.79337 10.6197 3.49959 11.4295V13.7684C3.49959 13.9715 3.75364 14.0777 3.89796 13.9334L4.19967 13.6317V11.4295Z" fill="#523494"/>
+							<path d="M10.5232 8.69808L10.3134 7.5615C10.2961 7.46761 10.2233 7.39375 10.1297 7.37502L8.47959 7.04501C8.40295 7.02975 8.32398 7.05368 8.26877 7.10883L7.59838 7.77924C6.46887 7.27314 5.84199 6.64489 5.29041 5.46689L5.95863 4.79869C6.01379 4.74351 6.03774 4.66438 6.02245 4.58787L5.69244 2.93773C5.67371 2.84413 5.59986 2.77134 5.50596 2.75401L4.36939 2.54423C4.33827 2.53851 4.30622 2.53911 4.27533 2.54614C3.97523 2.61431 3.70141 2.76552 3.48345 2.98353C3.10605 3.36093 2.96181 3.91163 3.06638 4.57611C3.2419 5.6919 3.78855 7.2447 4.79713 8.25732L4.81091 8.27099C5.82274 9.27886 7.37556 9.82557 8.4914 10.0011C8.63198 10.0233 8.76736 10.0342 8.89718 10.0342C9.38103 10.0342 9.7864 9.88159 10.084 9.58401C10.302 9.36603 10.4533 9.09221 10.5214 8.79216C10.5283 8.76124 10.529 8.72925 10.5232 8.69808Z" fill="white"/>
+							<path d="M5.73048 5.02685L5.95864 4.79867L5.95888 4.79842L5.73045 5.02683L5.73048 5.02685Z" fill="#E5E5E5"/>
+							<path d="M8.26879 7.10858L8.0384 7.33897L8.03844 7.33901L8.26883 7.10862L8.26879 7.10858Z" fill="#E5E5E5"/>
+							<path d="M9.33717 9.59413C9.20734 9.59413 9.07196 9.58317 8.93139 9.56102C7.81557 9.38547 6.26275 8.83876 5.25089 7.8309L5.23711 7.81722C4.22854 6.8046 3.68188 5.25181 3.50636 4.13602C3.4219 3.59918 3.49999 3.13666 3.73211 2.77974C3.64322 2.83905 3.55979 2.90708 3.48337 2.98351C3.10597 3.3609 2.96173 3.91161 3.06629 4.57609C3.24181 5.69188 3.78847 7.24467 4.79704 8.25729L4.81082 8.27097C5.82265 9.27883 7.37548 9.82554 8.49132 10.0011C8.63189 10.0232 8.76727 10.0342 8.8971 10.0342C9.38095 10.0342 9.78632 9.8816 10.084 9.58399C10.1604 9.50756 10.2284 9.42416 10.2877 9.33527C10.0242 9.50666 9.70317 9.59413 9.33717 9.59413Z" fill="#E5E5E5"/>
+							<path d="M7.4667 3.96717C7.33783 3.96717 7.23335 4.07165 7.23335 4.20052C7.23335 4.32939 7.33783 4.43387 7.4667 4.43387C7.98142 4.43387 8.40016 4.85262 8.40016 5.36733C8.40016 5.49448 8.50637 5.60069 8.63352 5.60069C8.76066 5.60069 8.86687 5.49448 8.86687 5.36733C8.86689 4.59526 8.23878 3.96717 7.4667 3.96717Z" fill="white"/>
+							<path d="M7.46671 3.03371C7.38039 3.03371 7.29327 3.03849 7.20774 3.04793C7.07963 3.06206 6.98724 3.17737 7.00137 3.3055C7.01551 3.43364 7.13107 3.52579 7.25895 3.51187C7.32753 3.50429 7.39742 3.50044 7.46671 3.50044C8.49612 3.50044 9.3336 4.33792 9.3336 5.36734C9.3336 5.43665 9.32975 5.50654 9.32217 5.57512C9.30823 5.70148 9.40212 5.81878 9.52853 5.8327C9.65492 5.84662 9.77214 5.75275 9.78611 5.62634C9.79555 5.54081 9.80033 5.45369 9.80033 5.36734C9.80033 4.08059 8.75348 3.03371 7.46671 3.03371Z" fill="white"/>
+							<path d="M7.46714 2.10027C7.38374 2.10027 7.29928 2.10345 7.21615 2.10976C7.08764 2.1195 6.99133 2.23161 7.00107 2.36009C7.01077 2.48861 7.12327 2.58491 7.2514 2.57518C7.32285 2.56974 7.39545 2.567 7.46714 2.567C9.01127 2.567 10.2675 3.82323 10.2675 5.36736C10.2675 5.58584 10.2423 5.80333 10.1926 6.01376C10.1641 6.13435 10.2383 6.25969 10.3579 6.29245C10.4837 6.3269 10.6168 6.24802 10.6468 6.12112C10.7048 5.87554 10.7342 5.62196 10.7342 5.36736C10.7342 3.56587 9.26863 2.10027 7.46714 2.10027Z" fill="white"/>
+							</g>
+							<defs>
+							<clipPath id="clip0">
+							<rect width="14" height="14" fill="white"/>
+							</clipPath>
+							</defs>
+						</svg>
+						</a>
+		</div>	
+	</div>
+	<div class="mobile-menu__mail">
+		<div class="mobile-menu__mail-for-svg">
+			<svg class="mobile-menu__mail-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+				<path d="M2 2H14C14.1768 2 14.3464 2.07024 14.4714 2.19526C14.5964 2.32029 14.6667 2.48986 14.6667 2.66667V13.3333C14.6667 13.5101 14.5964 13.6797 14.4714 13.8047C14.3464 13.9298 14.1768 14 14 14H2C1.82319 14 1.65362 13.9298 1.5286 13.8047C1.40357 13.6797 1.33334 13.5101 1.33334 13.3333V2.66667C1.33334 2.48986 1.40357 2.32029 1.5286 2.19526C1.65362 2.07024 1.82319 2 2 2ZM8.04 7.78867L3.76534 4.15867L2.902 5.17467L8.04867 9.54467L13.1027 5.17133L12.2307 4.16267L8.04067 7.78867H8.04Z"/>
+			</svg>
+		</div>
+		<a href="mailto:info@bilka.com.ua" class="mobile-menu__mail-text">info@bilka.com.ua</a>
+	</div>
+	<div class="mobile-menu__adress">
+		<svg class="mobile-menu__adress-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+			<path d="M12.2427 11.5761L8 15.8188L3.75734 11.5761C2.91823 10.737 2.34679 9.66789 2.11529 8.50401C1.88378 7.34013 2.0026 6.13373 2.45673 5.03738C2.91086 3.94103 3.6799 3.00396 4.66659 2.34467C5.65328 1.68539 6.81332 1.3335 8 1.3335C9.18669 1.3335 10.3467 1.68539 11.3334 2.34467C12.3201 3.00396 13.0891 3.94103 13.5433 5.03738C13.9974 6.13373 14.1162 7.34013 13.8847 8.50401C13.6532 9.66789 13.0818 10.737 12.2427 11.5761ZM8 8.66678C8.35362 8.66678 8.69276 8.5263 8.94281 8.27625C9.19286 8.0262 9.33334 7.68707 9.33334 7.33344C9.33334 6.97982 9.19286 6.64068 8.94281 6.39064C8.69276 6.14059 8.35362 6.00011 8 6.00011C7.64638 6.00011 7.30724 6.14059 7.05719 6.39064C6.80715 6.64068 6.66667 6.97982 6.66667 7.33344C6.66667 7.68707 6.80715 8.0262 7.05719 8.27625C7.30724 8.5263 7.64638 8.66678 8 8.66678Z"/>
+		</svg>
+		<div class="mobile-menu__adress-for-text">
+			<p class="mobile-menu__adress-text">Киев, м. Шулявская, ул. Академика Янгеля 2</p>
+			<p class="mobile-menu__adress-text">Пн-Пт: 10:00-19:00, Сб: 10:00 - 14:00, Вс - выходной</p>
+		</div>
+	</div>
+</div>
+<div class="mobile-catalog">
+	<div class="mobile-catalog__head">
+		<div class="mobile-catalog__head-left">
+			<svg class="mobile-catalog__head-svg-1 js-mobile-button-2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+				<path d="M10.828 12L15.778 16.95L14.364 18.364L8 12L14.364 5.63599L15.778 7.04999L10.828 12Z"/>
+			</svg>
+			<p class="mobile-catalog__head-text">Каталог</p>
+		</div>
+		<svg class="mobile-catalog__head-svg-2 jsMobMenu" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path d="M12 10.586L16.95 5.63599L18.364 7.04999L13.414 12L18.364 16.95L16.95 18.364L12 13.414L7.04999 18.364L5.63599 16.95L10.586 12L5.63599 7.04999L7.04999 5.63599L12 10.586Z"/>
+		</svg>
+	</div>
+	<ul class="mobile-catalog__items">
+
+        {foreach $_categories as $_category}
+
+		<li class="mobile-catalog__item">
+			<span class="mobile-catalog__item-top">
+				<a href="{$_category.url}" class="mobile-catalog__link">{$_category.name}</a>
+				<svg class="mobile-catalog__svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+					<path d="M8.00001 8.78145L11.3 5.48145L12.2427 6.42411L8.00001 10.6668L3.75734 6.42411L4.70001 5.48144L8.00001 8.78145Z"/>
+				</svg>
+            </span>
+            {if !empty($_category.childs)}
+			<span class="mobile-catalog__child">
+				<ul class="mobile-catalog__child-items">
+                    {foreach $_category.childs as $_sub1_category}
+					<li class="mobile-catalog__child-item">
+						<a href="{$_sub1_category.url}" class="mobile-catalog__child-link">{$_sub1_category.name}</a>
+                    </li>
+                    {/foreach}
+				</ul>
+				<a href="{$_category.url}" class="mobile-catalog__child-center">
+					<span class="mobile-catalog__child-center-text">Все категории</span>
+					<svg class="mobile-catalog__child-center-svg" width="12" height="12" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg">
+						<path d="M8.08597 5.50008L5.40397 2.81808L6.11097 2.11108L9.99997 6.00008L6.11097 9.88908L5.40397 9.18209L8.08597 6.50008H1.99997V5.50008H8.08597Z"/>
+					</svg>
+				</a>
+            </span>
+            {/if}
+        </li>
+        {/foreach}
+	</ul>
+</div>
+
+<!-- скрипт работы сравнения -->
+<script>
+    ( function($, waTheme) {
+        var $compare = $(".jsComparison");
+    
+        waTheme.apps["shop"].compare = new window.waTheme.init.shop.Compare({
+            $wrapper: $compare,
+            onChange: function(compare) {
+                if (compare.count > 0) {
+                    $compare.addClass('active');
+                } else {
+                    $compare.removeClass('active');
+                }
+            }
+        });
+    
+    })(jQuery, window.waTheme);
+</script>
+
+<!-- скрипт работы корзины -->
+<script>
+    ( function($, waTheme) {
+        /* Выборка */
+        var $cart = $("#js-cart-wrapper"),
+            $item = $cart.find(".basket");
+
+        
+        var is_loading = false;
+        $cart.find(".basket").on("click", function() {
+            if (!is_loading) {
+                is_loading = true;
+                $("body").append({$_loading_template|json_encode});
+            }
+        });
+
+        waTheme.apps["shop"].cart = new window.waTheme.init.shop.Cart({
+            $wrapper: $cart,
+            count: {if !empty($_cart_count)}{$_cart_count|intval}{else}0{/if}
+        });
+
+        /* Активируем корзину */
+        waTheme.apps["shop"].cart.onChange( function(cart) {
+            if (cart.count > 0) {
+                $item.addClass('active');
+            } else {
+                $item.removeClass('active');
+            }
+        });
+    })(jQuery, window.waTheme);
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        var updateFlyCart = function(data) {
+            $(".jsTotalPrice").html(data.total);
+            /**$("#cart .cart-total .value").html(data.total);*/
+            /*$(".cart .cart-total").html(data.total);*/
+            /*if (data.discount_numeric > 0) {
+                $(".cart-block-discount").show().find("span").html(data.discount);
+            } else {
+                $(".cart-block-discount").hide();
+            }
+            $(".cart .cart-discount").html("&minus" + data.discount);*/
+        };
+        /* Удаление товаров из летающей корзины */
+        $(document).on("click", ".jsItemDelete", function() {
+            var btn = $(this);
+            var id = btn.attr('rel');
+            var cartBlock = $(".cart");
+            /*var calculateBlockHeight = function(cartBlock) {
+                var height = cartBlock.outerHeight();
+                cartBlock.stop().animate({
+                    bottom: "-" + height + "px"
+                }, 500, function() {
+                    $("#cart").addClass("open");
+                    cartBlock.addClass("open");
+                });
+            };*/
+            if (!confirm("[`Do you really want to delete product from cart?`]")) {
+                /*calculateBlockHeight(cartBlock);*/
+                return false;
+            }
+            /*calculateBlockHeight(cartBlock);*/
+            btn.removeClass("svg-close").addClass("gif-loading");
+            $.post('{$wa->getUrl("shop/frontend/cart")}delete/', { id: id }, function(response) {
+                btn.addClass("svgClose").removeClass("gif-loading");
+                btn.closest(".cart__center-item").remove();
+                /*$(".count-block .count").text(response.data.count);*/
+                $(".for-basket .jsCartCount").text(response.data.count);
+                if (response.data.count > 0) {
+                    /*calculateBlockHeight($(".cart"));*/
+                    updateFlyCart(response.data);
+                    /*var hiddenRow = $(".cart__center-item:hidden");
+                    var hiddenRowCount = hiddenRow.length;*/
+                    /* if ($(".cart__center-item:visible").length < $.multishop.productsPerFly && hiddenRowCount) {
+                        hiddenRow.first().show();
+                        if (hiddenRowCount - 1 == 0) {
+                            $(".cart-block .show-all").hide();
+                        }
+                     }*/
+                    /*$(".cart tr[data-id='" + id + "']").remove();*/
+                } else {
+                    /* Если корзина опустела*/
+                    /*$("#cart .cart-total span").html("[`Cart is empty`]");
+                    $(".cart-block-content").prepend("<p class='empty'>[`Cart is empty`]</p>").hide().next().hide();
+                    $(".cart-block").css('bottom', '0');
+                    var cartForm = $(".cart").parents("form");
+                    if (cartForm.length) {
+                        cartForm.before("<p>[`Your cart is empty`].</p>");
+                        cartForm.remove();
+                    }*/
+                    updateFlyCart(response.data);
+                    $('.cost-info .jsTotalPrice').html('[`Empty`]');
+                    $('.cart').removeClass('active');
+                    $('.jsCart').removeClass('active open');
+
+                }
+            }, "json");
+            return false;
+        });
+
+        /*Изменение количества товаров*/
+        var changeQuantity = function(that, callback) {
+            var cartItemRow = that.closest(".cart__center-item");
+            var id = cartItemRow.data("id");
+            /*var tr = $(".cart tr[data-id='" + id + "']");*/
+            /*var cartQty = tr.find(".qty");*/
+            var cartQty = cartItemRow.find(".jsQuant");
+            if (that.val() > 0) {
+                if (that.val()) {
+                    that.prop("disabled", true);
+                    $.post('{$wa->getUrl("shop/frontend/cart")}save/', { id: cartItemRow.data('id'), quantity: that.val() }, function(response) {
+                        that.prop("disabled", false);
+                        cartItemRow.find('.jsItemPrice').html(response.data.item_total);
+                        /*tr.find(".item-total").html(response.data.item_total);*/
+                        $(".for-basket .jsCartCount").text(response.data.count);
+                        if (response.data.q) {
+                            that.val(response.data.q);
+                        }
+                        cartQty.val(that.val());
+                        if (response.data.error) {
+                            alert(response.data.error);
+                        }
+                        if (callback) {
+                            callback.call();
+                        }
+                        updateFlyCart(response.data);
+                    }, "json");
+                }
+            } else {
+                that.val(1);
+                cartQty.val(1);
+                cartQty.change();
+            }
+        };
+        $(document).on("change", ".jsQuant", function() {
+            changeQuantity($(this));
+        });
+    $(document).on("click", ".jsMinus", function() {
+            var btn = $(this);
+            var qty = $(btn).siblings('.jsQuant');
+            if (!btn.hasClass("gif-loading")) {
+                btn.removeClass("minus").addClass("gif-loading");
+                qty.val(function(i, oldval) {
+                    if (parseInt(oldval, 10) > 1) {
+                        return --oldval;
+                    } else {
+                        return 1;
+                    }
+                });
+                changeQuantity(qty, function() {
+                    btn.removeClass("gif-loading");
+                });
+            }
+        });
+        $(document).on("click", ".jsPlus", function() {
+            var btn = $(this);
+            var qty = $(btn).siblings('.jsQuant');
+            if (!btn.hasClass("gif-loading")) {
+                btn.addClass("gif-loading");
+                qty.val(function(i, oldval) {
+                    if (parseInt(oldval, 10) < 1) {
+                        return 1;
+                    } else {
+                        return ++oldval;
+                    }
+                });
+                changeQuantity(qty, function() {
+                    btn.removeClass("gif-loading");
+                });
+            }
+        });
+    });
+</script>
+
+
+<div id="page" role="main" class="wa-signup-form">
+{*
+    {if !empty($confirmed_email)}
+    
+        <h1>[s`Thank you!`]</h1>
+        <p>[s`You have successfully confirmed your email.`]</p>
+        
+    {else if !empty($contact)}
+    
+        <h1>[s`Thank you!`]</h1>
+        <p>[s`You have successfully signed up.`]</p>
+
+        {if !empty($email_confirmation_hash)}
+            <p><em>[s`A confirmation link has been sent to you by email. Please click this link to confirm your signup and to sign in.`]</em></p>
+        {/if}
+        
+    {else}
+    
+        <h1>[s`Sign up`]</h1>
+        {$wa->authAdapters()}
+        {$wa->signupForm($errors)}
+        
+    {/if}
+    
+*}
+</div>
+
+<div id="privateLogin" class="modal__login mfp-hide">
+    <div class="modal__login-head">
+        <p class="modal__login-head-title">Вход</p>
+        <p class=" modal__login-head-title modal__login-head-title--reg">Регистрация</p>
+    </div>
+    <div class="modal__login-body">
+        {$wa->authAdapters()}
+        {$wa->loginForm($error, empty($without_form))}
+        <form action="" class="modal__login-form" style="display: flex; flex-direction: column; align-items: flex-start;">
+            <p class="modal__login-body-text">E-mail</p>
+			<input class="modal__login-body-input jsMail" type="text" required>
+            <p class="modal__login-body-text">Пароль</p>
+            <input class="modal__login-body-input" type="password" required>
+            <div class="modal__login-body-checkbox">
+                <input type="checkbox" class="new-checkbox" name="name" id="loginRemember" value="yes" required>
+				<label for="loginRemember" class="new-label">Запомнить меня</label>
+				<a class="modal__login-body-checkbox-link" href="/forgotpassword/">Забыли пароль?</a>
+            </div>
+			<button class="modal__login-body-button" type="submit">Войти</button>
+			<p class="modal__login-body-inner">Впервые у нас? <span class="modal__login-body-inner-link jsPrivateReg">Зарегистрироваться</span></p>
+			<p class="modal__login-body-social">Или войдите с помощью соц. сетей</p>
+			<div class="modal__login-body-social-for-button">
+				<button class="modal__login-body-social-button svg-google">Войти с помощью Google</button>
+				<button class="modal__login-body-social-button svg-facebook">Войти с помощью Facebook</button>
+			</div>
+        </form>
+        <form action="" class="modal__login-form--reg">
+            <p class="modal__login-body-text">Имя, Фамилия</p>
+			<input class="modal__login-body-input jsName" type="text">
+            <!-- <p class="modal__login-body-text">Фамилия</p>
+			<input class="modal__login-body-input jsSurname" type="text"> -->
+            <p class="modal__login-body-text">E-mail <sup class="required">*</sup></p>
+			<input class="modal__login-body-input jsMail" type="text" required>
+			<p class="modal__login-body-text">Пароль <sup class="required">*</sup></p>
+			<div class="modal__login-body-for-input">
+				<input class="modal__login-body-input jsPassword" type="password" required>
+				<svg id="plugSvgEyeOpen" class="modal__login-body-svg jsPasswordShow" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M8.00002 2C11.5947 2 14.5854 4.58667 15.2127 8C14.586 11.4133 11.5947 14 8.00002 14C4.40535 14 1.41469 11.4133 0.787354 8C1.41402 4.58667 4.40535 2 8.00002 2ZM8.00002 12.6667C9.35967 12.6664 10.6789 12.2045 11.7419 11.3568C12.8049 10.509 13.5486 9.32552 13.8514 8C13.5475 6.67554 12.8033 5.49334 11.7404 4.64668C10.6776 3.80003 9.35889 3.33902 8.00002 3.33902C6.64115 3.33902 5.32248 3.80003 4.2596 4.64668C3.19673 5.49334 2.45253 6.67554 2.14869 8C2.45142 9.32552 3.19514 10.509 4.25812 11.3568C5.3211 12.2045 6.64037 12.6664 8.00002 12.6667ZM8.00002 11C7.20437 11 6.44131 10.6839 5.8787 10.1213C5.31609 9.55871 5.00002 8.79565 5.00002 8C5.00002 7.20435 5.31609 6.44129 5.8787 5.87868C6.44131 5.31607 7.20437 5 8.00002 5C8.79567 5 9.55873 5.31607 10.1213 5.87868C10.6839 6.44129 11 7.20435 11 8C11 8.79565 10.6839 9.55871 10.1213 10.1213C9.55873 10.6839 8.79567 11 8.00002 11ZM8.00002 9.66667C8.44205 9.66667 8.86597 9.49107 9.17853 9.17851C9.49109 8.86595 9.66669 8.44203 9.66669 8C9.66669 7.55797 9.49109 7.13405 9.17853 6.82149C8.86597 6.50893 8.44205 6.33333 8.00002 6.33333C7.55799 6.33333 7.13407 6.50893 6.82151 6.82149C6.50895 7.13405 6.33335 7.55797 6.33335 8C6.33335 8.44203 6.50895 8.86595 6.82151 9.17851C7.13407 9.49107 7.55799 9.66667 8.00002 9.66667Z"></path>
+				</svg>
+				<svg id="plugSvgEyeClose" class="modal__login-body-svg jsPasswordHide hide" width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M6.22794 12.5213L4.9406 12.1759L5.46527 10.2166C4.67991 9.92697 3.95001 9.50486 3.30727 8.96862L1.87194 10.4046L0.928602 9.46128L2.3646 8.02595C1.55399 7.05512 1.00933 5.89046 0.783936 4.64595L2.09594 4.40662C2.60194 7.20795 5.0526 9.33328 7.99994 9.33328C10.9466 9.33328 13.3979 7.20795 13.9039 4.40662L15.2159 4.64528C14.9908 5.88996 14.4464 7.05486 13.6359 8.02595L15.0713 9.46128L14.1279 10.4046L12.6926 8.96862C12.0499 9.50486 11.32 9.92697 10.5346 10.2166L11.0593 12.1766L9.77194 12.5213L9.2466 10.5613C8.4215 10.7027 7.57837 10.7027 6.75327 10.5613L6.22794 12.5213Z"></path>
+				</svg>                        
+			</div>
+			<div class="modal__login-body-row">
+				<div class="modal__login-body-block">
+					<p class="modal__login-body-text">Телефон</p>
+					<input class="modal__login-body-input jsPhone modal__login-body-input--min" type="text" placeholder="+380 (__) ___-__-__">
+				</div>
+				<div class="modal__login-body-block modal__login-body-block--date">
+					<p class="modal__login-body-text">Дата рождения</p>
+					<input class="modal__login-body-input modal__login-body-input--date jsDate" type="text" placeholder="__/__/____">
+				</div>
+			</div>
+            <div class="modal__login-body-checkbox">
+                <input type="checkbox" class="new-checkbox" name="name" id="regAgree" value="yes" required>
+				<label for="regAgree" class="new-label new-label-2">Я соглашаюсь с&nbsp;<a class="modal__login-body-checkbox-link modal__login-body-checkbox-link-2" href="#">Политикой конфиденциальноси</a></label>
+            </div>
+			<button class="modal__login-body-button" type="submit">Регистрация</button>
+			<p class="modal__login-body-inner">Уже есть аккаунт? <span class="modal__login-body-inner-link jsPrivateLogin2">Войдите</span></p>
+			<p class="modal__login-body-social modal__login-body-social-2">Или зарегистрируйтесь с помощью соц. сетей</p>
+			<div class="modal__login-body-social-for-button">
+				<button class="modal__login-body-social-button svg-google">Войти с помощью Google</button>
+				<button class="modal__login-body-social-button svg-facebook">Войти с помощью Facebook</button>
+			</div>
+        </form>
+    </div>
+</div>
+<!-- {wa_tpl_vars}  -->
+{/strip}

@@ -1,0 +1,329 @@
+<link href="/wa-data/public/shop/themes/default/custom_css/style.css" rel="stylesheet" type="text/css"/>
+<style>
+#wa-my-info-wrapper .wa-field {
+padding: 10px;
+margin: 5px;
+background-color: rgb(255, 240, 178);
+}
+
+#wa-my-info-wrapper .wa-field .wa-name {
+    max-width: 120px;
+    width: 100%;
+}
+#wa-my-info-wrapper .wa-field img {
+    border-radius: 50%;
+    border: 2px solid;
+    color: #f6921e; 
+}
+   
+.wa-field.wa-field-photo .wa-value {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+#wa-my-info-wrapper .wa-value input:not([type="button"]):not([type="submit"]) {
+    max-width: 100%;
+    width: 100%;
+    outline: none;
+    border: 2px solid #f6921e;
+    padding: 5px 10px;
+    outline: none;
+}
+.wa-form .wa-field .wa-value p span select, #wa-my-info-wrapper .wa-field select {
+    border: 2px solid #f6921e;
+    padding: 5px 10px;
+    margin-right: 2px;
+    outline: none;
+}
+.wa-auth-adapters.wa-connect {
+    width: 100%;
+    padding: 0 10px 10px;
+    margin: 0 5px 5px;
+}
+.wa-auth-adapters ul li a, .wa-auth-adapters ul li span {
+    display: block;
+    padding: 0px 5px;
+    width: 130px;
+    height: 30px;
+    line-height: 25px;
+    text-align: center;
+    border: 2px solid #F05C28;
+    background: none;
+    color: #F05C28;
+}
+.wa-auth-adapters ul li a:hover, .wa-auth-adapters ul li span:hover {
+    background: #F05C28;
+    color: #fff;
+    -webkit-transition: background 100ms;
+    transition: background 100ms;
+}
+#wa-my-info-wrapper .wa-field:last-of-type {
+    width: calc(99% - 10px);
+}
+#wa-my-info-wrapper #wa-my-info-edit {
+    margin-top: 0px;
+}
+.wa-name {
+    
+color: #f6901e;
+}
+/*Important! Remove this value, when all fixes are done.*/
+.wa-value p:nth-of-type(2) {
+    /*display: none;*/
+}
+
+.wa-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#wa-my-info-wrapper .wa-field.bg-white {
+    background-color: #fff;
+    padding-left: 0;
+}
+
+.fbox {
+    display: flex;
+}
+.one-to-half {
+    width: 50%;
+}
+#wa-my-info-wrapper .wa-field > div {
+    display: inherit;
+}
+#wa-my-info-wrapper .wa-value input.hidden-input, .hidden {
+    display: none !important;
+}
+.photo-selection {
+    color: #f6901e;
+}
+.photo-selection a { 
+    text-decoration: none;
+}
+
+.choose-photo {
+   color: #f6901e;
+   cursor: pointer;
+}
+.choose-photo:hover {
+   color: red;
+}
+.submit-block input[type="submit"] {
+    margin-right: 3px;
+}
+#wa-my-info-cancel:hover {
+    background-color: #F05C28;
+    color: #fff;
+}
+
+.wa-field.wa-field-address {
+    flex-direction: column;
+}
+.wa-field.wa-field-address .wa-value {
+    flex-direction: column;
+    display: flex !important;
+}
+.wa-field.wa-field-address .wa-value p:not(:last-of-type) {
+    border-bottom: 1px solid #fff;
+    padding-bottom: 10px;
+}
+.wa-form .wa-field .wa-value p {
+    margin-bottom: 10px;
+}
+.wa-form .wa-field .wa-value p span.field wa-field-address-street {
+    margin-top: 0 !important;
+}
+
+
+@media (max-width: 767px) {
+    .fbox:not(.inlined) {
+        flex-direction: column;
+    }
+    .one-to-half {
+        width: 100%;
+    }
+    .one-to-half:nth-of-type(2){
+        margin-top: 10px;
+        border-top: 2px solid #fff5cc;
+        padding-top: 10px;
+    }
+    
+}
+</style>
+
+
+<h1 style="width: 100%">[s`My profile`]</h1>
+
+{if $saved}
+    <strong><i class="icon16 saved"></i><span style="color:green">[s`Contact information successfully updated!`]</span></strong>
+{/if}
+
+{if isset($smarty.get.emailconfirmed) && $smarty.get.emailconfirmed == 1}
+    <strong><i class="icon16 saved"></i><span style="color:green">[s`Contact information successfully updated!`]</span></strong>
+{/if}
+<div class="fbox">
+    <div class="one-to-half">
+        <div id="wa-my-info-wrapper" class="test-inform">
+            <div class="wa-form" id="wa-my-info-read-wrapper"{if !empty($form->errors)} style="display: none;"{/if}>
+        
+                {foreach $user_info as $id => $info}
+                    <div class="wa-field">
+                        <div class="wa-name">{$info.name}:</div>
+                        <div class="wa-value">{$info.value}</div>
+                    </div>
+                {/foreach}
+        
+                <div class="wa-field bg-white">
+                    <div class="wa-value">
+                        <input type="button" class="button" id="wa-my-info-edit" value="[s`Edit`]"/>
+                        <a class="button" href='/my/orders' title="Мои заказы" style="margin-left: 3px;">Мои заказы</a>
+                    </div>
+                </div>
+        
+            </div>
+        
+            <div class="clear-both"></div>
+        
+            <form action="" enctype="multipart/form-data" method="post"{if empty($form->errors)} style="display: none;"{/if} id="wa-my-info-edit-wrapper">
+                <div class="wa-form">
+        
+                    {$form->html()}
+        
+                    <div class="wa-field bg-white">
+                        <div class="wa-value submit-block">
+                            <input type="submit" value="[s`Save`]">
+                            <a href="#" title="отмена" id="wa-my-info-cancel">[s`cancel`]</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="one-to-half">
+        {$auth_adapters = $wa->authAdapters(true)}
+        {if $auth_adapters}
+            <div class="wa-auth-adapters wa-connect">
+                <h3>[s`Connected accounts`]</h3>
+            
+                {$linked_adapters = []}
+                {$other_adapters = []}
+                {foreach $auth_adapters as $a}
+                    {if $wa->user("{$a->getId()}_id")}
+                        {$linked_adapters[] = $a}
+                    {else}
+                        {$other_adapters[] = $a}
+                    {/if}
+                {/foreach}
+            
+                {if $linked_adapters}
+                    <ul>
+                    {foreach $linked_adapters as $a}
+                        <li><span><img alt="{$a->getName()}" src="{$a->getIcon()}"/>{$a->getName()}</span></li>
+                    {/foreach}
+                    </ul>
+                {/if}
+            
+                {if $other_adapters}
+<div class="nt-login">
+                    <p>[s`Connect this account to your social network accounts so next time you can log in without entering your password:`]</p>
+                    <div class="wa-auth-adapters"><ul>
+                        {foreach $other_adapters as $a}
+                        <li><a title="pass" href="{$a->getUrl()}"><img alt="{$a->getName()}" src="{$a->getIcon()}"/>{$a->getName()}</a></li>
+                        {/foreach}
+                    </ul></div>
+                    <script type="text/javascript">
+                        $("div.wa-auth-adapters a").click(function () {
+                            var left = (screen.width - 600) / 2;
+                            var top = (screen.height - 400) / 2;
+                            window.open($(this).attr('href'),'oauth', "width=600,height=400,left="+left+",top="+top+",status=no,toolbar=no,menubar=no");
+                            return false;
+                        });
+                    </script>
+</div>
+                {/if}
+            
+            </div>
+        {/if}
+    </div>
+</div>
+
+<script>
+    (function () {
+        var $wrapper = $('#wa-my-info-wrapper'),
+            $form = $wrapper.find('#wa-my-info-edit-wrapper'),
+            $info = $wrapper.find('#wa-my-info-read-wrapper'),
+            $password = $form.find('.wa-field-password'),
+            $photo = $form.find('.wa-field-photo');
+
+        if ($password.length) {
+            var $change_link = $('<span><a title="pass" href="#">[s`Change password`]</a></span>'),
+                $password_inputs = $password.find('p');
+
+            $password.find('.wa-value').prepend($change_link);
+
+            $change_link.on('click', 'a', function(e) {
+                e.preventDefault();
+                $change_link.hide();
+                $password_inputs.slideDown();
+            });
+        }
+
+        if ($photo.length) {
+            var $delete_photo = $('<span class="hidden"><a title="delete" href="#">[s`Delete photo`]</a></span>'),
+                $photo_input = $photo.find('[name="profile[photo]"]'),
+                $user_photo = $photo.find('img:first'),
+                $default_photo = $photo.find('img:last');
+
+            if ($user_photo[0] != $default_photo[0]) {
+                $default_photo
+                        .hide()
+                        .after($delete_photo);
+
+                $delete_photo.on('click', 'a', function(e) {
+                    e.preventDefault();
+                    $default_photo.show();
+                    $user_photo.hide();
+                    $delete_photo.hide();
+                    $photo_input.val('');
+                });
+            } else {
+                $default_photo.show();
+            }
+        }
+
+        $wrapper
+                .on('click', '#wa-my-info-edit', function (e) {
+                    e.preventDefault();
+                    if ($password.length) {
+                        $change_link.show();
+                        $password_inputs.hide();
+                    }
+                    if ($photo.length) {
+                        if ($user_photo[0] != $default_photo[0]) {
+                            $delete_photo.show();
+                            $default_photo.hide();
+                        }
+                    }
+                    $form.show();
+                    $info.hide();
+                })
+                .on('click', '#wa-my-info-cancel', function(e){
+                    e.preventDefault();
+                    $form.hide();
+                    $info.show();
+                });
+    })();
+</script>
+<script>
+    let input_file = document.querySelector('[name="photo_file"]');
+    input_file.id = 'Photo_profile';
+    input_file.classList.add('hidden-input');
+    input_file.parentElement.innerHTML += `
+        <div class="fbox inlined photo-selection">
+            <label class="choose-photo" for="Photo_profile"> Выбрать фото </label> <span style="margin: 0 3px">|</span> <a title="Удалить фото" href="#">Удалить фото</a>
+            </div>`
+    
+</script>
+
+{$wa->globals('isMyAccount', true)}

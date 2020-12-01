@@ -1,0 +1,25 @@
+#wa-my-info-cancel  {
+ font-family: 'Roboto Condensed', sans-serif;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #F05C28;
+    background: none;
+    color: #F05C28;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 400;
+    font-style: normal;
+}
+.input[type=button], input[type=submit] {
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #F05C28;
+    background: none;
+    color: #F05C28;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 400;
+    font-style: normal;
+  
+}

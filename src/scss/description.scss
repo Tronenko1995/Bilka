@@ -120,6 +120,12 @@
 				.description__private-office-text {
 					color: $hover2;
 				}
+				.description__private-office-text.active {
+					color: $colorDark;
+					.description__private-office-text-link {
+						color: $hover2;
+					}
+				}
 			}
 		}
 
@@ -155,6 +161,12 @@
 			margin-left: 16px;
 			// cursor: pointer;
 			width: fit-content;
+			&.active {
+				color: $colorDark;
+				.description__private-office-text-link {
+					color: $color3;
+				}
+			}
 		}
 	}
 	.vertiacal-line {

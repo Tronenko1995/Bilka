@@ -4,7 +4,10 @@ $(document).ready(function() {
   const dark = $('.mobile-darkness');
 
   /* Кнопка назад */
-  onclick="history.back();return false;
+  $('.jsBack').on('click', function(e){
+    e.preventDefault();
+    history.back();
+  });
      
     /* Декстоп вызов меню-каталог */
     $('.jsCatalog').on('click', function(){

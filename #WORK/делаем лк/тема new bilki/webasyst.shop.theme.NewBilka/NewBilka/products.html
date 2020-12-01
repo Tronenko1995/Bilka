@@ -1,0 +1,277 @@
+{strip}
+{if !empty($products)}
+
+    {if !empty($theme_settings.list_features)}
+        {$features = $wa->shop->features($products)}
+    {/if}
+
+    {$_types = ["thumbs" => "thumbs-view", "table" => "table-view"]}
+    {$_type = $_types["thumbs"]}
+
+    {if !empty($theme_settings.products_default_view_type) && !empty($_types[$theme_settings.products_default_view_type])}
+        {$_type = $_types[$theme_settings.products_default_view_type]}
+    {/if}
+
+    {if !empty($type)}
+        {$_type = $_types[$type]}
+    {/if}
+
+    {if !empty($short)}
+        {$_type = "is-short"}
+    {/if}
+
+
+    {$wa->globals("globalHeader", $category.name|escape)}
+
+
+    <!-- <section class="s-products-wrapper" id="js-products-wrapper"> -->
+        {if !empty($section_title)}
+            <div class="s-section-header">{$section_title}</div>
+        {/if}
+
+        {*if empty($short)}
+            <div class="s-sorting-wrapper">
+                <div class="s-layout">
+                    {if !empty($show_sorting)}
+                        <div class="s-column">
+                            {include file="./products.sorting.html" inline}
+                        </div>
+                    {/if}
+
+                    <div class="s-column right">
+                        <div class="s-sorting-list view-filters js-view-filters">
+                            <span class="s-label">[`Catalog view`]</span>
+                            <a class="js-set-thumbs-view {if $_type == "thumbs-view"}is-active{/if}" href="javascript:void(0);" title="[`Thumbs`]"><i class="icon thumbs"></i></a>
+                            <a class="js-set-table-view {if $_type == "table-view"}is-active{/if}" href="javascript:void(0);" title="[`Table`]"><i class="icon table"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {/if*}
+
+        {*if !empty($slider)}
+            <div class="s-slider-wrapper js-slider-wrapper">
+                <div class="s-slider-block">
+        {/if*}
+
+        
+
+        <div class="sidebar">
+
+            <div class="sidebar__nav">
+                <p class="sidebar__nav-title"></p>
+                <ul class="sidebar__nav-items">
+                    <!-- <li class="sidebar__nav-item">
+                        <a href="#" class="sidebar__nav-link">Автомобильные держатели</a>
+                        <svg class="sidebar__nav-svg" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 6L5 9V3L8 6Z" fill="#F37A22"/>
+                        </svg>                        
+                    </li>
+                    <li class="sidebar__nav-item">
+                        <a href="#" class="sidebar__nav-link">Fm-трансмиттеры</a>
+                        <svg class="sidebar__nav-svg" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 6L5 9V3L8 6Z" fill="#F37A22"/>
+                        </svg>                        
+                    </li>
+                    <li class="sidebar__nav-item">
+                        <a href="#" class="sidebar__nav-link">Автомобильные зарядки</a>
+                        <svg class="sidebar__nav-svg" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 6L5 9V3L8 6Z" fill="#F37A22"/>
+                        </svg>                        
+                    </li> -->
+                </ul>
+                <div class="select">
+                    <input class="select__input" type="hidden" name="">
+                    <div class="select__head">Автомобильные держатели</div>
+                    <ul class="select__list">
+                        <li class="select__item">Автомобильные держатели</li>
+                        <li class="select__item">Fm-трансмиттеры</li>
+                        <li class="select__item">Автомобильные зарядки</li>
+                    </ul>
+                </div>
+            </div>
+
+        {if !empty($filters)}
+            {$count = 0}
+            {$filter_count = $filters|count}
+            <div class="sidebar__filter filters ajax">
+                <form method="get" action="{$wa->currentUrl(0,1)}">
+                <div class="sidebar__filter-top">
+                    <div class="sidebar__filter-row">
+                        <p class="sidebar__filter-top-title">Фильтр</p>
+                        <svg class="sidebar__filter-top-close jsMobiFilter" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 10.586L16.95 5.63599L18.364 7.04999L13.414 12L18.364 16.95L16.95 18.364L12 13.414L7.05 18.364L5.636 16.95L10.586 12L5.636 7.04999L7.05 5.63599L12 10.586Z" fill="#202026"></path>
+                        </svg>
+                    </div>
+                    <a class="sidebar__filter-top-button" href="{$wa->currentUrl(false, true)}">
+                        <svg class="sidebar__filter-top-button-svg" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.99999 7.93949L12.7125 4.22699L13.773 5.28749L10.0605 8.99999L13.773 12.7125L12.7125 13.773L8.99999 10.0605L5.28749 13.773L4.22699 12.7125L7.93949 8.99999L4.22699 5.28749L5.28749 4.22699L8.99999 7.93949Z"/>
+                        </svg>
+                        <span class="sidebar__filter-top-button-text">Сбросить</span>                      
+                    </a>
+                </div>
+                <div class="sidebar__filter-items">
+                    {foreach $filters as $fid => $filter}
+                    {$count = $count + 1}
+                    <div class="sidebar__filter-item filter-block {if $count == $filter_count}last{/if}" data-id="{$filter.id}">
+                        <div class="sidebar__filter-item-title">{$filter.name|escape}</div>
+                    </div>
+                    <div class="sidebar__filter-item-block">
+                        <ul class="sidebar__filter-item-list watch-min">
+                            {if $filter.type == 'boolean'}
+                            <li class="1 sidebar__filter-item-list-item filter-field{if $wa->get($filter.code)} checked{/if}">
+                                <input type="checkbox" id="fil-yes-{$filter.id}" class="sidebar__filter-item-list-item-checkbox" name="{$filter.code}" {if $wa->get($filter.code)} checked{/if} value="1">
+                                <label for="fil-yes-{$filter.id}" class="sidebar__filter-item-list-item-label"><span class="stylish-wrap"></span>[`Yes`]</label>
+                            </li>
+                            <li class="2 sidebar__filter-item-list-item filter-field{if $wa->get($filter.code) === '0'} checked{/if}">
+                                <input type="checkbox" id="fil-no-{$filter.id}" class="sidebar__filter-item-list-item-checkbox" name="{$filter.code}" {if $wa->get($filter.code) === '0'} checked{/if} value="0">
+                                <label for="fil-no-{$filter.id}" class="sidebar__filter-item-list-item-label"><span class="stylish-wrap"></span>[`No`]</label>
+                            </li>
+                            <li class="3 sidebar__filter-item-list-item filter-field{if $wa->get($filter.code, '') === ''} checked{/if}">
+                                <input type="checkbox" id="fil-any-{$filter.id}" class="sidebar__filter-item-list-item-checkbox" name="{$filter.code}" {if $wa->get($filter.code, '') === ''} checked{/if} value="">
+                                <label for="fil-any-{$filter.id}" class="sidebar__filter-item-list-item-label"><span class="stylish-wrap"></span>[`Any`]</label>
+                            </li>
+                            {*
+                            {elseif isset($filter.min)}
+                            {$_v = $wa->get($filter.code)}
+                            <li class="slider-range"></li>
+                            *}
+                            {else}
+                            {foreach $filter.values as $v_id => $v}
+                            <li class="sidebar__filter-item-list-item filter-field{if in_array($v_id, (array)$wa->get($filter.code, array()))} checked{/if}">
+                                <input type="checkbox" id="fil-{$fid}-{$v_id}" class="sidebar__filter-item-list-item-checkbox" name="{$filter.code}[]" {if in_array($v_id, (array)$wa->get($filter.code, array()))}checked{/if} value="{$v_id}">
+                                <label for="fil-{$fid}-{$v_id}" class="sidebar__filter-item-list-item-label"><span class="stylish-wrap"></span>{$v}</label>
+                            </li>
+                            {/foreach}
+                            {/if}
+                        </ul>
+                        {if $count !== $filter_count}<hr />{/if}
+                    </div>
+                    {/foreach}
+                    {if $wa->get('sort')}<input type="hidden" name="sort" value="{$wa->get('sort')|escape}">{/if}
+                    {if $wa->get('order')}<input type="hidden" name="order" value="{$wa->get('order')|escape}">{/if}
+                </div>
+                <div class="sidebar__filter-for-button">
+                    <button type="submit" class="sidebar__filter-button button grey">[`Filter products`]</button>
+                </div>
+                </form>
+            </div>
+        {/if}
+
+            <div class="sidebar__seo">
+                <div class="watch-min">
+                    <div class="sidebar__seo-text">{$category.meta_description}</div>
+                </div>
+                <div class="watch-full" style="display: none;">
+                    <div class="sidebar__seo-text">{$category.description}</div>
+                </div>
+                <a class="sidebar__seo-link jsWatchMore" href="#">Еще</a>
+            </div>
+ 
+        </div>
+
+
+        <div class="main-container" id="js-products-wrapper">
+            <ul id="NewBreadcrumb" class="main-container__breadcrumb breadcrumb">
+                <li class="breadcrumb__item">
+                    <a href="{$wa_app_url}" class="breadcrumb__link">Главная</a>
+                </li>
+                <li class="breadcrumb__item">
+                    <a href="#" class="breadcrumb__link jsCatalog">Каталог</a>
+                </li>
+            </ul>
+            <div class="main-container__top">
+                <p class="main-container__top-title">{$category.name}</p>
+                <div class="main-container__top-row">
+                    {if !empty($filters)}
+                    <button class="main-container__top-row-filter jsMobiFilter">Фильтр</button>
+                    {/if}
+                    {include file="./products.sorting.html" inline}
+                    <!-- <div class="select">
+                        <input class="select__input" type="hidden" name="">
+                        <div class="select__head">По названию</div>
+                        <ul class="select__list">
+                            <li class="select__item">По названию</li>
+                            <li class="select__item">Самые новые</li>
+                            <li class="select__item">Скидки</li>
+                            <li class="select__item">От дешевых к дорогим</li>
+                            <li class="select__item">От дорогих к дешевым</li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+            <div class="main-container__banner">
+                <img src="/img/banner_category.jpg" class="main-container__banner-img">
+            </div>
+
+        <div class="main-container__items">
+            {if !empty($short)}
+                {include file="./products.short.html" inline}
+            {else}
+                {include file="./products.items.html" inline}
+            {/if}
+        </div>
+
+
+        {if !empty($slider)}
+                </div>
+                <span class="s-arrow js-arrow left"></span>
+                <span class="s-arrow js-arrow right"></span>
+            </div>
+        {/if}
+
+        <div class="main-container__for-more">
+            <div class="main-container__more jsMoreItems">
+                <svg class="main-container__more-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 4.5625C10 4.5625 10.7613 4.1875 8 4.1875C7.0111 4.1875 6.0444 4.48074 5.22215 5.03015C4.39991 5.57956 3.75904 6.36045 3.3806 7.27408C3.00217 8.18771 2.90315 9.19305 3.09608 10.163C3.289 11.1329 3.76521 12.0238 4.46447 12.723C5.16373 13.4223 6.05465 13.8985 7.02455 14.0914C7.99446 14.2844 8.99979 14.1853 9.91342 13.8069C10.827 13.4285 11.6079 12.7876 12.1573 11.9654C12.7068 11.1431 13 10.1764 13 9.1875"stroke-miterlimit="10" stroke-linecap="round"/>
+                    <path d="M8 1.8125L10.5 4.3125L8 6.8125" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="main-container__more-text">Показать еще</div>
+            </div>
+        </div>
+        <!-- <div class="main-container__pagination">
+            <ul class="main-container__pagination-list">
+                <li class="main-container__pagination-item main-container__pagination-item--active">1</li>
+                <li class="main-container__pagination-item">2</li>
+                <li class="main-container__pagination-item">3</li>
+                <li class="main-container__pagination-item">4</li>
+            </ul>
+            <div class="main-container__pagination-dots">...</div>
+        </div> -->
+
+        {if empty($slider) && isset($pages_count) && $pages_count > 1}
+            <div class="s-paging-wrapper {if $theme_settings.pagination == "lazyloading"}is-lazy-loading{/if}" data-loading-text="[`Loading...`]">
+                {wa_pagination total=$pages_count attrs=["class" => "s-paging-list"]}
+            </div>
+        {/if}
+
+    
+    </div>
+</div>
+</div>
+
+
+
+    <!-- </section> -->
+    <script>
+        ( function($) {
+            var use_lazy = {if empty($slider) && isset($pages_count) && $pages_count > 1 && $theme_settings.pagination == "lazyloading"}true{else}false{/if};
+
+            new window.waTheme.init.shop.Products({
+                $wrapper: $("#js-products-wrapper").removeAttr("id"),
+                use_slider: {if !empty($slider)}true{else}false{/if},
+                use_lazy: use_lazy,
+                locales: {
+                    to_compare: "[`To comparison`]",
+                    in_compare: "[`In comparison list`]",
+                    added: "[`Added`]",
+                    buy: "[`Buy`]"
+                }
+            });
+        })(jQuery);
+
+    </script>
+{/if}
+
+{/strip}

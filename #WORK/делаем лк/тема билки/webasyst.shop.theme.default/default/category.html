@@ -1,0 +1,1642 @@
+<div class="html-title" style="display: none;">{if $category.meta_title}{$category.meta_title|escape}{else}{$category.name|escape}{/if}</div>
+
+
+
+
+<!-- filtering by product features -->
+
+<!-- plugin hook: 'frontend_category' --> 
+{* @event frontend_category.%plugin_id% *} 
+{foreach $frontend_category as $_}{$_}{/foreach}
+
+
+
+
+
+<div id="main-container">
+<h1 class="category-name bestsellers-header">{$category.name|escape}</h1>
+<div id="product-list">
+<!-- description -->
+<div class="category-desc">
+{if $category.description}
+{$category.description}
+{/if}
+</div>
+<input type="hidden" value="{$category.name|escape}" class="catname">
+{if !empty($breadcrumbs)}
+    <nav class="breadcrumbs" itemprop="breadcrumb">
+        {if !$wa->globals('isMyAccount')}
+            <a title="каталог" href="{$wa_app_url}"><i class="fa fa-home"></i></a>  <span class="rarr">&rarr;</span>
+        {else}
+            {* within My Account we exclude first node from navigation because links are on the page already *}
+            {$breadcrumbs[0] = null}
+        {/if}
+        {foreach $breadcrumbs as $breadcrumb}
+            {if $breadcrumb}
+                <a title="{$breadcrumb.name}" href="{$breadcrumb.url}">{$breadcrumb.name|escape}</a> <span class="rarr">&rarr;</span>
+            {/if}
+
+        {/foreach}
+    </nav>
+{/if}
+
+
+
+<!-- subcategories -->
+
+{if !$products}
+{if !empty($filters)}
+    [`No products were found.`]
+{else}
+    [`This category does not contain any products.`]
+{/if}
+{else}
+<a href="/primerka-chekhlov/" target="_blank">
+<img class="temp-banner" src="/wa-data/public/shop/images/banner.jpg" alt="">
+<img class="temp-banner-mob" src="/wa-data/public/shop/images/banner-mob.jpg" alt="">
+</a>
+<style>
+.temp-banner-mob {
+    display:none;
+}
+@media(max-width:400px) {
+    .temp-banner {
+        display:none;
+    }
+    .temp-banner-mob {
+        display:block;
+    }
+}
+</style>
+{include file='list-thumbs.html' sorting=!empty($category.params.enable_sorting)}
+
+{/if}
+</div>
+<div class="filters leadbox ajax" style="width: 100%; max-width: 100%;">
+<!--noindex-->
+<form id="Product_list_form" method="get" action="{$wa->currentUrl(0,1)}" data-loading="{$wa_parent_theme_url}img/loading16.gif">
+
+
+
+    {foreach $filters as $fid => $filter}
+        <div class="filter-param {if $filter.code == 'tip_aksessuara'}tipy{/if}">
+            {if $fid == 'price'}
+                {$c = $wa->shop->currency(true)}
+
+            {else}
+
+
+           {$pos = strpos($filter.code, "modeli")}
+{if $pos !== false}
+<div class="input-element" style="display: none;">
+        <input id="search_bar" type="text" list="products_search" placeholder="Начните вводить модель...">
+        <label><i class="fa fa-search"></i></label>
+        <div id="clear_filter" class="clear-filter">
+          <div class="close"><i class="fa fa-times"></i></div>
+        </div>
+    </div>
+    <datalist id="products_search"></datalist>
+{/if}
+
+ <p class="filter-opener"><span class="button closed" style="margin-bottom: 5px; text-decoration: none">{$filter.name} <i class="fa fa-caret-left" aria-hidden="true"></i></span></p>
+                <div class="filter-box def">
+
+                {if $filter.type == 'boolean'}
+                    <label>
+<input type="radio" name="{$filter.code}"{if $wa->get($filter.code)} checked{/if} value="1">
+{$radio_filter_url = shopSeofilterViewHelper::getFilterUrl($fid, "1", $filter.code)}
+{if $radio_filter_url}
+<a class="filter-link" href="{$radio_filter_url}">[`Yes`]</a>
+{else}
+[`Yes`]
+{/if}
+</label>
+                    <label>
+<input type="radio" name="{$filter.code}"{if $wa->get($filter.code) === '0'} checked{/if} value="0">
+{$radio_filter_url = shopSeofilterViewHelper::getFilterUrl($fid, "0", $filter.code)}
+{if $radio_filter_url}
+<a class="filter-link" href="{$radio_filter_url}">[`No`]</a>
+{else}
+[`Yes`]
+{/if}
+</label>
+                    <label><input type="radio" name="{$filter.code}"{if $wa->get($filter.code, '') === ''} checked{/if} value=""> [`Any`]</label>
+                {elseif isset($filter.min)}
+                {$_v = $wa->get($filter.code)}
+                <div class="slider">
+                [`from`] <input type="text" class="min" name="{$filter.code}[min]" placeholder="{$filter.min}" {if !empty($_v.min)}value="{$_v.min}"{/if}>
+                [`to`] <input type="text" class="max" name="{$filter.code}[max]" placeholder="{$filter.max}" {if !empty($_v.max)}value="{$_v.max}"{/if}>
+                {if !empty($filter.unit)}
+                    {$filter.unit.title}
+                    {if $filter.unit.value != $filter.base_unit.value}<input type="hidden" name="{$filter.code}[unit]" value="{$filter.unit.value}">{/if}
+                {/if}
+                </div>
+                {else}
+                {foreach $filter.values as $v_id => $v}
+                    <label class="">
+                        <input type="checkbox" name="{$filter.code}[]" {if in_array($v_id, (array)$wa->get($filter.code, array()))}checked{/if} value="{$v_id}" data-helper='{$v}'> <span class="label_content">{$filter_url = shopSeofilterViewHelper::getFilterUrl($fid, $v_id, $filter.code)}
+{if $filter_url}
+<a class="filter-link" href="{$filter_url}" title="{$v}">{$v}</a>
+{else}
+{$v}
+{/if}</span>
+                    </label>
+                {/foreach}
+                {/if}
+                </div>
+
+            {/if}
+
+
+        </div>
+    {/foreach}
+    {if $wa->get('sort')}<input type="hidden" name="sort" value="{$wa->get('sort')|escape}">{/if}
+    {if $wa->get('order')}<input type="hidden" name="order" value="{$wa->get('order')|escape}">{/if}
+
+</form><!--/noindex-->
+
+</div>
+
+
+
+
+
+</div>
+<div class="filters sidebar">
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="filters filters-list no-margin-bottom">
+<!--<a name="menu" /></a>-->
+
+<input type="checkbox" name="accord" class="cat-accords" id="accessories-types" checked>
+                <label class="label-accord categories-title" for="accessories-types">Скрыть категории товаров</label>
+                <div class="cat_tree">
+
+<ul class="menu-v dropdown">
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-samsung-galaxy/" title="Самсунг: аксессуары" class="samsung"><span class="real_name">Samsung</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-samsung-galaxy1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-samsung-galaxy/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-samsung-galaxy/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chehly-dlya-samsung-galaxy/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashitnye-plenki-dlya-samsung-galaxy/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnoye-steklo-dlya-samsung-galaxy/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadka-dlya-samsung-galaxy/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/besprovodnye-zaryadki-samsung/" title="беспроводные зарядки" class=""><span class="real_name">беспроводные зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamjati/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-i-perekhodniki-dlya-samsung-galaxy/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/akkumulyatory-dlya-samsung-galaxy/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnyy-derzhatel-dlya-samsung-galaxy/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-samsung-galaxy/" title="Bluetooth Гарнитуры" class=""><span class="real_name">Bluetooth Гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-i-garnitury-dlya-samsung-galaxy/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-samsung-galaksi/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-samsung/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopod-selfi-dlya-samsung-galaxy/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/dopolnitelnyye-aksessuary-samsung-galaxy/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnie-zaryadki-samsung-power-bank/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+
+     </li>
+  </ul>
+  {/if}
+</li>
+
+
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-meizu/" title="Мейзу: аксессуары" class="meizu"><span class="real_name">Meizu</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-meizu1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-meizu/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-meizu/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chekhly-Meizu/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnyye-plenki-Meizu/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnyye-stekla-meizu/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadki-meizu/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamyaty-dlya-Meizu/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadnye-kabeli-dlya-meizu-kupit/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/akkumulyatory-dlya-Meizu/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-derzhatel-dlya-meizu/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-meizu/" title="Bluetooth Гарнитуры" class=""><span class="real_name">Bluetooth Гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-dlya-meizu/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonku-dlya-meizu/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-meizu/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-meizu/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/druhoe-dlya-Meizu/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-meizu/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+
+
+
+<li class="collapsible ">
+  <a href="/category/dlya-xiaomi/" title="Ксиаоми: аксессуары" class="xiaomi"><span class="real_name">Xiaomi</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/dlya-xiaomi1/' || $breadcrumbs[0].url == '/category/dlya-xiaomi/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/dlya-xiaomi/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chekhly-dlya-syaomi/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnyye-plenki-dlya-Xiaomi/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchytnye-stekla-dlya-ksyomy_1/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadky-dlya-Xiaomi/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/besprovodnye-zaryadki-xiaomi/" title="беспроводные зарядки" class=""><span class="real_name">беспроводные зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamyaty-dlya-ksyomy/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabely-dlya-Ksyomy/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/akkumulyatory-dlya-Xiaomi/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtoderzhateli-dlya-Xiaomi/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-xiaomi/" title="Bluetooth Гарнитуры" class=""><span class="real_name">Bluetooth Гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushnyky-dlya-ksyomyd/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-xiaomi/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatky-dlya-ksyomy/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfy-dlya-ksyomy/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/druhoe-dlya-ksyomy/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-ksiomi/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+
+
+
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-huawei/" title="Хуавей: аксессуары" class="huawei"><span class="real_name">Huawei</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-huawei1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-huawei/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-huawei/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chekhly-dlya-khuavey/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchytnye-plenky-dlya-khuavey/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnye-stekla-dlya-huawei/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadky-dlya-khuavey/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/besprovodnye-zaryadki-huawei/" title="беспроводные зарядки" class=""><span class="real_name">беспроводные зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamyaty-dlya-khuavey/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabely-dlya-huawei/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/akkumulyatory-dlya-khuavey/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtoderzhately-dlya-khuavey/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-huawei/" title="Bluetooth Гарнитуры" class=""><span class="real_name">Bluetooth Гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushnyky-dlya-khuavey/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-huawei/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-huawei/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-huawei/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/druhoe-dlya-khuavey/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-huawei/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+
+
+<li class="collapsible ">
+  <a href="/category/besprovodnye-zaryadki/" title="Беспроводные зарядки" class=""><span class="real_name">Беспроводные зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  <ul class="menu-v allpoints"></ul>
+</li>
+<li class="collapsible ">
+  <a href="/category/sportivnye-chekhly-dlya-telefonov/" title="Спортивные чехлы для телефонов" class=""><span class="real_name">Спортивные чехлы для телефонов</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  <ul class="menu-v allpoints"></ul>
+</li>
+
+
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-motorola/" title="Моторола: аксессуары" class=""><span class="real_name">Motorola</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-motorola1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-motorola/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-motorola/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/akkumulyatory-dlya-motorola/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-yabloko-iphone/" title="Айфон: аксессуары" class="iphone"><span class="real_name">iPhone</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-yabloko-iphone1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-yabloko-iphone/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-yabloko-iphone/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chehly-dlya-iphone/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashitnye-plenki-dlya-iphone/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnye-stekla-dlya-iphone/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadnoye-ustroystvo-dlya-iphone/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/besprovodnye-zaryadki-iphone/" title="беспроводные зарядки" class=""><span class="real_name">беспроводные зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-dlya-iphone/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-akkumulyator-iphone/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnyy-derzhatel-dlya-iphone/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-apple-iphone/" title="Bluetooth гарнитуры" class=""><span class="real_name">Bluetooth гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-dlya-iphone/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-iphone/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-iphone/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-iphone/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/dopolnitelnyye-aksessuary-apple-iphone/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-power-bank-iphone/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-ipad-mini/" title="Айпад: аксессуары" class="ipad"><span class="real_name">iPad</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-ipad-mini1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-ipad-mini/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-ipad-mini/"  title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chehol-dlya-apple-ipad/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashitnye-plenki-dlya-apple-ipad/" title="защитные пленки / стекла" class=""><span class="real_name">защитные пленки / стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadka-dlya-apple-ipad/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-i-perekhodniki-dlya-apple-ipad/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/akkumulyatory-dlya-ipad/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnyy-derzhatel-dlya-apple-ipad/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-apple-ipad/" title="Bluetooth гарнитуры" class=""><span class="real_name">Bluetooth гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-i-garnitury-dlya-apple-ipad/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-ipad/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-ipad/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/dopolnitelnyye-aksessuary-gadzhety-dlya-apple-ipad/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-google-nexus/" title="Гугл: аксессуары" class="google"><span class="real_name">Google</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-google-nexus1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-google-nexus/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-google-nexus/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chehly-dlya-google-nexus/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashitnye-plenki-dlya-google-nexus/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnye-stekla-nexus/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadka-dlya-google-nexus/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-i-perekhodniki-dlya-google-nexus/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnyy-derzhatel-dlya-google-nexus/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-google/" title="Bluetooth гарнитуры" class=""><span class="real_name">Bluetooth гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-i-garnitury-dlya-google-nexus/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-google-nexus/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-nexus/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-google-nexus/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/dopolnitelnyye-aksessuary-gadzhety-dlya-nexus/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-neksus/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-nomi/" title="Номи: аксессуары" class="nomi"><span class="real_name">Nomi</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-nomi1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-nomi/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-nomi/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/akkumulyatory-dlya-nomi/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-prestigio/" title="Prestigio: аксессуары" class="prestigio"><span class="real_name">Prestigio</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+   {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-prestigio1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-prestigio/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-prestigio/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/akkumulyatory-dlya-prestigio/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-kolonki-dlya-prestigio/" title="Bluetooth-колонки" class=""><span class="real_name">Bluetooth-колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+      <li><a href="/category/avtoderzhateli-dlya-prestigio/" title="Автодержатели" class=""><span class="real_name">Автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+    <li> <a href="/category/zaryadki-dlya-prestigio/" title="Зарядки" class=""><span class="real_name">Зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+    <li><a href="/category/monopody-dlya-selfi-dlya-prestigio/" title="Моноподы" class=""><span class="real_name">Моноподы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-oneplus/" title="OnePlus: аксессуары" class="oneplus"><span class="real_name">One Plus</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+   {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-oneplus1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-oneplus/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-oneplus/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chekhly-oneplus/" title="Чехлы" class=""><span class="real_name">Чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnye-plenki/" title="Защитные пленки" class=""><span class="real_name">Защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-lenovo/" title="Леново: аксессуары" class="lenovo"><span class="real_name">Lenovo</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-lenovo1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-lenovo/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-lenovo/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chehly-dlya-lenovo/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashitnye-plenki-dlya-lenovo/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnye-stekla-lenovo/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadka-dlya-lenovo/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamjati-dlya-lenovo/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-i-perekhodniki-dlya-lenovo/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-akkumulyator-lenovo/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnyy-derzhatel-dlya-lenovo/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-lenovo/" title="Bluetooth Гарнитуры" class=""><span class="real_name">Bluetooth Гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-i-garnitury-dlya-lenovo/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-lenovo/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-lenovo/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-lenovo/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/dopolnitelnyye-aksessuary-gadzhety-lenovo/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnyie-zaryadki-dlya-lenovo/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/dlya-doogee-aksessuary/" title="Дуги: аксессуары" class="doogee"><span class="real_name">Doogee</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/dlya-doogee-aksessuary1/' || $breadcrumbs[0].url == '/category/dlya-doogee-aksessuary/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/dlya-doogee-aksessuary/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chekhly-dlya-doogee/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnye-stekla-dlya-doogee/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadki-dlya-doogee/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamyati/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-dlya-doogee/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/akkumulyatory-dlya-doogee/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtoderzhateli/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-doogee/" title="Bluetooth гарнитуры" class=""><span class="real_name">Bluetooth гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-dlya-doogee/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-kolonki-dlya-doogee/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-doogee/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-dlya-doogee/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/drugie-prinadlezhnosti-doogee/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-doogee/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-sony/" title="Сони: аксессуары" class="sony"><span class="real_name">Sony</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-sony1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-sony/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-sony/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chehly-dlya-sony/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashitnye-plenki-dlya-sony/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchytnye-stekla-dlya-sony/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadka-dlya-sony/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/besprovodnye-zaryadki-sony/" title="беспроводные зарядки" class=""><span class="real_name">беспроводные зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamyati-sony/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-i-perekhodniki-dlya-sony/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-akkumulyator-sony-xperia/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnyy-derzhatel-dlya-sony/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-sony/" title="Bluetooth гарнитуры" class=""><span class="real_name">Bluetooth гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-i-garnitury-dlya-sony/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-sony/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-sony/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-sony/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/dopolnitelnyye-aksessuary-gadzhety-dlya-sony-xperia/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-sony/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-nokia-lumia/" title="Нокиа: аксессуары" class="nokia"><span class="real_name">Nokia</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-nokia-lumia1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-nokia-lumia/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-nokia-lumia/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chehly-dlya-nokia-lumia/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashitnye-plenki-dlya-nokia-lumia/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchytnye-stekla-dlya-nokya/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadka-dlya-nokia-lumia/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamjati-dlya-nokia-lumia/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-i-perekhodniki-dlya-nokia-lumia/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-akkumulyator-nokia/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnyy-derzhatel-dlya-nokia-lumia/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-nokia/" title="Bluetooth Гарнитуры" class=""><span class="real_name">Bluetooth Гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-i-garnitury-dlya-nokia-lumia/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-nokia/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-nokia-lumia/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-nokia/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/dopolnitelnyye-aksessuary-gadzhety-microsoft-nokia/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-nokia/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-fly/" title="Флай: аксессуары" class="fly"><span class="real_name">Fly</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-fly1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-fly/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-fly/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+
+
+     <li>
+        <a href="/category/zaryadki-dlya-fly/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  
+     <li>
+        <a href="/category/karty-pamyati-dlya-fly/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-dlya-fly/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/akkumulyatory-fly/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtoderzhateli-fly/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-fly/" title="Bluetooth Гарнитуры" class=""><span class="real_name">Bluetooth Гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-dlya-fly/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-kolonki-dlya-fly/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-fly/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-dlya-fly/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/drugie-prinadlezhnosti-fly/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-fly/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-lg/" title="ЭлДжи: аксессуары" class="lg"><span class="real_name">LG</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-lg1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-lg/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-lg/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chehly-dlya-lg/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashitnye-plenki-dlya-lg/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchytnye-stekla-dlya-ldzhy/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadka-dlya-lg/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamjati-dlya-lg/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-i-perekhodniki-dlya-lg/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-akkumulyator-lg/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnyy-derzhatel-dlya-lg/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-lg/" title="Bluetooth гарнитуры" class=""><span class="real_name">Bluetooth гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-i-garnitury-dlya-lg/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-lg/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-lg/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-lg/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/dopolnitelnyye-aksessuary-gadzhety-dlya-lg/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-lg/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/Aksessuary-dlya-bravis/" title="Бравис: аксессуары" class="bravis"><span class="real_name">Bravis</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/Aksessuary-dlya-bravis1/' || $breadcrumbs[0].url == '/category/Aksessuary-dlya-bravis/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/Aksessuary-dlya-bravis/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+
+     <li>
+        <a href="/category/zashchitnyye-plenki-dlya-bravis/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+
+     <li>
+        <a href="/category/zaryadki-dlya-bravis/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamyati-dlya-bravis/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-dlya-bravis/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/akkumulyatory-dlya-bravis/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtoderzhateli-dlya-bravis/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-bravis/" title="Bluetooth Гарнитуры" class=""><span class="real_name">Bluetooth Гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-dlya-bravis/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/Bluetooth-kolonki-dlya-bravis/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornyye-perchatki-dlya-bravis/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-dlya-bravis/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/drugiye-prinadlezhnosti-dlya-bravis/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnyye-zaryadki-Power-Bank-bravis/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-htc/" title="ЭйчТиСи: аксессуары" class="htc"><span class="real_name">HTC</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-htc1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-htc/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-htc/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/chehly-dlya-htc/" title="чехлы" class=""><span class="real_name">чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashitnye-plenki-dlya-htc/" title="защитные пленки" class=""><span class="real_name">защитные пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zashchitnye-stekla-htc/" title="защитные стекла" class=""><span class="real_name">защитные стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/zaryadka-dlya-htc/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamjati-dlya-htc/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-i-perekhodniki-dlya-htc/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/akkumulyatory-dlya-htc/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnyy-derzhatel-dlya-htc/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-htc/" title="Bluetooth Гарнитуры" class=""><span class="real_name">Bluetooth Гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-i-garnitury-dlya-htc/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-htc/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-htc/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-htc/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/1066/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-htc/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+<li class="collapsible ">
+  <a href="/category/aksessuary-dlya-asus/" title="Асус: аксессуары" class="asus"><span class="real_name">Asus</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-asus1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-asus/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/aksessuary-dlya-asus/" title="все товары">все товары</a></li>
+  </ul>
+  
+  <ul class="menu-v">
+     <li>
+        <a href="/category/zaryadka-dlya-asus/" title="зарядки" class=""><span class="real_name">зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/karty-pamjati-asus/" title="карты памяти" class=""><span class="real_name">карты памяти</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kabeli-i-perekhodniki-dlya-asus/" title="кабели" class=""><span class="real_name">кабели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/akkumulyatory-asus/" title="аккумуляторы" class=""><span class="real_name">аккумуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnyy-derzhatel-dlya-asus/" title="автодержатели" class=""><span class="real_name">автодержатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/bluetooth-garnitury-asus/" title="Bluetooth Гарнитуры" class=""><span class="real_name">Bluetooth Гарнитуры</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/naushniki-i-garnitury-dlya-asus/" title="наушники" class=""><span class="real_name">наушники</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/kupit-bluetooth-kolonki-dlya-asus/" title="Bluetooth колонки" class=""><span class="real_name">Bluetooth колонки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/sensornye-perchatki-dlya-asus/" title="сенсорные перчатки" class=""><span class="real_name">сенсорные перчатки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/monopody-dlya-selfi-asus/" title="моноподы для селфи" class=""><span class="real_name">моноподы для селфи</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/dopolnitelnyye-aksessuary-asus/" title="другие принадлежности" class=""><span class="real_name">другие принадлежности</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/portativnye-zaryadki-dlya-asus/" title="портативные зарядки (Power Bank)" class=""><span class="real_name">повербанки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li class="collapsible ">
+     </li>
+  </ul>
+  {/if}
+</li>
+
+<li class="collapsible ">
+  <a href="/category/avtomobilnye-aksessuary/" title="Автомобильные аксессуары" class="auto"><span class="real_name">Автомобильные аксессуары</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+  {if ($smarty.server.REQUEST_URI != '/category/avtomobilnye-aksessuary1/' || $breadcrumbs[0].url == '/category/avtomobilnye-aksessuary/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/avtomobilnye-aksessuary/" title="все товары">все товары</a></li>
+  </ul>
+  <ul class="menu-v">
+     <li>
+        <a href="/category/avtomobilnye-derzhateli/" title="Автомобильные держатели" class=""><span class="real_name">Автомобильные держатели</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/fm-transmittery--modulyatory/" title="FM трансмиттеры / модуляторы" class=""><span class="real_name">FM трансмиттеры / модуляторы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+     <li>
+        <a href="/category/avtomobilnye-zaryadki/" title="Автомобильные зарядки" class=""><span class="real_name">Автомобильные зарядки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+        <ul class="menu-v allpoints"></ul>
+     </li>
+  </ul>
+  {/if}
+</li>
+  <li class="collapsible ">
+  <a href="/category/vodonepronitsaemye-chekhly-dlya-telefonov-i-smartfonov/" title="Водонепроницаемые Чехлы Для Телефонов И Смартфонов" class="makefuture"><span class="real_name">Водонепроницаемые Чехлы Для Телефонов И Смартфонов
+</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a></li>
+<li class="collapsible ">
+  <a href="/category/besprovodnye-naushniki/" title="Беспроводные наушники" class="makefuture"><span class="real_name">Беспроводные наушники
+</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a></li>  
+  <li class="collapsible ">
+  <a href="/category/aksessuary-dlya-kompyuterov-i-noutbukov/" title="Аксессуары Для Компьютеров И Ноутбуков" class="makefuture"><span class="real_name">Аксессуары Для Компьютеров И Ноутбуков</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a></li>
+  
+  
+  <li class="collapsible ">
+  <a href="/category/aksessuary-dlya-vivo/" title="Аксессуары Для Vivo" class="makefuture"><span class="real_name">Аксессуары Для Vivo</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+    {if ($smarty.server.REQUEST_URI != '/category/aksessuary-dlya-vivo1/' || $breadcrumbs[0].url == '/category/aksessuary-dlya-vivo/')}
+  <ul class="menu-v allpoints">
+     <li class="all"><a class="" href="/category/avtomobilnye-aksessuary/" title="все товары">все товары</a></li>
+  </ul>
+          <ul class="menu-v">
+           <li>
+                         <a href="/category/chekhly-vivo/" title="Чехлы" class=""><span class="real_name">Чехлы</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+              <ul class="menu-v allpoints"></ul>
+           </li>
+                      <li>
+              <a href="/category/zashchitnye-plenki-vivo/" title="Защитные Пленки" class=""><span class="real_name">Защитные Пленки</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+              <ul class="menu-v allpoints"></ul>
+           </li>
+                      <li>
+              <a href="/category/zashchitnye-stekla-vivo/" title="Защитные Стекла" class=""><span class="real_name">Защитные Стекла</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a>
+              <ul class="menu-v allpoints"></ul>
+           </li>
+        </ul>
+   {/if}
+  </li>
+  
+  
+  <ul class="menu-v allpoints"></ul>
+</li>
+</ul>
+<!-- <p style="text-align: center;"><span class="show_all_brands">Показать все категории</span></p> -->
+</div>
+
+
+
+
+{if !empty($breadcrumbs)}
+
+        {foreach $breadcrumbs as $breadcrumb}
+
+                 <script>
+                    $('.menu-v li a[href$="{$breadcrumb.url}"]').addClass('active').addClass('highlighted').parents('li').addClass('active');
+                 </script>
+
+        {/foreach}
+{/if}
+<script>
+var url = window.location.pathname;
+$('.menu-v li a[href$="'+url+'"]').addClass('active').addClass('highlighted').parents('li').addClass('active');
+$('.menu-v > li.collapsible.active > .active > .show-subcategory .fa-caret-left').toggleClass('active');
+
+</script>
+
+
+
+</div>
+
+<div class="sidebar-overlay"></div>
+
+
+<div class="how-we-work-slider">
+<div>
+ <div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="/wa-data/public/shop/themes/default/SwipeSlider/img/01.png" alt=" "></div>
+        <div class="swiper-slide"><img src="/wa-data/public/shop/themes/default/SwipeSlider/img/02.png" alt=" "></div>
+        <div class="swiper-slide"><img src="/wa-data/public/shop/themes/default/SwipeSlider/img/03.png" alt=" "></div>
+        <div class="swiper-slide"><img src="/wa-data/public/shop/themes/default/SwipeSlider/img/04.png" alt=" "></div>
+        <div class="swiper-slide"><img src="/wa-data/public/shop/themes/default/SwipeSlider/img/05.png" alt=" "></div>
+        <div class="swiper-slide"><img src="/wa-data/public/shop/themes/default/SwipeSlider/img/06.png" alt=" "></div>
+    </div>
+
+    </div>
+
+    <div class="swiper-pagination">
+    </div>
+
+    <div class="article--block">
+        <input class="article--text-input" type="radio" id="labeled-1" checked name="article---block">
+        <article>
+            <div class="number--place">1.</div>
+            <div class="text--place"><h6>После оформление заказа через корзину, ожидайте звонка от менеджера для подтверждения и уточнения данных заказа</h6></div>
+        </article>
+
+        <input class="article--text-input" type="radio" id="labeled-2" name="article---block">
+        <article>
+            <div class="number--place">2.</div>
+            <div class="text--place"><h6 >Выберите удобный Вам способ доставки - "Новая почта", "Укрпочта", "Интайм" или адресная доставка курьером по Киеву.</h6></div>
+        </article>
+
+        <input class="article--text-input" type="radio" id="labeled-3" name="article---block">
+        <article>
+            <div class="number--place">3.</div>
+            <div class="text--place"><h6 >Оплачивайте так, как удобно! Наложенный платеж, Приват24 или оплата электронными деньгами Webmoney - на выбор.</h6></div>
+        </article>
+
+        <input class="article--text-input" type="radio" id="labeled-4" name="article---block">
+        <article>
+            <div class="number--place">4.</div>
+            <div class="text--place"><h6 >Все товары есть в наличии на нашем складе или складах партнеров: 86% заказов обрабатываются в тот же день!</h6></div>
+        </article>
+
+        <input class="article--text-input" type="radio" id="labeled-5" name="article---block">
+        <article>
+            <div class="number--place">5.</div>
+            <div class="text--place"><h6 >Получите свой заказ уже в течение 1-2 дней или даже через несколько часов, если Вы выбрали доставку по Киеву.</h6></div>
+        </article>
+
+        <input class="article--text-input" type="radio" id="labeled-6" name="article---block">
+        <article>
+            <div class="number--place">6.</div>
+            <div class="text--place"><h6 >Экономьте время, заказывая у нас - покупайте аксессуары без задержек и переплат!</h6></div>
+        </article>
+    </div>
+</div>
+
+
+
+
+</div>
+</div>
+
+
+
+<div class="clear-both"></div>
+<script>
+$( document ).ready(function() {
+var nameofit = $('h1').text();
+var ismaincat = '';
+
+if (nameofit.indexOf('защитные стекла') > -1 || nameofit.indexOf('защитные пленки') > -1 || nameofit.indexOf('аккумуляторы') > -1) { ismaincat = '1'; };
+
+   $("label .label_content").each(function (i) {
+    var compat = $(this).html();
+   var res = compat.replace(new RegExp("~",'g'), "");
+var res = res.replace(new RegExp("\\*",'g'), "");
+   $(this).html(res);
+   if (compat.indexOf('⚠') > -1) {
+    $(this).parent().hide();
+   };
+   if (compat.indexOf('✪') > -1 && ismaincat == '') {
+    $(this).parent().hide();
+   }
+  });
+});
+</script>
+
+<script>
+$('.filter-box input[data-helper]').change(function() {
+$( "body" ).animate({ scrollTop: 250 }, 500)
+
+});
+</script>
+
+<script>
+$( document ).ready(function() {
+var allDataHasElements = $('input[data-helper]'),
+  input_element = $('.input-element'),
+  allDataHasElements_info = allDataHasElements.data('helper'),
+  allDataHasElements_info_list,
+  products_list = $('#products_search'),
+  clear_filter = $('#clear_filter'),
+  search_bar = $('#search_bar'),
+  List = [];
+
+
+allDataHasElements.each( function(e){
+allDataHasElements_info_list = $(this).data('helper');
+List.push($(this).data('helper'));
+products_list.append('<option value="' + allDataHasElements_info_list + '">');
+})
+
+$('#search_bar').on('input', function(){
+var search_bar_value = $(this).val();
+if (List.includes(search_bar_value)) {
+  $('input[data-helper="' + search_bar_value + '"]').prop('checked', true).change().parent().addClass('order-1');
+  input_element.addClass('active')
+}
+// if (search_bar_value) {
+//   input_element.addClass('active')
+// }
+});
+
+$('input[data-helper]').on('change', function(){
+  var this_el = $(this);
+  if(this_el.is(':checked')) {
+      this_el.parent().addClass('order-1');
+  }
+})
+
+clear_filter.on('click', function(){
+input_element.removeClass('active');
+search_bar.val('');
+$('input[data-helper]:checked').prop('checked', false).change().parent().removeClass('order-1');
+})
+});
+
+</script>
+<script>
+$('.filter-opener span').on('click', function(){
+    if ($(this).hasClass('opened')) {
+
+        $(this).removeClass('opened');
+        $(this).addClass('closed');
+        $(this).parent().parent().find('.filter-box').removeClass('opened');
+        $(this).parent().parent().find('.filter-box').addClass('def');
+    }
+    else {
+        $(this).removeClass('closed');
+        $(this).addClass('opened');
+        $(this).parent().parent().find('.filter-box').addClass('opened');
+        $(this).parent().parent().find('.filter-box').removeClass('def');
+    }
+});
+$('.show_all_brands').on('click', function(){
+if ($('.cat_tree').hasClass('showall')) {
+$('.cat_tree').removeClass('showall');
+$(this).html('Показать все категории');
+}
+else {
+$('.cat_tree').addClass('showall');
+$(this).html('Скрыть все категории, кроме выбранной');
+}
+});
+
+</script>
+<script>
+     $(document).ready(function() {
+            $('.menu-v > li').each(function() {
+            $(this).find('.allpoints').find('li').parent().parent().addClass('newcol');
+            if ($( window ).width() < 768) {
+            $('.cat-accords').prop('checked', false);
+            };
+            });
+        $('.menu-v > li.newcol').each(function() {
+
+         $(this).children('a').click(function (e) {
+            e.preventDefault();
+            $(this).find('.fa-caret-left').toggleClass('active');
+            $(this).parent().children('.menu-v').slideToggle('');
+        });
+
+        });
+     });
+ </script>
+

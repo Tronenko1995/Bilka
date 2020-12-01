@@ -1,0 +1,105 @@
+{strip}
+
+{$wa->globals("showWidgets", true)}
+
+{$_is_search_page = false}
+{if !empty($is_search)}
+    {$_is_search_page = true}
+{/if}
+
+{if !$is_lazyloading && !empty($stream_title)}
+    {$_title = $stream_title|escape}
+
+    {if !empty($_is_search_page)}
+        {$_title = "[`Search results for`]: \"`$_title`\""}
+    {/if}
+
+    {$wa->globals("globalHeader", $_title)}
+{/if}
+
+<div class="page-news">
+    <div class="page-news__wrap">
+
+        <ul class="breadcrumb">
+            <li class="breadcrumb__item">
+                <a href="/" class="breadcrumb__link">Главная</a>
+            </li>
+            <li class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link">Новости</a>
+            </li>
+        </ul>
+
+        <h1 class="page-news__title">Все новости</h1>
+        {$blogs = $wa->blog->blogs()}
+        <div class="page-news__tabs">
+            <a href="/articles" class="jsTabs page-news__tabs-item">Все новости</a>
+            {if count($blogs)>1}
+            {foreach $blogs as $blog}
+            <a href="{$blog.link}" class="jsTabs page-news__tabs-item {if $wa->globals('blog_id') eq $blog.id && empty($is_search)}active{/if}">{$blog.name}</a>
+            {/foreach}
+            {else}
+            {$blog=current($blogs)}
+            <a href="{$wa->blog->url()}" class="jsTabs page-news__tabs-item {if empty($is_search)}active{/if}">{$blog.name}</a>
+            {/if}
+        </div>
+
+        <div class="page-news__select">
+            <div class="select" tabindex="1">
+                <input class="select__input" type="hidden" name="">
+                <div class="select__head">Все новости</div>
+                <ul class="select__list">
+                    <li class="select__item" tabindex="1"><a href="/articles">Все новости</a></li>
+                    {if count($blogs)>1}
+                    {foreach $blogs as $blog}
+                    <li class="select__item" tabindex="1" {if $wa->globals('blog_id') eq $blog.id && empty($is_search)}selected{/if}><a href="{$blog.link}">{$blog.name}</a></li>
+                    {/foreach}
+                    {else}
+                    {$blog=current($blogs)}
+                    <li class="select__item" tabindex="1" {if empty($is_search)}selected{/if}><a href="{$wa->blog->url()}">{$blog.name}</a></li>
+                    {/if}
+                </ul>
+            </div>
+        </div>
+
+
+        
+<section class="b-stream-wrapper" id="b-stream-wrapper" {if $wa->param('blog_url')}itemscope itemtype="http://schema.org/Blog"{/if}>
+    <a name="page_{$page}"></a>
+
+    <section class="b-posts-section">
+
+        <div class="page-news__list">
+        {foreach $posts as $post}
+            {include file="./post.preview.html" post=$post is_search_post=$_is_search_page inline}
+        {/foreach}
+        </div>
+
+    </section>
+
+    {if isset($pages) && $pages > 1}
+        <div class="s-paging-wrapper {if $theme_settings.pagination == "lazyloading"}is-lazy-loading{/if}" data-loading-text="[`Loading...`]">
+            {wa_pagination page=$page total=$pages attrs=["class" => "s-paging-list"]}
+        </div>
+    {/if}
+
+    <script>
+        ( function($) {
+            var initLazyLoading = {if isset($pages) && $pages > 1 && $theme_settings.pagination == "lazyloading"}true{else}false{/if};
+            if (initLazyLoading) {
+                new window.waTheme.init.blog.LazyLoading({
+                    $wrapper: $("#b-stream-wrapper"),
+                    names: {
+                        list: ".b-posts-section",
+                        items: ".b-post-wrapper",
+                        paging: ".s-paging-wrapper"
+                    }
+                });
+            }
+        })(jQuery);
+    </script>
+</section>
+
+
+</div>
+</div>
+{/strip}

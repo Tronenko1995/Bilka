@@ -1,0 +1,473 @@
+{*strip*}
+
+{*$_name = ""}
+{if $wa->shop}
+    {$_name = $wa->shop->settings('name')}
+    {$_phone = $wa->shop->settings('phone')}
+{/if}
+
+<footer class="s-footer-wrapper" id="js-footer-wrapper">
+    <div class="s-footer-block">
+
+        <div class="s-footer-top">
+            <div class="s-layout">
+                <div class="s-column">
+
+                    <ul class="s-nav-list">
+                        {$_links = []}
+                        {if $theme_settings.header_links == 'site-pages'}
+                            {if $wa->site}{$_links = $wa->site->pages()}{/if}
+                        {elseif $theme_settings.header_links == 'shop-pages'}
+                            {if $wa->shop}{$_links = $wa->shop->pages()}{/if}
+                        {elseif $theme_settings.header_links == 'blog-pages'}
+                            {if $wa->blog}{$_links = $wa->blog->pages()}{/if}
+                        {elseif $theme_settings.header_links == 'photos-pages'}
+                            {if $wa->photos}{$_links = $wa->photos->pages()}{/if}
+                        {elseif $theme_settings.header_links == 'hub-pages'}
+                            {if $wa->hub}{$_links = $wa->hub->pages()}{/if}
+                        {elseif $theme_settings.header_links != 'none'}
+                            {$_links = $wa->apps()}
+                        {/if}
+                        {foreach $_links as $a}
+                            {if !($a.url == $wa_url && $a.name == $wa->accountName())}
+                                {$_is_selected = false}
+                                {if $a.url == $wa_app_url && !$wa->globals('isMyAccount') || strlen($a.url)>1 && $wa->currentUrl()|strstr:$a.url}
+                                    {$_is_selected = true}
+                                {/if}
+
+                                <li class="{if $_is_selected}is-selected{/if}">
+                                    <a href="{$a.url}" title="{$a.name}">{$a.name}</a>
+                                </li>
+                            {/if}
+                        {/foreach}
+                    </ul>
+
+                    <div class="s-layout inline">
+                        {if !empty($theme_settings.footer_rating_widget)}
+                            <div class="s-column">
+                                <div class="s-rating-wrapper">{$theme_settings.footer_rating_widget}</div>
+                            </div>
+                        {/if}
+                        {if !empty($theme_settings.footer_subscribe_form_use) && $wa->mailer && $wa->getUrl('mailer/frontend/subscribe')}
+                            <div class="s-column">
+                                <section class="s-subscribe-section" id="js-subscribe-section">
+
+                                    {if !empty($theme_settings.footer_subscribe_form_title)}
+                                        <h4 class="s-header">{$theme_settings.footer_subscribe_form_title}</h4>
+                                    {/if}
+
+                                    <form>
+                                        <div class="s-visible">
+                                            <input class="s-text-field js-email-field custom-placeholder" type="email" name="email" placeholder="your@email.here" required>
+                                            <input class="s-submit-button js-submit-button" type="submit" value="[s`Subscribe`]">
+                                        </div>
+                                        <div class="s-hidden">{$wa->captcha(['app_id'=>'mailer'])}</div>
+                                    </form>
+
+                                    <p class="js-success-message" style="display:none">
+                                        <i>[s`Thank you! We’ll keep you posted.`]</i>
+                                    </p>
+
+                                    {if !empty($theme_settings.footer_subscribe_personal_data)}
+                                        <div class="s-form-desc">{$theme_settings.footer_subscribe_personal_data}</div>
+                                    {/if}
+
+                                    <script>
+                                        ( function($, waTheme) {
+                                            new waTheme.init.site.SubscribeSection({
+                                                $wrapper: $("#js-subscribe-section"),
+                                                request_uri: "{$wa->getUrl('mailer/frontend/subscribe')}"
+                                            });
+                                        })(jQuery, window.waTheme);
+                                    </script>
+                                </section>
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+                <div class="s-column right">
+
+                    {if !empty($theme_settings.footer_phones_available)}
+                        <div class="s-phone-section">
+                            <div class="s-layout" style="width: auto;">
+                                <div class="s-column">
+                                    {if !empty($_phone)}
+                                        <div class="s-phone-wrapper">
+                                            <i class="svg-icon phone size-16 top"></i>
+                                            <span class="s-phone">{$_phone}</span>
+                                            {if !empty($theme_settings.tip_the_phone_1)}
+                                                <span class="s-tip">{$theme_settings.tip_the_phone_1}</span>
+                                            {/if}
+                                            {if !empty($theme_settings.store_address)}
+                                                <span class="s-text">{$theme_settings.store_address}</span>
+                                            {/if}
+                                        </div>
+                                    {/if}
+                                </div>
+
+                                <div class="s-column s-phone-2">
+                                    {if !empty($theme_settings.additional_phone)}
+                                        <div class="s-phone-wrapper">
+                                            <i class="svg-icon phone size-16 top"></i>
+                                            <span class="s-phone">{$theme_settings.additional_phone}</span>
+                                            {if !empty($theme_settings.tip_the_phone_2)}
+                                                <span class="s-tip">{$theme_settings.tip_the_phone_2}</span>
+                                            {/if}
+                                            {strip}
+                                            {if $wa->shop}
+                                                {if !empty($theme_settings.use_shop_schedule) && method_exists($wa->shop, 'schedule')}
+                                                    {$_schedule = $wa->shop->schedule()}
+
+                                                    <div class="s-schedule-wrapper" id="js-footer-schedule-wrapper">
+                                                        <div class="s-visible">
+                                                            <div class="s-label-wrapper js-show-schedule" title="{_wd("shop", "Business hours")}">
+                                                                {_wd("shop", "Business hours")} <i class="s-icon black"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="s-hidden top right">
+                                                            <div class="s-days-wrapper">
+                                                                {foreach $_schedule.current_week as $_day}
+                                                                    <div class="s-day-wrapper">
+                                                                        <div class="s-date">{$_day.name|escape}</div>
+                                                                        <div class="s-value">
+                                                                            {if !empty($_day.work)}
+                                                                                <div class="s-time">{$_day.start_work|escape} — {$_day.end_work|escape}</div>
+                                                                            {else}
+                                                                                <div class="s-text">{_wd("shop", "day off")}</div>
+                                                                            {/if}
+                                                                        </div>
+                                                                    </div>
+                                                                {/foreach}
+                                                            </div>
+                                                            <i class="s-close-icon js-close-schedule" title="[`Close`]"></i>
+                                                        </div>
+                                                        <script>
+                                                            ( function($) {
+                                                                new window.waTheme.init.site.ScheduleSection({
+                                                                    $wrapper: $("#js-footer-schedule-wrapper")
+                                                                });
+                                                            })(jQuery);
+                                                        </script>
+                                                    </div>
+                                                {elseif !empty($theme_settings.manual_schedule)}
+                                                    <span class="s-text">{$theme_settings.manual_schedule|escape}</span>
+                                                {/if}
+                                            {/if}
+                                            {/strip}
+                                        </div>
+                                    {/if}
+
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+
+                </div>
+            </div>
+        </div>
+
+        <div class="s-footer-middle">
+            <div class="s-layout is-adaptive">
+                <div class="s-column">
+
+                    {if $wa->shop && !empty($theme_settings.footer_payment_available)}
+                        <div class="s-payments-wrapper">
+                            {if !empty($theme_settings.footer_payment_title)}
+                                <h4 class="s-header">{$theme_settings.footer_payment_title}</h4>
+                            {/if}
+                            <ul class="s-payments-list">
+                                {$_count = 0}
+                                {$_payments = $wa->shop->payment()}
+                                {foreach $_payments as $_payment}
+                                    {if $_count >= 8}{break}{/if}
+                                    {if $_payment.logo}
+                                        {$_count = $_count + 1}
+
+                                        <li>
+                                            <img src="{$_payment.logo}" alt="{$_payment.name}">
+                                        </li>
+                                    {/if}
+                                {/foreach}
+                            </ul>
+                        </div>
+                    {/if}
+
+                </div>
+                <div class="s-column">
+
+                    <!-- SOCIAL LINKS -->
+                    <ul class="s-socials-list">
+                        {$_socials_links = [
+                            "vk_page_link" => [
+                                "name" => "Вконтакте",
+                                "class" => "vk"
+                            ],
+                            "fb_page_link" => [
+                                "name" => "Facebook",
+                                "class" => "facebook"
+                            ],
+                            "od_page_link" => [
+                                "name" => "Одноклассники",
+                                "class" => "od"
+                            ],
+                            "mail_page_link" => [
+                                "name" => "Мой мир",
+                                "class" => "moimir"
+                            ],
+                            "tw_page_link" => [
+                                "name" => "Twitter",
+                                "class" => "twitter"
+                            ],
+                            "gplus_page_link" => [
+                                "name" => "Google+",
+                                "class" => "gplus"
+                            ],
+                            "instagram_page_link" => [
+                                "name" => "Instagram",
+                                "class" => "instagram"
+                            ],
+                            "youtube_page_link" => [
+                                "name" => "Youtube",
+                                "class" => "youtube"
+                            ],
+                            "foursquare_page_link" => [
+                                "name" => "Foursquare",
+                                "class" => "foursquare"
+                            ]
+                        ]}
+
+                        {foreach $_socials_links as $name => $_social}
+                            {if !empty($theme_settings[$name])}
+                                {$_uri = $theme_settings[$name]}
+
+                                <li>
+                                    <a class="s-social-link {$_social.class}" href="{$_uri}" title="{$_social.name}">
+                                        <i class="icon"></i>
+                                    </a>
+                                </li>
+                            {/if}
+                        {/foreach}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        {include file="`$wa_active_theme_path`/footer.html" inline}
+    </div>
+
+    <script>
+        ( function($, waTheme) {
+            waTheme.layout.$footer = $("#js-footer-wrapper");
+        })(jQuery, window.waTheme);
+    </script>
+</footer>
+
+{/strip*}
+
+{strip}
+
+<footer class="footer">
+	<div class="footer__wrap">
+		<div class="footer-left">
+			<a class="footer-left__top" href="index.html">
+				<img class="description__left-img" width="300" height="73" src="/img/logo-bilka_1.png" alt="logo">
+			</a>
+			<div class="footer-left__bottom">
+				<div class="footer-left__bottom-card">
+					<svg class="footer-left__bottom-card-svg" width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+						<path d="M20 30.4902C18.1518 31.576 16.0496 32.1544 13.9061 32.1666C11.7626 32.1789 9.65387 31.6246 7.79343 30.5599C5.93299 29.4952 4.38686 27.9579 3.31155 26.1035C2.23624 24.2492 1.66992 22.1437 1.66992 20.0002C1.66992 17.8566 2.23624 15.7511 3.31155 13.8968C4.38686 12.0424 5.93299 10.5051 7.79343 9.44043C9.65387 8.37573 11.7626 7.82145 13.9061 7.83369C16.0496 7.84594 18.1518 8.42428 20 9.51016C21.8482 8.42428 23.9504 7.84594 26.0939 7.83369C28.2374 7.82145 30.3461 8.37573 32.2066 9.44043C34.067 10.5051 35.6132 12.0424 36.6885 13.8968C37.7638 15.7511 38.3301 17.8566 38.3301 20.0002C38.3301 22.1437 37.7638 24.2492 36.6885 26.1035C35.6132 27.9579 34.067 29.4952 32.2066 30.5599C30.3461 31.6246 28.2374 32.1789 26.0939 32.1666C23.9504 32.1544 21.8482 31.576 20 30.4902ZM22.8367 28.1835C24.1778 28.7285 25.6323 28.9356 27.0723 28.7865C28.5123 28.6374 29.8935 28.1367 31.0945 27.3284C32.2955 26.5201 33.2794 25.429 33.9597 24.1512C34.64 22.8733 34.9958 21.4478 34.9958 20.0002C34.9958 18.5525 34.64 17.127 33.9597 15.8492C33.2794 14.5713 32.2955 13.4802 31.0945 12.6719C29.8935 11.8637 28.5123 11.3629 27.0723 11.2138C25.6323 11.0647 24.1778 11.2718 22.8367 11.8168C24.8759 14.0539 26.0043 16.9731 26 20.0002C26 23.1502 24.8017 26.0235 22.8367 28.1835ZM17.1633 11.8168C15.8222 11.2718 14.3677 11.0647 12.9277 11.2138C11.4877 11.3629 10.1065 11.8637 8.90551 12.6719C7.70452 13.4802 6.72059 14.5713 6.04031 15.8492C5.36002 17.127 5.00422 18.5525 5.00422 20.0002C5.00422 21.4478 5.36002 22.8733 6.04031 24.1512C6.72059 25.429 7.70452 26.5201 8.90551 27.3284C10.1065 28.1367 11.4877 28.6374 12.9277 28.7865C14.3677 28.9356 15.8222 28.7285 17.1633 28.1835C15.1241 25.9464 13.9957 23.0272 14 20.0002C14 16.8502 15.1983 13.9768 17.1633 11.8168ZM20 13.6752C19.1547 14.4972 18.4831 15.4807 18.0251 16.5672C17.567 17.6536 17.3318 18.8211 17.3333 20.0002C17.3333 22.4802 18.355 24.7202 20 26.3252C20.8453 25.5031 21.5169 24.5197 21.9749 23.4332C22.433 22.3467 22.6682 21.1793 22.6667 20.0002C22.6682 18.8211 22.433 17.6536 21.9749 16.5672C21.5169 15.4807 20.8453 14.4972 20 13.6752Z"></path>
+					</svg>
+					<svg class="footer-left__bottom-card-svg" width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+						<path d="M37.0367 26.2799L36.6617 24.4049H32.4717L31.805 26.2665L28.4467 26.2732C30.0455 22.4284 31.6477 18.5851 33.2533 14.7432C33.5267 14.0915 34.0117 13.7599 34.7267 13.7632C35.2733 13.7682 36.165 13.7682 37.4033 13.7649L40 26.2749L37.0367 26.2799ZM33.415 21.8365H36.115L35.1067 17.1365L33.415 21.8365ZM11.7667 13.7615L15.1433 13.7649L9.92333 26.2815L6.505 26.2782C5.64541 22.9721 4.79652 19.6632 3.95833 16.3515C3.79167 15.6915 3.46167 15.2299 2.82667 15.0115C2.26167 14.8165 1.32 14.5165 0 14.1082V13.7665H5.395C6.32833 13.7665 6.87333 14.2182 7.04833 15.1449C7.225 16.0732 7.66833 18.4365 8.38167 22.2349L11.7667 13.7615ZM19.7833 13.7649L17.1133 26.2782L13.9 26.2749L16.5667 13.7615L19.7833 13.7649ZM26.3 13.5332C27.2617 13.5332 28.4733 13.8332 29.17 14.1082L28.6067 16.7032C27.9767 16.4499 26.94 16.1082 26.0683 16.1199C24.8017 16.1415 24.0183 16.6732 24.0183 17.1832C24.0183 18.0132 25.3783 18.4315 26.7783 19.3382C28.3767 20.3715 28.5867 21.2999 28.5667 22.3082C28.545 24.4015 26.7783 26.4665 23.0517 26.4665C21.3517 26.4415 20.7383 26.2982 19.3517 25.8065L19.9383 23.0982C21.35 23.6899 21.9483 23.8782 23.155 23.8782C24.26 23.8782 25.2083 23.4315 25.2167 22.6532C25.2233 22.0999 24.8833 21.8249 23.6433 21.1415C22.4033 20.4565 20.6633 19.5082 20.6867 17.6049C20.715 15.1682 23.0233 13.5332 26.3017 13.5332H26.3Z"></path>
+					</svg>
+				</div>
+				<a class="footer-left__bottom-politic" href="{$wa_url}privacy-policy/">Политика конфиденциальности</a>
+			</div>
+
+		</div>
+		<div class="footer-center">
+			<div class="footer-center__left">
+				<div class="footer-center__left-title">Меню</div>
+				<ul class="footer-center__left-menu">
+					<li class="footer-center__left-menu-item">
+						<a class="footer-center__left-menu-link" href="{$wa_url}about-shop/">О магазине</a>
+					</li>
+					<li class="footer-center__left-menu-item">
+						<a class="footer-center__left-menu-link" href="{$wa_url}contacts/">Контакты</a>
+					</li>
+					<li class="footer-center__left-menu-item">
+						<a class="footer-center__left-menu-link" href="{$wa_url}pay-and-delivery/">Оплата и доставка</a>
+					</li>
+					<li class="footer-center__left-menu-item">
+						<a class="footer-center__left-menu-link" href="{$wa_url}warranty/">Гарантия</a>
+					</li>
+					<li class="footer-center__left-menu-item">
+						<a class="footer-center__left-menu-link" href="{$wa_url}articles/">Новости</a>
+					</li>
+				</ul>
+			</div>
+			<div class="footer-center__right">
+				<div class="footer-center__right-title">Аксессуары для</div>
+				<div class="footer-center__right-menu">
+					<ul class="footer-center__right-menu-1">
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Samsung</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">LG</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">HTC</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">iPhone</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Sony</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Meizu</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Fly</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Huawei</a>
+						</li>
+					</ul>
+					<ul class="footer-center__right-menu-2">
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Google</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Lenovo</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Nokia</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">iPad</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Asus</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Doogee</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Xiaomi</a>
+						</li>
+						<li class="footer-center__right-menu-item">
+							<a class="footer-center__right-menu-link" href="#">Bravis</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-right">
+			<div class="footer-right__title">Контактная информация</div>
+			<div class="footer-right__phones">
+				<div class="footer-right__phones-left">
+				<svg class="footer-right__phones__svg-1" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M14 10.9467V13.304C14.0001 13.4728 13.9361 13.6353 13.8211 13.7588C13.706 13.8823 13.5484 13.9575 13.38 13.9693C13.0887 13.9893 12.8507 14 12.6667 14C6.77533 14 2 9.22467 2 3.33333C2 3.14933 2.01 2.91133 2.03067 2.62C2.04248 2.45163 2.11772 2.29401 2.2412 2.17894C2.36468 2.06387 2.52722 1.99992 2.696 2H5.05333C5.13603 1.99992 5.2158 2.03057 5.27715 2.08601C5.33851 2.14145 5.37706 2.21772 5.38533 2.3C5.40067 2.45333 5.41467 2.57533 5.428 2.668C5.56049 3.59262 5.832 4.49189 6.23333 5.33533C6.29667 5.46867 6.25533 5.628 6.13533 5.71333L4.69667 6.74133C5.5763 8.79097 7.2097 10.4244 9.25933 11.304L10.286 9.868C10.328 9.80933 10.3892 9.76725 10.459 9.7491C10.5288 9.73095 10.6028 9.73787 10.668 9.76867C11.5113 10.1692 12.4104 10.4401 13.3347 10.572C13.4273 10.5853 13.5493 10.6 13.7013 10.6147C13.7835 10.6231 13.8596 10.6617 13.9149 10.7231C13.9702 10.7844 14.0008 10.8641 14.0007 10.9467H14Z" fill="#F37A22"></path>
+				</svg>
+				<div class="footer-right__phones-numbers">
+					<a href="tel:+380984742319" class="footer-right__phones-number">(098) 474 23 19</a>
+					<a href="tel:+380442278529" class="footer-right__phones-number">(044) 227 85 29</a>
+					<a href="tel:+380664500093" class="footer-right__phones-number">(066) 450 00 93</a>
+					<a href="tel:+380638062942" class="footer-right__phones-number">(063) 806 29 42</a>
+				</div>
+				<svg class="footer-right__phones__svg-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g clip-path="url(#clip0)">
+					<path d="M8.40022 0H5.59986C2.89762 0 0.699234 2.19838 0.699234 4.90063V7.0009C0.699234 8.89804 1.79337 10.6197 3.49959 11.4295V13.7684C3.49959 13.9715 3.75364 14.0777 3.89796 13.9334L5.92985 11.9015H8.40019C11.1024 11.9015 13.3008 9.70315 13.3008 7.0009V4.90063C13.3008 2.19838 11.1024 0 8.40022 0Z" fill="#665CAC"></path>
+					<path d="M4.19967 11.4295C2.49345 10.6196 1.39932 8.89801 1.39932 7.00088V4.9006C1.39932 2.19838 3.59773 0 6.29994 0H5.59986C2.89762 0 0.699234 2.19838 0.699234 4.90063V7.0009C0.699234 8.89804 1.79337 10.6197 3.49959 11.4295V13.7684C3.49959 13.9715 3.75364 14.0777 3.89796 13.9334L4.19967 13.6317V11.4295Z" fill="#523494"></path>
+					<path d="M10.5232 8.69824L10.3134 7.56167C10.2961 7.46777 10.2233 7.39392 10.1297 7.37519L8.4796 7.04518C8.40295 7.02992 8.32399 7.05384 8.26878 7.109L7.59839 7.77941C6.46888 7.2733 5.84199 6.64506 5.29042 5.46706L5.95864 4.79886C6.01379 4.74368 6.03775 4.66455 6.02246 4.58804L5.69245 2.9379C5.67372 2.8443 5.59986 2.77151 5.50597 2.75418L4.3694 2.5444C4.33828 2.53868 4.30623 2.53928 4.27533 2.54631C3.97524 2.61448 3.70142 2.76569 3.48346 2.9837C3.10606 3.3611 2.96182 3.9118 3.06638 4.57628C3.2419 5.69207 3.78856 7.24487 4.79713 8.25749L4.81092 8.27116C5.82274 9.27902 7.37557 9.82573 8.49141 10.0013C8.63199 10.0234 8.76736 10.0344 8.89719 10.0344C9.38104 10.0344 9.78641 9.88176 10.084 9.58418C10.302 9.3662 10.4533 9.09238 10.5214 8.79233C10.5283 8.76141 10.529 8.72941 10.5232 8.69824Z" fill="white"></path>
+					<path d="M5.73048 5.02677L5.95864 4.79859L5.95888 4.79834L5.73045 5.02674L5.73048 5.02677Z" fill="#E5E5E5"></path>
+					<path d="M8.2688 7.10847L8.03841 7.33887L8.03844 7.33891L8.26884 7.10851L8.2688 7.10847Z" fill="#E5E5E5"></path>
+					<path d="M9.33717 9.59418C9.20734 9.59418 9.07196 9.58321 8.93139 9.56106C7.81557 9.38552 6.26275 8.83881 5.25089 7.83094L5.23711 7.81727C4.22854 6.80465 3.68188 5.25185 3.50636 4.13606C3.4219 3.59922 3.49999 3.1367 3.73211 2.77979C3.64322 2.83909 3.55979 2.90713 3.48337 2.98355C3.10597 3.36095 2.96173 3.91165 3.06629 4.57613C3.24181 5.69192 3.78847 7.24472 4.79704 8.25734L4.81082 8.27101C5.82265 9.27888 7.37548 9.82559 8.49132 10.0011C8.63189 10.0233 8.76727 10.0342 8.8971 10.0342C9.38095 10.0342 9.78632 9.88164 10.084 9.58403C10.1604 9.50761 10.2284 9.42421 10.2877 9.33531C10.0242 9.5067 9.70317 9.59418 9.33717 9.59418Z" fill="#E5E5E5"></path>
+					<path d="M7.46672 3.9668C7.33785 3.9668 7.23337 4.07128 7.23337 4.20015C7.23337 4.32902 7.33785 4.4335 7.46672 4.4335C7.98144 4.4335 8.40018 4.85224 8.40018 5.36696C8.40018 5.49411 8.50638 5.60031 8.63353 5.60031C8.76068 5.60031 8.86688 5.49411 8.86688 5.36696C8.86691 4.59488 8.2388 3.9668 7.46672 3.9668Z" fill="white"></path>
+					<path d="M7.46672 3.03369C7.38039 3.03369 7.29328 3.03848 7.20775 3.04791C7.07964 3.06205 6.98725 3.17736 7.00138 3.30549C7.01552 3.43362 7.13107 3.52577 7.25896 3.51185C7.32754 3.50428 7.39743 3.50042 7.46672 3.50042C8.49613 3.50042 9.33361 4.33791 9.33361 5.36732C9.33361 5.43664 9.32975 5.50653 9.32218 5.57511C9.30823 5.70146 9.40213 5.81877 9.52854 5.83269C9.65492 5.8466 9.77215 5.75273 9.78612 5.62632C9.79555 5.54079 9.80034 5.45367 9.80034 5.36732C9.80034 4.08058 8.75348 3.03369 7.46672 3.03369Z" fill="white"></path>
+					<path d="M7.46715 2.1001C7.38375 2.1001 7.29929 2.10327 7.21616 2.10959C7.08765 2.11932 6.99134 2.23143 7.00107 2.35992C7.01078 2.48843 7.12327 2.58474 7.25141 2.575C7.32286 2.56956 7.39545 2.56683 7.46715 2.56683C9.01128 2.56683 10.2675 3.82305 10.2675 5.36718C10.2675 5.58566 10.2423 5.80315 10.1926 6.01359C10.1641 6.13418 10.2383 6.25952 10.3579 6.29228C10.4837 6.32673 10.6168 6.24784 10.6468 6.12094C10.7048 5.87537 10.7342 5.62178 10.7342 5.36718C10.7342 3.5657 9.26864 2.1001 7.46715 2.1001Z" fill="white"></path>
+					</g>
+					<defs>
+					<clipPath id="clip0">
+					<rect width="14" height="14" fill="white"></rect>
+					</clipPath>
+					</defs>
+				</svg>
+				</div>
+			<div class="footer-mobi__right">
+			<div class="footer-right__adress">
+				<svg class="footer-right__adress-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+					<path d="M12.2427 11.5761L8 15.8188L3.75734 11.5761C2.91823 10.737 2.34679 9.66789 2.11529 8.50401C1.88378 7.34013 2.0026 6.13373 2.45673 5.03738C2.91086 3.94103 3.6799 3.00396 4.66659 2.34467C5.65328 1.68539 6.81332 1.3335 8 1.3335C9.18669 1.3335 10.3467 1.68539 11.3334 2.34467C12.3201 3.00396 13.0891 3.94103 13.5433 5.03738C13.9974 6.13373 14.1162 7.34013 13.8847 8.50401C13.6532 9.66789 13.0818 10.737 12.2427 11.5761ZM8 8.66678C8.35362 8.66678 8.69276 8.5263 8.94281 8.27625C9.19286 8.0262 9.33334 7.68707 9.33334 7.33344C9.33334 6.97982 9.19286 6.64068 8.94281 6.39064C8.69276 6.14059 8.35362 6.00011 8 6.00011C7.64638 6.00011 7.30724 6.14059 7.05719 6.39064C6.80715 6.64068 6.66667 6.97982 6.66667 7.33344C6.66667 7.68707 6.80715 8.0262 7.05719 8.27625C7.30724 8.5263 7.64638 8.66678 8 8.66678Z"></path>
+				</svg>
+				<p class="footer-right__adress-text">03057 Киев, ул. Янгеля, 2</p>
+			</div>
+			<div class="footer-right__mail">
+				<svg class="footer-right__mail-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2.00001 2H14C14.1768 2 14.3464 2.07024 14.4714 2.19526C14.5964 2.32029 14.6667 2.48986 14.6667 2.66667V13.3333C14.6667 13.5101 14.5964 13.6797 14.4714 13.8047C14.3464 13.9298 14.1768 14 14 14H2.00001C1.8232 14 1.65363 13.9298 1.52861 13.8047C1.40358 13.6797 1.33334 13.5101 1.33334 13.3333V2.66667C1.33334 2.48986 1.40358 2.32029 1.52861 2.19526C1.65363 2.07024 1.8232 2 2.00001 2ZM8.04001 7.78867L3.76534 4.15867L2.90201 5.17467L8.04868 9.54467L13.1027 5.17133L12.2307 4.16267L8.04068 7.78867H8.04001Z"></path>
+				</svg>
+				<a href="mailto:info@bilka.com.ua" class="footer-right__mail-text">info@bilka.com.ua</a>
+			</div>
+			</div>
+			</div>
+			<div class="footer-right__adress">
+				<svg class="footer-right__adress-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+					<path d="M12.2427 11.5761L8 15.8188L3.75734 11.5761C2.91823 10.737 2.34679 9.66789 2.11529 8.50401C1.88378 7.34013 2.0026 6.13373 2.45673 5.03738C2.91086 3.94103 3.6799 3.00396 4.66659 2.34467C5.65328 1.68539 6.81332 1.3335 8 1.3335C9.18669 1.3335 10.3467 1.68539 11.3334 2.34467C12.3201 3.00396 13.0891 3.94103 13.5433 5.03738C13.9974 6.13373 14.1162 7.34013 13.8847 8.50401C13.6532 9.66789 13.0818 10.737 12.2427 11.5761ZM8 8.66678C8.35362 8.66678 8.69276 8.5263 8.94281 8.27625C9.19286 8.0262 9.33334 7.68707 9.33334 7.33344C9.33334 6.97982 9.19286 6.64068 8.94281 6.39064C8.69276 6.14059 8.35362 6.00011 8 6.00011C7.64638 6.00011 7.30724 6.14059 7.05719 6.39064C6.80715 6.64068 6.66667 6.97982 6.66667 7.33344C6.66667 7.68707 6.80715 8.0262 7.05719 8.27625C7.30724 8.5263 7.64638 8.66678 8 8.66678Z"></path>
+				</svg>
+				<p class="footer-right__adress-text">03057 Киев, ул. Янгеля, 2</p>
+			</div>
+			<div class="footer-right__mail">
+				<svg class="footer-right__mail-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2.00001 2H14C14.1768 2 14.3464 2.07024 14.4714 2.19526C14.5964 2.32029 14.6667 2.48986 14.6667 2.66667V13.3333C14.6667 13.5101 14.5964 13.6797 14.4714 13.8047C14.3464 13.9298 14.1768 14 14 14H2.00001C1.8232 14 1.65363 13.9298 1.52861 13.8047C1.40358 13.6797 1.33334 13.5101 1.33334 13.3333V2.66667C1.33334 2.48986 1.40358 2.32029 1.52861 2.19526C1.65363 2.07024 1.8232 2 2.00001 2ZM8.04001 7.78867L3.76534 4.15867L2.90201 5.17467L8.04868 9.54467L13.1027 5.17133L12.2307 4.16267L8.04068 7.78867H8.04001Z"></path>
+				</svg>
+				<a href="mailto:info@bilka.com.ua" class="footer-right__mail-text">info@bilka.com.ua</a>
+			</div>
+			<div class="footer-right__social">
+				<div class="footer-right__social-left">
+					<a class="footer-right__social-for-svg" href="#">
+						<svg class="footer-right__social-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+							<path d="M11.9993 0.00332907L9.92451 0C7.59352 0 6.08713 1.54552 6.08713 3.93762V5.75313H4.00099C3.82072 5.75313 3.67474 5.89927 3.67474 6.07954V8.71001C3.67474 8.89028 3.82089 9.03625 4.00099 9.03625H6.08713V15.6738C6.08713 15.854 6.23311 16 6.41337 16H9.13519C9.31546 16 9.46144 15.8539 9.46144 15.6738V9.03625H11.9006C12.0809 9.03625 12.2269 8.89028 12.2269 8.71001L12.2279 6.07954C12.2279 5.99299 12.1934 5.91009 12.1323 5.84884C12.0712 5.78758 11.988 5.75313 11.9015 5.75313H9.46144V4.2141C9.46144 3.47438 9.63771 3.09886 10.6013 3.09886L11.999 3.09836C12.1791 3.09836 12.3251 2.95222 12.3251 2.77211V0.329578C12.3251 0.149642 12.1793 0.00366197 11.9993 0.00332907Z"></path>
+						</svg>
+					</a>
+					<a class="footer-right__social-for-svg" href="#">
+						<svg class="footer-right__social-svg" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+							<path d="M11.6689 0H4.33105C1.94287 0 0 1.94287 0 4.33105V11.669C0 14.0571 1.94287 16 4.33105 16H11.669C14.0571 16 16 14.0571 16 11.669V4.33105C16 1.94287 14.0571 0 11.6689 0V0ZM7.99998 12.3749C5.58764 12.3749 3.62512 10.4123 3.62512 7.99998C3.62512 5.58764 5.58764 3.62512 7.99998 3.62512C10.4123 3.62512 12.3749 5.58764 12.3749 7.99998C12.3749 10.4123 10.4123 12.3749 7.99998 12.3749ZM12.4795 4.65685C11.7666 4.65685 11.1867 4.07702 11.1867 3.36413C11.1867 2.65124 11.7666 2.07129 12.4795 2.07129C13.1924 2.07129 13.7723 2.65124 13.7723 3.36413C13.7723 4.07702 13.1924 4.65685 12.4795 4.65685Z"></path>
+							<path d="M7.99998 4.56299C6.10496 4.56299 4.5631 6.10473 4.5631 7.99987C4.5631 9.89489 6.10496 11.4368 7.99998 11.4368C9.89512 11.4368 11.4369 9.89489 11.4369 7.99987C11.4369 6.10473 9.89512 4.56299 7.99998 4.56299Z"></path>
+							<path d="M12.4795 3.00928C12.2839 3.00928 12.1247 3.16846 12.1247 3.36401C12.1247 3.55957 12.2839 3.71875 12.4795 3.71875C12.6751 3.71875 12.8343 3.55969 12.8343 3.36401C12.8343 3.16833 12.6751 3.00928 12.4795 3.00928Z"></path>
+						</svg>
+					</a>
+				</div>
+			<div class="footer-mobi-bottom__right">
+				<div class="footer-left__bottom-card">
+					<svg class="footer-left__bottom-card-svg" width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+						<path d="M20 30.4902C18.1518 31.576 16.0496 32.1544 13.9061 32.1666C11.7626 32.1789 9.65387 31.6246 7.79343 30.5599C5.93299 29.4952 4.38686 27.9579 3.31155 26.1035C2.23624 24.2492 1.66992 22.1437 1.66992 20.0002C1.66992 17.8566 2.23624 15.7511 3.31155 13.8968C4.38686 12.0424 5.93299 10.5051 7.79343 9.44043C9.65387 8.37573 11.7626 7.82145 13.9061 7.83369C16.0496 7.84594 18.1518 8.42428 20 9.51016C21.8482 8.42428 23.9504 7.84594 26.0939 7.83369C28.2374 7.82145 30.3461 8.37573 32.2066 9.44043C34.067 10.5051 35.6132 12.0424 36.6885 13.8968C37.7638 15.7511 38.3301 17.8566 38.3301 20.0002C38.3301 22.1437 37.7638 24.2492 36.6885 26.1035C35.6132 27.9579 34.067 29.4952 32.2066 30.5599C30.3461 31.6246 28.2374 32.1789 26.0939 32.1666C23.9504 32.1544 21.8482 31.576 20 30.4902ZM22.8367 28.1835C24.1778 28.7285 25.6323 28.9356 27.0723 28.7865C28.5123 28.6374 29.8935 28.1367 31.0945 27.3284C32.2955 26.5201 33.2794 25.429 33.9597 24.1512C34.64 22.8733 34.9958 21.4478 34.9958 20.0002C34.9958 18.5525 34.64 17.127 33.9597 15.8492C33.2794 14.5713 32.2955 13.4802 31.0945 12.6719C29.8935 11.8637 28.5123 11.3629 27.0723 11.2138C25.6323 11.0647 24.1778 11.2718 22.8367 11.8168C24.8759 14.0539 26.0043 16.9731 26 20.0002C26 23.1502 24.8017 26.0235 22.8367 28.1835ZM17.1633 11.8168C15.8222 11.2718 14.3677 11.0647 12.9277 11.2138C11.4877 11.3629 10.1065 11.8637 8.90551 12.6719C7.70452 13.4802 6.72059 14.5713 6.04031 15.8492C5.36002 17.127 5.00422 18.5525 5.00422 20.0002C5.00422 21.4478 5.36002 22.8733 6.04031 24.1512C6.72059 25.429 7.70452 26.5201 8.90551 27.3284C10.1065 28.1367 11.4877 28.6374 12.9277 28.7865C14.3677 28.9356 15.8222 28.7285 17.1633 28.1835C15.1241 25.9464 13.9957 23.0272 14 20.0002C14 16.8502 15.1983 13.9768 17.1633 11.8168ZM20 13.6752C19.1547 14.4972 18.4831 15.4807 18.0251 16.5672C17.567 17.6536 17.3318 18.8211 17.3333 20.0002C17.3333 22.4802 18.355 24.7202 20 26.3252C20.8453 25.5031 21.5169 24.5197 21.9749 23.4332C22.433 22.3467 22.6682 21.1793 22.6667 20.0002C22.6682 18.8211 22.433 17.6536 21.9749 16.5672C21.5169 15.4807 20.8453 14.4972 20 13.6752Z"></path>
+					</svg>
+					<svg class="footer-left__bottom-card-svg" width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+						<path d="M37.0367 26.2799L36.6617 24.4049H32.4717L31.805 26.2665L28.4467 26.2732C30.0455 22.4284 31.6477 18.5851 33.2533 14.7432C33.5267 14.0915 34.0117 13.7599 34.7267 13.7632C35.2733 13.7682 36.165 13.7682 37.4033 13.7649L40 26.2749L37.0367 26.2799ZM33.415 21.8365H36.115L35.1067 17.1365L33.415 21.8365ZM11.7667 13.7615L15.1433 13.7649L9.92333 26.2815L6.505 26.2782C5.64541 22.9721 4.79652 19.6632 3.95833 16.3515C3.79167 15.6915 3.46167 15.2299 2.82667 15.0115C2.26167 14.8165 1.32 14.5165 0 14.1082V13.7665H5.395C6.32833 13.7665 6.87333 14.2182 7.04833 15.1449C7.225 16.0732 7.66833 18.4365 8.38167 22.2349L11.7667 13.7615ZM19.7833 13.7649L17.1133 26.2782L13.9 26.2749L16.5667 13.7615L19.7833 13.7649ZM26.3 13.5332C27.2617 13.5332 28.4733 13.8332 29.17 14.1082L28.6067 16.7032C27.9767 16.4499 26.94 16.1082 26.0683 16.1199C24.8017 16.1415 24.0183 16.6732 24.0183 17.1832C24.0183 18.0132 25.3783 18.4315 26.7783 19.3382C28.3767 20.3715 28.5867 21.2999 28.5667 22.3082C28.545 24.4015 26.7783 26.4665 23.0517 26.4665C21.3517 26.4415 20.7383 26.2982 19.3517 25.8065L19.9383 23.0982C21.35 23.6899 21.9483 23.8782 23.155 23.8782C24.26 23.8782 25.2083 23.4315 25.2167 22.6532C25.2233 22.0999 24.8833 21.8249 23.6433 21.1415C22.4033 20.4565 20.6633 19.5082 20.6867 17.6049C20.715 15.1682 23.0233 13.5332 26.3017 13.5332H26.3Z"></path>
+					</svg>
+				</div>
+				<a class="footer-left__bottom-politic" href="{$wa_url}privacy-policy/">Политика конфиденциальности</a>
+			</div>
+
+		</div>
+			</div>
+		</div>
+
+
+	
+</footer>
+<div class="webnauts">
+    <span class="help">
+    <a class="webnauts__link" href="https://webnauts.pro/razrabotka-internet-magazina/">
+        <span class="webnauts__text">Сделано в Webnauts c</span>
+        <svg class="webnauts__svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.00065 3.01932C9.56665 1.61332 11.9867 1.65999 13.4953 3.17132C15.0033 4.68332 15.0553 7.09132 13.6527 8.66199L7.99932 14.3233L2.34732 8.66199C0.94465 7.09132 0.997317 4.67932 2.50465 3.17132C4.01465 1.66199 6.42998 1.61132 8.00065 3.01932Z"/>
+        </svg>
+        <span class="help-text">Лучшая IT-Компания</span>
+    </a>
+    </span>
+</div>
+
+{strip}

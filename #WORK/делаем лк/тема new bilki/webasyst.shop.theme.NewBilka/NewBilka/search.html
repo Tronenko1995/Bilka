@@ -1,0 +1,26 @@
+{strip}
+
+{$wa->globals("globalHeader", "[`Search results for`]: \"`$title`\"")}
+
+<!-- <div class="s-search-page"> -->
+    <div class="page-find">
+
+        <div class="page-category">
+            <div class="page-category__wrap">
+
+    {* @event frontend_search.%plugin_id% *}
+    {foreach $frontend_search as $_}{$_}{/foreach}
+
+    {if !empty($products)}
+        {include file="./products.html" inline}
+
+    {else}
+        <p class="main-container__top-description">По запросу <span class="none-find"></span> не найдено ни одного товара.</p>
+    {/if}
+
+    </div>
+    </div>
+    </div>
+<!-- </div> -->
+
+{/strip}

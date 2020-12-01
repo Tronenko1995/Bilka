@@ -1,0 +1,778 @@
+{strip}
+
+{$wa->globals("showWidgets", true)}
+
+{function name="_renderSlider" promocards=[] products=[] type=""}
+    {include file="home.slider.html" promocards=$promocards products=$products type=$type inline}
+{/function}
+
+{$wa->globals("isShopHome", true)}
+{$wa->globals("showBottomBanner", true)}
+{$_promocards = $wa->shop->promos('link', '900')}
+
+{$_show_product_actions = false}
+{if !empty($theme_settings.show_product_actions_on_main_page)}
+    {$_show_product_actions = true}
+{/if}
+
+<!--<div class="s-home-wrapper">-->
+
+    {* SLIDER *}
+    <div class="slider">
+	<div class="slider__wrap">
+		<img class="slider__img" src="{$wa_url}img/slider-1.jpg" alt="">
+		<img class="slider__img" src="{$wa_url}img/slider-1.jpg" alt="">
+		<img class="slider__img" src="{$wa_url}img/slider-1.jpg" alt="">
+		<img class="slider__img" src="{$wa_url}img/slider-1.jpg" alt="">
+	</div>
+</div>
+
+    {if $theme_settings.slider_mode === "promos"}
+        {if !empty($_promocards)}
+            {_renderSlider promocards=$_promocards type="wide" use_promo_style=true}
+        {/if}
+
+    {elseif $theme_settings.slider_mode === "promos_without_mask"}
+        {if !empty($_promocards)}
+            {_renderSlider promocards=$_promocards type="wide"}
+        {/if}
+
+    {elseif $theme_settings.slider_mode === "products"}
+        {$_list_id = "bestsellers"}
+        {if !empty($theme_settings.slider_product_list_id)}
+            {$_list_id = $theme_settings.slider_product_list_id}
+        {/if}
+        {$_slider_products = $wa->shop->productSet($_list_id)}
+
+        {if !empty($_slider_products)}
+            {_renderSlider products=$_slider_products}
+        {/if}
+
+    {elseif $theme_settings.slider_mode === "products_wide"}
+        {$_list_id = "bestsellers"}
+        {if !empty($theme_settings.slider_product_list_id)}
+            {$_list_id = $theme_settings.slider_product_list_id}
+        {/if}
+        {$_slider_products = $wa->shop->productSet($_list_id)}
+
+        {if !empty($_slider_products)}
+            {_renderSlider products=$_slider_products type="wide"}
+        {/if}
+    {/if}
+
+    {* PROMOCARDS *}
+    <div class="types">
+	<div class="types__wrap">
+
+		<a class="container-big" href="{$wa_url}category/dlya-xiaomi/">
+			<div class="container-big__left">
+				<img class="container-big__brand-img" src="{$wa_url}img/brand_mi.jpg" alt="">
+				<div class="container-big__brand-title">Xiaomi</div>
+				<div class="container-big__brand-text">Чехлы и аксессуары</div>
+				<svg class="container-big__arrow" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+				<circle cx="19" cy="19" r="19" />
+				<path d="M21.7813 18.3334L18.2053 14.7574L19.148 13.8147L24.3333 19L19.148 24.1854L18.2053 23.2427L21.7813 19.6667H13.6666V18.3334H21.7813Z" fill="#202026"/>
+				</svg>
+			</div>
+			<div class="container-big__right">
+				<img class="container-big__img" src="{$wa_url}img/xiomi_img.jpg" alt="">
+			</div>
+		</a>
+
+		<a class="container" href="{$wa_url}category/aksessuary-dlya-yabloko-iphone/">
+			<div class="container__for-img">
+				<img class="container__img" src="{$wa_url}img/apple_iphone.png" alt="">
+			</div>
+			<img class="container__brand-img" src="{$wa_url}img/brand_apple.png" alt="">
+			<div class="container__bottom">
+				<div class="container__left">
+					<div class="container__brand-title">Iphone</div>
+					<div class="container__brand-text">Аксессуары</div>
+				</div>
+				<div class="container__right">
+					<svg class="container__arrow" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="19" cy="19" r="19"/>
+						<path d="M21.7813 18.3334L18.2053 14.7574L19.148 13.8147L24.3333 19L19.148 24.1854L18.2053 23.2427L21.7813 19.6667H13.6666V18.3334H21.7813Z" fill="#202026"/>
+					</svg>
+				</div>
+			</div>
+		</a>
+
+		<a class="container" href="{$wa_url}category/aksessuary-dlya-yabloko-iphone/">
+			<div class="container__for-img">
+				<img class="container__img" src="{$wa_url}img/apple_iphone.png" alt="">
+			</div>
+			<img class="container__brand-img" src="{$wa_url}img/brand_apple.png" alt="">
+			<div class="container__bottom">
+				<div class="container__left">
+					<div class="container__brand-title">Iphone</div>
+					<div class="container__brand-text">Аксессуары</div>
+				</div>
+				<div class="container__right">
+					<svg class="container__arrow" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="19" cy="19" r="19"/>
+						<path d="M21.7813 18.3334L18.2053 14.7574L19.148 13.8147L24.3333 19L19.148 24.1854L18.2053 23.2427L21.7813 19.6667H13.6666V18.3334H21.7813Z" fill="#202026"/>
+					</svg>
+				</div>
+			</div>
+		</a>
+
+		<a class="container" href="{$wa_url}category/aksessuary-dlya-yabloko-iphone/">
+			<div class="container__for-img">
+				<img class="container__img" src="{$wa_url}img/apple_iphone.png" alt="">
+			</div>
+			<img class="container__brand-img" src="{$wa_url}img/brand_apple.png" alt="">
+			<div class="container__bottom">
+				<div class="container__left">
+					<div class="container__brand-title">Iphone</div>
+					<div class="container__brand-text">Аксессуары</div>
+				</div>
+				<div class="container__right">
+					<svg class="container__arrow" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="19" cy="19" r="19"/>
+						<path d="M21.7813 18.3334L18.2053 14.7574L19.148 13.8147L24.3333 19L19.148 24.1854L18.2053 23.2427L21.7813 19.6667H13.6666V18.3334H21.7813Z" fill="#202026"/>
+					</svg>
+				</div>
+			</div>
+		</a>
+
+		<a class="container-big" href="{$wa_url}category/dlya-xiaomi/">
+			<div class="container-big__left">
+				<img class="container-big__brand-img" src="{$wa_url}img/brand_mi.jpg" alt="">
+				<div class="container-big__brand-title">Xiaomi</div>
+				<div class="container-big__brand-text">Чехлы и аксессуары</div>
+				<svg class="container-big__arrow" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+				<circle cx="19" cy="19" r="19"/>
+				<path d="M21.7813 18.3334L18.2053 14.7574L19.148 13.8147L24.3333 19L19.148 24.1854L18.2053 23.2427L21.7813 19.6667H13.6666V18.3334H21.7813Z" fill="#202026"/>
+				</svg>
+			</div>
+			<div class="container-big__right">
+				<img class="container-big__img" src="{$wa_url}img/xiomi_img.jpg" alt="">
+			</div>
+		</a>
+
+		<a class="container" href="{$wa_url}category/aksessuary-dlya-yabloko-iphone/">
+			<div class="container__for-img">
+				<img class="container__img" src="{$wa_url}img/apple_iphone.png" alt="">
+			</div>
+			<img class="container__brand-img" src="{$wa_url}img/brand_apple.png" alt="">
+			<div class="container__bottom">
+				<div class="container__left">
+					<div class="container__brand-title">Iphone</div>
+					<div class="container__brand-text">Аксессуары</div>
+				</div>
+				<div class="container__right">
+					<svg class="container__arrow" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="19" cy="19" r="19"/>
+						<path d="M21.7813 18.3334L18.2053 14.7574L19.148 13.8147L24.3333 19L19.148 24.1854L18.2053 23.2427L21.7813 19.6667H13.6666V18.3334H21.7813Z" fill="#202026"/>
+					</svg>
+				</div>
+			</div>
+		</a>
+
+	</div>
+</div>
+    {*if !empty($_promocards) && $theme_settings.show_promos_below_slider !== "hide"}
+        <section class="s-promos-wrapper">
+            <ul class="s-promos-list">
+                {foreach $_promocards as $promo}
+                    <li class="s-item-wrapper {if $theme_settings.show_promos_below_slider === "show_with_mask"}with-mask{/if}" id="s-promo-{$promo.id}">
+                        <div class="s-item-block">
+                            <div class="s-background" style="background-color: {$promo.background_color|default:"#fff"};"></div>
+
+                            {if !empty($promo.image)}<div class="s-image" style="background-image: url('{$promo.image}');"></div>{/if}
+
+                            <div class="s-text-wrapper" {if !empty($promo.color)}style="color: {$promo.color}"{/if}>
+                                <div class="s-text-block">
+                                    {if !empty($promo.title)}<h5>{$promo.title|escape}</h5>{/if}
+                                    {if !empty($promo.body)}<p>{$promo.body|escape}</p>{/if}
+                                </div>
+                            </div>
+
+                            <a class="s-link" href="{$promo.link|escape}"></a>
+                        </div>
+                    </li>
+                {/foreach}
+            </ul>
+        </section>
+    {/if*}
+
+    {* @event frontend_homepage.%plugin_id% *}
+	{foreach $frontend_homepage as $_}{$_}{/foreach}
+	
+	{$_show_compare = true}
+{if empty($theme_settings.enable_compare)}
+    {if !isset($hide_buttons) || !empty($hide_buttons)}
+        {$_show_compare = false}
+    {/if}
+{/if}
+
+    {* NewItems (Новинки) *}
+    
+		{$productsNI = $wa->shop->productSet("NewItems")} <!-- Вытащить весь товар из списка NewItems (Новинки) -->
+		{$allSkusNI = $wa->shop->skus(array_keys($productsNI))}
+
+        {if !empty($productsNI)} <!-- если есть товары в списке -->
+        
+    
+    <div class="new-items">
+	<div class="new-items__wrap">
+		<div class="new-items__title">Новинки</div>
+		<div class="new-items-slider">
+
+            {foreach $productsNI as $productNI}
+            {$available = $wa->shop->settings('ignore_stock_count') || $productNI.count === null || $productNI.count > 0}
+            {$badge_html = $wa->shop->badgeHtml($productNI.badge)}
+            {$productNI_image_src = $wa->shop->productImgUrl($productNI, "200")|default:"`$wa_theme_url`img/svg/empty_photo.svg"}
+        
+            {if !empty($productNI.skus) && !empty($productNI.skus[$productNI.sku_id])}
+                {$sku = $productNI.skus[$productNI.sku_id]}
+                {if empty($sku.available) && (count($productNI.skus) === 1)}{$available = false}{/if}
+			{/if}
+			
+			{$skusNI = $allSkusNI[$productNI.id]}
+        
+                <div class="main-container__for-slider-item for-slider-item">
+                <div class="main-container__item slider-item" data-product-id="{$productNI.id}">
+
+				{*if !empty($_show_compare)}
+				<a class="s-compare-button main-container__item-compare-box {if $wa->shop->inComparison($productNI.id)}is-active{/if}" href="javascript:void(0);" data-product="{$productNI.id}" title="{if $wa->shop->inComparison($productNI.id)}[`In comparison list`]{else}[`To comparison`]{/if}">
+					<svg class="main-container__item-compare-box-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M16.05 12.05L21 17L16.05 21.95L14.636 20.536L17.172 17.999L4 18V16H17.172L14.636 13.464L16.05 12.05ZM7.95 2.04999L9.364 3.46399L6.828 5.99999H20V7.99999H6.828L9.364 10.536L7.95 11.95L3 6.99999L7.95 2.04999Z"/>
+					</svg>
+				</a>
+				{/if*}
+         
+        
+                {if $productNI.sku_count > 1}
+                <ul class="main-container__item-colors" data-sku-count="{$productNI.sku_count}">
+                    {foreach from=$skusNI item=color}
+        
+                        {if $color.name == "Пионы"}<li class="main-container__item-colors-item color--white" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Пионы"></a></li>
+                            {elseif $color.name == "белый"}<li class="main-container__item-colors-item color--white" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Белый"></a></li>
+                            {elseif $color.name == "Бирюзовый"}<li class="main-container__item-colors-item color--cyan" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Бирюзовый"></a></li>
+                            {elseif $color.name == "Голубой"}<li class="main-container__item-colors-item color--deepskyblue" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Голубой"></a></li>
+                            {elseif $color.name == "Золотой"}<li class="main-container__item-colors-item color--gold" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Золотой"></a></li>
+                            {elseif $color.name == "Кофейный"}<li class="main-container__item-colors-item color--coffee" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Кофейный"></a></li>
+                            {elseif $color.name == "Кремовый"}<li class="main-container__item-colors-item color--cream" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Кремовый"></a></li>
+                            {elseif $color.name == "Лайм"}<li class="main-container__item-colors-item color--lime" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Лайм"></a></li>
+                            {elseif $color.name == "Малиновый"}<li class="main-container__item-colors-item color--magenta" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Малиновый"></a></li>
+                            {elseif $color.name == "Металлик"}<li class="main-container__item-colors-item color--coral" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Металлик"></a></li>
+                            {elseif $color.name == "Пурпурный"}<li class="main-container__item-colors-item color--purple" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Пурпурный"></a></li>
+                            {elseif $color.name == "Розовый"}<li class="main-container__item-colors-item color--pink" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Розовый"></a></li>
+                            {elseif $color.name == "Розы"}<li class="main-container__item-colors-item color--roses" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Розы"></a></li>
+                            {elseif $color.name == "Салатовый"}<li class="main-container__item-colors-item color--charteuse" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Салатовый"></a></li>
+                            {elseif $color.name == "Синий"}<li class="main-container__item-colors-item color--blue" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Синий"></a></li>
+                            {elseif $color.name == "Старый цветок"}<li class="main-container__item-colors-item color--oldflower" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Старый цветок"></a></li>
+                            {elseif $color.name == "Темно-синий"}<li class="main-container__item-colors-item color--navy" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Темно-синий"></a></li>
+                            {elseif $color.name == "Фиолетовый"}<li class="main-container__item-colors-item color--violet" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Фиолетовый"></a></li>
+                            {elseif $color.name == "желтый"}<li class="main-container__item-colors-item color--yellow" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="желтый"></a></li>
+                            {elseif $color.name == "зеленый"}<li class="main-container__item-colors-item color--darkgreen" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="зеленый"></a></li>
+                            {elseif $color.name == "коричневый"}<li class="main-container__item-colors-item color--brown" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="коричневый"></a></li>
+                            {elseif $color.name == "красный"}<li class="main-container__item-colors-item color--red" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="красный"></a></li>
+                            {elseif $color.name == "оранжевый"}<li class="main-container__item-colors-item color--orange" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="оранжевый"></a></li>
+                            {elseif $color.name == "прозрачный"}<li class="main-container__item-colors-item color--transparent" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="прозрачный"></a></li>
+                            {elseif $color.name == "серебро"}<li class="main-container__item-colors-item color--silver" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="серебро"></a></li>
+                            {elseif $color.name == "серый"}<li class="main-container__item-colors-item color--gray" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="серый"></a></li>
+                            {elseif $color.name == "черный"}<li class="main-container__item-colors-item color--black" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="черный"></a></li>
+                            {elseif $color.name == "бежевый"}<li class="main-container__item-colors-item color--beige" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="бежевый"></a></li>
+                            {elseif $color.name == "Хаки"}<li class="main-container__item-colors-item color--khaki" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Хаки"></a></li>
+                            {elseif $color.name == "Мятный"}<li class="main-container__item-colors-item color--mint" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Мятный"></a></li>
+                            {else}<li class="main-container__item-colors-item color--black" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Неизвестный цвет">?</a></li>
+                        {/if}
+        
+                    {/foreach}
+                    <!-- <li class="main-container__item-colors-item main-container__item-colors-item--orange"></li>                          
+                    <li class="main-container__item-colors-item main-container__item-colors-item--red"></li>
+                    <li class="main-container__item-colors-item main-container__item-colors-item--green"></li>                          -->
+                </ul>
+                {/if}
+				{if !empty($badge_html)}
+					{$badge_html}
+				{/if}
+                <img src="{$productNI_image_src}" itemprop="image" width="200" height="200" alt="{$productNI.name}" image_id="{$productNI.image_id}" class="main-container__item-img">
+                <p class="main-container__item-code">Код товара: <span class="jsItemCode">{$productNI.sku_id}</span></p>
+                <a class="main-container__item-full-link" href="{$productNI.frontend_url}" title='{$productNI.name}'><p itemprop="name" class="main-container__item-text">{$productNI.name}</p></a>
+        
+                {$_rate = 0}
+                {if !empty($productNI.rating)}
+                    {$_rate = round($productNI.rating, 1)}
+                {/if}
+        
+                <div class="main-container__item-for-rating">
+                    {for $_i = 0 to 4}
+                        {$_icon_class = "svg-star"}
+                        {if $_i < $_rate}
+                            {$_delta = $_rate - $_i}
+                            {if $_delta >= 1}
+                                {$_icon_class = "svg-star--active"}
+                            {elseif round($_delta) == 1}
+                                {$_icon_class = "svg-star--half"}
+                            {/if}
+                        {/if}
+                        <div class="main-container__item-for-rating-svg {$_icon_class}"></div>
+                    {/for}
+                    
+                    <p class="main-container__item-for-rating-text">? Отзывов</p>
+                </div>
+        
+                <div class="main-container__item-for-price">
+                    <meta itemprop="price" content="{shop_currency($productNI.price, null, null, 0)}">
+                    <meta itemprop="priceCurrency" content="{$wa->shop->currency()}">
+                    <p class="main-container__item-for-price-text">{shop_currency_html($productNI.price)}</p>
+                    {if $available}
+                            <form class="main-container__item-for-price-form add-to-cart" {if $productNI.sku_count > 1}data-url="{$productNI.frontend_url}{if strpos($productNI.frontend_url, '?')}&{else}?{/if}cart=1"{/if} method="post" action="{$wa->getUrl('/frontendCart/add')}">
+                            {/if}
+                    <button class="main-container__item-for-price-box js-add-button" type="submit" value="{_wd('shop', 'Buy')}" {if !$available}disabled{/if}>
+                        <svg class="main-container__item-for-price-box-svg" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.99996 6.41402L0.756958 3.17202L2.17196 1.75702L5.41396 5.00002H20.656C20.8118 5.00001 20.9655 5.03643 21.1048 5.10639C21.2441 5.17634 21.3651 5.27788 21.4582 5.40291C21.5513 5.52795 21.6138 5.673 21.6409 5.82651C21.6679 5.98001 21.6587 6.13771 21.614 6.28702L19.214 14.287C19.1522 14.4931 19.0257 14.6738 18.8531 14.8022C18.6805 14.9307 18.4711 15 18.256 15H5.99996V17H17V19H4.99996C4.73474 19 4.48039 18.8947 4.29285 18.7071C4.10531 18.5196 3.99996 18.2652 3.99996 18V6.41402ZM5.49996 23C5.10213 23 4.7206 22.842 4.4393 22.5607C4.15799 22.2794 3.99996 21.8978 3.99996 21.5C3.99996 21.1022 4.15799 20.7207 4.4393 20.4394C4.7206 20.1581 5.10213 20 5.49996 20C5.89778 20 6.27931 20.1581 6.56062 20.4394C6.84192 20.7207 6.99996 21.1022 6.99996 21.5C6.99996 21.8978 6.84192 22.2794 6.56062 22.5607C6.27931 22.842 5.89778 23 5.49996 23ZM17.5 23C17.1021 23 16.7206 22.842 16.4393 22.5607C16.158 22.2794 16 21.8978 16 21.5C16 21.1022 16.158 20.7207 16.4393 20.4394C16.7206 20.1581 17.1021 20 17.5 20C17.8978 20 18.2793 20.1581 18.5606 20.4394C18.8419 20.7207 19 21.1022 19 21.5C19 21.8978 18.8419 22.2794 18.5606 22.5607C18.2793 22.842 17.8978 23 17.5 23Z"/>
+                            </svg>                                
+                    </button>
+                    {if $available}
+                    <input type="hidden" name="product_id" value="{$productNI.id}">
+                </form>
+                {/if}
+                </div>
+            </div>
+		</div>
+        {/foreach}
+
+		</div>
+	</div>
+</div>
+
+{/if}
+
+
+{* TopSales (Топ продаж) *}
+    
+{$productsTS = $wa->shop->productSet("TopSales")} <!-- Вытащить весь товар из списка TopSales (Топ продаж) -->
+{$allSkusTS = $wa->shop->skus(array_keys($productsTS))}
+
+{if !empty($productsTS)} <!-- если есть товары в списке -->
+
+
+<div class="top-sales">
+	<div class="top-sales__wrap">
+		<div class="top-sales__title">Топ продаж</div>
+		<div class="top-sales-slider">
+
+	{foreach $productsTS as $productTS}
+	{$available = $wa->shop->settings('ignore_stock_count') || $productTS.count === null || $productTS.count > 0}
+	{$badge_html = $wa->shop->badgeHtml($productTS.badge)}
+	{$productTS_image_src = $wa->shop->productImgUrl($productTS, "200")|default:"`$wa_theme_url`img/svg/empty_photo.svg"}
+
+	{if !empty($productTS.skus) && !empty($productTS.skus[$productTS.sku_id])}
+		{$sku = $productTS.skus[$productTS.sku_id]}
+		{if empty($sku.available) && (count($productTS.skus) === 1)}{$available = false}{/if}
+	{/if}
+
+	{$skusTS = $allSkusTS[$productTS.id]}
+
+		<div class="main-container__for-slider-item for-slider-item">
+		<div class="main-container__item slider-item" data-product-id="{$productTS.id}">
+
+        {*if !empty($_show_compare)}
+        <a class="s-compare-button main-container__item-compare-box {if $wa->shop->inComparison($productTS.id)}is-active{/if}" href="javascript:void(0);" data-product="{$productTS.id}" title="{if $wa->shop->inComparison($productTS.id)}[`In comparison list`]{else}[`To comparison`]{/if}">
+            <svg class="main-container__item-compare-box-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.05 12.05L21 17L16.05 21.95L14.636 20.536L17.172 17.999L4 18V16H17.172L14.636 13.464L16.05 12.05ZM7.95 2.04999L9.364 3.46399L6.828 5.99999H20V7.99999H6.828L9.364 10.536L7.95 11.95L3 6.99999L7.95 2.04999Z"/>
+            </svg>
+        </a>
+		{/if*}
+ 
+
+		{if $productTS.sku_count > 1}
+		<ul class="main-container__item-colors" data-sku-count="{$productTS.sku_count}">
+			{foreach from=$skusTS item=color}
+
+				{if $color.name == "Пионы"}<li class="main-container__item-colors-item color--white" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Пионы"></a></li>
+					{elseif $color.name == "белый"}<li class="main-container__item-colors-item color--white" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Белый"></a></li>
+					{elseif $color.name == "Бирюзовый"}<li class="main-container__item-colors-item color--cyan" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Бирюзовый"></a></li>
+					{elseif $color.name == "Голубой"}<li class="main-container__item-colors-item color--deepskyblue" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Голубой"></a></li>
+					{elseif $color.name == "Золотой"}<li class="main-container__item-colors-item color--gold" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Золотой"></a></li>
+					{elseif $color.name == "Кофейный"}<li class="main-container__item-colors-item color--coffee" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Кофейный"></a></li>
+					{elseif $color.name == "Кремовый"}<li class="main-container__item-colors-item color--cream" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Кремовый"></a></li>
+					{elseif $color.name == "Лайм"}<li class="main-container__item-colors-item color--lime" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Лайм"></a></li>
+					{elseif $color.name == "Малиновый"}<li class="main-container__item-colors-item color--magenta" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Малиновый"></a></li>
+					{elseif $color.name == "Металлик"}<li class="main-container__item-colors-item color--coral" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Металлик"></a></li>
+					{elseif $color.name == "Пурпурный"}<li class="main-container__item-colors-item color--purple" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Пурпурный"></a></li>
+					{elseif $color.name == "Розовый"}<li class="main-container__item-colors-item color--pink" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Розовый"></a></li>
+					{elseif $color.name == "Розы"}<li class="main-container__item-colors-item color--roses" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Розы"></a></li>
+					{elseif $color.name == "Салатовый"}<li class="main-container__item-colors-item color--charteuse" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Салатовый"></a></li>
+					{elseif $color.name == "Синий"}<li class="main-container__item-colors-item color--blue" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Синий"></a></li>
+					{elseif $color.name == "Старый цветок"}<li class="main-container__item-colors-item color--oldflower" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Старый цветок"></a></li>
+					{elseif $color.name == "Темно-синий"}<li class="main-container__item-colors-item color--navy" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Темно-синий"></a></li>
+					{elseif $color.name == "Фиолетовый"}<li class="main-container__item-colors-item color--violet" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Фиолетовый"></a></li>
+					{elseif $color.name == "желтый"}<li class="main-container__item-colors-item color--yellow" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="желтый"></a></li>
+					{elseif $color.name == "зеленый"}<li class="main-container__item-colors-item color--darkgreen" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="зеленый"></a></li>
+					{elseif $color.name == "коричневый"}<li class="main-container__item-colors-item color--brown" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="коричневый"></a></li>
+					{elseif $color.name == "красный"}<li class="main-container__item-colors-item color--red" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="красный"></a></li>
+					{elseif $color.name == "оранжевый"}<li class="main-container__item-colors-item color--orange" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="оранжевый"></a></li>
+					{elseif $color.name == "прозрачный"}<li class="main-container__item-colors-item color--transparent" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="прозрачный"></a></li>
+					{elseif $color.name == "серебро"}<li class="main-container__item-colors-item color--silver" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="серебро"></a></li>
+					{elseif $color.name == "серый"}<li class="main-container__item-colors-item color--gray" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="серый"></a></li>
+					{elseif $color.name == "черный"}<li class="main-container__item-colors-item color--black" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="черный"></a></li>
+					{elseif $color.name == "бежевый"}<li class="main-container__item-colors-item color--beige" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="бежевый"></a></li>
+					{elseif $color.name == "Хаки"}<li class="main-container__item-colors-item color--khaki" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Хаки"></a></li>
+					{elseif $color.name == "Мятный"}<li class="main-container__item-colors-item color--mint" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Мятный"></a></li>
+					{else}<li class="main-container__item-colors-item color--black" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="Неизвестный цвет">?</a></li>
+				{/if}
+
+			{/foreach}
+			<!-- <li class="main-container__item-colors-item main-container__item-colors-item--orange"></li>                          
+			<li class="main-container__item-colors-item main-container__item-colors-item--red"></li>
+			<li class="main-container__item-colors-item main-container__item-colors-item--green"></li>                          -->
+		</ul>
+		{/if}
+		{if !empty($badge_html)}
+			{$badge_html}
+		{/if}
+		<img src="{$productTS_image_src}" itemprop="image" width="200" height="200" alt="{$productTS.name}" image_id="{$productTS.image_id}" class="main-container__item-img">
+		<p class="main-container__item-code">Код товара: <span class="jsItemCode">{$productTS.sku_id}</span></p>
+		<a class="main-container__item-full-link" href="{$productTS.frontend_url}" title='{$productTS.name}'><p itemprop="name" class="main-container__item-text">{$productTS.name}</p></a>
+
+		{$_rate = 0}
+		{if !empty($productTS.rating)}
+			{$_rate = round($productTS.rating, 1)}
+		{/if}
+
+		<div class="main-container__item-for-rating">
+			{for $_i = 0 to 4}
+				{$_icon_class = "svg-star"}
+				{if $_i < $_rate}
+					{$_delta = $_rate - $_i}
+					{if $_delta >= 1}
+						{$_icon_class = "svg-star--active"}
+					{elseif round($_delta) == 1}
+						{$_icon_class = "svg-star--half"}
+					{/if}
+				{/if}
+				<div class="main-container__item-for-rating-svg {$_icon_class}"></div>
+			{/for}
+			
+			<p class="main-container__item-for-rating-text">? Отзывов</p>
+		</div>
+
+		<div class="main-container__item-for-price">
+			<meta itemprop="price" content="{shop_currency($productTS.price, null, null, 0)}">
+			<meta itemprop="priceCurrency" content="{$wa->shop->currency()}">
+			<p class="main-container__item-for-price-text">{shop_currency_html($productTS.price)}</p>
+			{if $available}
+					<form class="main-container__item-for-price-form add-to-cart" {if $productTS.sku_count > 1}data-url="{$productTS.frontend_url}{if strpos($productTS.frontend_url, '?')}&{else}?{/if}cart=1"{/if} method="post" action="{$wa->getUrl('/frontendCart/add')}">
+					{/if}
+			<button class="main-container__item-for-price-box js-add-button" type="submit" value="{_wd('shop', 'Buy')}" {if !$available}disabled{/if}>
+				<svg class="main-container__item-for-price-box-svg" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<path d="M3.99996 6.41402L0.756958 3.17202L2.17196 1.75702L5.41396 5.00002H20.656C20.8118 5.00001 20.9655 5.03643 21.1048 5.10639C21.2441 5.17634 21.3651 5.27788 21.4582 5.40291C21.5513 5.52795 21.6138 5.673 21.6409 5.82651C21.6679 5.98001 21.6587 6.13771 21.614 6.28702L19.214 14.287C19.1522 14.4931 19.0257 14.6738 18.8531 14.8022C18.6805 14.9307 18.4711 15 18.256 15H5.99996V17H17V19H4.99996C4.73474 19 4.48039 18.8947 4.29285 18.7071C4.10531 18.5196 3.99996 18.2652 3.99996 18V6.41402ZM5.49996 23C5.10213 23 4.7206 22.842 4.4393 22.5607C4.15799 22.2794 3.99996 21.8978 3.99996 21.5C3.99996 21.1022 4.15799 20.7207 4.4393 20.4394C4.7206 20.1581 5.10213 20 5.49996 20C5.89778 20 6.27931 20.1581 6.56062 20.4394C6.84192 20.7207 6.99996 21.1022 6.99996 21.5C6.99996 21.8978 6.84192 22.2794 6.56062 22.5607C6.27931 22.842 5.89778 23 5.49996 23ZM17.5 23C17.1021 23 16.7206 22.842 16.4393 22.5607C16.158 22.2794 16 21.8978 16 21.5C16 21.1022 16.158 20.7207 16.4393 20.4394C16.7206 20.1581 17.1021 20 17.5 20C17.8978 20 18.2793 20.1581 18.5606 20.4394C18.8419 20.7207 19 21.1022 19 21.5C19 21.8978 18.8419 22.2794 18.5606 22.5607C18.2793 22.842 17.8978 23 17.5 23Z"/>
+					</svg>                                
+			</button>
+			{if $available}
+			<input type="hidden" name="product_id" value="{$productTS.id}">
+		</form>
+		{/if}
+		</div>
+	</div>
+</div>
+{/foreach}
+
+</div>
+</div>
+</div>
+
+{/if}
+		    
+
+
+
+
+    {* NEWS *}
+    
+    {$_blog_id = null}
+    {if !empty($theme_settings.news_blog_id)}
+    {$_blog_id = $theme_settings.news_blog_id}
+    {/if}
+    
+    {$_posts = $wa->blog->posts($_blog_id, 3)}
+    {if !empty($_posts)}
+    
+    <div class="news">
+    	<div class="news__wrap">
+    		<div class="news__head">
+    			<div class="news__head-title">Новости</div>
+    			<a class="news__head-button" href='{$wa->getUrl("blog/frontend")}'>Все новости</a>
+    		</div>
+    		
+    		<div class="news__items">
+    		    
+
+            
+                {foreach $_posts as $_post}
+    			<a class="news__item news-item" href='{$_post.link}'>
+    			    <div class="news-item__top">
+					    <p class="news-item__top-title">{$_post.title}</p>
+					    <p class="news-item__top-text">{$_post.text|strip_tags|truncate:150}</p>
+				    </div>
+    				<div class="news-item__bottom">
+    					<div class="news-item__bottom-date">{$_post.datetime|date_format:'d.m.Y'}</div>
+    					<svg class="news-item__bottom-arrow" width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+    						<circle cx="19" cy="19" r="19"/>
+    						<path d="M21.7813 18.3334L18.2053 14.7574L19.148 13.8147L24.3333 19L19.148 24.1854L18.2053 23.2427L21.7813 19.6667H13.6666V18.3334H21.7813Z" fill="#202026"/>
+    					</svg>
+    				</div>
+    			</a>
+    			
+    			{/foreach}
+
+    		</div>
+	    </div>
+    </div>
+    
+    {/if}
+    
+    {* ABOUTS *}
+    <div class="about">
+    	<div class="about__wrap">
+    		<div class="about__title">О нашем магазине</div>
+    		<div class="about__center">
+    			<div class="about__center-text">Добро пожаловать в интернет-магазин аксессуаров для мобильных телефонов и планшетов Билка! Мы предлагаем широкий ассортимент чехлов, защитных пленок и стёкол, аккумуляторов, кабелей-переходников, зарядок обычных и беспроводных, автодержателей, моноподов, bluetooth-колонок, сенсорных перчаток, наушников, карт памяти и других принадлежностей — только качественные аксессуары для мобильных устройств по адекватным ценам, способных приятно удивить каждого обладателя мобильного телефона или планшета.</div>
+    			<div class="about__center-for-img">
+    				<img src="img/logo-bilka.png" width="300" height="73" alt="" class="about__center-img">
+    				<p class="about__center-description">Интернет-магазин мобильных аксессуаров</p>
+    			</div>
+    		</div>
+    		<div class="about__bottom about-bottom">
+    			<div class="about-bottom__items">
+    
+    				<div class="about-bottom__item">
+    					<div class="about-bottom__item-top">
+    						<svg class="about-bottom__item-top-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    							<path d="M21 4H7C6.46957 4 5.96086 4.21071 5.58579 4.58579C5.21071 4.96086 5 5.46957 5 6C5 6.53043 5.21071 7.03914 5.58579 7.41421C5.96086 7.78929 6.46957 8 7 8H21V21C21 21.2652 20.8946 21.5196 20.7071 21.7071C20.5196 21.8946 20.2652 22 20 22H7C5.93913 22 4.92172 21.5786 4.17157 20.8284C3.42143 20.0783 3 19.0609 3 18V6C3 4.93913 3.42143 3.92172 4.17157 3.17157C4.92172 2.42143 5.93913 2 7 2H20C20.2652 2 20.5196 2.10536 20.7071 2.29289C20.8946 2.48043 21 2.73478 21 3V4ZM20 7H7C6.73478 7 6.48043 6.89464 6.29289 6.70711C6.10536 6.51957 6 6.26522 6 6C6 5.73478 6.10536 5.48043 6.29289 5.29289C6.48043 5.10536 6.73478 5 7 5H20V7Z" fill="#F37A22"/>
+    						</svg>
+    
+    						<div class="about-bottom__item-top-title">Каталог</div>
+    					</div>
+    					<div class="about-bottom__item-text">Особое внимание в своей работе мы традиционно уделяем выбору форм, цветов и решений для самых разных моделей девайсов. Именно поэтому в каталоге bilka.com.ua Вы сможете ...</div>
+    					<svg class="about-bottom__item-arrow" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    						<path d="M8.66664 10.7814L12.2426 7.20541L13.1853 8.14808L7.99997 13.3334L2.81464 8.14808L3.7573 7.20541L7.3333 10.7814L7.3333 2.66675L8.66664 2.66675L8.66664 10.7814Z"/>
+    					</svg>
+    				</div>
+    
+    				<div class="about-bottom__item">
+    					<div class="about-bottom__item-top">
+    						<svg class="about-bottom__item-top-svg" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    							<path d="M12 22C6.477 22 2 17.523 2 12C2 6.477 6.477 2 12 2C17.523 2 22 6.477 22 12C22 17.523 17.523 22 12 22ZM11.003 16L18.073 8.929L16.659 7.515L11.003 13.172L8.174 10.343L6.76 11.757L11.003 16Z" fill="#F37A22"/>
+    						</svg>
+    
+    						<div class="about-bottom__item-top-title">Как выбрать?</div>
+    					</div>
+    					<div class="about-bottom__item-text">Особое внимание в своей работе мы традиционно уделяем выбору форм, цветов и решений для самых разных моделей девайсов. Именно поэтому в каталоге bilka.com.ua Вы сможете ...</div>
+    					<svg class="about-bottom__item-arrow" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    						<path d="M8.66664 10.7814L12.2426 7.20541L13.1853 8.14808L7.99997 13.3334L2.81464 8.14808L3.7573 7.20541L7.3333 10.7814L7.3333 2.66675L8.66664 2.66675L8.66664 10.7814Z"/>
+    					</svg>
+    				</div>
+    
+    				<div class="about-bottom__item">
+    					<div class="about-bottom__item-top">
+    						<svg class="about-bottom__item-top-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    							<path d="M7 8H4L1 12.056V18H3.035C3.15388 18.8343 3.56979 19.5977 4.20632 20.1499C4.84286 20.7022 5.65728 21.0063 6.5 21.0063C7.34272 21.0063 8.15714 20.7022 8.79368 20.1499C9.43022 19.5977 9.84612 18.8343 9.965 18H15.035C15.1539 18.8343 15.5698 19.5977 16.2063 20.1499C16.8429 20.7022 17.6573 21.0063 18.5 21.0063C19.3427 21.0063 20.1571 20.7022 20.7937 20.1499C21.4302 19.5977 21.8461 18.8343 21.965 18H23V6C23 5.73478 22.8946 5.48043 22.7071 5.29289C22.5196 5.10536 22.2652 5 22 5H8C7.73478 5 7.48043 5.10536 7.29289 5.29289C7.10536 5.48043 7 5.73478 7 6V8ZM7 10V13H3V12.715L5.008 10H7Z" fill="#F37A22"/>
+    						</svg>
+    
+    
+    						<div class="about-bottom__item-top-title">Доставка</div>
+    					</div>
+    					<div class="about-bottom__item-text">Особое внимание в своей работе мы традиционно уделяем выбору форм, цветов и решений для самых разных моделей девайсов. Именно поэтому в каталоге bilka.com.ua Вы сможете ...</div>
+    					<svg class="about-bottom__item-arrow" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    						<path d="M8.66664 10.7814L12.2426 7.20541L13.1853 8.14808L7.99997 13.3334L2.81464 8.14808L3.7573 7.20541L7.3333 10.7814L7.3333 2.66675L8.66664 2.66675L8.66664 10.7814Z"/>
+    					</svg>
+    				</div>
+    
+    				<div class="about-bottom__item">
+    					<div class="about-bottom__item-top">
+    						<svg class="about-bottom__item-top-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    							<path d="M10.9 2.1001L20.799 3.5151L22.213 13.4151L13.021 22.6071C12.8335 22.7946 12.5792 22.8999 12.314 22.8999C12.0488 22.8999 11.7945 22.7946 11.607 22.6071L1.707 12.7071C1.51953 12.5196 1.41422 12.2653 1.41422 12.0001C1.41422 11.7349 1.51953 11.4806 1.707 11.2931L10.9 2.1001ZM13.728 10.5861C13.9138 10.7718 14.1343 10.9191 14.3769 11.0195C14.6196 11.12 14.8797 11.1717 15.1424 11.1716C15.405 11.1716 15.6651 11.1198 15.9077 11.0193C16.1504 10.9187 16.3708 10.7714 16.5565 10.5856C16.7422 10.3998 16.8895 10.1793 16.9899 9.93666C17.0904 9.69398 17.1421 9.43389 17.1421 9.17124C17.142 8.90859 17.0902 8.64852 16.9897 8.40588C16.8891 8.16324 16.7418 7.94279 16.556 7.7571C16.3702 7.57141 16.1497 7.42412 15.9071 7.32366C15.6644 7.22319 15.4043 7.1715 15.1416 7.17155C14.6112 7.17164 14.1025 7.38245 13.7275 7.7576C13.3525 8.13275 13.1419 8.64151 13.142 9.17195C13.142 9.7024 13.3529 10.2111 13.728 10.5861Z" fill="#F37A22"/>
+    						</svg>
+    
+    
+    						<div class="about-bottom__item-top-title">Цены на аксессуары</div>
+    					</div>
+    					<div class="about-bottom__item-text">Особое внимание в своей работе мы традиционно уделяем выбору форм, цветов и решений для самых разных моделей девайсов. Именно поэтому в каталоге bilka.com.ua Вы сможете ...</div>
+    					<svg class="about-bottom__item-arrow" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    						<path d="M8.66664 10.7814L12.2426 7.20541L13.1853 8.14808L7.99997 13.3334L2.81464 8.14808L3.7573 7.20541L7.3333 10.7814L7.3333 2.66675L8.66664 2.66675L8.66664 10.7814Z"/>
+    					</svg>
+    				</div>
+    
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    
+    {* LAST REVIEW *}
+    <div class="last-review">
+	<div class="last-review__wrap">
+		<div class="last-review__title">Последние отзывы</div>
+		<div class="last-review-slider">
+
+			<div class="last-review-slider__for-item">
+				<a class="last-review-slider__item last-review-slider-item" href="#">
+					<span class="last-review-slider-item__top">
+						<span class="last-review-slider-item__top-top-1">
+							<span class="last-review-slider-item__top-top-1-name">Анна
+								<span class="last-review-slider-item__top-top-1-date">7 июня 2018 07:18</span>
+							</span>
+							<span class="last-review-slider-item__top-top-1-rating">
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+							</svg>
+						</span>
+					</span>
+					<span class="last-review-slider-item__text">Здравствуйте. Хотела поблагодарить Вас за качественный товар. Не думала, что он превзойдет себя, а в носке просто супер!!</span>
+				</span>
+				<p class="last-review-slider-item__bottom">
+					<img width="48" height="48" src="{$wa_url}img/samsung_img1.png" alt="" class="last-review-slider-item__bottom-img">
+					<span class="last-review-slider-item__bottom-text">Автомобильный держатель (холдер) на вентиляцию JHD-23HD08 (3,5"-6,3")</span>
+				</p>
+				</a>
+			</div>
+
+			<div class="last-review-slider__for-item">
+				<a class="last-review-slider__item last-review-slider-item" href="#">
+					<span class="last-review-slider-item__top">
+						<span class="last-review-slider-item__top-top-1">
+							<span class="last-review-slider-item__top-top-1-name">Анна
+								<span class="last-review-slider-item__top-top-1-date">7 июня 2018 07:18</span>
+							</span>
+							<span class="last-review-slider-item__top-top-1-rating">
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+							</svg>
+						</span>
+					</span>
+					<span class="last-review-slider-item__text">Здравствуйте. Хотела поблагодарить Вас за качественный товар. Не думала, что он превзойдет себя, а в носке просто супер!! Вас за качественный товар. Не думала, что он ...</span>
+				</span>
+				<p class="last-review-slider-item__bottom">
+					<img width="48" height="48" src="{$wa_url}img/samsung_img1.png" alt="" class="last-review-slider-item__bottom-img">
+					<span class="last-review-slider-item__bottom-text">Автомобильный держатель (холдер) на вентиляцию JHD-23HD08 (3,5"-6,3")</span>
+				</p>
+				</a>
+			</div>
+
+			<div class="last-review-slider__for-item">
+				<a class="last-review-slider__item last-review-slider-item" href="#">
+					<span class="last-review-slider-item__top">
+						<span class="last-review-slider-item__top-top-1">
+							<span class="last-review-slider-item__top-top-1-name">Анна
+								<span class="last-review-slider-item__top-top-1-date">7 июня 2018 07:18</span>
+							</span>
+							<span class="last-review-slider-item__top-top-1-rating">
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+							</svg>
+						</span>
+					</span>
+					<span class="last-review-slider-item__text">Здравствуйте. Хотела поблагодарить Вас за качественный товар.</span>
+				</span>
+				<p class="last-review-slider-item__bottom">
+					<img width="48" height="48" src="{$wa_url}img/samsung_img1.png" alt="" class="last-review-slider-item__bottom-img">
+					<span class="last-review-slider-item__bottom-text">Автомобильный держатель (холдер) на вентиляцию JHD-23HD08 (3,5"-6,3")</span>
+				</p>
+				</a>
+			</div>
+
+			<div class="last-review-slider__for-item">
+				<a class="last-review-slider__item last-review-slider-item" href="#">
+					<span class="last-review-slider-item__top">
+						<span class="last-review-slider-item__top-top-1">
+							<span class="last-review-slider-item__top-top-1-name">Анна
+								<span class="last-review-slider-item__top-top-1-date">7 июня 2018 07:18</span>
+							</span>
+							<span class="last-review-slider-item__top-top-1-rating">
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg last-review-slider-item__top-top-1-rating-svg--star" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+								</svg>
+								<svg class="last-review-slider-item__top-top-1-rating-svg" width="16" height="15" viewBox="0 0 16 15" xmlns="http://www.w3.org/2000/svg">
+									<path d="M8 0L10.558 4.47916L15.6085 5.52786L12.139 9.34484L12.7023 14.4721L8 12.352L3.29772 14.4721L3.861 9.34484L0.391548 5.52786L5.44196 4.47916L8 0Z"/>
+							</svg>
+						</span>
+					</span>
+					<span class="last-review-slider-item__text">Здравствуйте. Хотела поблагодарить Вас за качественный товар. Не думала, что он превзойдет себя, а в носке просто супер!!</span>
+				</span>
+				<p class="last-review-slider-item__bottom">
+					<img width="48" height="48" src="{$wa_url}img/samsung_img1.png" alt="" class="last-review-slider-item__bottom-img">
+					<span class="last-review-slider-item__bottom-text">Автомобильный держатель (холдер) на вентиляцию JHD-23HD08 (3,5"-6,3")</span>
+				</p>
+				</a>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+    {*if !empty($theme_settings.homepage_bestsellers_list_id)}
+        {$_products = $wa->shop->productSet($theme_settings.homepage_bestsellers_list_id)}
+        {if !empty($_products)}
+            {$_title = ""}
+            {if $theme_settings.homepage_bestsellers_title}{$_title = $theme_settings.homepage_bestsellers_title}{/if}
+
+            {include file="./products.html" products=$_products short=true hide_buttons=!$_show_product_actions section_title=$_title inline}
+        {/if}
+    {/if*}
+
+    {* ONSALES *}
+    {*if !empty($theme_settings.homepage_onsale_list_id)}
+        {$_products = $wa->shop->productSet($theme_settings.homepage_onsale_list_id)}
+        {if !empty($_products)}
+            {$_title = ""}
+            {if $theme_settings.homepage_onsale_title}{$_title = $theme_settings.homepage_onsale_title}{/if}
+
+            {include file="./products.html" products=$_products short=true hide_buttons=!$_show_product_actions section_title=$_title inline}
+        {/if}
+    {/if*}
+
+<!--</div>-->
+
+{*wa_tpl_vars*}
+{/strip}

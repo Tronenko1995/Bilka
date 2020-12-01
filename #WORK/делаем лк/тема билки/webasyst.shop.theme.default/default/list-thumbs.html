@@ -1,0 +1,124 @@
+<!-- products thumbnail list view -->
+
+
+{if !empty($sorting)}
+    <!-- sorting -->
+    {$sort_fields = [
+        'name' => 'Название',
+        'price' => 'Цена',        
+        'total_sales' => 'Хиты продаж',
+        'create_datetime'=>'Дата добавления']}
+
+    <ul class="menu-h sorting">
+        <li>Сортировка:</li>
+        {foreach $sort_fields as $sort => $name}
+            <li{if $active_sort == $sort} class="selected"{/if}>{$wa->shop->sortUrl($sort, $name, $active_sort)|replace:'a href':'a title="Сортировка" href'}</li>
+            {if $wa->get('sort') == $sort}{$wa->title( $wa->title()|cat:' — '|cat:$name)}{/if}
+        {/foreach}
+    </ul>
+{/if}
+ 
+{if $wa->shop->cart->total() > 0}{$add2cart_label = '[`Add to cart`]'}{else}{$add2cart_label = '[`Buy`]'}{/if}
+
+<ul class="thumbs product-list">
+
+
+
+    {$features = $wa->shop->features($products)}
+
+{foreach $products as $p}
+    {$available = $wa->shop->settings('ignore_stock_count') || $p.count === null || $p.count > 0}
+    <li>
+{if empty($disable_compare)}<a data-product="{$p.id}" class="compare" href="#" title="[`Compare`]"><i class="fa fa-exchange fa-2x compare-button{if $wa->shop->inComparison($p.id)} active{/if}"></i></a>{/if}
+        <a href="{$p.frontend_url}" title="{$p.name}">
+            <div class="image">
+                <div class="badge-wrapper">
+                    {$badge_html = $wa->shop->badgeHtml($p.badge)}
+                    {if $badge_html}
+                        <div class="corner top right">{$badge_html}</div>
+                    {/if}
+                    {$wa->shop->productImgHtml($p, '200', ['alt' => $p.name, 'default' => "`$wa_theme_url`img/dummy200.png"])}
+                </div>
+            </div>
+            <h5>
+                <span>{$p.name}</span>
+                {if $p.rating > 0}
+                    <span class="rating nowrap">{$wa->shop->ratingHtml($p.rating)}</span>
+                {/if}
+            </h5>
+            <p style="text-align: center; font-size: 15px;"><b>Код товара:</b> {$product = $wa->shop->product($p)}{$sku = $product.skus[$product.sku_id]}{$sku.sku|escape}</p>
+
+        </a>
+    
+        {if !empty($p.features)}
+        {if $features[$f_code].name == 'Гарантия'}
+
+                {if is_array($f_value)}
+                    {if $features[$f_code].type == 'color'}
+                        {implode(' ', $f_value)}
+                    {else}<span style="font-size: 16px;"><strong><i class="fa fa-shield" aria-hidden="true"></i> Официальная гарантия:</strong> {implode(', ', $f_value)}</span>
+                    {/if}
+                {else}
+                    {$f_value}
+                {/if}
+            {/if}
+        <table class="features">
+            {foreach $p.features as $f_code => $f_value}
+            {if $features[$f_code].name == 'Гарантия'}
+<span style="font-size: 16px;"><strong><i class="fa fa-shield" aria-hidden="true"></i> Гарантия:</strong> {implode(', ', $f_value)}</span>
+            {/if}
+            {if $features[$f_code].type == 'color'}
+            <tr{if $features[$f_code].type == 'divider'} class="divider"{/if}>
+            <td class="name">
+            Цвета:
+            </td>
+            <td class="value">
+                {if is_array($f_value)}
+                    {if $features[$f_code].type == 'color'}
+                        {implode(' ', $f_value)}
+                    {else}
+                        {implode(', ', $f_value)}
+                    {/if}
+                {else}
+                    {$f_value}
+                {/if}
+            </td>
+            </tr>
+            {/if}
+            
+            {/foreach}
+        </table>
+        {/if}
+        <div class="offers">
+            {if $available}
+                <form class="purchase addtocart" method="post" action="{$wa->getUrl('/frontendCart/add')}">
+                    {if $p.compare_price > 0}<span class="compare-at-price nowrap"> {shop_currency_html($p.compare_price)} </span>{/if}
+                    <ul class="price-cart--block">
+                    <li><span class="price nowrap">{shop_currency_html($p.price|ceil, true)}</span>
+                    <input type="hidden" name="product_id" value="{$p.id}">
+                    <li><input type="submit" value="В корзину">
+                    </ul>
+                    
+                    <span class="added2cart" style="display: none;">{sprintf('[`%s добавлен <a href="%s" title="Товар добавлен в корзину"><strong>в корзину</strong></a>`]', $p.name, $wa->getUrl('shop/frontend/cart'))}</span>
+                </form>
+                
+            {else}
+                <span class="price nowrap">{shop_currency_html($p.price)}</span>
+
+                <div class="out-of-stock"><strong>{if $wa->shop->settings('ignore_stock_count')}[`Pre-order only`]{else}[`Out of stock`]{/if}</strong></div>
+
+            {/if}
+        </div>
+    </li>
+{/foreach}
+</ul>
+
+{if isset($pages_count) && $pages_count > 1}
+<div class="block {if $theme_settings.pagination == 'lazyloading'}lazyloading-paging{else}paging-nav{/if}"  data-times="2" data-link-text="[`Показать больше`]" data-loading-str="[`Загрузка...`]">
+    {capture assign=pagination}
+{wa_pagination total=$pages_count attrs=['class' => "menu-h"]}
+{/capture}
+{shopSeofilterViewHelper::paginationDecorate($pagination)}
+</div>
+
+{/if}

@@ -1,0 +1,66 @@
+{* post stream (list): default view mode *}
+<h1>{$blogs = $wa->blog->blogs()} {foreach $blogs as $blog}{if $wa->globals('blog_id') eq $blog.id && empty($is_search)}{$blog.name}{/if}{foreachelse}{$blog.title}{/foreach} 
+{if empty($blog.title) }
+{$wa->title()}{/if}</h1>
+
+<div class="newflexible">
+{foreach $posts as $post}
+    <section class="post" id="post-{$post.id}" {if $wa->param('blog_url')}itemprop="blogPosts" {/if}itemscope itemtype="http://schema.org/BlogPosting">
+        <h3 style="overflow:hidden">
+            <a href="{$post.link}" itemprop="url">{$post.title}</a>
+
+            {* @event prepare_posts_frontend.%plugin_id%.post_title *}
+        </h3>
+ 
+
+        {* @event prepare_posts_frontend.%plugin_id%.before *}
+        {if !empty($post.plugins.before)}
+            <div class="text_before">
+                {foreach $post.plugins.before as $plugin => $output}{$output}{/foreach}
+            </div>
+        {/if}
+
+        <div class="text" style="text-align: justify;">
+                    {if !empty($post.plugins.post_title)}
+                {foreach $post.plugins.post_title as $plugin => $output}{$output}{/foreach}
+            {/if}
+
+            {$post.text}
+            {if $post.cutted}
+                <a href="{$post.link}">{$post.cut_link_label|default:'[`Continue reading →`]'}</a>
+            {/if}
+        </div>
+
+        {* attached album photo thumbs *}
+        {if $post.album_id && $post.album.id && $post.album.photos}
+            {$photos_loaded = 1} {* required for proper photo thumbs retinification *}
+            <div class="photo-album-attachment">
+                <ul class="thumbs">
+                    {foreach $post.album.photos as $p}
+                        <li><a href="{$post.link}#photo{$p.id}"><img src="{$p.thumb_crop.url}" class="retinify" width="96" height="96" alt="{$p.name|escape}"></a></li>
+                    {/foreach}
+                </ul>
+            </div>
+        {/if}
+
+        {* @event prepare_posts_frontend.%plugin_id%.after *}
+        {if !empty($post.plugins.after)}
+            <div class="text_after">
+                {foreach $post.plugins.after as $plugin => $output}{$output}{/foreach}
+            </div>
+        {/if}
+
+    </section>
+{foreachelse}
+    {if $page lt 2}
+        {_w('%d post','%d posts',0)}
+    {/if}
+{/foreach}
+
+{if !empty($photos_loaded) && blogPhotosBridge::is2xEnabled()}
+    <script src="{$wa_static_url}wa-content/js/jquery-plugins/jquery.retina.min.js"></script>
+    <script>$(function() { "use strict";
+        $.Retina && $('img.retinify').retina();
+    });</script>
+{/if}
+</div>

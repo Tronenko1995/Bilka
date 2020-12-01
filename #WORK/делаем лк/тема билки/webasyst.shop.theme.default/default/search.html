@@ -1,0 +1,36 @@
+<h1 class="category-name">
+    {$title}
+</h1>
+
+<!-- plugin hook: 'frontend_search' -->
+{* @event frontend_search.%plugin_id% *}
+{foreach $frontend_search as $_}{$_}{/foreach}
+{if !$products}
+    [`No products were found.`]
+{else}
+    <div id="product-list">
+    {include file='list-thumbs.html'}
+    </div>
+{/if}
+<div style="display: none;">{$categories = $wa->shop->categories(0, 1, true)}
+<ul>
+{foreach $categories as $tc_id => $top_category}
+  <li>
+   <a class="top_category" href="{$top_category.url}">{$top_category.name|escape}</a>
+        <ul>
+        {foreach $top_category.childs as $child_category name=child_categories}
+            <li><a href="{$child_category.url}">{$child_category.name|escape}</a>
+                {$sub3 = $wa->shop->categories($child_category.id, null, false, false)}
+                {if count($sub3)>0}
+                <ul class="list-unstyled">
+                   {foreach from=$sub3 item=cat3 name=submenu}
+                        <li><a href="{$cat3.url}">{$cat3.name}</a></li>
+                    {/foreach}
+                </ul>
+                {/if}
+            </li>
+        {/foreach}
+        </ul>
+    </li>
+{/foreach}
+</ul></div>

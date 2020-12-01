@@ -1,0 +1,89 @@
+<style>
+    table.table tr { 
+        /*border-bottom: 2px solid #FFF0B2;*/
+        margin-bottom: 10px;
+    }
+    table.table tr:nth-of-type(even) { 
+        background: #FFF0B2;
+        margin-bottom: 10px;
+    }
+    table.table tr td .bold {
+        border-bottom: 1px dashed;
+    }
+    @media(max-width: 760px){
+        .inner-table-container {
+            padding: 0 20px;
+        }
+        table.table {
+            display: block;
+        }
+        table.table tr { 
+            display: flex;
+            flex-direction: column;
+            
+        }
+        table.table tr:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        table.table tr td .bold {
+            font-size: 24px;
+        }
+    }
+    
+</style>
+<div class="inner-table-container">
+    <h1>[`My orders`]</h1>
+
+    <table class="table">
+    {foreach $orders as $o}
+        <tr id="order-{$o.id}">
+            <td class="nowrap">
+                <a href="{$o.url}" class="bold">
+                    {$o.id_str}
+                </a>
+            </td>
+            <td class="nowrap">
+                <span class="nowrap order-status" style="{$o.state->getStyle(1)}">
+                    {$o.state->getName()}
+                </span>
+            </td>
+            <td>
+                {if !empty($o.items)}
+                    {foreach $o.items as $i}
+                        {$i.name|escape} <span class="gray">x {$i.quantity}</span><br />
+                    {/foreach}
+                {/if}
+            </td>
+            <td>
+                {if $o.shipping_name}
+                    {$o.shipping_name|escape}
+                {else}
+                    &nbsp;
+                {/if}
+            </td>
+            <td>
+                {if $o.payment_name}
+                    {$o.payment_name|escape}
+                {else}
+                    &nbsp;
+                {/if}
+            </td>
+            <td>
+                <span class="gray">{$o.create_datetime|wa_date:'humandate'}</span>
+            </td>
+        </tr>
+    {foreachelse}
+    	<tr class="no-border">
+            <td>[`You have no order history yet.`]</td>
+      	</tr>
+    {/foreach}
+    </table>
+</div>
+
+
+{$wa->globals('isMyAccount', true)}
+
+<!-- plugin hook: 'frontend_my_orders' -->
+{* @event frontend_my_orders.%plugin_id% *}
+{foreach $frontend_my_orders as $_}{$_}{/foreach}

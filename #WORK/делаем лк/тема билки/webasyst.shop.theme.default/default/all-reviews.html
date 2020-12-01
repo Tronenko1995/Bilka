@@ -1,0 +1,376 @@
+<style>
+    ul.menu-h li.selected a {
+        color: #000;
+        text-decoration: none;
+        background: #eee;
+    }
+    
+    .reviewsplus-all-shop-pages {
+        margin-bottom: 10px;
+    }
+    
+    .reviewsplus-review {
+        border: 1px solid #e5e9f0;
+        padding: 10px 20px 10px 20px;
+        border-radius: 15px;
+        margin-bottom: 20px;        
+    }
+    
+    .reviewsplus-info {
+        float: left;
+        text-align: center;
+        color: #999;
+        max-width: 115px;
+    }
+    
+    .reviewsplus-author-site {
+        font-size: 0.8em;
+    }
+    
+    .reviewsplus-author-email {
+        font-size: 0.8em;
+    }
+    
+    .reviewsplus-text {
+        margin-left: 140px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    .reviewsplus-title {
+        text-align: center;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #a00c0c;
+    }
+    
+    .reviewsplus-com {
+        text-align: justify;
+        margin-top: 10px;
+        font-size: 1.1em;
+        font-family: cursive;
+    }
+    
+    .reviewsplus-comment {
+        text-align: right;
+        font-size: 0.8em;
+    }
+    
+    .reviewsplus-one-comment {
+        border: 2px dotted #e5e9f0;
+        margin-top: 5px;
+        padding: 10px;
+    }
+    
+    .reviewsplus-comment-info {
+        color: #999;
+    }
+    
+    .reviewsplus-reviews-rates {
+        color: #999;        
+    }
+    
+    .reviewsplus-dopratings {
+        text-align: center;
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+    
+    .reviewsplus-doprate-title {
+        font-weight: bold;
+    }
+    
+    .reviewsplus-textarea-title {
+        margin-bottom: 5px;
+        font-weight: bold;        
+        font-family: "Lucida Console", Monaco, monospace;
+    }
+    
+    .reviewsplus-textarea-value {
+        text-align: justify;
+        margin-bottom: 10px;
+    }
+    
+    .reviewsplus-comment-title {
+        font-weight: bold;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .reviewsplus-dop-text-title {
+        font-weight: bold;
+    }
+    
+    .reviewsplus-dop-text {
+        margin-bottom: 10px;
+    }
+    
+    .reviewsplus-product {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #e5e9f0;
+        padding-bottom: 10px;
+        text-align: center;
+        margin-left: -20px;
+        margin-right: -20px;
+        font-size: 1.2em;
+        font-family: cursive;
+        font-weight: bold;
+    }
+    
+    .reviewsplus-noreviews {
+        text-align: center;
+        font-weight: bold;
+        font-size: 2em;
+        margin-top: 20px;
+    }
+</style>
+{if isset($reviews) && !empty($reviews)} 
+    <div class='reviewsplus-reviews'>  
+    <h2>
+        Все отзывы магазина
+        {if isset($count) && !empty($count)}
+            (всего отзывов - {$count|escape})
+        {/if}
+    </h2>
+    {if isset($pages_count) && !empty($pages_count)}
+    <div class="reviewsplus-all-shop-pages">
+        {wa_pagination total=$pages_count attrs=['class' => "menu-h"]}
+    </div>
+    {/if}
+        {foreach $reviews as $review}
+            <div class='reviewsplus-review' 
+                 data-reviewsplus-review-id="{$review['id']|escape}"
+                 itemprop="review" itemscope itemtype="http://schema.org/Review"
+                 >                
+                {if isset($can_del) && $can_del == 1}
+                    <div class="reviewsplus-comment">
+                        <a href='javascript:void(0);' class="reviewsplus-del-link">Удалить комментарий</a>
+                    </div>
+                {/if}
+                {if isset($review.product_name)}
+                            <div class='reviewsplus-product'>
+                                <span class='reviewsplus-product-name'>
+                                    Отзыв о:
+                                </span>
+                                {if isset($review.product_url)}
+                                    <a href='{$review.product_url|escape}' target='_blank'>
+                                {/if}
+                                {$review.product_name|escape}
+                                {if isset($review.product_url)}
+                                    </a>
+                                {/if}
+                            </div>
+                            {* Фото продукта, если нужно
+                            {if isset($review.product_url_crop_small) && !empty($review.product_url_crop_small)}
+                                <img src='{$review.product_url_crop_small|escape}' />
+                            {/if}
+                            *}
+                        {/if}
+                <div class='reviewsplus-info'>
+                    {if isset($review.name) && !empty($review.name)}
+                        {$review.author.name = $review.name}
+                        {$review.author.photo_url_50 = '/wa-content/img/userpic50.jpg'}
+                    {else}
+                        {if isset($review.contact_id) && !empty($review.contact_id)}
+                            {$review.author = shopProductReviewsModel::getAuthorInfo($review.contact_id)}
+                        {else}
+                            {$review.author.name = 'Аноним'}
+                            {$review.author.photo_url_50 = '/wa-content/img/userpic50.jpg'}
+                        {/if}
+                    {/if}
+                    <div class='reviewsplus-author'>
+                        <div class='reviewsplus-author-name' 
+                             itemprop="author"
+                             {if !$fields['name']['show']}
+                                style='display: none;'
+                             {/if}
+                             >
+                            {$review.author.name|escape}
+                        </div>
+                        <div class='reviewsplus-author-icon'>
+                            <img src='{$review.author.photo_url_50|escape}' />
+                        </div>
+                        {if isset($review.datetime) && !empty($review.datetime)}
+                            <div class='reviewsplus-author-date' >
+                                <meta itemprop="datePublished" content="{$review.datetime}">
+                                {$review.datetime|wa_datetime:"humandatetime"}
+                            </div>
+                        {/if} 
+                        {if isset($review.email) && !empty($review.email) && $review.email != $wa->shop->settings("email")}
+                            <div class='reviewsplus-author-email'
+                                {if !$fields['email']['show']}
+                                    style='display: none;'
+                                {/if}
+                                >                                            
+                                {$review.email|escape}
+                            </div>
+                        {/if}
+                        {if isset($review.site) && !empty($review.site)}
+                            <div class='reviewsplus-author-site' 
+                                {if !$fields['site']['show']}
+                                    style='display: none;'
+                                {/if}
+                                >                                
+                                {$review.site|escape}
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+                <div class='reviewsplus-text'>
+                    {if isset($review.title) && !empty($review.title)}
+                        <div class='reviewsplus-title' 
+                             itemprop="name"
+                             {if !$fields['title']['show']}
+                                style='display: none;'
+                             {/if}
+                             >                        
+                            {$review.title|escape}                                               
+                        </div>
+                    {/if} 
+                    <div class="reviewsplus-dopratings"
+                         itemprop="reviewRating" 
+                         itemscope itemtype="http://schema.org/Rating"
+                         >
+                        <meta itemprop="worstRating" content="0">                        
+                        <meta itemprop="bestRating" content="5">
+                        {if isset($review.rate) && !empty($review.rate) && $review.rate != 0}
+                            <div class="reviewsplus-doprate"
+                                 {if !$fields['rate']['show']}
+                                    style='display: none;'
+                                 {/if}
+                                 >                                
+                                <meta itemprop="ratingValue" content="{$review.rate|escape}"/>                                
+                                <span class='reviewsplus-doprate-title'>Рейтинг: </span>
+                                {$wa->shop->ratingHtml($review.rate, 10)}
+                            </div>                             
+                        {else}
+                            <meta itemprop="ratingValue" content="0"/>
+                        {/if}
+                        {if isset($review.dop_rate)}
+                        <div class="reviewsplus-dopratings">                            
+                            {foreach $review.dop_rate as $val => $doprate}
+                                {if isset($doprate['value']) && !empty($doprate['value']) && $doprate['value'] != 0}
+                                <div class="reviewsplus-doprate"
+                                     {if !$fields[$doprate['name_id']]['show']}
+                                        style='display: none;'
+                                     {/if}                                    
+                                     >
+                                    <span class='reviewsplus-doprate-title'>{$doprate['name']|escape}: </span>
+                                    {$wa->shop->ratingHtml($doprate['value'], 10)}
+                                </div>
+                                {/if}
+                            {/foreach}
+                        </div>
+                    {/if}
+                    </div>
+                    {if isset($review.dop_text)}
+                        <div class="reviewsplus-dop-text">
+                            {foreach $review.dop_text as $val => $doptext}
+                                <div class='reviewsplus-dop-text-one'
+                                    {if !$fields[$doptext['name_id']]['show']}
+                                        style='display: none;'
+                                    {/if}
+                                    >
+                                    {if isset($doptext['name']) && $doptext['value'] != ""}
+                                        <span class="reviewsplus-dop-text-title">
+                                            {$doptext['name']|escape}:
+                                        </span>
+                                    {/if}
+                                    {if isset($doptext['value'])}                                
+                                        <span class="reviewsplus-dop-text-value">
+                                            {$doptext['value']|escape}
+                                        </span>
+                                    {/if}
+                                </div>
+                            {/foreach}
+                        </div>
+                    {/if}                    
+                    <div class='reviewsplus-textarea'>                        
+                        {if isset($review.text) && !empty($review.text) && $fields['text']['show']}
+                            <div class="reviewsplus-textarea-title">Комментарий</div>
+                            <div class="reviewsplus-textarea-value" itemprop="description">
+                                {$review.text|escape}
+                            </div>                            
+                        {/if}
+                        {if isset($review.dop_textarea)} 
+                            {foreach $review.dop_textarea as $val => $doptextarea}
+                            <div
+                                {if !$fields[$doptextarea['name_id']]['show']}
+                                    style='display: none;'
+                                {/if}
+                                >
+                                {if isset($doptextarea['name']) && $doptextarea['value'] != ""}
+                                    <div class="reviewsplus-textarea-title">
+                                        {$doptextarea['name']|escape}
+                                    </div>
+                                {/if}
+                                {if isset($doptextarea['value'])}                                
+                                    <div class="reviewsplus-textarea-value">
+                                        {$doptextarea['value']|escape}
+                                    </div>
+                                {/if}
+                            </div>
+                            {/foreach}
+                        {/if}
+                    </div>
+                </div>
+                <div style='clear: both;'></div>
+                {if isset($review['comments'])}
+                    <div class="reviewsplus-comment">
+                        Есть ответы.
+                        <a href='javascript:void(0);' class="reviewsplus-show-hide-comment">Показать/скрыть</a>
+                    </div>
+                    <div class="reviewsplus-review-comment" style='display: none;'>
+                        {foreach $review['comments'] as $comment}
+                        {$margin = 30}
+                        {if isset($comment['depth']) && $comment['depth'] < 6}
+                            {$margin = $margin*$comment['depth']}
+                        {else if $comment['depth'] >= 6}
+                            {$margin = 150}
+                        {/if}
+                            <div class="reviewsplus-one-comment" style='margin-left: {$margin}px'>
+                                <div class="reviewsplus-comment-info">
+                                    {if isset($comment['datetime_ts'])}
+                                        <span class="reviewsplus-comment-info-date">
+                                            {$comment['datetime_ts']|wa_datetime:"humandatetime"}
+                                        </span>
+                                    {/if}                                
+                                    {if isset($comment['author']['name'])}
+                                        <span class="reviewsplus-comment-info-date">
+                                            {$comment['author']['name']|escape}
+                                        </span>
+                                    {/if}
+                                </div>
+                                {if isset($comment['title'])}
+                                    <div class='reviewsplus-comment-title'>
+                                        {$comment['title']|escape}
+                                    </div>
+                                {/if}
+                                {if isset($comment['text']) && !empty($comment['text'])}                                
+                                    <div class="reviewsplus-comment-text">
+                                        {$comment['text']|escape}
+                                    </div>
+                                {/if}                                                        
+                            </div>
+                        {/foreach}                        
+                    </div>
+                {/if}
+            </div>
+        {/foreach}    
+    </div>
+    {if isset($pages_count) && !empty($pages_count)}
+    <div class="reviewsmaster-all-shop-pages">
+        {wa_pagination total=$pages_count attrs=['class' => "menu-h"]}
+    </div>
+    {/if}
+{else}
+    <div class='reviewsplus-noreviews'>Отзывов пока нет ...</div>
+{/if}
+{* Дальше ничего лучше не трогать =) *}
+<script type="text/javascript">
+    $(function () {
+        $(".reviewsplus-show-hide-comment").on('click', function() {
+            $(this).closest('.reviewsplus-review').find('.reviewsplus-review-comment').toggle(500);
+        }); 
+    });
+</script>

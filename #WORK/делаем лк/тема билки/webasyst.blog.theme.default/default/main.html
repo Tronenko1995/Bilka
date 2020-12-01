@@ -1,0 +1,130 @@
+{* @event (frontend_action_default|frontend_action_post|frontend_action_page|frontend_action_error).%plugin_id%.nav_before *}
+{foreach $frontend_action as $plugin => $output}
+	{if !empty($output.nav_before)}{$output.nav_before}{/if}
+{/foreach}
+<div class="content" id="page-content" itemscope="" itemtype="http://schema.org/Store">
+
+<div class="sidebar">
+<div style="    color: #fff;
+    font-size: 16px;
+    background: #F47D22;
+    padding: 15px 20px;
+    background: -webkit-linear-gradient(top, #f6901e, #f26d25);
+    background: linear-gradient(to bottom, #f6901e, #f26d25);
+    background: -webkit-linear-gradient(to bottom, #f6901e, #f26d25);
+    text-transform: uppercase;
+    font-weight: 300;
+    display: block;
+    cursor: pointer;"><p style="float: left; text-align: left; width: 90%">Рубрики новостей</p><br /></div>
+
+<ul class="menu-v menu-on-main dropdown">
+                        {$blogs = $wa->blog->blogs()}
+                        {if count($blogs)>1}
+                            {foreach $blogs as $blog}
+                                <li class="{if $wa->globals('blog_id') eq $blog.id && empty($is_search)}selected{/if}">
+                                    <a href="{$blog.link}">{$blog.name}</a>
+                                </li>
+                            {/foreach}
+                        {else}
+                            {$blog=current($blogs)}
+                            <li{if empty($is_search)} class="selected"{/if}>
+                                <a href="{$wa->blog->url()}">{$blog.name}</a>
+                            </li>
+                        {/if}
+                                                                       <a style="background: #f6f6f6;   margin-bottom: 1px; padding: 10px; line-height: 1.3em; border-bottom: 1px solid rgba(0, 0, 0, 0.1); color: #333;font-family: 'Roboto Condensed', sans-serif;display: block;text-decoration: none;" href="https://bilka.com.ua/articles/">Все новости</a>
+                        </ul>
+                        <br />
+ {$categories = $wa->shop->categories(0, null, true, true)}
+<!--     <input type="checkbox" name="accord" class="cat-accord" id="accessories-types">-->
+                    <label class="label-accord categories-title" for="accessories-types" style="margin-bottom: 0px;">Показать категории товаров</label>
+                    <section>
+ {$categories = $wa->shop->categories(0, null, true, true)}
+     {$categories = $wa->shop->categories(0, null, true, true)}
+     {wa_print_tree tree=$categories selected=$selected unfolded=true collapsible_class='collapsible' class="menu-v dropdown" elem ='<a href=":url" title=":name" class=":params.classcat"><span class="real_name">:name</span><span class="show-subcategory"><i class="fa fa-caret-left" aria-hidden="true"></i></span></a><ul class="menu-v allpoints"></ul>'}  
+
+   </section>
+
+     <script>
+         $(document).ready(function() {
+                 $('.samsung .real_name').html('Для Samsung');
+    $('.meizu .real_name').html('Для Meizu');
+    $('.iphone .real_name').html('Для iPhone');
+    $('.ipad .real_name').html('Для iPad');
+    $('.applewatch .real_name').html('Для Apple Watch');
+    $('.google .real_name').html('Для Google');
+    $('.lenovo .real_name').html('Для Lenovo');
+    $('.doogee .real_name').html('Для Doogee');
+    $('.sony .real_name').html('Для Sony');
+    $('.nokia .real_name').html('Для Nokia');
+    $('.fly .real_name').html('Для Fly');
+    $('.lg .real_name').html('Для LG');
+    $('.xiaomi .real_name').html('Для Xiaomi');
+    $('.huawei .real_name').html('Для Huawei');
+    $('.htc .real_name').html('Для HTC');
+    $('.asus .real_name').html('Для ASUS');
+      $('.bravis .real_name').html('Для Bravis');
+     $('.nomi .real_name').html('Для Nomi');
+    $('.toshiba .real_name').html('Для Toshiba');
+    $('.macbook .real_name').html('Для MacBook');
+            $('.menu-v > li.collapsible').each(function() {
+            var link = $(this).children('a').attr("href");
+            $(this).children('.menu-v.allpoints').html('<li class="all"><a class="" href="'+link+'">все товары</a></li>');
+             $(this).children('a').click(function (e) {
+                e.preventDefault();
+                $(this).find('.fa-caret-left').toggleClass('active');
+                $(this).parent().children('.menu-v').slideToggle('');
+            });
+             
+            });
+         });
+     </script>
+    
+
+     
+        
+ </div> <!--Закрывающий блок-->
+
+<div class="content with-sidebar" itemscope itemtype="http://schema.org/WebPage">
+    
+    {if empty($posts) && $wa->currentUrl() == $wa_app_url}
+
+       <div class="welcome">
+            <h1>[`Welcome to your new blog!`]</h1>
+            <p>{sprintf('[`Start by <a href="%s">writing a post</a> in your blog backend.`]', $wa_backend_url|cat:'blog/')}</p>
+        </div>
+    
+    {else}
+
+        <!-- internal navigation breadcrumbs -->
+        {if isset($breadcrumbs)}
+            <div class="breadcrumbs" itemprop="breadcrumb">
+                {if $wa->globals('isMyAccount')}
+                    {* within My Account we exclude first node from navigation because links are on the page already *}
+                    {$breadcrumbs[0] = null}
+                {/if}
+                {foreach $breadcrumbs as $breadcrumb}
+                    {if $breadcrumb}
+                        <a href="{$breadcrumb.url}">{$breadcrumb.name|escape}</a> <span class="rarr">&rarr;</span>
+                    {/if}
+                {/foreach}
+            </div>
+        {/if}
+        
+        {$content}
+        
+    {/if}
+    
+    <div class="clear-both"></div>
+        
+</div></div>
+<script type="text/javascript" src="https://bilka.com.ua/js/ResizeSensor.js"></script>
+	<script type="text/javascript" src="https://bilka.com.ua/js/sticky-sidebar.js"></script>
+	<script type="text/javascript">
+
+		var stickySidebar = new StickySidebar('.sidebar', {
+			topSpacing: 20,
+			bottomSpacing: 20,
+			minWidth: 760
+		
+		});
+	</script>

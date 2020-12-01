@@ -1,0 +1,205 @@
+<style>
+    .fbox {
+        display: flex;
+    }
+    .fbox .one-half {
+        width: 50%;
+    }
+    table.table tr:nth-of-type(even) { 
+        background: #FFF0B2;
+        /*margin-bottom: 10px;*/
+    }
+    table.table td {
+        font-size: 15px;
+    }
+    .inner-table-container .separator {
+        display: block !important;
+        border-bottom: 1px solid #333;
+    }
+    
+    .inner-table-container .order-title-status {
+        margin: 10px 0 20px;
+        display: flex;
+        align-items: center;
+    }
+    .inner-table-container .order-title-status span:first-of-type{
+        margin-right: 10px;
+    }
+    
+    .inner-table-container h1 {
+        margin-bottom: 0;
+        line-height: normal;
+    }
+    .inner-table-container h3 {
+        margin-bottom: 15px;
+    }
+    .inner-table-container_shipping {
+        /*background: #FFF0B2;*/
+        padding: 10px 10px 10px 0;
+    }
+    .inner-table-container_shipping-name {
+        text-transfrom: uppercase;
+        font-weight: 700;
+    }
+    .inner-table-container_shipping h4 {
+        margin-bottom: 5px;
+    }
+    .inner-table-container_shipping-adress {
+        margin-bottom: 15px;
+    }
+    .test {
+        border-bottom: 1px solid #333
+    }
+    @media(max-width: 760px) {
+        .inner-table-container {
+            padding: 0 20px;
+        }
+        .fbox {
+            display: block;
+        }
+        .fbox .one-half {
+            width: 100%;
+        }
+    }
+</style>
+{if !empty($pin_required)}
+    
+    <h1>
+        [`Order`] {$encoded_order_id}
+    </h1>
+
+    <form action="" method="post">
+        {if $wrong_pin}
+            <p style="color:red">[`PIN is not valid`]</p>
+        {/if}
+        <p>[`Please enter a 4-digit PIN that you received with your order receipt by email.`]</p>
+        <div>
+            <input type="text" name="pin">
+        </div>
+        <div>
+            <input type="submit" value="[`View order`]">
+        </div>
+    </form>
+{else}
+    <div class='inner-table-container'>
+        <h1>
+            [`Order`] {$order.id_str}
+        </h1>
+        
+        
+        <div class="fbox">
+            <div class="one-half">
+                <div class="order-title-status">
+                    <span class="order-status" style="{$order.state->getStyle(1)}">{$order.state->getName()}:</span>
+                    <span>{$order.create_datetime|wa_date:'humandatetime'}</span>
+                </div>
+                <div class="inner-table-container_shipping">
+                    <!-- shipping -->
+                    <h3>[`Shipping`]
+                        {if $order.shipping_name}
+                            &mdash; <strong>{$order.shipping_name}</strong>
+                        {/if}
+                    </h3>
+                
+                    <!-- shipping plugin output -->
+                    {if !empty($order.params.tracking_number)}
+                        [`Shipment tracking number`]: {$order.params.tracking_number}
+                        <br>
+                    {/if}
+                    {if !empty($tracking) && $order.state->getId() != 'completed'}
+                        <div class="plugin">
+                            {$tracking}
+                        </div>
+                    {/if}
+                    <div class="inner-table-container_shipping-name" >{$contact.name|escape}</div>
+                    {if $shipping_address}
+                        <div class="inner-table-container_shipping-adress">{$shipping_address}</div>
+                        
+                    {/if}
+                    
+                        <!-- billing -->
+                    <h3>[`Payment`]
+                        {if $order.payment_name}
+                            &mdash; <strong>{$order.payment_name}</strong>
+                        {/if}
+                    </h3>
+                    
+                    <!-- payment plugin output -->
+                    {if !empty($payment)}
+                        <div class="plugin">
+                            {$payment}
+                        </div>
+                    {/if}
+                    
+                    <p>
+                        <div class="inner-table-container_shipping-name" >{$contact.name|escape}</div>
+                        
+                        {if $billing_address}
+                            <div class="inner-table-container_shipping-adress">{$billing_address}</div>
+                        {/if}
+                    </p>
+                    {if !empty($order.comment)}
+                        <h3>[`Comment`]</h3>
+                        <p>
+                            {$order.comment|escape}<br>
+                        </p>
+                    {/if}
+                </div>
+            </div>
+            <div class="one-half">
+                         <!-- order content and total -->
+                <table class="table">
+                    <tr>
+                        <th></th>
+                        <th class="align-right">[`Quantity`]</th>
+                        <th class="align-right">[`Total`]</th>
+                    </tr>
+                    {foreach $order.items as $item}
+                        <tr{if $item.type == 'service'} class="service"{/if}>
+                            <td style="width: 40%">{if $item.type == 'service'}+ {/if}{$item.name}
+                                {if $item.type == 'product' && !empty($item.download_link)}<a href="{$item.download_link}"><strong>[`Download`]</strong></a>{/if}</td>
+                            <td class="align-right"><span class="gray">{wa_currency_html($item.price, $order.currency)} x</span> {$item.quantity}</td>
+                            <td class="align-right">{wa_currency_html($item.price * $item.quantity, $order.currency)}</td>
+                        </tr>
+                    {/foreach}
+                    <tr class="no-border thin">
+                        <td colspan="2" class="align-right">[`Subtotal`]</td>
+                        <td class="align-right">{wa_currency_html($subtotal, $order.currency)}</td>
+                    </tr>
+                    <tr class="no-border thin">
+                        <td colspan="2" class="align-right">[`Discount`]</td>
+                        <td class="align-right">&minus; {wa_currency_html($order.discount, $order.currency)}</td>
+                    </tr>
+                    <tr class="no-border thin">
+                        <td colspan="2" class="align-right">
+                            [`Shipping`]
+                            {if !empty($order.params.shipping_name)}
+                                (<strong>{$order.params.shipping_name}</strong>)
+                            {/if}
+                        </td>
+                        <td class="align-right">{wa_currency_html($order.shipping, $order.currency)}</td>
+                    </tr>
+                    {if $order.tax > 0}
+                        <tr class="no-border thin">
+                            <td colspan="2" class="align-right">[`Tax`]</td>
+                            <td class="align-right">{wa_currency_html($order.tax, $order.currency)}</td>
+                        </tr>
+                    {/if}
+                    <tr class="no-border thin large">
+                        <td colspan="2" class="align-right"><b>[`Total`]</b></td>
+                        <td class="align-right bold">{wa_currency_html($order.total, $order.currency)}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+       
+    </div>
+    
+{/if}
+
+{$wa->globals('isMyAccount', true)}
+
+<!-- plugin hook: 'frontend_my_order' -->
+{* @event frontend_my_order.%plugin_id% *}
+{foreach $frontend_my_order as $_}{$_}{/foreach}
+{shopMoyaposylkaPlugin::checkStatusFrontend($order.id)}

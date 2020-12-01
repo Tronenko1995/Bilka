@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html{if !empty($html_class_array)} class="{join(' ', $html_class_array)}" {/if} lang="ru">
+
+
+  <head prefix="og: http://ogp.me/ns#
+
+fb: http://ogp.me/ns/fb#
+
+og: http://opengraphprotocol.org/schema#
+
+fb: http://www.facebook.com/2008/fbml#
+
+product: http://ogp.me/ns/product#">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1{if $wa->isMobile()}, maximum-scale=1, user-scalable=0{/if}" />
+
+    <title>{$wa->title()|escape}</title>
+    <meta name="Keywords" content="bilka.com.ua" />
+    <meta name="Description" content="{$wa->meta('description')|escape}" />
+    {if !empty($canonical)}
+    <link rel="canonical" href="{$canonical}" />{/if}
+    <link rel="shortcut icon" href="https://bilka.com.ua/favicon.ico" />
+    {if $wa->blog}
+    <!-- rss -->
+    {$rss=$wa->blog->rssUrl()}
+    {if $rss}
+    <link rel="alternate" type="application/rss+xml" title="{$wa->accountName()}" href="{$rss}">{/if}
+    {/if}
+
+
+    <script type="text/javascript" src="{$wa_static_url}wa-content/js/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="{$wa_static_url}wa-content/js/jquery/jquery-migrate-3.1.0.min.js"></script>
+    {include file="`$wa_active_theme_path`/head.html" inline}
+    {*
+    <script type="text/javascript" src="{$wa_static_url}wa-content/js/jquery/jquery-3.4.1.min.js"></script>*}
+    {$wa->head()} {* links Google Analytics tracking code, site's custom JS (defined in Site app settings), and meta
+    data such as Open Graph data *}
+
+    <!--[if lt IE 9]>
+    <script>
+    document.createElement('header');
+    document.createElement('nav');
+    document.createElement('section');
+    document.createElement('article');
+    document.createElement('aside');
+    document.createElement('footer');
+    document.createElement('figure');
+    document.createElement('hgroup');
+    document.createElement('menu');
+    </script>
+    <![endif]-->
+
+
+
+    {$html_class_array = []}
+    {$_color_scheme_class =
+    'color_scheme_'|cat:str_replace('img/themesettings/','',str_replace('.png','',$theme_settings.color_scheme))}
+
+    {if $theme_settings.color_scheme}{$html_class_array[] = $_color_scheme_class}{/if}
+    {if $theme_settings.font_size}{$html_class_array[] = $theme_settings.font_size}{/if}
+    {if $theme_settings.font_family}{$html_class_array[] = $theme_settings.font_family}{/if}
+    {if $wa->globals('isMyAccount')}{$html_class_array[] = 'my'}{/if}
+    <!-- css -->
+    <link href="{$wa_theme_url}default.css?v{$wa_theme_version}" rel="stylesheet" type="text/css" />
+    <link href="/wa-data/public/shop/themes/default/bilka.css" rel="stylesheet" type="text/css" />
+    <link href="/wa-data/public/shop/themes/default/swipeslider-main.css" rel="stylesheet" type="text/css" />
+    <link href="/wa-data/public/shop/themes/default/swipeslider.css" rel="stylesheet" type="text/css" />
+    {if !empty($canonical)}
+    <link rel="canonical" href="{$canonical}" />{/if}
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700&subset=cyrillic,latin'
+      rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700&subset=latin,cyrillic'
+      rel='stylesheet' type='text/css' />
+
+    {if $wa->shop && $wa->shop->currency() == 'RUB'}
+    <link href="{$wa_url}wa-content/font/ruble/arial/fontface.css" rel="stylesheet" type="text/css" />{/if}
+    {$wa->css()} {* links active plugins CSS *}
+    {literal}
+
+    <!-- Facebook Pixel Code -->
+    <script>
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ?
+            n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+        n.queue = []; t = b.createElement(e); t.async = !0;
+        t.src = v; s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+      }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '527055688112267');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=527055688112267&ev=PageView&noscript=1" /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+    {/literal}
+    <meta property="og:image" content="https://bilka.com.ua/wa-data/public/shop/images/logo-bilka.png" />
+    <meta property="og:image:secure_url" content="https://bilka.com.ua/wa-data/public/shop/images/logo-bilka.png" />
+
+    <meta property="og:image:alt" content="Интернет-магазин аксессуаров для мобильных телефонов и планшетов Билка" />
+
+  </head>
+
+  <body>
+
+
+    <header class="globalheader" {if $theme_settings.color_custom} style="background: {$theme_settings.color_custom}"
+      {/if}>
+
+
+
+
+      {if count($wa->apps())>0 || $wa->isAuthEnabled()}
+
+      <!-- GLOBAL NAVIGATION -->
+      <div id="globalnav">
+        <div class="menu-container">
+
+
+
+          <button id="mobile-nav-toggle">
+            <!-- nav toggle for mobile devices --></button>
+
+          <nav>
+
+            <!-- core site sections (apps) -->
+            <ul class="apps">
+              <li><a href="/" title="Главная">Главная </a>
+              <li><a href="/auxpage_o-magazine" title="Об интернет-магазине bilka.com.ua">О магазине </a>
+              <li><a href="/auxpage_contacts" title="Контакты интернет-магазина">Контакты </a>
+              <li><a href="/auxpage_oplata-i-dostavka" title="Всё о доставке и оплате заказов">Оплата и доставка </a>
+              <li><a href="/auxpage_vozvrat-obmen"
+                  title="Гарантия на аксессуары для мобильных телефонов и планшетов">Гарантия</a>
+              <li><a href="/articles/" title="Новости мобильных технологий и аксессуаров к ним">Новости</a>
+                {if $wa->user()->isAuth()}
+                {if $wa->myUrl()}
+                <li{if $wa->globals('isMyAccount')} {/if}>
+                  <a href="/my/profile" class="not-visited"> Мой профиль</a>
+              </li>
+              {else}
+              <li><strong>{$wa->user('firstname')|default:'[`My account`]'}</strong></li>
+              {/if}
+              <li><a href="/?logout" class="not-visited">[s`Log out`]</a></li>
+              {else}
+              <li><a href="{$wa->loginUrl()}" class="not-visited" title="Войти в личный кабинет">[s`Log in`]</a></li>
+              <li><a href="{$wa->signupUrl()}" class="not-visited"
+                  title="Зарегистрироваться в интернет-магазине">[s`Sign up`]</a></li>
+              {/if}
+            </ul>
+
+            <div class="cart--auth">
+
+
+              {if $wa->shop}
+              <!-- cart -->
+              {$cart_total = $wa->shop->cart->total()}
+              <div id="cart" class="cart{if !$cart_total} empty{/if} header-cart">
+                <a href="{$wa->getUrl('shop/frontend/cart')}" class="cart-summary" title="Перейти в корзину">
+                  <div class="cart-total"><span style="vertical-align: middle">{wa_currency_html($cart_total,
+                      $wa->shop->currency())}</span></div>
+                </a>
+
+                <a href="{$wa->getUrl('shop/frontend/cart')}" class="cart-to-checkout" style="display: none;"
+                  title="Перейти в корзину">
+                  [s`View cart`]
+                </a>
+              </div>
+              {/if}
+            </div>
+
+
+
+          </nav>
+          <div class="clear-both"></div>
+
+        </div>
+      </div>
+
+      {/if}
+
+      <div class="logo--adress">
+
+        <div class="logo"><a href="//bilka.com.ua" title="Интернет-магазин bilka.com.ua"><img
+              src="/wa-data/public/shop/images/logo-bilka.png" alt="bilka.com.ua" title="bilka.com.ua"></a></div>
+        <ul class="adress">
+          <li class="phone-head"><i class="fa fa-phone-square"></i> <a href="tel:+380442278529" style="color: white;"
+              title="Городской телефон в Киеве">(044) 227 85 29</a>, <a href="tel:+380638062942" style="color: white;"
+              title="Лайф">(063) 806 29 42</a>, <a href="tel:+380664500093" style="color: white;" title="МТС">(066) 450
+              00 93</a>, <a href="tel:+380984742319" style="color: white;" title="Киевстар">(098) 474 23 19</a> <i
+              class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;Работаем без перерыва: Пн - Пт 10:00 - 19:00, Сб
+            - 10:00 - 14:00, Вс - выходной
+          <li><i class="fa fa-map-marker"></i> Киев, м. Шулявская, ул. Академика Янгеля 2
+          <li class="header_cont"><i class="fa fa-whatsapp"></i> viber: 0638062942 | <i class="fa fa-envelope-o"></i> <a
+              href="mailto:info@bilka.com.ua" style="color: white;" title="E-mail">info@bilka.com.ua</a> |
+        </ul>
+      </div>
+
+      <!-- product search -->
+      <form method="get" action="{$wa->getUrl('shop/frontend/search')}" class="search">
+        <span class="slogan">АКСЕССУАРЫ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ И ПЛАНШЕТОВ</span>
+        <div class="search-wrapper">
+          {* <input id="search" type="search" name="query" {if !empty($query)}value="{$query}" {/if}
+            placeholder="Я ищу..."> *}
+          {shopSearchproPluginViewHelper::field()}
+          <button type="submit"></button>
+          {* <span class="search-sample">{sprintf('[`E.g. %s`]', '<a href="'|cat:$wa_app_url:"
+              search/?query=productname":'">productname</a>')} *}
+        </div>
+
+      </form>
+
+    </header>
+    <!-- <div class="top-block"> Поклейка защитного стекла в нашем магазине - всего 50 грн.
+    </div>-->
+    <div class="top-block"></div>
+    <style></style>
+
+    <div class="logo mobile-header"
+      style="background: #FFF0B2; margin-bottom: 4px; padding: 5px 0; border-bottom: 4px solid #f26d25"> <a class=""
+        href="//bilka.com.ua" title="Интернет-магазин bilka.com.ua"><img style="width: 50%; min-width: 200px"
+          src="/wa-data/public/shop/images/logo-bilka.png" alt="bilka.com.ua" title="bilka.com.ua"></a>
+
+      <!-- product search -->
+      <form method="get" action="{$wa->getUrl('shop/frontend/search')}" class="search">
+        <span class="slogan">АКСЕССУАРЫ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ И ПЛАНШЕТОВ</span>
+        <div class="search-wrapper">
+          {* <input id="search" type="search" name="query" {if !empty($query)}value="{$query}" {/if}
+            placeholder="Я ищу..."> *}
+          {shopSearchproPluginViewHelper::field()}
+          <button type="submit"></button>
+          {* <span class="search-sample">{sprintf('[`E.g. %s`]', '<a href="'|cat:$wa_app_url:"
+              search/?query=productname":'">productname</a>')} *}
+        </div>
+
+      </form>
+
+      <ul id="mobBtnsContainer" style="list-style: none; margin: 0; padding: 0">
+        <li style="display: flex;justify-content: center;/* box-shadow: 0 10px 6px -6px rgba(0, 0, 0, .3)*/">
+
+
+
+          {if $wa->shop}
+          <!-- cart -->
+          {$cart_total = $wa->shop->cart->total()}
+          <div id="cartmob" class="cart_mob cart{if !$cart_total} empty{/if} def">
+            <a href="{$wa->getUrl('shop/frontend/cart')}" class="cart-summary mobile-cart" title="Перейти в корзину">
+              <div class="cart-total"><span style="vertical-align: middle">{wa_currency_html($cart_total,
+                  $wa->shop->currency())}</span></div>
+            </a>
+            <!--<a href="{$wa->getUrl('shop/frontend/cart')}" class="cart-to-checkout" style="display: none;" title="Перейти в корзину">-->
+            <!--    [s`View cart`]-->
+            <!--</a>-->
+          </div>
+          {/if}
+
+          <figure class="mobile-contacts"><i class="fa fa-mobile cart-image fa-1x"></i>
+            <div class="opener"><span style="display:block;margin:0 auto;">Позвонить</span></div>
+            <ul class="contact-child" style="margin-bottom: 0px;">
+              <li><a href="tel:+380442278529" title="Городской телефон в Киеве"><img
+                    src="/wa-data/public/shop/logo-images/111025.png" alt="городской номер Киев" /> (044) 227 85 29</a>
+              </li>
+              <li><a href="tel:+380638062942" title="Лайф"><img
+                    src="/wa-data/public/shop/logo-images/imagen-smart-life-belarus-0big.jpg" alt="Life" /> (063) 806 29
+                  42</a></li>
+              <li><a href="tel:+380984742319" title="Киевстар"><img src="/wa-data/public/shop/logo-images/kyivstar.png"
+                    alt="Kievstar" /> (098) 474 23 19</a></li>
+              <li><a href="tel:+380664500093" title="МТС"><img src="/wa-data/public/shop/logo-images/512x512bb.jpg"
+                    alt="MTS" /> (066) 450 00 93</a></li>
+              <li><a href="viber://add?number=380638062942" title="Вайбер"><img
+                    src="/wa-data/public/shop/logo-images/viber-icon.png" alt="Viber" /> viber: 0638062942</a></li>
+              <li style="font-size:14px;"><i class="fa fa-envelope-o"></i><a href="mailto:info@bilka.com.ua">
+                  info@bilka.com.ua</a></li>
+            </ul>
+          </figure>
+        </li>
+
+        <li style="font-size:14px;"><i class="fa fa-map-marker"></i> Киев, м. Шулявская, ул. Академика Янгеля 2</li
+          </ul>
+
+    </div>
+
+
+
+    <!-- APP CONTENT -->
+
+    <div class="nav-button"></div>
+    <div class="mobile-menu-content">
+
+      <div class="logo" style="background: #fff; margin-bottom: 20px; padding: 20px"><a href="//bilka.com.ua"
+          title="Интернет-магазин аксессуаров для смартфонов и планшетов"><img style="width: 50%; min-width: 200px"
+            src="/wa-data/public/shop/images/logo-bilka.png" alt="bilka.com.ua" title="bilka.com.ua"></a>
+
+      </div>
+
+
+
+
+      <ul class="mobile-menu">
+        <li class="navi">
+          <form method="get" action="/search/" class="search">
+
+            <div class="search-wrapper">
+              <input type="search" name="query" placeholder="Я ищу...">
+              <button type="submit"></button>
+
+            </div>
+          </form>
+        </li>
+        <!-- <li class="navi">
+          {if $wa->shop} -->
+        <!-- cart -->
+        <!-- {$cart_total = $wa->shop->cart->total()} -->
+        <!-- <div id="cartmobmenu" class="cart{if !$cart_total} empty{/if}">
+            <a href="{$wa->getUrl('shop/frontend/cart')}" class="cart-summary" title="Перейти в корзину">
+              <div class="cart-total"><span style="vertical-align: middle">{wa_currency_html($cart_total,
+                  $wa->shop->currency())}</span></div>
+            </a>
+
+            <a href="{$wa->getUrl('shop/frontend/cart')}" class="cart-to-checkout" style="display: none;"
+              title="Перейти в корзину">
+              [s`View cart`]
+            </a>
+          </div> -->
+        <!-- {/if} -->
+        <!-- </li> -->
+        <li class="navi"><a href="//bilka.com.ua" title="Главная страница интернет-магазина">Главная </a></li>
+        <li class="navi"><a href="/auxpage_o-magazine" title="Об интернет-магазине Билка">О магазине </a></li>
+        <li class="navi"><a href="/auxpage_contacts" title="Все наши контакты">Контакты </a></li>
+        <li class="navi"><a href="/auxpage_oplata-i-dostavka" title="Подробно об оплате и доставке">Оплата и доставка
+          </a></li>
+        <li class="navi"><a href="/auxpage_vozvrat-obmen" title="Гарантийные обязательства">Гарантия</a></li>
+
+
+        <li class="navi" style="font-size: 14px">
+          <ul>
+            <li>
+              <a href="tel:0442278529" style="display:block;">(044) 227 85 29</a>
+              <a href="tel:0638062942" style="display:block;">(063) 806 29 42</a>
+              <a href="tel:0984742319" style="display:block;">(098) 474 23 19</a>
+            </li>
+            <li>Киев, м. Шулявская, ул. Академика Янгеля 2</li>
+            <li>skype: info-bilka | <a style="display:inline;" href="viber://add?number=380638062942"
+                title="Viber">viber: 0638062942</a> |
+            <li>info@bilka.com.ua</li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+
+
+
+
+
+    <main class="maincontent">
+      <div class="container">
+        {include file="`$wa_active_theme_path`/main.html" inline}
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+      <div class="footer-block">
+        <div class="footer-element">
+          <ul>
+            <li>О магазине
+            <li><a href="//bilka.com.ua" title="Главная страница интернет-магазина">Главная </a>
+            <li><a href="/auxpage_o-magazine" title="Об интернет-магазине Билка">О магазине </a>
+            <li><a href="/auxpage_contacts" title="Все наши контакты">Контакты </a>
+            <li><a href="/auxpage_oplata-i-dostavka" title="Подробно об оплате и доставке">Оплата и доставка </a>
+            <li><a href="/auxpage_vozvrat-obmen" title="Гарантийные обязательства">Гарантия</a>
+        </div>
+        <div class="footer-element">
+          <ul class="big-list">
+            <li>Аксессуары для
+            <li><a href="/category/aksessuary-dlya-samsung-galaxy/" title="Аксессуары для Samsung">Samsung</a>
+            <li><a href="/category/aksessuary-dlya-google-nexus/" title="Аксессуары для Google">Google</a>
+            <li><a href="/category/aksessuary-dlya-lg/" title="Аксессуары для LG">LG</a>
+            <li><a href="/category/aksessuary-dlya-lenovo/" title="Аксессуары для Lenovo">Lenovo</a>
+            <li><a href="/category/aksessuary-dlya-htc/" title="Аксессуары для HTC">HTC</a>
+            <li><a href="/category/aksessuary-dlya-nokia-lumia/" title="Аксессуары для Nokia Lumia">Nokia</a>
+            <li><a href="/category/aksessuary-dlya-yabloko-iphone/" title="Аксессуары для iPhone">iPhone</a>
+            <li><a href="/category/aksessuary-dlya-ipad-mini/" title="Аксессуары для iPad">iPad</a>
+            <li><a href="/category/aksessuary-dlya-sony/" title="Аксессуары для Sony">Sony</a>
+            <li><a href="/category/aksessuary-dlya-asus/" title="Аксессуары для Asus">Asus</a>
+            <li><a href="/category/aksessuary-dlya-meizu/" title="Аксессуары для Meizu">Meizu</a>
+            <li><a href="/category/dlya-doogee-aksessuary/" title="Аксессуары для Doogee">Doogee</a>
+            <li><a href="/category/aksessuary-dlya-fly/" title="Аксессуары для Fly">Fly</a>
+            <li><a href="/category/dlya-xiaomi/" title="Аксессуары для Xiaomi">Xiaomi</a>
+            <li><a href="/category/aksessuary-dlya-huawei/" title="Аксессуары для Huawei">Huawei</a>
+            <li><a href="/category/Aksessuary-dlya-bravis/" title="Аксессуары для Bravis">Bravis</a>
+          </ul>
+        </div>
+        <div class="footer-element">
+          <ul>
+            <li>Мы в социальных сетях
+            <li><a href="https://www.facebook.com/bilka.com.ua/" title="Мы в Facebook" target="_blank"><i
+                  class="fa fa-facebook"></i> Facebook</a>
+            <li><a href="https://www.instagram.com/shop_bilka.com.ua/" title="Мы в Instagram" target="_blank"><i
+                  class="fa fa-instagram"></i> Instagram</a>
+
+
+          </ul>
+        </div>
+        <div class="footer-element">
+          <ul itemscope itemtype="http://schema.org/Organization">
+            <li itemprop="name">Интернет-магазин bilka.com.ua
+            <li itemprop="address" itemscope itemtype="http://schema.org/PostalAddress"><i class="fa fa-map-marker"></i>
+              <span itemprop="postalCode">03057</span> <span itemprop="addressLocality">Киев</span>, <span
+                itemprop="streetAddress">ул. Янгеля, 2</span>
+            <li><a href="tel:+380442278529" style="color: white;" title="Телефон в Киеве"><i
+                  class="fa fa-phone-square"></i> <span itemprop="telephone">(044) 227 85 29</span></a>
+            <li><a href="tel:+380638062942" style="color: white;" title="Life"><i class="fa fa-phone-square"></i> (063)
+                806 29 42</a>
+            <li><a href="tel:+380984742319" style="color: white;" title="Киевстар"><i class="fa fa-phone-square"></i>
+                (098) 474 23 19</a>
+            <li><a href="tel:+380664500093" style="color: white;" title="МТС"><i class="fa fa-phone-square"></i> (066)
+                450 00 93</a>
+            <li><a href="mailto:info@bilka.com.ua" style="color: white;" title="Электронная почта"><i
+                  class="fa fa-envelope-o"></i> <span itemprop="email">info@bilka.com.ua</span></a>
+            <li><a href="/auxpage_contacts/" style="color: white;" title="Мы на карте"><i class="fa fa-map-o"></i>
+                Карта</a>
+            <li><a href="/auxpage_contacts/" style="color: white;" title="Все контакты"><i
+                  class="fa fa-plus-circle"></i> Связаться с нами</a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 100%; background-color: #fff6cb; font-size: 12px; text-align: center; color: #f48021; letter-spacing: 1px;">
+      <b></b><i class="fa fa-rocket" aria-hidden="true"></i> Webnauts.pro</b>: <a
+        href="https://webnauts.pro/razrabotka-internet-magazina/">разработка интернет-магазинов</a></div>
+    <div class='back-to-top' title='Back to top'><i class="fa fa-chevron-up"></i></div>
+
+    {* admin-only slideout sidebar for nice and smooth real time theme customizations *}
+    {if $wa->user()->isAdmin()}{include file="admin-sidebar.html" inline}{/if}
+    <link href="/wa-data/public/shop/themes/default/default.shop.css?v{$wa_theme_version}" rel="stylesheet" />
+    <link href="/wa-data/public/shop/themes/default/jquery.bxslider.css?v{$wa_theme_version}" rel="stylesheet"
+      type="text/css" />
+
+    <!-- shop app css -->
+
+    <!-- js -->
+
+    <script type="text/javascript"
+      src="/wa-data/public/shop/themes/default/jquery.bxslider.min.js?v{$wa_theme_version}"></script>
+    <script type="text/javascript"
+      src="{$wa_static_url}wa-content/js/jquery-plugins/jquery.cookie.js?v{$wa->version(true)}"></script>
+    <script type="text/javascript"
+      src="/wa-data/public/shop/themes/default/default.shop.js?v{$wa_theme_version}"></script>
+    {if $wa->shop->config('enable_2x')}
+    <script type="text/javascript"
+      src="{$wa_static_url}wa-content/js/jquery-plugins/jquery.retina.min.js?v{$wa->version(true)}"></script>
+    <script type="text/javascript">$(window).load(function () {
+        $('.promo img').retina({ force_original_dimensions: false });
+        $('.product-list img,.product-info img,.cart img').retina();;
+        $('.bestsellers img').retina();
+      });
+    </script>
+    {/if}
+    {if !empty($filters)}
+    <link href="{$wa_static_url}wa-content/css/jquery-ui/base/jquery.ui.slider.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript"
+      src="{$wa_static_url}wa-content/js/jquery-ui/jquery.ui.core.min.js?v{$wa->version(true)}"></script>
+    <script type="text/javascript"
+      src="{$wa_static_url}wa-content/js/jquery-ui/jquery.ui.widget.min.js?v{$wa->version(true)}"></script>
+    <script type="text/javascript"
+      src="{$wa_static_url}wa-content/js/jquery-ui/jquery.ui.mouse.min.js?v{$wa->version(true)}"></script>
+    <script type="text/javascript"
+      src="{$wa_static_url}wa-content/js/jquery-ui/jquery.ui.slider.min.js?v{$wa->version(true)}"></script>
+    {/if}
+
+
+    <!-- js -->
+
+    <script type="text/javascript" src="{$wa_theme_url}default.js?v{$wa_theme_version}"></script>
+    <script type="text/javascript" src="/wa-data/public/shop/themes/default/sliderswipe.js"></script>
+
+
+
+    {$wa->js()} {* links active plugins JS *}
+
+
+
+    <script>
+      $(".nav-button").click(function () {
+
+        $(".menu-content").toggleClass("menu-content-in");
+        $("body").toggleClass("no-overflow");
+        $('.mobile-menu-content').toggleClass('mobile-menu-content-open');
+        $('.mobile-menu li').toggleClass('appear');
+        $('.nav-button').toggleClass('nav-button-clicked');
+      });
+    </script>
+
+
+
+    <script>
+      var swiper = new Swiper('.swiper-container', {
+        spaceBetween: -100,
+        paginationClickable: true,
+        pagination: '.swiper-pagination',
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflow: {
+          rotate: 0,
+          stretch: 0,
+          depth: 1000,
+          modifier: 1,
+          slideShadows: false,
+          slidesPerView: 5,
+          nextButton: '.swiper-button-next',
+          prevButton: '.swiper-button-prev',
+        }
+      });
+    </script>
+
+
+    <script>
+      $(document).ready(function () {
+
+        $(".swiper-pagination-bullet").append("<div class='lines'><div class='line-element'></div><label class='bullet'></label></div>");
+        $(".swiper-pagination-bullet").each(function (i) {
+          var increase = "labeled-" + (i + 1);
+          $(this).addClass(increase);
+
+        });
+
+      });
+    </script>
+
+
+
+    <script>
+
+      $('.swiper-pagination-bullet').click(function (event) {
+        $(this).addClass('active')
+        $(this).nextAll().removeClass('active');
+        $(this).prevAll().addClass('active')
+
+
+        if ($('.swiper-pagination-bullet.labeled-1').hasClass('active')) {
+          $('#labeled-1').prop("checked", true);
+        }
+
+        if ($('.swiper-pagination-bullet.labeled-2').hasClass('active')) {
+          $('#labeled-2').prop("checked", true);
+        }
+
+        if ($('.swiper-pagination-bullet.labeled-3').hasClass('active')) {
+          $('#labeled-3').prop("checked", true);
+        }
+
+        if ($('.swiper-pagination-bullet.labeled-4').hasClass('active')) {
+          $('#labeled-4').prop("checked", true);
+        }
+
+        if ($('.swiper-pagination-bullet.labeled-5').hasClass('active')) {
+          $('#labeled-5').prop("checked", true);
+        }
+
+        if ($('.swiper-pagination-bullet.labeled-6').hasClass('active')) {
+          $('#labeled-6').prop("checked", true);
+        }
+
+      });
+    </script>
+
+
+    <script src="https://use.fontawesome.com/ebc9b4adc5.js"></script>
+
+    <script>
+      jQuery(function ($) {
+        $(document).ready(function () {
+          var distance = $('.cart--auth').offset().top,
+            $window = $(window);
+
+          $window.scroll(function () {
+            if ($window.scrollTop() >= distance) {
+              $('.cart--auth').addClass('fixed')
+            }
+            if ($window.scrollTop() <= distance) {
+              $('.cart--auth').removeClass('fixed')
+            }
+          });
+        });
+      });
+
+    </script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TimelineLite.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenLite.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/plugins/CSSPlugin.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/easing/EasePack.min.js"></script>
+
+
+
+    <script>
+      $(document).ready(function () {
+        return $(window).scroll(function () {
+          return $(window).scrollTop() > 200 ? $(".back-to-top").addClass("show") : $(".back-to-top").removeClass("show")
+        }), $(".back-to-top").click(function () {
+          return $("html,body").animate({
+            scrollTop: "0"
+          })
+        });
+
+        $(function () {
+          var $container = $('.contact-child'),
+            $arrow = $('.opener'),
+            initialHeight = $container.height();
+          $container.addClass('collapsed');
+          $arrow.bind('click', function (e) {
+
+            var isCollapsed = $container.hasClass('collapsed');
+            e.preventDefault();
+            $container.toggleClass('collapsed', !isCollapsed);
+            $container.css('height', !isCollapsed ? initialHeight : 170);
+            $container.css('height', isCollapsed ? initialHeight : 0);
+          })
+        });
+      });
+
+      $('.cat-accord').change(function () {
+        if ($(this).is(":checked")) {
+          $('.categories-title').html('Скрыть категории товаров')
+        }
+        else {
+          $('.categories-title').html('Показать категории товаров')
+        }
+
+      });
+
+    </script>
+
+    <script>
+      $(window).resize(function () {
+        $(".swiper-pagination-bullet").append("<div class='lines'><div class='line-element'></div><label class='bullet'></label></div>");
+        $(".swiper-pagination-bullet").each(function (i) {
+          var increase = "labeled-" + (i + 1);
+          $(this).addClass(increase);
+        });
+      });
+    </script>
+
+    <script>
+      $(window).resize(function () {
+        if ($(window).width() > 760) {
+          $(".menu-content").toggleClass("menu-content-in");
+          $("body").removeClass("no-overflow");
+          $('.mobile-menu-content').removeClass('mobile-menu-content-open');
+          $('.mobile-menu li').removeClass('appear');
+        }
+      });
+
+    </script>
+    <script type="text/javascript">
+      (function ($) {
+        $(function () {
+          var $container = $('.contact-child'),
+            $arrow = $('.opener'),
+            initialHeight = $container.height();
+          $container.addClass('collapsed');
+          $arrow.bind('click', function (e) {
+
+            var isCollapsed = $container.hasClass('collapsed');
+            e.preventDefault();
+            $container.toggleClass('collapsed', !isCollapsed);
+
+          })
+        });
+      })(jQuery);
+    </script>
+
+    {literal}
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+        m[i].l = 1 * new Date(); k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+      })
+        (window, document, "script", "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js", "ym");
+
+      ym(26135271, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true
+      });
+    </script>
+    <noscript>
+      <div><img src="https://mc.yandex.ru/watch/26135271" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+    {/literal}
+  </body>
+
+  </html>

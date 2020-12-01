@@ -1,0 +1,105 @@
+<link href="{$wa_theme_url}swipebox/css/swipebox.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{$wa_theme_url}swipebox/js/jquery.swipebox.js"></script>
+<script type="text/javascript" src="{$wa_theme_url}reviews.js"></script>
+<!-- product internal nav -->
+
+
+<div class="product-box" itemscope itemtype="http://schema.org/Product" >
+    <div class="product-sidebar-wrapper" >
+        <!-- purchase -->
+        <div class="product-sidebar leadbox" >
+
+            <div class="cart" id="cart-flyer">
+
+                {include file="product.cart.html" inline}
+
+
+
+                <!-- plugin hook: 'frontend_product.cart' -->
+                {* @event frontend_product.%plugin_id%.cart *}
+                {foreach $frontend_product as $_}{$_.cart}{/foreach}
+            </div>
+        </form>
+            <!-- plugin hook: 'frontend_product.block_aux' -->
+            {* @event frontend_product.%plugin_id%.block_aux *}
+            {if !empty($frontend_product)}
+                <div class="aux">
+                    {foreach $frontend_product as $_}{$_.block_aux}{/foreach}
+                </div>
+            {/if}
+
+        </div>
+
+        <!-- product info & gallery -->
+        <div class="product-info" id="overview">
+{$product.additional_description|default:''}
+
+
+
+        </div>
+    </div>
+            <!-- RELATED PRODUCTS -->
+        {$upselling = $product->upSelling(12)}
+        {$crossselling = $product->crossSelling(12)}
+
+        {if $upselling || $crossselling}
+        <div class="product-info">
+
+            {if $crossselling}
+                <section class="related">
+                    <h3>С {$product.name|escape} покупают:</h3>
+                    {include file="list-thumbs-mini.html" products=$crossselling ulclass=""}
+                </section>
+            {/if}
+
+            {if $upselling}
+                <section class="related">
+                    <h3>
+                        Рекомендуем посмотреть:
+
+
+                    </h3>
+                    {include file="list-thumbs-mini.html" products=$upselling ulclass=""}
+                </section>
+            {/if}
+        </div>
+    {/if}
+    {shopSetPlugin::set($product)}
+            {if (shopReviewsplusPlugin::getState())}
+                 <section class="reviews reviewsnew">
+
+            {shopReviewsplusPlugin::reviewsHelper($product.id)}
+
+                </section>
+        {/if}
+    </div>
+
+    <div class="sidebar filters-bec">
+
+{include file='category-item.html'}
+        
+
+        <div class="filters no-margin-bottom">
+
+
+
+
+
+
+        </div>
+    </div>
+    <div class="sidebar-overlay"></div>
+</div>
+
+
+<style>
+.sidebar.filters{
+    order:2;
+}
+.bz-ellipsis.bz-color.hvr-buzz{
+
+    margin:0 5px;
+}
+</style>
+{shopDoprelatedPlugin::getList(6, $product.id)}
+{shopDoprelatedPlugin::getList(2, $product.id)}

@@ -1,0 +1,34 @@
+<!-- plugin hook: 'frontend_header' -->
+{* @event frontend_header.%plugin_id% *}
+{foreach $frontend_header as $_}{$_}{/foreach}            
+
+<div class="content" id="page-content">
+
+    <!-- internal navigation breadcrumbs -->
+
+    {$content}
+    
+    <div class="clear-both"></div>
+    
+</div>
+
+
+<div class="clear-both"></div>
+
+<div id="dialog" class="dialog">
+    <div class="dialog-background"></div>
+    <div class="dialog-window">
+        <!-- common part -->
+        <div class="cart">
+
+        </div>
+        <!-- /common part -->
+
+    </div>
+</div>
+
+<aside id="compare-leash">
+    {$in_comparison = $wa->shop->inComparison()}
+    <a title="Перейти к сравнению товаров" {if !$in_comparison}style="display:none;"{/if} href="{$wa->getUrl('/frontend/compare', ['id' => implode(',', $in_comparison)])}">[`Compare selected products`] (<strong>{count($in_comparison)}</strong>)</a>
+    {if $in_comparison}<style>.appfooter { padding-bottom: 60px; } </style>{/if}
+</aside>
