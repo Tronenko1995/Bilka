@@ -129,7 +129,7 @@ $(document).on('click',function(e){
 /* проверка элементов на странице */
   if ($('.slider__wrap').length >= 1) {
 
-      $('.slider__wrap').slick({
+      $('.slider__wrap').not('.slick-initialized').slick({
         arrows: false,
         dots: true
       });
@@ -141,7 +141,7 @@ $(document).on('click',function(e){
 
       if ($('.new-items-slider').length >= 1) {
 
-        $('.new-items-slider').slick({
+        $('.new-items-slider').not('.slick-initialized').slick({
           arrows: true,
           infinite: true,
           slidesToShow: 4,
@@ -152,7 +152,7 @@ $(document).on('click',function(e){
 
     if ($('.top-sales-slider').length >= 1) {
 
-      $('.top-sales-slider').slick({
+      $('.top-sales-slider').not('.slick-initialized').slick({
         arrows: true,
           infinite: true,
           slidesToShow: 4,
@@ -163,7 +163,7 @@ $(document).on('click',function(e){
 
   if ($('.last-review-slider').length >= 1) {
 
-    $('.last-review-slider').slick({
+    $('.last-review-slider').not('.slick-initialized').slick({
       arrows: true,
         infinite: true,
         slidesToShow: 3,
@@ -181,7 +181,7 @@ $(document).on('click',function(e){
 
     if ($('.recommended-products-slider').length >= 1) {
 
-      $('.recommended-products-slider').slick({
+      $('.recommended-products-slider').not('.slick-initialized').slick({
         arrows: true,
           infinite: true,
           slidesToShow: 4,
@@ -209,7 +209,7 @@ $(document).on('click',function(e){
 
   if ($('.page-card__container-left-photo-slider').length >= 1) {
 
-    $('.page-card__container-left-photo-slider').slick({
+    $('.page-card__container-left-photo-slider').not('.slick-initialized').slick({
       arrows: true,
       infinite: true,
       slidesToShow: 1,
@@ -220,7 +220,7 @@ $(document).on('click',function(e){
 
 if ($('.page-card__kit-slider').length >= 1) {
 
-  $('.page-card__kit-slider').slick({
+  $('.page-card__kit-slider').not('.slick-initialized').slick({
     arrows: true,
       infinite: true,
       slidesToShow: 1,
@@ -231,7 +231,7 @@ if ($('.page-card__kit-slider').length >= 1) {
 
 if ($('.page-card__container-left-customer_photos-slider').length >= 1) {
 
-  $('.page-card__container-left-customer_photos-slider').slick({
+  $('.page-card__container-left-customer_photos-slider').not('.slick-initialized').slick({
     arrows: true,
       infinite: true,
       draggable: false,
@@ -266,17 +266,17 @@ if ($('.jsPhone').length >= 1) {
 
 /* Валидация имени */
 $('.jsName').keyup(function() {
-	this.value = this.value.replace(/[^a-zA-Zа-яА-ЯёЁіІєЄїЇ\-\'\s]/g, "");
+    this.value = this.value.replace(/[^a-zA-Zа-яА-ЯёЁіІєЄїЇ\-\'\s]/g, "");
 });
 
 /* Валидация фамилии */
 $('.jsSurname').keyup(function() {
-	this.value = this.value.replace(/[^a-zA-Zа-яА-ЯёЁіІєЄїЇ\-\'\s]/g, "");
+    this.value = this.value.replace(/[^a-zA-Zа-яА-ЯёЁіІєЄїЇ\-\'\s]/g, "");
 });
 
 /* Валидация email */
 $('.jsMail').keyup(function() {
-	this.value = this.value.replace(/[^a-zA-Z@\.\-\d]/g, "");
+    this.value = this.value.replace(/[^a-zA-Z@\.\-\d]/g, "");
 });
 
 /* Валидация Даты */
