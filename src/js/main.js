@@ -15,6 +15,17 @@ $(document).ready(function() {
       $(this).toggleClass('active');
     });
 
+    /* Декстоп вызов поделится */
+    $('.jsShare').on('click', function(e){
+      e.preventDefault();
+      $('.page-card__row-right-share-menu').toggleClass('open');
+    });
+
+    /* Декстоп поделится менюшка */
+    $('.page-card__row-right-share-menu').on('click', function(e){
+      e.stopPropagation();
+    });
+
     /* Декстоп вызов под-меню-каталог */
     $('.catalog-button__item').on('click', function() {
       $('.item-child').addClass('hide');
@@ -100,6 +111,12 @@ $(document).on('click',function(e){
           }
         }
       }
+
+      // if($('.page-card__row-right-share-menu').hasClass('open')){
+      //   if ( !$('.jsShare').is(e.target) && $('.jsShare').has(e.target).length === 0 ) {
+      //     $('.page-card__row-right-share-menu').toggleClass('open');
+      //   }
+      // }
 
       if($('.mobile-menu').hasClass('active')){
         if ( !$('.mobile-menu').is(e.target) && $('.mobile-menu').has(e.target).length === 0 && !$('.jsMobMenu').is(e.target) && $('.jsMobMenu').has(e.target).length === 0 && !$('.mobile-catalog').is(e.target) && $('.mobile-catalog').has(e.target).length === 0 ) {
