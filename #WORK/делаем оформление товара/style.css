@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box !important;
+}
+@font-face {
+	font-family: 'Gilroy';
+	src: url('/wa-data/public/site/themes/NewBilka/fonts/Gilroy-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gilroy';
+	src: url('/wa-data/public/site/themes/NewBilka/fonts/Gilroy-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gilroy';
+	src: url('/wa-data/public/site/themes/NewBilka/fonts/Gilroy-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gilroy';
+	src: url('/wa-data/public/site/themes/NewBilka/fonts/Gilroy-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+.s-checkout-order-page {
+    display: flex;
+}
+.s-checkout-order-page > .s-order-column:first-child {
+    order: 2;
+}
+.s-checkout-order-page > .s-order-column:nth-child(2) {
+    margin-right: 30px;
+    order: 1;
+}
+.s-checkout-order-page .s-order-column {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+}
+.s-checkout-order-page .s-order-column .s-order-section .s-section-header {
+    padding: 32px;
+    background: none;
+}
+.s-checkout-order-page .s-order-column .s-order-section .s-section-header h2.s-header {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;   
+    color: #202026;
+}
+
+.s-checkout-order-page .s-order-column .s-order-section .s-section-header h3.s-header {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+    color: #202026;
+}
+
+.s-checkout-order-page .s-order-column .s-order-section .s-section-body .wa-form-body .wa-contact-name {
+    color: #F37A22;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+}
+.s-checkout-order-page .s-order-column .s-order-section .s-section-body .wa-form-body .wa-logout-link {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: right;    
+    color: #2F80ED;
+    text-decoration: underline;
+}
+.s-checkout-order-page .s-order-column .s-order-section .s-section-body .wa-form-body .wa-logout-link:hover {  
+    color: #2765B9;
+    text-decoration-color: #2765B9;
+}
+.s-checkout-order-page .s-order-column .s-order-section .s-section-body .wa-label {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;    
+    color: #202026;
+}
+.s-checkout-order-page .s-order-column .s-order-section .s-section-body .wa-label .wa-required {
+    color: #EB5757;
+}
+.s-checkout-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input {
+    background: #fafafb;
+    border: 1px solid #e9e9eb;
+    border-radius: 4px;
+    width: 245px;
+    height: 53px;
+    padding: 0 24px;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #202026;
+    outline: none;
+}
+.s-checkout-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input:hover,
+.s-checkout-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input:focus {
+    border: 1px solid #f37a22;
+}
+.s-checkout-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input::placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
