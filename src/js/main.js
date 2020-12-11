@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
 
   const screenWidth = document.body.clientWidth;
   const dark = $('.mobile-darkness');
@@ -13,6 +13,7 @@ $(document).ready(function() {
     $('.jsCatalog').on('click', function(){
       $('.catalog-button__for-list').toggleClass('hide');
       $(this).toggleClass('active');
+      console.log('click');
     });
 
     /* Декстоп вызов поделится */
@@ -131,7 +132,7 @@ $(document).on('click',function(e){
         }
       }
 
-   });
+});
 
   function equalHeight(columnClass) {
       let max_col_height = 0; // максимальная высота, первоначально 0
@@ -146,7 +147,7 @@ $(document).on('click',function(e){
 /* проверка элементов на странице */
   if ($('.slider__wrap').length >= 1) {
 
-      $('.slider__wrap').not('.slick-initialized').slick({
+      $('.slider__wrap').slick({
         arrows: false,
         dots: true
       });
@@ -158,7 +159,7 @@ $(document).on('click',function(e){
 
       if ($('.new-items-slider').length >= 1) {
 
-        $('.new-items-slider').not('.slick-initialized').slick({
+        $('.new-items-slider').slick({
           arrows: true,
           infinite: true,
           slidesToShow: 4,
@@ -169,7 +170,7 @@ $(document).on('click',function(e){
 
     if ($('.top-sales-slider').length >= 1) {
 
-      $('.top-sales-slider').not('.slick-initialized').slick({
+      $('.top-sales-slider').slick({
         arrows: true,
           infinite: true,
           slidesToShow: 4,
@@ -180,7 +181,7 @@ $(document).on('click',function(e){
 
   if ($('.last-review-slider').length >= 1) {
 
-    $('.last-review-slider').not('.slick-initialized').slick({
+    $('.last-review-slider').slick({
       arrows: true,
         infinite: true,
         slidesToShow: 3,
@@ -198,7 +199,7 @@ $(document).on('click',function(e){
 
     if ($('.recommended-products-slider').length >= 1) {
 
-      $('.recommended-products-slider').not('.slick-initialized').slick({
+      $('.recommended-products-slider').slick({
         arrows: true,
           infinite: true,
           slidesToShow: 4,
@@ -226,7 +227,7 @@ $(document).on('click',function(e){
 
   if ($('.page-card__container-left-photo-slider').length >= 1) {
 
-    $('.page-card__container-left-photo-slider').not('.slick-initialized').slick({
+    $('.page-card__container-left-photo-slider').slick({
       arrows: true,
       infinite: true,
       slidesToShow: 1,
@@ -237,7 +238,7 @@ $(document).on('click',function(e){
 
 if ($('.page-card__kit-slider').length >= 1) {
 
-  $('.page-card__kit-slider').not('.slick-initialized').slick({
+  $('.page-card__kit-slider').slick({
     arrows: true,
       infinite: true,
       slidesToShow: 1,
@@ -248,7 +249,7 @@ if ($('.page-card__kit-slider').length >= 1) {
 
 if ($('.page-card__container-left-customer_photos-slider').length >= 1) {
 
-  $('.page-card__container-left-customer_photos-slider').not('.slick-initialized').slick({
+  $('.page-card__container-left-customer_photos-slider').slick({
     arrows: true,
       infinite: true,
       draggable: false,
@@ -388,6 +389,20 @@ $(document).on('click', function (e) {
   }
   });
 
+
+  $('.jsWatchArrow').on('click', function(e){
+    e.preventDefault();
+    if (!$(this).hasClass('active')) {
+      $(this).siblings('.watch-full').toggleClass('hide');
+      $(this).siblings('.watch-min').toggleClass('hide');
+      $(this).addClass('active');
+  } else {
+    $(this).siblings('.watch-full').toggleClass('hide');
+    $(this).siblings('.watch-min').toggleClass('hide');
+      $(this).removeClass('active');
+  }
+  });
+
   /* Модалка написать отзыв jsWriteFeedback */
   $('.jsWriteFeedback').on('click', function (event) {
     event.preventDefault();
@@ -455,6 +470,24 @@ $(document).on('click', function (e) {
                     });
                 }
                 $(this.container).find('.mfp-close').addClass('new-close');
+            }
+        }
+    });
+});
+
+  /* Модалка промокод */
+  $('.jsPromocode').on('click', function (event) {
+    event.preventDefault();
+    $.magnificPopup.open({
+        items: {
+            src: '#promocodeModal'
+        },
+        callbacks: {
+            open: function () {
+              $(this.container).find('.mfp-content').css({
+                'width': '330px'
+            });
+              $(this.container).find('.mfp-close').addClass('new-close');
             }
         }
     });

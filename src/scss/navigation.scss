@@ -173,11 +173,21 @@
 
 	&-top {
 		display: flex;
+		align-items: center;
 
 		&__img {
-			width: 108px;
-			height: 36px;
+			// width: 108px;
+			// height: 36px;
 			margin-right: 16px;
+			width: 50px;
+			height: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			img {
+				width: 100%;
+				height: auto;
+			}
 		}
 		&__text {
 			font-family: Gilroy;

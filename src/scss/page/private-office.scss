@@ -144,6 +144,8 @@
             &-avatar {
                 width: 169px;
                 height: 169px;
+                min-width: 169px;
+                min-height: 169px;
                 border-radius: 50%;
                 overflow: hidden;
                 &-img {
@@ -2445,6 +2447,8 @@
                 &-avatar {
                     width: 123px;
                     height: 123px;
+                    min-width: 123px;
+                    min-height: 123px;
     //                 border-radius: 50%;
                     &-img {
     //                     width: 100%;

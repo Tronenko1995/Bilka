@@ -98,6 +98,11 @@
 			height: 16px;
 			fill: $color2;
 			cursor: pointer;
+			transition: .2s ease-in;
+			&.active {
+				transform: rotate(180deg);
+				fill: $color3;
+			}
 
 			&:hover {
 				fill: $color3;

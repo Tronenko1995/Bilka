@@ -242,21 +242,20 @@
             margin-top: 10px;
         }
         &-button {
-            border: 1px solid $color3;
+            // border: 1px solid $color3;
             border-radius: 4px;
             cursor: pointer;
             padding: 10px 25px;
             outline: none;
-            background: #fff;
+            background: $color3;
             font-family: Gilroy;
             font-style: normal;
             font-weight: 500;
             font-size: 14px;
             line-height: 14px;
-            color: $color3;
+            color: #fff;
             &:hover {
-                background: $color3;
-                color: #fff;
+                background: $hover2;
             }
         }
     }
