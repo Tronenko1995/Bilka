@@ -175,6 +175,17 @@
                 }
             }
         }
+        &.no-item {
+            form {
+                display: none !important;
+            }
+            .no-item-text {
+                display: block;
+            }
+        }
+        .no-item-text {
+            display: none;
+        }
         &-head {
             background: #E5E5EC;
             border-radius: 4px 4px 0px 0px;

@@ -359,3 +359,77 @@
         }
     }
 }
+
+/* спасибо за покупку */
+#step-success {
+    border: none !important;
+    .s-step-header {
+        padding: 16px !important;
+
+        .s-name {
+            font-family: Gilroy !important;
+            font-style: normal !important;
+            font-weight: 700 !important;
+            font-size: 30px !important;
+            line-height: 19px !important;
+            color: #202026 !important;
+            text-align: center !important;
+            margin-top: 110px !important;
+        }
+    }
+    .s-step-content-wrapper {
+        background: none !important;
+        padding: 16px !important;
+        
+        .s-text-section {
+            text-align: center !important;
+            font-family: Gilroy !important;
+            font-style: normal !important;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+            line-height: 17px !important;
+            color: #929299 !important;
+            margin: 0px !important;
+            
+            .s-order-number {
+                color: $color3 !important;
+                &:hover {
+                    color: $hover2 !important;
+                }
+            }
+        }
+        .s-actions {
+            text-align: center !important;
+            margin: 50px !important;
+            a {
+                font-family: Gilroy !important;
+                font-style: normal !important;
+                font-weight: 500 !important;
+                font-size: 16px !important;
+                line-height: 19px !important;
+                color: $colorLinks !important;
+                margin-right: 6px !important;
+                &:hover {
+                    color: $hover1 !important;
+                }
+            }
+        }
+    }
+}
+.is-checkout-page {
+    .s-shop-info {
+        display: none !important;
+    }
+}
+
+@media(max-width: 500px) {
+    #step-success {
+
+        .s-step-header {
+    
+            .s-name {
+                margin-top: 50px !important;
+            }
+        }
+    }
+}

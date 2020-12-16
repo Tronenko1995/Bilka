@@ -128,6 +128,13 @@
             display: flex;
             flex-direction: column;
         }
+        &-item-wrap {
+            &.active {
+                .sidebar__filter-item-list-item {
+                    display: flex !important;
+                }
+            }
+        }
         &-item {
             display: flex;
             flex-direction: column;
@@ -152,6 +159,9 @@
                 &-item {
                     display: flex;
                     margin-bottom: 12px;
+                    &.hide-filters-item {
+                        display: none;
+                    }
 
                     & i.icon16.color {
                         margin-right: 4px;

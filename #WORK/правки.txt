@@ -1,0 +1,1080 @@
+По правкам от тестировщика:
+1. Сделал чтобы при клике на значек вайбера, открывалось приложение Viber на компьютере/телефоне и открывался чат с Билкой
+2. Убрал дублирующий знак (возростание/убывание) + добавил выделение для активного элемента
+3. Добавил текс с оф сайта и теперь при клике на стрелочки она вращается на 180 и появляется полный текст, при клике еще раз на не все возвращается обратно.
+4. А что на оф сайте картинка из этой новости работает?:) Новости у нас же одинаковые:) (https://bilka.com.ua/articles/telefony-smartfony-kharakteristiki/sony-xperia-xa2---tekhnicheskie-kharakteristiki-telefona/)
+5.1 Это фишка у плагина такая, если человек раз принял политику то ему не нужно каждый раз ее принимать при заказе.
+5.2 С названием страницы пока еще разбираюсь...
+6. Картину портит только отсутсвие минуса в пустых ячейках, пока думаю что можно придумать.
+14. На оф сайте тоже дублируются, если будет команда убрать уберу.
+15. Починил, в мобилке при клике на лого билки теперь переходит не на 404 а на главную
+18. Починил Аватарку на телефоне
+19. Сейчас все сообщения уведомления выключены, чтобы оф сайт не получал на почту фальшивые заказы, если будет команда включить все сообщения то сделаю.
+
+
+5.2 у некоторых товаров странные название страницы, потому что у этих товаров в админке не указан заголовок, скрины как настроить заголовок по примеру с других товаров прикрепляю ниже:
+7. Сделал продукты в сравнениях кликабельными, теперь можно перейти на страницу с товаром
+8. Исправил стили для формы, которая появляется при покупки товаров с несколькими цветами
+9. Гугл настроем позже
+10. Починил размытое изображение в профиле, теперь будет в хорошем качестве.
+11. В веб асисте пока нет удобного решения для этого, возможно в будущих версиях будет.
+12. Подпривил верстку в оформлении товаров.
+13. Изменил текст, добавил кнопки входа/регистрации
+
+
+* {
+    box-sizing: border-box !important;
+}
+@font-face {
+	font-family: 'Gilroy';
+	src: url('/wa-data/public/site/themes/NewBilka/fonts/Gilroy-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gilroy';
+	src: url('/wa-data/public/site/themes/NewBilka/fonts/Gilroy-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gilroy';
+	src: url('/wa-data/public/site/themes/NewBilka/fonts/Gilroy-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gilroy';
+	src: url('/wa-data/public/site/themes/NewBilka/fonts/Gilroy-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+.s-order-page {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+}
+.s-order-page > .s-order-column:first-child {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+}
+.s-order-page > .s-order-column:nth-child(2) {
+    margin-right: 30px;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+}
+.s-order-page .s-order-column {
+    background: #FFFFFF;
+    -webkit-box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+            box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    min-width: 585px;
+}
+.s-order-page .s-order-column .s-order-section .s-section-header {
+    padding: 32px;
+    background: none;
+}
+.s-order-page .s-order-column .s-order-section .s-section-header h2.s-header {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;   
+    color: #202026;
+}
+
+.s-order-page .s-order-column .s-order-section .s-section-header h3.s-header {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+    color: #202026;
+}
+
+.s-order-page .s-order-column .s-order-section .s-section-body .wa-form-body .wa-contact-name {
+    color: #F37A22;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+}
+.s-order-page .s-order-column .s-order-section .s-section-body .wa-form-body .wa-logout-link {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: right;    
+    color: #2F80ED;
+    text-decoration: underline;
+}
+.s-order-page .s-order-column .s-order-section .s-section-body .wa-form-body .wa-logout-link:hover {  
+    color: #2765B9;
+    -webkit-text-decoration-color: #2765B9;
+            text-decoration-color: #2765B9;
+}
+.s-order-page .s-order-column .s-order-section .s-section-body .wa-label,
+.s-order-page .s-order-column .s-section-body .wa-section-body .wa-label {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;    
+    color: #202026;
+}
+.s-order-page .s-order-column .s-order-section .s-section-body .wa-label .wa-required {
+    color: #EB5757;
+}
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input {
+    background: #fafafb;
+    border: 1px solid #e9e9eb;
+    border-radius: 4px;
+    width: 245px;
+    height: 53px;
+    padding: 0 24px;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #202026;
+    outline: none;
+}
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-details-required-fields-section .wa-line.wa-fields-group.line .wa-field-wrapper {
+    width: 100%;
+}
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input[name="details[shipping_address][street]"] {
+    width: 100%;
+}
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input:hover,
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input:focus {
+    border: 1px solid #f37a22;
+}
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input::-webkit-input-placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input::-moz-placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input:-ms-input-placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input::-ms-input-placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input::placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
+.wa-form-body .wa-form-content .wa-step-section .wa-section-body .wa-required-text {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: #929299;
+}
+.wa-form-body .wa-form-content .wa-step-section .wa-section-body .wa-required-text .wa-required {
+    font-size: 14px;
+    padding-right: 2px;
+    color: #EB5757;
+}
+.wa-form-body .wa-form-content .wa-step-section .wa-section-body .wa-required-text .wa-required:before {
+    webkit-transform: translate(0,0);
+     -ms-transform: translate(0,0);
+      -webkit-transform: translate(0,0);
+             transform: translate(0,0);
+}
+.s-order-page .s-order-column .s-section-body .wa-section-body .wa-select {
+    border: 1px solid #e9e9eb;
+    width: 245px;
+    padding: 0px 24px;
+    height: 53px;
+    position: relative;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+}
+.s-order-page .s-order-column .s-section-body .wa-section-body .wa-select:hover,
+.s-order-page .s-order-column .s-section-body .wa-section-body .wa-select:focus {
+    border: 1px solid #f37a22;
+}
+.s-order-page .s-order-column .s-section-body .wa-header {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #202026;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-types-section .wa-types-list .wa-type-wrapper {
+    background: #FAFAFB !important;
+    border: 1px solid #E9E9EB !important;
+    /* border-radius: 4px 0px 0px 4px; */
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    width: 261px !important;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-types-section .wa-types-list .wa-type-wrapper .wa-name a {
+    font-family: Gilroy !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+    text-align: center !important;
+    color: #F37A22 !important;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-types-section .wa-types-list .wa-type-wrapper .wa-price {
+    font-family: Gilroy !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+    text-align: center !important;
+    color: #929299 !important;
+    opacity: 0.8 !important;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-types-section .wa-types-list .wa-type-wrapper.is-active {
+    background: #F37A22 !important;
+    border: 1px solid #F37A22 !important;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-types-section .wa-types-list .wa-type-wrapper.is-active .wa-name a {
+    color: #fff !important;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-types-section .wa-types-list .wa-type-wrapper.is-active .wa-price {
+    color: #fff !important;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-variants-section .wa-dropdown .wa-dropdown-toggle {
+    width: 521px;
+    height: 53px;
+    border: 1px solid #e9e9eb;
+    background: #fafafb;
+    padding: 0 24px;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #202026;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-variants-section .wa-dropdown.is-locked .wa-dropdown-toggle {
+    border: 1px solid #e9e9eb;
+    color: #ccc;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-variants-section .wa-dropdown.is-locked .wa-dropdown-toggle:hover,
+.s-order-page .s-order-column .s-section-body .wa-delivery-variants-section .wa-dropdown.is-locked .wa-dropdown-toggle:focus {
+    border: 1px solid #e9e9eb;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-variants-section .wa-dropdown.is-opened .wa-dropdown-toggle {
+    border: 1px solid #f37a22;
+}
+.s-order-page .s-order-column .s-section-body .wa-delivery-variants-section .wa-dropdown .wa-dropdown-toggle:hover,
+.s-order-page .s-order-column .s-section-body .wa-delivery-variants-section .wa-dropdown .wa-dropdown-toggle:focus {
+    border: 1px solid #f37a22;
+}
+.wa-dropdown.is-opened > .wa-dropdown-toggle:after {
+    border-color: #f37a22 !important;
+}
+.wa-dropdown > .wa-dropdown-area:hover,
+.wa-dropdown > .wa-dropdown-area:focus {
+    border: 1px solid #f37a22;
+}
+.wa-dropdown.is-opened > .wa-dropdown-area {
+    border: 1px solid #f37a22;
+}
+.wa-order-form-wrapper .wa-step-shipping-section .wa-delivery-variants-section .wa-delivery-variant {
+    font-family: Gilroy;
+}
+.wa-order-form-wrapper .wa-step-confirm-section .wa-section-body .wa-total-section .wa-item .wa-name {
+    font-family: Gilroy !important;
+font-style: normal !important;
+font-weight: 500 !important;
+font-size: 16px !important;
+line-height: 16px !important;
+color: #202026 !important;
+}
+.wa-order-form-wrapper .wa-step-confirm-section .wa-section-body .wa-total-section .wa-item.wa-item-total .wa-name {
+    font-weight: 600 !important;
+    font-size: 20px !important;
+    line-height: 16px !important;
+    margin-right: 0 !important;
+}
+.wa-order-form-wrapper .wa-step-confirm-section .wa-section-body .wa-total-section .wa-item.wa-item-total .wa-value .wa-price {
+    font-family: Gilroy !important;
+font-style: normal !important;
+    color: #F37A22 !important;
+    font-weight: 600 !important;
+font-size: 24px !important;
+line-height: 16px !important;
+}
+.wa-order-form-wrapper .wa-step-confirm-section .wa-section-body .wa-total-section .wa-item .wa-value {
+    text-align: right !important;
+}
+.wa-order-form-wrapper.with-adaptive .wa-step-confirm-section .wa-section-body .wa-flex-wrapper {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+}
+.wa-order-form-wrapper.with-adaptive .wa-step-confirm-section .wa-section-body .wa-flex-wrapper .wa-actions-section {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+            justify-content: center !important;
+    -ms-flex-item-align: unset !important;
+        align-self: unset !important;
+
+}
+
+.wa-order-form-wrapper .wa-step-confirm-section .wa-section-body .wa-actions-section .wa-button {
+    background: #F37A22 !important;
+    border-radius: 4px !important;
+    padding: 18px 0 !important;
+    font-family: Gilroy !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 16px !important;
+    text-align: center !important;
+    color: #FFFFFF !important;
+    outline: none !important;
+    border: none !important;
+}
+.wa-order-form-wrapper .wa-step-confirm-section .wa-section-body .wa-actions-section .wa-button:hover,
+.wa-order-form-wrapper .wa-step-confirm-section .wa-section-body .wa-actions-section .wa-button:focus {
+    background: #CE681E !important;
+}
+.wa-order-form-wrapper .wa-step-details-section .wa-details-rates-section .wa-table > .wa-row > .wa-cell.wa-cell-name .wa-name {
+    font-family: Gilroy !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+    color: #202026 !important;
+}
+.wa-order-form-wrapper .wa-step-details-section .wa-details-rates-section .wa-table > .wa-row > .wa-cell.wa-cell-value {
+    font-family: Gilroy !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    line-height: 16px !important;
+}
+.wa-order-form-wrapper .wa-step-details-section .wa-details-rates-section {
+    margin-top: 34px !important;
+}
+.wa-order-form-wrapper .wa-step-details-section .wa-details-rates-section .wa-table .wa-cell.wa-cell-value {
+    text-align: right !important;
+}
+.wa-order-form-wrapper .wa-step-details-section .wa-details-rates-section .wa-table > .wa-row .wa-delivery-price {
+    color: #F37A22;
+}
+.wa-order-form-wrapper .wa-step-details-section {
+    margin-top: 2px !important;
+    font-family: Gilroy !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    color: #929299 !important;
+}
+#wa-step-payment-section {
+    margin-top: 50px !important;
+}
+#wa-step-payment-section .wa-section-header {
+    margin-bottom: 24px;
+}
+#wa-step-payment-section .wa-section-header h3.wa-header {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    color: #202026;
+}
+#wa-step-payment-section .wa-method-wrapper .wa-method-body .wa-payment-name a {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+}
+#wa-step-payment-section .wa-method-wrapper .wa-method-body .wa-description {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #202026;
+}
+#wa-step-payment-section .wa-method-wrapper .wa-method-body .wa-description a {
+    color: #F37A22;
+}
+#wa-step-payment-section .wa-method-wrapper .wa-method-body .wa-description a:hover {
+text-decoration: underline;
+}
+#wa-step-payment-section .wa-method-wrapper.is-active {
+    background: #F37A22;
+    border: 1px solid #F37A22;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+#wa-step-payment-section .wa-method-wrapper.is-active .wa-payment-name a {
+    color: #fff;
+}
+#wa-step-payment-section .wa-method-wrapper.is-active .wa-method-body .wa-description {
+    color: #fff;
+    opacity: 0.8;
+}
+#wa-step-payment-section .wa-method-wrapper.is-active .wa-method-body .wa-description a {
+    color: #2F80ED;
+}
+.wa-order-form-wrapper .wa-step-payment-section .wa-methods-list.wide .wa-method-wrapper {
+    border: 1px solid #e9e9eb !important;
+}
+.select2-container {
+    width:521px !important;
+}
+.select2-container .selection {
+    width: 100% !important;
+}
+.select2-container .select2-selection {
+    width: 100% !important;
+    padding: 0px 24px;
+    height: 53px !important;
+    position: relative;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border: 1px solid #e9e9eb;
+    outline: none !important;
+}
+.select2-container .select2-selection:hover,
+.select2-container .select2-selection:focus {
+    border: 1px solid #F37A22;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 10px !important;
+    right: 10px !important;
+}
+#np2_wh_shipping_fields42 {
+    width: 100%;
+}
+#select2-np2_cities_42-results,
+#select2-np2_wh_select42-container,
+#select2-np2_wh_select42-results {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #202026;
+}
+.wa-order-body .wa-order-form-wrapper .wa-step-payment-section .wa-payment-fields-wrapper .wa-field-wrapper {
+    width: 100% !important;
+}
+.wa-order-body select[name="payment[custom][partsCount]"] {
+    width: 100% !important;
+}
+
+/* правая колонка */
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-actions .wa-action:hover {
+    color: #f37a22;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-actions .wa-action .wa-tooltip {
+    cursor: pointer;
+}
+.wa-order-body .s-order-page .s-order-section > .s-section-header .s-delete-button {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #929299;
+}
+.wa-order-body .s-order-page .s-order-section > .s-section-header .s-delete-button:hover {
+    color: #f37a22;
+}
+.wa-order-body .s-order-page .s-order-section > .s-section-header .s-delete-button:hover .s-delete-icon {
+    fill: #f37a22;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-product-body > .wa-column-image {
+    width: 85px;
+    height: 80px;
+    min-width: 85px;
+    min-height: 80px;
+    padding: 0;
+}
+.wa-order-body .wa-order-cart-wrapper.with-adaptive .wa-products .wa-product .wa-product-body > .wa-column-details {
+    margin-left: 26px;
+    display: block;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-details-section .wa-details .wa-name {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #202026;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 230px;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-actions .wa-action {
+font-family: Gilroy;
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 14px;
+color: #929299;
+}
+.wa-order-body .wa-quantity-section {
+    width: 80px;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-actions .wa-action .wa-icon {
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    min-height: 10px;
+    padding: 0;
+    cursor: pointer;
+}
+.wa-order-body .wa-quantity-box .wa-input {
+    border: none;
+    background: none;
+    text-align: center;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #202026;
+    padding: 0;
+    width: 42px;
+}
+.wa-order-body .wa-quantity-box .wa-button {
+    padding: 0;
+}
+.wa-order-body .wa-quantity-box .wa-button > * {
+    padding: 0;
+}
+html:not(.with-touch) .wa-order-body .wa-quantity-box .wa-button:not(.is-disabled):hover {
+    color:#F37A22 !important;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-price-section .wa-price-total {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: right;
+    color: #F37A22;
+    width: 95px;
+}
+.wa-order-cart-wrapper .wa-products .wa-product .wa-quantity-section .wa-product-price {
+    font-family: Gilroy;
+    margin: .4166666666666667em 0 0;
+    font-size: .8571428571428571em;
+    line-height: 1.416666666666667em;
+    color: #888;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-input {
+    background: #fafafb;
+    border: 1px solid #e9e9eb;
+    border-radius: 4px;
+    width: 160px;
+    height: 40px;
+    padding: 0 24px;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #202026;
+    outline: none;
+    margin-right: 8px;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-input::-webkit-input-placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-input::-moz-placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-input:-ms-input-placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-input::-ms-input-placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-input::placeholder {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #929299;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-input:hover,
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-input:focus {
+    border: 1px solid #f37a22;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-button {
+    background: #F37A22;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #FFFFFF;
+    height: 40px;
+    padding: 0 12px;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-button:hover,
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section .wa-button:focus {
+    background: #CE681E;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-cart-details .wa-price-section .wa-price-total {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 16px;
+    color: #202026;
+    margin-top: 0;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-cart-details .wa-price-section .wa-price-total .wa-price {
+    color: #f37a22;
+    padding-left: 8px;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-products .wa-product {
+    position: relative;
+    padding-bottom: 16px;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper .wa-products .wa-product::after {
+    position: absolute;
+    width: 100%;
+    content: '';
+    left: 0;
+    background: #E5E5EC;
+    height: 1px;
+    margin-top: 16px;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-details-section .wa-details .wa-actions {
+    margin-top: 8px;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-product-body > * {
+    padding-right: 0;
+}
+.wa-order-body .wa-icon.size-12 {
+    width: 10px;
+    height: 10px;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-cart-details {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-top: 24px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.wa-order-body .s-order-page .wa-order-cart-wrapper > .wa-cart-body {
+    padding: 0 32px;
+}
+.wa-order-body .s-section-footer .s-back-link a {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: right;
+    color: #2F80ED;
+    position: relative;
+}
+.wa-order-body .s-section-footer .s-back-link a::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 1px;
+    top: 100%;
+    left: 0;
+    background: #2F80ED;
+    opacity: 0.2;
+}
+.wa-order-body .s-section-footer .s-back-link a:hover {
+    color: #2765B9;
+}
+.wa-order-body .s-section-footer .s-back-link a:hover .s-section-footer .s-back-link a::after {
+    background: #2765B9;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-product-body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-top: 16px;
+}
+.s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input::-moz-placeholder {
+    line-height: 50px;
+}
+/* cart style */
+.wa-order-body .wa-order-cart-wrapper .wa-cart-details .wa-coupon-section:not(.is-active) .wa-active-state {
+    display: none;
+}
+.wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-quantity-actions {
+    display: none;
+}
+@media (max-width: 1240px) {
+    .wa-order-body .s-order-page {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+    }
+    .wa-order-body .s-order-page .s-order-column {
+        width: 585px;
+    }
+    .wa-order-body .s-order-page > .s-order-column:first-child {
+        -webkit-box-ordinal-group: 2;
+            -ms-flex-order: 1;
+                order: 1;
+    }
+    .wa-order-body .s-order-page > .s-order-column:nth-child(2) {
+        margin-right: 0;
+        margin-bottom: 30px;
+        -webkit-box-ordinal-group: 3;
+            -ms-flex-order: 2;
+                order: 2;
+    }
+}
+@media (max-width: 760px) {
+    .wa-order-body .s-order-page .s-order-column {
+        width: 346px;
+        min-width: 346px;
+    }
+    .wa-order-body .s-order-page .s-order-column:nth-child(2) .s-order-section .s-section-body .wa-input {
+        width: 100%;
+    }
+    .wa-order-body .s-order-page .s-order-column .s-section-body .wa-delivery-variants-section .wa-dropdown .wa-dropdown-toggle {
+        width: 100%;
+    }
+    .wa-order-body .select2-container {
+        width:282px !important;
+    }
+    .wa-order-body .s-order-page .s-order-column .s-section-body .wa-section-body .wa-select {
+        width: 282px;
+    }
+    .wa-order-body .s-order-page .s-order-column .s-section-body .wa-delivery-types-section .wa-types-list .wa-type-wrapper {
+        width: 282px;
+    }
+    .wa-order-body .wa-order-form-wrapper .wa-step-details-section .wa-details-rates-section .wa-table > .wa-row > .wa-cell.wa-cell-name {
+        width: 50%;
+    }
+    .wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-product-body {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+    }
+    .wa-order-body .wa-order-cart-wrapper.with-adaptive .wa-products .wa-product .wa-product-body > .wa-column-details {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+    .wa-order-body .wa-order-cart-wrapper.with-adaptive .wa-products .wa-product .wa-product-body > .wa-column-details .wa-details-section .wa-details {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+    }
+    .wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-details-section .wa-details .wa-name {
+        width: 100%;
+    }
+    .wa-order-body .wa-order-cart-wrapper .wa-products .wa-product .wa-price-section .wa-price-total {
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .wa-order-body .wa-quantity-section {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+    }
+    .wa-order-body .s-order-page .s-order-section > .s-section-header .s-delete-button {
+        width: -webkit-fit-content !important;
+        width: -moz-fit-content !important;
+        width: fit-content !important;
+    }
+    .wa-order-body .wa-order-cart-wrapper .wa-cart-details {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+    }
+    .wa-order-body .wa-order-cart-wrapper .wa-cart-details .wa-inactive-state{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+    .wa-order-body .wa-order-cart-wrapper .wa-cart-details .wa-price-section .wa-price-total {
+        margin-top: 20px;
+    }
+    .s-order-page .s-order-section > .s-section-footer .s-back-link {
+        text-align: center;
+    }
+    .wa-order-body .wa-price-discount {
+        margin-top: 8px;
+    }
+}
+.s-cart-empty-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-top: 56px;
+}
+.s-cart-empty-wrapper .s-image-wrapper {
+    height: auto;
+    width: 200px;
+    margin-bottom: 20px;
+}
+.s-cart-empty-wrapper .page-card__row-left-reviews,
+.s-cart-empty-wrapper .page-card__row::after {
+    display: block;
+}
+.wa-order-body .wa-coupon-section.is-active .wa-active-state {
+        margin-top: 10px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+}
+.wa-order-body .wa-coupon-section.is-active .wa-active-state .wa-text {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #27ae60;
+}
+.wa-order-body .wa-coupon-section.is-active .wa-active-state .wa-button {
+    margin-top: 10px;
+}
+.wa-order-body .wa-price-discount {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #27ae60;
+    margin-bottom: 8px;
+}
+.wa-details-fields-section .s-styled-select .s-icon {
+    display: none;
+}
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    outline: none;
+}
+.wa-field-wrapper.wa-country-wrapper,
+.wa-field-wrapper.wa-region-wrapper,
+.wa-field-wrapper.wa-city-wrapper,
+.wa-order-form-wrapper .wa-step-payment-section .wa-methods-list.wide .wa-method-wrapper:after {
+    display: none !important;
+}
+.wa-details-fields-section .wa-field-wrapper:first-child .wa-label {
+    height: 17px;
+}
+.wa-details-fields-section .wa-field-wrapper:first-child .wa-label span.wa-tooltip.is-inline {
+    font-size: 0;
+}
+
+.wa-details-fields-section .wa-field-wrapper:first-child .wa-label span.wa-tooltip.is-inline .wa-required:before {
+    content: "Адрес";
+    padding-left: .25em;
+    font-size: 15px;
+    display: inline-block;
+    color: #202026;
+}
+.wa-details-fields-section .wa-field-wrapper:first-child .wa-label span.wa-tooltip.is-inline .wa-required:after {
+    content: "*";
+    padding-left: .25em;
+    font-size: 15px;
+    display: inline-block;
+}
+.wa-form-body .wa-form-content .wa-step-section .wa-section-body .wa-required-text {
+    opacity: 0 !important;
+    line-height: 4px !important;
+}
+.wa-dropdown.is-opened > .wa-dropdown-area {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.wa-dropdown-item[data-variant-id="12.delivery"] {
+    -webkit-box-ordinal-group: 6;
+        -ms-flex-order: 5;
+            order: 5;
+}
+.wa-dropdown-item[data-variant-id="60.delivery"] {
+    -webkit-box-ordinal-group: 5;
+        -ms-flex-order: 4;
+            order: 4;
+}
+.wa-dropdown-item[data-variant-id="9.delivery"] {
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
+}
+.wa-dropdown-item[data-variant-id="57.ground"] {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+}
+.wa-dropdown-item[data-variant-id="42.NP2Sklad"] {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+}
+
+
+            $(window).on('load', function() {
+                const region = document.querySelector('.s-styled-select .wa-select.js-region-field'),
+                      city = document.querySelector('.wa-field-wrapper.wa-city-wrapper .wa-input');
+
+                if ( $(region).val() == 11) {
+                    console.log('выбран місто Київ');
+                    city.value = 'Киев';
+                } else {
+                    console.log('выбран ' + $(region).val());
+                    $(region).find('option:selected').removeAttr('selected').removeClass('selected')
+                    $(region).find('option[value="11"]').attr('selected','selected').addClass('selected');
+                    $(region).val(11);
+                    city.value = 'Киев';
+                }

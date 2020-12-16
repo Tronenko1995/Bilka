@@ -1,0 +1,161 @@
+@import '../colors';
+
+.new-faq {
+	display: flex;
+	justify-content: center;
+	padding: 112px 0;
+	background: $mainBgColor;
+
+	&__wrap {
+		width: 800px;
+		display: flex;
+        flex-direction: column;
+	}
+	&__title {
+		font-family: Gilroy;
+		font-style: normal;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 43px;
+		color: $colorDark;
+        margin-bottom: 16px;
+    }
+    &__acc {
+        &-item {
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;   
+            color: $colorDark;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            &::before {
+                content: '';
+                background: #e5e5ec;
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                left: 0;
+                top: 100%;
+            }
+            &[open] > .new-faq__acc-title {
+                color: $color3;
+                &::after {
+                    content: "–";
+                }
+            }
+            &[open] {
+                &::before{
+                    background: #f37a22;
+                }
+            }
+        }
+        &-title {
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 26px;
+            color: #202026;
+            position: relative;
+            display:inline-block;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            width: 100%;
+            user-select: none;
+            padding-right: 82px;
+            padding-bottom: 12px;
+            padding-top: 24px;
+            &::marker,
+            &::-webkit-details-marker {
+                display:none;
+            }
+            &::-moz-list-bullet {
+                list-style-type:none;
+            }
+            &:focus {
+                color: $color3;
+            }
+            &::after {  
+                content: "+";
+                width: 10px;
+                  height: 20px;
+                  content: '+';
+                  position: absolute;
+                  top: 50%;
+                  -webkit-transform: translateY(-50%);
+                  transform: translateY(-50%);
+                  right: 0;
+                  color: #f37a22;
+              }
+        }
+        &-block {
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+            color: $colorDark;
+            padding-bottom: 16px;
+            &-text {
+                display: inline-block;
+                margin-bottom: 8px;
+            }
+             ul {
+                 list-style: none;
+                 cursor: default;
+                 li {
+                    font-family: Gilroy;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #202026;
+                    padding-left: 12px;
+                    margin-bottom: 16px;
+                    position: relative;
+                     &::before {
+                        width: 4px;
+                        height: 4px;
+                        background: #f37a22;
+                        border-radius: 50%;
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 8px;
+                     }
+                     a {
+                         color: $colorLinks;
+                         &:hover {
+                            text-decoration: underline;
+                        }
+                     }
+                 }
+             }
+             a {
+                color: $colorLinks;
+                &:hover {
+                   text-decoration: underline;
+               }
+            }
+        }
+    }
+}
+@media (max-width: 900px) {
+    .new-faq {
+        display: flex;
+        justify-content: center;
+        padding: 112px 0;
+        background: $mainBgColor;
+    
+        &__wrap {
+            padding: 0 15px;
+            width: 800px;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
