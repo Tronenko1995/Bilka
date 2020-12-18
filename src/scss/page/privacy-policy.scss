@@ -5,6 +5,10 @@
     justify-content: center;
     background: $mainBgColor;
 
+    .breadcrumb {
+        align-self: flex-start !important;
+    }
+
     &__wrap {
         width: 1240px;
         padding-top: 56px;
@@ -13,6 +17,8 @@
         padding-left: 20px;
         padding-right: 20px;
         padding-bottom: 112px;
+        text-align: center;
+        align-items: center;
     }
     &__title {
         font-family: Gilroy;

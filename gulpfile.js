@@ -36,6 +36,7 @@ const cssFiles = [
   './src/scss/footer.scss',
   './src/scss/cart.scss',
   './src/scss/svg.scss',
+  './src/scss/go-up.scss',
   './src/scss/include/breadcrumb.scss',
   './src/scss/include/select.scss',
   './src/scss/include/checkbox.scss',

@@ -33,7 +33,9 @@ body {
 .hide {
 	display: none !important;
 }
-
+.show {
+    opacity: 1 !important;
+}
 .help {
 	position: relative;
 }
