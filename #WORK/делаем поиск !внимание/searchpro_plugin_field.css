@@ -257,6 +257,9 @@
 	-o-transition: transform 0.3s;
 	transition: transform 0.3s;
 	transition: transform 0.3s, -webkit-transform 0.3s;
+	top: 50%;
+	margin-top: -2.5px;
+	background-repeat: no-repeat;
 }
 .searchpro__field
 	.searchpro__field-categories-container

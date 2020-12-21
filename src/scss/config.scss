@@ -201,6 +201,9 @@ body {
     }
 }
 
+.mega-extra-paging {
+    padding-bottom: 112px;
+}
 
 @media (min-width: 1200px) {
     .hideCard {
@@ -208,6 +211,13 @@ body {
     }
 }
 
+@media(max-width: 1200px) {
+    .mega-extra-paging {
+        padding-bottom: 50px;
+    }
+}
+
 sup.required {
     color: $red;
 }
+

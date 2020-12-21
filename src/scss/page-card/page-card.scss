@@ -1051,6 +1051,16 @@
                         color: $hover2;
                     }
                 }
+                & ul  {
+                    list-style: disc;
+                    padding: 0 0 0 16px;
+                    li {
+                    list-style: disc;
+                        &::marker {
+                            color: #f37a22;
+                        }
+                    }
+                }
             }
         }
         &-reviews {

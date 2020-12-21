@@ -79,6 +79,14 @@
         border-radius: 4px;
         padding: 30px 20px;
 
+        &-row {
+            &-block {
+                display: flex;
+                justify-content: space-around;
+                width: 100%;
+            }
+        }
+
         &-top {
             display: flex;
             justify-content: space-between;
@@ -104,6 +112,15 @@
                 border-radius: 4px;
                 cursor: pointer;
                 padding: 4px 6px;
+                &--ok {
+                    background: $color3;
+                    border: 1px solid $color3;
+                    color: #fff;
+                    &:hover {
+                        background: $hover2 !important;
+                        border: 1px solid $hover2 !important;
+                    }
+                }
 
                 &:hover {
                     border: 1px solid $color3;
@@ -346,7 +363,7 @@
 
         & .select {
             display: block;
-            width: calc(100% - 32px);;
+            width: calc(100% - 32px);
             margin-top: 12px;
 
             &__head {
@@ -431,9 +448,10 @@
             transition: left .7s;
             // display: flex;
             // flex-direction: column;
-            margin-top: -50px;
+            margin-top: 0px;
             // width: 285px;
             // background: #fff;
+            top: 70px;
             border-radius: 0px;
             padding: 12px 12px 30px 20px;
             &.active {
@@ -447,6 +465,11 @@
             &-row {
                 display: flex;
                 justify-content: space-between;
+                &-block {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-direction: row-reverse;
+                }
             }
             &-top {
                 // display: flex;

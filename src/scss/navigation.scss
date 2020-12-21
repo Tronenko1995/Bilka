@@ -95,10 +95,10 @@
 			background: $color4;
 			position: absolute;
 			right: 1px;
-		}
-		&::-webkit-scrollbar-thumb {
+			&-thumb {
 			background: #F37A22;
 			border-radius: 27px;
+			}
 		}
 	}
 	// &:hover .catalog-button__for-list {

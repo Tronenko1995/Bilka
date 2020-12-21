@@ -385,11 +385,12 @@
 
 
     .cart {
+        margin-top: 0;
         display: block;
         width: 324px;
         right: unset;
         left: -324px;
-        top:0;
+        top:70px;
         border-radius: 0;
         transition: left .7s;
         &.active {

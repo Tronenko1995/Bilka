@@ -88,6 +88,9 @@
         &:hover {
             color: $color3;
         }
+        &.active a {
+            color: $color3;
+        }
         
         & a {
             text-decoration: none;

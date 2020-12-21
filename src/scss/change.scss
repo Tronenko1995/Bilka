@@ -433,3 +433,67 @@
         }
     }
 }
+
+/*гарантия на 12 месяцев*/
+.page-category {
+    .main-container__item {
+        .badge {
+            background-color: #f37a22 !important;
+            position: absolute;
+            width: 200px;
+            left: 35px;
+            top: 16px;
+            display: flex;
+            justify-content: center;
+            span {
+                font-family: Gilroy;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 16px;
+                color: #fff;
+                padding: 2px 0;
+            }
+        }
+    }
+}
+@media (max-width: 630px) {
+
+    .page-category {
+        .main-container__item {
+            .badge {
+                left: 72px;
+            }
+        }
+    }
+}
+
+.page-card {
+    .badge {
+        background-color: #f37a22!important;
+        position: absolute;
+        width: 393px;
+        left: 22px;
+        top: -20px;
+        display: flex;
+        justify-content: center;
+        span {
+            font-family: Gilroy;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 16px;
+            color: #fff;
+            padding: 2px 0;
+        }
+    }
+}
+@media (max-width: 525px) {
+
+    .page-card {
+        .badge {
+            left: 6px;
+            width: 285px;
+        }
+    }
+}

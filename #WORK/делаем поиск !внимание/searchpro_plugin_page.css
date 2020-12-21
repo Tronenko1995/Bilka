@@ -973,6 +973,7 @@
 	-webkit-transition: color 0.3s;
 	-o-transition: color 0.3s;
 	transition: color 0.3s;
+	position: relative;
 }
 .searchpro__page-filter .searchpro__page-filter_name:after {
 	content: "";
@@ -991,7 +992,9 @@
 	transition: transform 0.3s;
 	transition: transform 0.3s, -webkit-transform 0.3s;
 	position: absolute;
-	margin-top: 0.5em;
+    top: 50%;
+    margin-top: -2.5px;
+    background-repeat: no-repeat;
 }
 .searchpro__page-filter .searchpro__page-filter_name:hover {
 	color: #828282;
