@@ -295,6 +295,9 @@
                     margin: 4px 46px 3px 46px;
                     max-width: 393px;
                     height: auto;
+                    img {
+                        cursor: zoom-in;
+                    }
                 }
             }
             &-customer_photos {

@@ -1,0 +1,184 @@
+{* NewItems (Новинки) *}
+    
+{$productsNI = $wa->shop->productSet("NewItems")} <!-- Вытащить весь товар из списка NewItems (Новинки) -->
+{$allSkusNI = $wa->shop->skus(array_keys($productsNI))}
+
+{if !empty($productsNI)} <!-- если есть товары в списке -->
+
+
+<div class="new-items">
+<div class="new-items__wrap">
+<div class="new-items__title">Новинки</div>
+<div class="new-items-slider">
+
+    {foreach $productsNI as $productNI}
+    {$available = $wa->shop->settings('ignore_stock_count') || $productNI.count === null || $productNI.count > 0}
+    {$badge_html = $wa->shop->badgeHtml($productNI.badge)}
+    {$productNI_image_src = $wa->shop->productImgUrl($productNI, "200")|default:"`$wa_theme_url`img/svg/empty_photo.svg"}
+
+    {if !empty($productNI.skus) && !empty($productNI.skus[$productNI.sku_id])}
+        {$sku = $productNI.skus[$productNI.sku_id]}
+        {if empty($sku.available) && (count($productNI.skus) === 1)}{$available = false}{/if}
+    {/if}
+    
+    {$skusNI = $allSkusNI[$productNI.id]}
+
+        <div class="main-container__for-slider-item for-slider-item">
+        <div class="main-container__item slider-item" data-product-id="{$productNI.id}">
+
+        {*if !empty($_show_compare)}
+        <a class="s-compare-button main-container__item-compare-box {if $wa->shop->inComparison($productNI.id)}is-active{/if}" href="javascript:void(0);" data-product="{$productNI.id}" title="{if $wa->shop->inComparison($productNI.id)}[`In comparison list`]{else}[`To comparison`]{/if}">
+            <svg class="main-container__item-compare-box-svg" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.05 12.05L21 17L16.05 21.95L14.636 20.536L17.172 17.999L4 18V16H17.172L14.636 13.464L16.05 12.05ZM7.95 2.04999L9.364 3.46399L6.828 5.99999H20V7.99999H6.828L9.364 10.536L7.95 11.95L3 6.99999L7.95 2.04999Z"/>
+            </svg>
+        </a>
+        {/if*}
+ 
+
+        {if $productNI.sku_count > 1}
+        <ul class="main-container__item-colors" data-sku-count="{$productNI.sku_count}">
+            {foreach from=$skusNI item=color}
+
+                {if $color.name == "Пионы"}<li class="main-container__item-colors-item color--white" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "белый"}<li class="main-container__item-colors-item color--white" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Бирюзовый"}<li class="main-container__item-colors-item color--cyan" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Голубой"}<li class="main-container__item-colors-item color--deepskyblue" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Золотой"}<li class="main-container__item-colors-item color--gold" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Кофейный"}<li class="main-container__item-colors-item color--coffee" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Кремовый"}<li class="main-container__item-colors-item color--cream" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Лайм"}<li class="main-container__item-colors-item color--lime" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Малиновый"}<li class="main-container__item-colors-item color--magenta" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Металлик"}<li class="main-container__item-colors-item color--coral" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Пурпурный"}<li class="main-container__item-colors-item color--purple" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Розовый"}<li class="main-container__item-colors-item color--pink" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Розы"}<li class="main-container__item-colors-item color--roses" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Салатовый"}<li class="main-container__item-colors-item color--charteuse" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Синий"}<li class="main-container__item-colors-item color--blue" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Старый цветок"}<li class="main-container__item-colors-item color--oldflower" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Темно-синий"}<li class="main-container__item-colors-item color--navy" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Фиолетовый"}<li class="main-container__item-colors-item color--violet" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "желтый"}<li class="main-container__item-colors-item color--yellow" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "зеленый"}<li class="main-container__item-colors-item color--darkgreen" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "коричневый"}<li class="main-container__item-colors-item color--brown" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "красный"}<li class="main-container__item-colors-item color--red" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "оранжевый"}<li class="main-container__item-colors-item color--orange" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "прозрачный"}<li class="main-container__item-colors-item color--transparent" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "серебро"}<li class="main-container__item-colors-item color--silver" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "серый"}<li class="main-container__item-colors-item color--gray" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "черный"}<li class="main-container__item-colors-item color--black" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "бежевый"}<li class="main-container__item-colors-item color--beige" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Хаки"}<li class="main-container__item-colors-item color--khaki" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Мятный"}<li class="main-container__item-colors-item color--mint" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {elseif $color.name == "Камуфляж"}<li class="main-container__item-colors-item color--camouflage" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}"></a></li>
+                    {else}<li class="main-container__item-colors-item color--black" article="{$color.sku}" image_id="{$color.image_id}" price="{$color.price}"><a class="main-container__item-colors-item-link jsChangeColor" href="#" title="{$color.name}">?</a></li>
+                {/if}
+
+            {/foreach}
+        </ul>
+        {/if}
+        {if !empty($badge_html)}
+            {$badge_html}
+        {/if}
+        <img src="{$productNI_image_src}" itemprop="image" width="200" height="200" alt="{$productNI.name}" image_id="{$productNI.image_id}" class="main-container__item-img">
+        <p class="main-container__item-code">Код товара: <span class="jsItemCode">{$productNI.sku_id}</span></p>
+        <a class="main-container__item-full-link" href="{$productNI.frontend_url}" title='{$productNI.name}'><p itemprop="name" class="main-container__item-text">{$productNI.name}</p></a>
+
+        {$_rate = 0}
+        {$_rating = 'Нет отзывов'}
+        {if !empty($productNI.rating)}
+            {$_rate = round($productNI.rating, 1)}
+        {/if}
+
+        <div class="main-container__item-for-rating">
+            {for $_i = 0 to 4}
+                {$_icon_class = "svg-star"}
+                {if $_i < $_rate}
+                    {$_delta = $_rate - $_i}
+                    {if $_delta >= 1}
+                        {$_icon_class = "svg-star--active"}
+                        {$_rating = 'Есть отзывы'}
+                    {elseif round($_delta) == 1}
+                        {$_icon_class = "svg-star--half"}
+                        {$_rating = 'Есть отзывы'}
+                    {/if}
+                {/if}
+                <div class="main-container__item-for-rating-svg {$_icon_class}"></div>
+            {/for}
+            
+            <p class="main-container__item-for-rating-text">{$_rating}</p>
+        </div>
+
+        <div class="main-container__item-for-price">
+            <meta itemprop="price" content="{shop_currency($productNI.price, null, null, 0)}">
+            <meta itemprop="priceCurrency" content="{$wa->shop->currency()}">
+            <p class="main-container__item-for-price-text">{shop_currency_html($productNI.price)}</p>
+            {if $available}
+                    <form class="main-container__item-for-price-form add-to-cart" {if $productNI.sku_count > 1}data-url="{$productNI.frontend_url}{if strpos($productNI.frontend_url, '?')}&{else}?{/if}cart=1"{/if} method="post" action="{$wa->getUrl('/frontendCart/add')}">
+                    {/if}
+            <button class="main-container__item-for-price-box js-add-button" type="submit" value="{_wd('shop', 'Buy')}" {if !$available}disabled{/if}>
+                <svg class="main-container__item-for-price-box-svg" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.99996 6.41402L0.756958 3.17202L2.17196 1.75702L5.41396 5.00002H20.656C20.8118 5.00001 20.9655 5.03643 21.1048 5.10639C21.2441 5.17634 21.3651 5.27788 21.4582 5.40291C21.5513 5.52795 21.6138 5.673 21.6409 5.82651C21.6679 5.98001 21.6587 6.13771 21.614 6.28702L19.214 14.287C19.1522 14.4931 19.0257 14.6738 18.8531 14.8022C18.6805 14.9307 18.4711 15 18.256 15H5.99996V17H17V19H4.99996C4.73474 19 4.48039 18.8947 4.29285 18.7071C4.10531 18.5196 3.99996 18.2652 3.99996 18V6.41402ZM5.49996 23C5.10213 23 4.7206 22.842 4.4393 22.5607C4.15799 22.2794 3.99996 21.8978 3.99996 21.5C3.99996 21.1022 4.15799 20.7207 4.4393 20.4394C4.7206 20.1581 5.10213 20 5.49996 20C5.89778 20 6.27931 20.1581 6.56062 20.4394C6.84192 20.7207 6.99996 21.1022 6.99996 21.5C6.99996 21.8978 6.84192 22.2794 6.56062 22.5607C6.27931 22.842 5.89778 23 5.49996 23ZM17.5 23C17.1021 23 16.7206 22.842 16.4393 22.5607C16.158 22.2794 16 21.8978 16 21.5C16 21.1022 16.158 20.7207 16.4393 20.4394C16.7206 20.1581 17.1021 20 17.5 20C17.8978 20 18.2793 20.1581 18.5606 20.4394C18.8419 20.7207 19 21.1022 19 21.5C19 21.8978 18.8419 22.2794 18.5606 22.5607C18.2793 22.842 17.8978 23 17.5 23Z"/>
+                    </svg>                                
+            </button>
+            {if $available}
+            <input type="hidden" name="product_id" value="{$productNI.id}">
+        </form>
+        {/if}
+        </div>
+    </div>
+</div>
+{/foreach}
+
+</div>
+</div>
+</div>
+
+{/if}
+
+
+
+
+
+
+{if $products}
+
+<h2>{$title_products}</h2>
+<ul class="product-list recommendproducts">
+{foreach $products as $p}
+    <li class="slide" itemscope itemtype ="http://schema.org/Product">
+        <div class="image">
+            <a href="{$p.frontend_url}" title="{$p.name|escape}{if $p.summary} &mdash; {strip_tags($p.summary)}{/if}">
+                {$badge_html = $wa->shop->badgeHtml($p.badge)}
+                {if $badge_html}
+                    <div class="corner top right">{$badge_html}</div>
+                {/if}
+                {$wa->shop->productImgHtml($p, '200', ['itemprop' => 'image', 'alt' => $p.name])}
+                <h5 itemprop="name">
+                    {$p.name}
+                </h5>
+                {if $p.rating > 0}
+                    <span class="rating nowrap">{$wa->shop->ratingHtml($p.rating)}</span>
+                {/if}
+            </a>
+        </div><br>
+
+        {if $p.summary}<p itemprop="description">{$p.summary}</p>{/if}
+
+        <div itemprop="offers" class="offers" itemscope itemtype="http://schema.org/Offer">
+            {if $p.compare_price > 0}<span class="compare-at-price nowrap">{wa_currency_html($p.compare_price, $wa->shop->currency())}</span>{/if}
+            <span class="price nowrap" itemprop="price">{wa_currency_html($p.price, $wa->shop->currency())}</span>
+        </div>
+    </li>
+{/foreach}
+</ul>
+<script type="text/javascript">
+$(document).ready(function () {
+    $('.recommendproducts').bxSlider({
+        slideWidth: 200,
+        minSlides: 1,
+        maxSlides: 4,
+        slideMargin: 10
+    });
+});
+</script>
+{/if}

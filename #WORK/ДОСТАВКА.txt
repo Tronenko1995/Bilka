@@ -1,0 +1,42 @@
+Пункт приема-выдачи (до 30 кг), ул. Основная 5, Алтестово, місто Київ, Украина
+
+{$shipping_address}
+
+НП
+{if strpos({$order.params['shipping_name']}, 'Нова Пошта')}
+{$order.name}
+{$order.params['shipping_address.city']}
+{$order.params['shipping_address.street']}
+{/if}
+
+УКР ПОЧТА
+{if strpos({$order.params['shipping_name']}, 'Укрпочта')}
+{$order.name}
+{$order.params['shipping_address.street']}
+{$order.params['shipping_address.zip']}
+{/if}
+
+Курьером по Киеву 
+{if strpos({$order.params['shipping_name']}, 'Курьером по Киеву')}
+{$order.name}
+{$order.params['shipping_address.city']}
+{$order.params['shipping_address.street']}
+{/if}
+
+Самовывоз
+{if strpos({$order.params['shipping_name']}, 'Самовывоз')}
+{$order.name}
+{$order.params['shipping_address.city']}
+{/if}
+
+
+name
+
+
+shipping_address.street -> отделение нопой почты
+shipping_address.city -> что выбрано в городе для новой почты
+
+
+{if !strpos($smarty.server.HTTP_USER_AGENT, 'Chrome-Lighthouse')}
+
+

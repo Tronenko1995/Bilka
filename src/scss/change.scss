@@ -497,3 +497,8 @@
         }
     }
 }
+
+/* отключение стандартные соц сетей на написание отзыва*/
+.modal__write-feedback-body .s-adapters-section {
+    display: none !important;
+}
