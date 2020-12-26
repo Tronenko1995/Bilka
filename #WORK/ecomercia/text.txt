@@ -1,0 +1,21 @@
+Селекторы элементов клика просмотра товара
+
+[data-kmgtm="product-click"], #product-list .product-list li a, .related .product-list li a, .product-list li a
+
+.main-container__items .main-container__item .main-container__item-full-link, .main-container__for-slider-item .main-container__item .main-container__item-full-link, .last-review .last-review-slider__item, .page-compare__row-product .page-compare__row-product-text
+
+
+
+
+Селекторы элемента-контейнера для товара
+
+[data-kmgtm="product"], #product-list .product-list li, .related .product-list li, .product-list li
+
+.main-container__items .main-container__item .main-container__item-for-price, .main-container__for-slider-item .main-container__item .main-container__item-for-price, .page-compare__row-product .page-compare__row-product-price
+
+
+Селекторы элементов названия категории
+
+[data-kmgtm="category-name"], .category-name
+
+.main-container__top .main-container__top-title

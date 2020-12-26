@@ -502,3 +502,8 @@
 .modal__write-feedback-body .s-adapters-section {
     display: none !important;
 }
+
+/* отключение хлебных крошек на странице поиска*/
+.page-find .breadcrumb {
+    display: none !important;
+}
