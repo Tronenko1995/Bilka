@@ -1,0 +1,8 @@
+Dialog (редактировать):
+www/wa-apps/shop/plugins/productfeatures/templates/actions/dialog
+
+ProductFeatures && include.feature (редактировать характеристики):
+www/wa-apps/shop/templates/actions/product
+
+edit (Массовое редактирование):
+www/wa-apps/shop/plugins/massupdating/templates/dialog

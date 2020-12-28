@@ -25,6 +25,9 @@
                 <span class="select__tilda">выбрать ~</span>
             </div>
             <div class="select">
+                <span class="select__no-tilda">выбрать без ~</span>
+            </div>
+            <div class="select">
                 <span class="select__un">снять все</span>
             </div>
         </div>
@@ -195,6 +198,7 @@
     }
     .select__all,
     .select__tilda,
+    .select__no-tilda,
     .select__un {
         border-bottom: 1px dashed #f37a22;
         color: #f37a22;
@@ -202,6 +206,7 @@
     }
     .select__all:hover,
     .select__tilda:hover,
+    .select__no-tilda:hover,
     .select__un:hover {
     color: #d6610c;
     border-bottom: 1px dashed #d6610c;
@@ -210,7 +215,7 @@
     <script>
         $('.select__all').on('click', function() {
             $(this).closest('.field').find('.value input').prop('checked', true);
-        })
+        });
         $('.select__tilda').on('click', function() {
             const allInput = $(this).closest('.field').find('.value input');
             $.each(allInput, function(key,value) {
@@ -218,8 +223,16 @@
                     $(value).prop('checked', true);
                 }
             });
+        });
+        $('.select__no-tilda').on('click', function() {
+            const allInput = $(this).closest('.field').find('.value input');
+            $.each(allInput, function(key,value) {
+                if (value.parentElement.innerHTML.indexOf('~') == -1) {
+                    $(value).prop('checked', true);
+                }
+            });
         })
         $('.select__un').on('click', function() {
             $(this).closest('.field').find('.value input').prop('checked', false);
-        })
+        });
 </script>
