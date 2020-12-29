@@ -1,0 +1,441 @@
+switch(window.location.pathname) {
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-m2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+  
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-m3/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-mi4/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    /*case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-a2-lite/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;*/
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-mi-max/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-note/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-note-2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-note-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-mi-pad-2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-play/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-mi2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi2a/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-mi2s/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-mi3/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi6/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-1s/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-3/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-3-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-3s/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-3x/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-4/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-4-prime/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-4-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-4a/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-4x/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-5/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-5-plus/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-5a/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-6/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    /*case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-6-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;*/
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-6a/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-7/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-7a/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-go/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-note-2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-note-3/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-3-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    /*case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-note-4/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;*/
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-notee-4g/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-note-4x/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-5-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-5a-prime/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-5a/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-6-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-pro-3/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-pro-3s/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-s2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-mi5/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi5s/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-6x/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-8/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-8-se/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-9/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-a1/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-a2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-max-2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-max-3/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-mix/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    /*case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-mix-2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;*/
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-mix-2s/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-mix-3/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-note-3/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-mi-4c/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/_xiaomi-mi-4s/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi5c/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi5s-plus/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi5x/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi8-lite/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi8-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi9-se/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-pocophone-f1/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    /*case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-7-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;*/
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-shark/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-a3/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-a3-lite/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-7/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-k20-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-k20/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-9t/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-8-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-8/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-8/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-9-lite/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-8-lite--mi8-lite/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-5/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-band-3/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-band-2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-go/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-band-4/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-8a/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-1/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-8t/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-9/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-9a/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-9s/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-9-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-9c/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-k30/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-9/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-black-shark-2/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-10/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-10-pro/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-note-10/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-mi-note-10-lite/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-10x/':
+        document.location.replace("https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/");
+    break;
+
+    case '/category/naushnyky-dlya-ksyomyd/':
+        document.location.replace("https://bilka.com.ua/category/naushniki/xiaomi/");
+    break;
+}

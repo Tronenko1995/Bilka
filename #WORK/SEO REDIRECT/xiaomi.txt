@@ -1,5 +1,6 @@
 #редирект на#
 Xiaomi: https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/
+category/naushnyky-dlya-ksyomyd/
 !111 моделей!
 
 
@@ -12,8 +13,8 @@ https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/_xiaomi-m3/
 Xiaomi Xiaomi Mi4
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/_xiaomi-mi4/
 
-Xiaomi Xiaomi Mi A2 Lite
-https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-a2-lite/
+//Xiaomi Xiaomi Mi A2 Lite (наушники)
+//https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-a2-lite/
 
 Xiaomi Xiaomi Mi Max
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/_xiaomi-mi-max/
@@ -87,7 +88,7 @@ https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-4-pro/
 Xiaomi Xiaomi Redmi 4a
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-4a/
 
-Xiaomi Xiaomi Redmi Note 4x
+Xiaomi Xiaomi Redmi 4x
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-4x/
 
 Xiaomi Xiaomi Redmi 5
@@ -102,8 +103,8 @@ https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-5a/
 Xiaomi Xiaomi Redmi 6
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-6/
 
-Xiaomi Xiaomi Redmi 6 Pro
-https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-6-pro/
+//Xiaomi Xiaomi Redmi 6 Pro (наушники)
+//https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-6-pro/
 
 Xiaomi Xiaomi Redmi 6a
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-6a/
@@ -129,8 +130,8 @@ https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-note-3/
 Xiaomi Xiaomi Redmi Note 3 Pro
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-3-pro/
 
-Xiaomi xiaomi-redmi-note-4
-https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-note-4/
+//Xiaomi xiaomi-redmi-note-4 (наушники)
+//https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-note-4/
 
 Xiaomi Xiaomi Redmi Notee 4G
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/_xiaomi-redmi-notee-4g/
@@ -192,8 +193,8 @@ https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-max-3/
 Xiaomi Xiaomi Mi Mix
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-mix/
 
-Xiaomi Xiaomi Mi Mix 2
-https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-mix-2/
+//Xiaomi Xiaomi Mi Mix 2 (наушники)
+//https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-mix-2/
 
 Xiaomi ~Xiaomi Mi Mix 2s
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-mix-2s/
@@ -224,3 +225,114 @@ https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi8-lite/
 
 Xiaomi Xiaomi Mi8 Pro
 https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi8-pro/
+
+Xiaomi ~Xiaomi Mi9 SE
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi9-se/
+
+Xiaomi Xiaomi Pocophone F1
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-pocophone-f1/
+
+//Xiaomi ~Xiaomi Redmi Note 7 Pro (наушники)
+//https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-7-pro/
+
+Xiaomi Xiaomi Redmi Pro
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-pro/
+
+Xiaomi ~Xiaomi Shark
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-shark/
+
+Xiaomi ~Xiaomi Mi A3
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-a3/
+
+Xiaomi ~Xiaomi Mi A3 Lite
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-a3-lite/
+
+Xiaomi Xiaomi Redmi Note 7
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-7/
+
+Xiaomi ~Xiaomi Redmi K20 Pro
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-k20-pro/
+
+Xiaomi ~Xiaomi Redmi K20
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-k20/
+
+Xiaomi ~Xiaomi Mi 9T
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-9t/
+
+Xiaomi Xiaomi Redmi Note 8 Pro
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-8-pro/
+
+Xiaomi Xiaomi Redmi Note 8
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-8/
+
+Xiaomi Xiaomi Redmi 8
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-8/
+
+Xiaomi Xiaomi Mi 9 Lite
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-9-lite/
+
+Xiaomi ~Xiaomi Mi 8 Lite / Mi8 Lite
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-8-lite--mi8-lite/
+
+Xiaomi Xiaomi Redmi Note 5
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-5/
+
+Xiaomi Xiaomi Mi Band 3
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-band-3/
+
+Xiaomi Xiaomi Mi Band 2
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-band-2/
+
+Xiaomi Xiaomi Mi Go
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-go/
+
+Xiaomi Xiaomi Mi Band 4
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-band-4/
+
+Xiaomi Xiaomi Redmi 8a
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-8a/
+
+Xiaomi Xiaomi Mi 1
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-1/
+
+Xiaomi ~Xiaomi Redmi Note 8t
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-8t/
+
+Xiaomi ~Xiaomi Redmi 9
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-9/
+
+Xiaomi Xiaomi Redmi 9a
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-9a/
+
+Xiaomi ~Xiaomi Redmi Note 9S
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-9s/
+
+Xiaomi ~Xiaomi Redmi Note 9 Pro
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-9-pro/
+
+Xiaomi ~Xiaomi Redmi 9C
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-9c/
+
+Xiaomi ~Xiaomi Redmi K30
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-k30/
+
+Xiaomi ~Xiaomi Redmi Note 9
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-note-9/
+
+Xiaomi ~Xiaomi Black Shark 2
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-black-shark-2/
+
+Xiaomi ~Xiaomi Mi 10
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-10/
+
+Xiaomi ~Xiaomi Mi 10 Pro
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-10-pro/
+
+Xiaomi ~Xiaomi Mi Note 10
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-note-10/
+
+Xiaomi ~Xiaomi Mi Note 10 Lite
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-mi-note-10-lite/
+
+Xiaomi Xiaomi Redmi 10x
+https://bilka.com.ua/category/naushnyky-dlya-ksyomyd/xiaomi-redmi-10x/
