@@ -221,7 +221,7 @@ sup.required {
     color: $red;
 }
 
-.top-block center {
+.announcement {
     background: #f7f7fb;
     font-family: Gilroy;
     font-style: normal;
@@ -230,9 +230,10 @@ sup.required {
     line-height: 17px;
     color: #202026;
     padding: 4px 0;
+    text-align: center;
 }
 @media (max-width: 500px) {
-    .top-block center {
+    .announcement {
         padding: 5px 15px;
     }
 }
