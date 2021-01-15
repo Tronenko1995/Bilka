@@ -1,0 +1,1044 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE theme PUBLIC "wa-app-theme" "http://www.webasyst.com/wa-content/xml/wa-app-theme.dtd">
+<theme id="NewBilka" app="shop" vendor="webasyst" author="webasyst" parent_theme_id="site:NewBilka" version="1.3.14" source_theme_id="hypermarket" system="0">
+  <name locale="en_US">Копировать Hypermarket</name>
+  <name locale="ru_RU">NewBilka</name>
+  <files>
+    <!-- parent resources -->
+    <file path="css/custom.css" parent="1">
+        </file>
+    <file path="js/custom.js" parent="1">
+        </file>
+    <!-- shop resources -->
+    <file path="css/custom.shop.css">
+        </file>
+    <file path="js/cart.js">
+      <description locale="en_US">Cart page JavaScript</description>
+      <description locale="ru_RU">JavaScript-код страницы корзины</description>
+    </file>
+    <file path="js/checkout.js">
+        </file>
+    <file path="js/custom.shop.js">
+        </file>
+    <file path="js/product.js">
+      <description locale="en_US">Product page JavaScript</description>
+      <description locale="ru_RU">JavaScript-код страницы товара</description>
+    </file>
+    <file path="js/products.js">
+        </file>
+    <file path="js/reviews.js">
+      <description locale="en_US">Reviews JavaScript</description>
+      <description locale="ru_RU">JavaScript-код отзывов</description>
+    </file>
+    <!-- parent templates -->
+    <file path="index.html" parent="1">
+        </file>
+    <file path="error.html" parent="1">
+        </file>
+    <file path="signup.html" parent="1">
+        </file>
+    <file path="login.html" parent="1">
+        </file>
+    <file path="forgotpassword.html" parent="1">
+        </file>
+    <file path="page.html" parent="1">
+      <description locale="en_US">Static page content</description>
+      <description locale="ru_RU">Содержимое информационной страницы</description>
+    </file>
+    <file path="my.profile.html" parent="1">
+        </file>
+    <!-- shop templates -->
+    <file path="breadcrumbs.html">
+        </file>
+    <file path="cart.html">
+      <description locale="en_US">Shopping cart page</description>
+      <description locale="ru_RU">Страница с товарами корзины</description>
+    </file>
+    <file path="category.filters.html">
+        </file>
+    <file path="category.html">
+      <description locale="en_US">Wrapper for a category page</description>
+      <description locale="ru_RU">Обертка для страницы категории</description>
+    </file>
+    <file path="checkout.auth.html">
+        </file>
+    <file path="checkout.confirmation.html">
+      <description locale="en_US">Checkout: order confirmation</description>
+      <description locale="ru_RU">Оформление заказа: подтверждение заказа</description>
+    </file>
+    <file path="checkout.contactinfo.html">
+      <description locale="en_US">Checkout: customer contact information form</description>
+      <description locale="ru_RU">Оформление заказа: форма ввода контактной информации</description>
+    </file>
+    <file path="checkout.error.html">
+      <description locale="en_US">Checkout: error page</description>
+      <description locale="ru_RU">Оформление заказа: страница с сообщением об ошибке</description>
+    </file>
+    <file path="checkout.html">
+      <description locale="en_US">Checkout: main wrapper</description>
+      <description locale="ru_RU">Шаблон страниц оформления заказа</description>
+    </file>
+    <file path="checkout.payment.html">
+      <description locale="en_US">Checkout: payment method selection</description>
+      <description locale="ru_RU">Оформление заказа: выбор способа оплаты</description>
+    </file>
+    <file path="checkout.shipping.html">
+      <description locale="en_US">Checkout: shipping method selection</description>
+      <description locale="ru_RU">Оформление заказа: выбор способа доставки</description>
+    </file>
+    <file path="checkout.success.html">
+      <description locale="en_US">Checkout: “thank you” page</description>
+      <description locale="ru_RU">Оформление заказа: последняя страница</description>
+    </file>
+    <file path="compare.html">
+      <description locale="en_US">Product comparison</description>
+      <description locale="ru_RU">Сравнение товаров</description>
+    </file>
+    <file path="footer.html" custom="0" modified="1">
+      <description locale="en_US">Storefront footer content</description>
+      <description locale="ru_RU"/>
+    </file>
+    <file path="head.html" custom="0" modified="1">
+      <description locale="en_US"/>
+      <description locale="en_US">Блок &lt;head&gt; витрины</description>
+    </file>
+    <file path="header.html">
+      <description locale="en_US">Storefront header content</description>
+      <description locale="ru_RU">Шапка страниц витрины</description>
+    </file>
+    <file path="home.html" custom="0" modified="1">
+      <description locale="en_US">Storefront home page</description>
+      <description locale="ru_RU"/>
+    </file>
+    <file path="home.slider.html" custom="0" modified="1">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="list-thumbs.html" custom="0" modified="1">
+      <description locale="en_US">Product list thumbnail view</description>
+      <description locale="ru_RU"/>
+    </file>
+    <file path="main.html">
+      <description locale="en_US">Main storefront layout and navigation</description>
+      <description locale="ru_RU">Основной макет содержимого и навигации витрины</description>
+    </file>
+    <file path="my.affiliate.html">
+      <description locale="en_US">Customer account: affiliate program</description>
+      <description locale="ru_RU">Личный кабинет: партнерская программа</description>
+    </file>
+    <file path="my.nav.html">
+        </file>
+    <file path="my.order.html">
+      <description locale="en_US">Customer account: order-viewing page</description>
+      <description locale="ru_RU">Личный кабинет: просмотр заказа</description>
+    </file>
+    <file path="my.orders.html">
+      <description locale="en_US">Customer account: order list</description>
+      <description locale="ru_RU">Личный кабинет: список заказов</description>
+    </file>
+    <file path="order.html">
+        </file>
+    <file path="product.cart.dialog.html">
+      <description locale="en_US">Product adding to cart dialog</description>
+      <description locale="ru_RU">Диалог добавления товара в корзину</description>
+    </file>
+    <file path="product.cart.html" custom="0" modified="1">
+      <description locale="en_US">Product adding to cart block</description>
+      <description locale="ru_RU"/>
+    </file>
+    <file path="product.html">
+      <description locale="en_US">Product-viewing page</description>
+      <description locale="ru_RU">Страница просмотра товара</description>
+    </file>
+    <file path="product.page.html">
+        </file>
+    <file path="products.html">
+        </file>
+    <file path="products.items.html">
+        </file>
+    <file path="products.short.html">
+        </file>
+    <file path="products.sorting.html">
+        </file>
+    <file path="review.html">
+      <description locale="en_US">Single product review template</description>
+      <description locale="ru_RU">Шаблон отображения отзыва о товаре</description>
+    </file>
+    <file path="reviews.html">
+      <description locale="en_US">Product review list</description>
+      <description locale="ru_RU">Список отзывов о товаре</description>
+    </file>
+    <file path="search.html">
+      <description locale="en_US">Wrapper for product search (filtering) results; e.g., by name or tag</description>
+      <description locale="ru_RU">Обертка для страницы поиска (фильтрации) товаров, например, по ключевому слову или тегу</description>
+    </file>
+    <file path="sidebar.html">
+        </file>
+    <file path="header.layout.html" custom="1" modified="1" parent="1">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="breadcrumbs.layout.html" custom="1" modified="1" parent="1">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="footer.layout.html" custom="1" modified="1" parent="1">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="login.adapters.html" custom="1" modified="1" parent="1">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="page.welcome.html" custom="1" modified="1" parent="1">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="pane.html" custom="1" modified="1" parent="1">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="sidebar.layout.html" custom="1" modified="1" parent="1">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="searchpro_plugin_page.css" custom="1" modified="1">
+      <description locale="ru_RU">Таблица стилей плагина "Поиск PRO" — Таблица стилей страницы с результатами поиска</description>
+    </file>
+    <file path="searchpro_plugin_field.css" custom="1" modified="1">
+      <description locale="ru_RU">Таблица стилей плагина "Поиск PRO" — Таблица стилей поля поиска</description>
+    </file>
+    <file path="/plugins/reviewsplus/reviews-list.html" custom="1" modified="1">
+      <description locale="ru_RU">Файл для вывода списка отзывов</description>
+    </file>
+    <file path="/plugins/reviewsplus/reviews-main.html" custom="1" modified="1">
+      <description locale="ru_RU">Основной файл показа отзывов продукта с формой</description>
+    </file>
+    <file path="/plugins/reviewsplus/all-reviews.html" custom="1" modified="1">
+      <description locale="ru_RU">Основной файл показа отзывов продукта с формой</description>
+    </file>
+    <file path="/plugins/reviewsplus/user.css" custom="1" modified="1">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="/plugins/reviewsplus/reviewsplus-frontend.js" custom="1" modified="1">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="searchpro_plugin_field.html" custom="1" modified="1">
+      <description locale="ru_RU">Шаблон плагина "Поиск PRO" — Поле поиска</description>
+    </file>
+    <file path="searchpro_plugin_helper_dropdown.html" custom="1" modified="1">
+      <description locale="ru_RU">Шаблон плагина "Поиск PRO" — Выпадающий список с историей и популярными запросами</description>
+    </file>
+    <file path="searchpro_plugin_page.html" custom="1" modified="1">
+      <description locale="ru_RU">Шаблон плагина "Поиск PRO" — Страница с результатами поиска</description>
+    </file>
+  </files>
+  <settings>
+    <setting var="shop_divider_1" control_type="group_divider">
+      <value/>
+      <name locale="en_US">Home page</name>
+      <name locale="ru_RU">Главная страница</name>
+    </setting>
+    <setting var="shop_divider_1_1" control_type="group_divider">
+      <value>shop_divider_1/shop_divider_1_1</value>
+      <name locale="en_US">Home page</name>
+      <name locale="ru_RU">Режим слайдера</name>
+    </setting>
+    <setting var="slider_mode" control_type="radio">
+      <value>products</value>
+      <name locale="en_US">Slider</name>
+      <name locale="ru_RU">Слайдер</name>
+      <options>
+        <option value="promos">
+          <name locale="en_US">Promo cards with shaded background</name>
+          <name locale="ru_RU">Промокарточки с затемнением фона</name>
+          <description locale="en_US">Slider will display promo cards editable in “Products → Promos” section. The shading color is obtained from a promo’s “Background color” setting.</description>
+          <description locale="ru_RU">В слайдере будут показаны промокарточки, созданные в разделе «Товары → Промо». Для затемнения фона используется цвет из настройки промокарточки «Цвет фона».</description>
+        </option>
+        <option value="promos_without_mask">
+          <name locale="en_US">Promo cards</name>
+          <name locale="ru_RU">Промокарточки</name>
+          <description locale="en_US">Slider will display promo cards editable in “Products → Promos” section.</description>
+          <description locale="ru_RU">В слайдере будут показаны промокарточки, созданные в разделе «Товары → Промо».</description>
+        </option>
+        <option value="products">
+          <name locale="en_US">Products</name>
+          <name locale="ru_RU">Товары</name>
+          <description locale="en_US">Slider will display main images of products from a product set with ID specified below. Product sets are editable in “Products → Sets” section.</description>
+          <description locale="ru_RU">В слайдере будут показаны основные изображения товаров из списка с указанным ниже идентификатором. Списки товаров редактируются в разделе «Товары → Списки».</description>
+        </option>
+        <option value="products_wide">
+          <name locale="en_US">Products: last photo as a background</name>
+          <name locale="ru_RU">Товары: последнее фото в качестве фона</name>
+          <description locale="en_US">Slider will display last images of products from a product set with ID specified below, as background for entire slider area.</description>
+          <description locale="ru_RU">В слайдере будут показаны последние изображения товаров из списка с указанным ниже идентификатором — в качестве фона по размерам всего слайдера.</description>
+        </option>
+        <option value="hidden">
+          <name locale="ru_RU">Не показывать слайдер</name>
+          <name locale="en_US">Don’t show the slider</name>
+        </option>
+      </options>
+    </setting>
+    <setting var="slider_product_list_id" control_type="text">
+      <name locale="en_US">Slider product set ID</name>
+      <name locale="ru_RU">Список промотоваров в слайдере</name>
+      <description locale="en_US">ID of product set whose products will be shown in home page slider if selected in the slider setting above.</description>
+      <description locale="ru_RU">Идентификатор списка товаров, которые будут показаны в слайдере, если это выбрано в настройке слайдера выше.</description>
+      <value locale="en_US">promo</value>
+      <value locale="ru_RU">promo</value>
+      <value locale="uk_UA">promo</value>
+    </setting>
+    <setting var="slider_height" control_type="text">
+      <name locale="en_US">Slider height</name>
+      <name locale="ru_RU">Высота слайдера</name>
+      <description locale="en_US">Default: 320 (pixels)</description>
+      <description locale="ru_RU">По умолчанию 320 (пикселей).</description>
+      <value locale="en_US">320</value>
+      <value locale="ru_RU">320</value>
+      <value locale="uk_UA">320</value>
+    </setting>
+    <setting var="show_promos_below_slider" control_type="radio">
+      <value>show_with_mask</value>
+      <name locale="en_US">Display smaller promo cards below the slider</name>
+      <name locale="ru_RU">Показывать маленькие промокарточки под слайдером</name>
+      <options>
+        <option value="hide">
+          <name locale="en_US">Hide</name>
+          <name locale="ru_RU">Не показывать</name>
+          <description locale="en_US"> </description>
+          <description locale="ru_RU"> </description>
+        </option>
+        <option value="show_with_mask">
+          <name locale="en_US">Show with shaded background</name>
+          <name locale="ru_RU">Показывать с затемнением фона</name>
+          <description locale="en_US">The shading color is obtained from a promo’s “Background color” setting.</description>
+          <description locale="ru_RU">Для затемнения фона используется цвет из настройки промокарточки «Цвет фона».</description>
+        </option>
+        <option value="show_without_mask">
+          <name locale="en_US">Show without shading</name>
+          <name locale="ru_RU">Показывать без затемнения</name>
+          <description locale="en_US"> </description>
+          <description locale="ru_RU"> </description>
+        </option>
+      </options>
+    </setting>
+    <setting var="shop_divider_1_2" control_type="group_divider">
+      <value>shop_divider_1/shop_divider_1_2</value>
+      <name locale="en_US">First product list</name>
+      <name locale="ru_RU">Первый список товаров</name>
+    </setting>
+    <setting var="homepage_novelties_title" control_type="text">
+      <name locale="en_US">Title</name>
+      <name locale="ru_RU">Заголовок</name>
+      <value locale="en_US">Новинки</value>
+      <value locale="ru_RU">Новинки</value>
+      <value locale="uk_UA">Новинки</value>
+    </setting>
+    <setting var="homepage_novelties_list_id" control_type="text">
+      <name locale="en_US">Product list ID</name>
+      <name locale="ru_RU">ID списка товаров</name>
+      <value locale="en_US">NewItems</value>
+      <value locale="ru_RU">NewItems</value>
+      <value locale="uk_UA">NewItems</value>
+    </setting>
+    <setting var="shop_divider_1_3" control_type="group_divider">
+      <value>shop_divider_1/shop_divider_1_3</value>
+      <name locale="en_US">Second product list</name>
+      <name locale="ru_RU">Второй список товаров</name>
+    </setting>
+    <setting var="homepage_bestsellers_title" control_type="text">
+      <name locale="en_US">Title</name>
+      <name locale="ru_RU">Заголовок</name>
+      <value locale="en_US">Топ Продаж</value>
+      <value locale="ru_RU">Топ Продаж</value>
+      <value locale="uk_UA">Топ Продаж</value>
+    </setting>
+    <setting var="homepage_bestsellers_list_id" control_type="text">
+      <name locale="en_US">Product list ID</name>
+      <name locale="ru_RU">ID списка товаров</name>
+      <value locale="en_US">TopSales</value>
+      <value locale="ru_RU">TopSales</value>
+      <value locale="uk_UA">TopSales</value>
+    </setting>
+    <setting var="shop_divider_1_4" control_type="group_divider">
+      <value>shop_divider_1/shop_divider_1_4</value>
+      <name locale="en_US">Third product list</name>
+      <name locale="ru_RU">Третий список товаров</name>
+    </setting>
+    <setting var="homepage_onsale_title" control_type="text">
+      <name locale="en_US">Title</name>
+      <name locale="ru_RU">Заголовок</name>
+      <value locale="en_US">Рекомендуемые товары</value>
+      <value locale="ru_RU">Рекомендуемые товары</value>
+      <value locale="uk_UA">Рекомендуемые товары</value>
+    </setting>
+    <setting var="homepage_onsale_list_id" control_type="text">
+      <name locale="en_US">Product list ID</name>
+      <name locale="ru_RU">ID списка товаров</name>
+      <value locale="en_US">Recommended</value>
+      <value locale="ru_RU">Recommended</value>
+      <value locale="uk_UA">Recommended</value>
+    </setting>
+    <setting var="shop_divider_2" control_type="group_divider">
+      <value/>
+      <name locale="en_US">Shop settings</name>
+      <name locale="ru_RU">Настройки «Магазина»</name>
+    </setting>
+    <setting var="show_product_actions_on_main_page" control_type="checkbox">
+      <value>1</value>
+      <name locale="en_US">Show “Buy” and “Compare” buttons in product lists on the home page</name>
+      <name locale="ru_RU">Показывать кнопки «Купить» и «Сравнить» в списках товаров на главной странице</name>
+    </setting>
+    <setting var="enable_compare" control_type="checkbox">
+      <value>1</value>
+      <name locale="en_US">Compare products in other product lists</name>
+      <name locale="ru_RU">Сравнение товаров в остальных списках товаров</name>
+    </setting>
+    <setting var="selectable_features_control" control_type="radio">
+      <value>select</value>
+      <name locale="ru_RU">Выбор характеристик</name>
+      <name locale="en_US">Selectable features</name>
+      <options>
+        <option value="inline">
+          <name locale="ru_RU">Показывать все значения крупно в ряд</name>
+          <name locale="en_US">Display all values inline</name>
+          <description locale="ru_RU">Для товаров в режиме продажи «Выбор параметров» значения характеристик будут показаны одной строкой друг за другом. Рекомендуется, если названия значений относительно короткие и по ним однозначно можно определить, о какой характеристике товара идет речь, например, XL, 16 GB, 13”.</description>
+          <description locale="en_US">For products sold in “Selectable parameters” mode, feature values will be displayed inline. Recommended if feature value names are short and self-explanatory in the context of a product; e.g., XL, 16 GB, 13”.</description>
+        </option>
+        <option value="select">
+          <name locale="ru_RU">Выбор из списка &amp;lt;select&amp;gt;</name>
+          <name locale="en_US">Selection from a &amp;lt;select&amp;gt; list</name>
+          <description locale="ru_RU">Для товаров в режиме продажи «Выбор параметров» значения характеристик будут предложены на выбор с помощью выпадающего списка &amp;lt;select&amp;gt;. Рекомендуется, если названия значений характеристик содержат более одного-двух слов или по значениям нельзя однозначно понять, о какой характеристике товара идет речь, например, «до 10 часов», «не предусмотрено».</description>
+          <description locale="en_US">For products sold in “Selectable parameters” mode, feature values will be displayed using a &amp;lt;select&amp;gt; drop-down list. Recommended if value names are either long or ambiguous in the context of a product; e.g., “up to 10 hours”, “not available”.</description>
+        </option>
+      </options>
+    </setting>
+    <setting var="products_default_view_type" control_type="radio">
+      <value>thumbs</value>
+      <name locale="ru_RU">Вид списков товаров по умолчанию</name>
+      <name locale="en_US">Default product list view mode</name>
+      <options>
+        <option value="table">
+          <name locale="ru_RU">Таблица</name>
+          <name locale="en_US">Table</name>
+          <description locale="ru_RU"> </description>
+          <description locale="en_US"> </description>
+        </option>
+        <option value="thumbs">
+          <name locale="ru_RU">Плитка</name>
+          <name locale="en_US">Thumbs</name>
+          <description locale="ru_RU"> </description>
+          <description locale="en_US"> </description>
+        </option>
+      </options>
+    </setting>
+    <setting var="menu_limit" control_type="text">
+      <name locale="en_US">Maximum number of displayed 1st-level sections in the catalog menu</name>
+      <name locale="ru_RU">Максимальное количество отображаемых разделов первого уровня в меню каталога</name>
+      <value locale="en_US">20</value>
+      <value locale="ru_RU">20</value>
+      <value locale="uk_UA">20</value>
+    </setting>
+    <setting var="sub_menu_limit" control_type="text">
+      <name locale="en_US">Maximum number of displayed 3rd-level subsections in the catalog menu</name>
+      <name locale="ru_RU">Максимальное количество отображаемых подразделов третьего уровня в меню каталога</name>
+      <value locale="en_US">5</value>
+      <value locale="ru_RU">5</value>
+      <value locale="uk_UA">5</value>
+    </setting>
+    <setting var="currency_toggle" control_type="checkbox">
+      <value/>
+      <name locale="en_US">Show currency selector in footer</name>
+      <name locale="ru_RU">Показывать выбор валюты внизу страниц</name>
+    </setting>
+    <setting var="language_toggle" control_type="checkbox">
+      <value/>
+      <name locale="en_US">Show language selector in footer</name>
+      <name locale="ru_RU">Показывать переключатель языка внизу страниц</name>
+      <description locale="en_US">Enable if you are using an app or plugin to create an international website.</description>
+      <description locale="ru_RU">Включите, если вы используете приложение или плагин для создания многоязычного сайта.</description>
+    </setting>
+    <setting var="category_description_place" control_type="radio">
+      <value>sidebar</value>
+      <name locale="en_US">Product category description location</name>
+      <name locale="ru_RU">Отображение описания категории товаров</name>
+      <options>
+        <option value="sidebar">
+          <name locale="ru_RU">В боковой панели слева</name>
+          <name locale="en_US">In the sidebar on the left</name>
+          <description locale="en_US"> </description>
+          <description locale="ru_RU"> </description>
+        </option>
+        <option value="content_top">
+          <name locale="ru_RU">Над списком товаров</name>
+          <name locale="en_US">Above the product list</name>
+          <description locale="en_US"> </description>
+          <description locale="ru_RU"> </description>
+        </option>
+        <option value="content_bottom">
+          <name locale="ru_RU">Под списком товаров</name>
+          <name locale="en_US">Below the product list</name>
+          <description locale="en_US"> </description>
+          <description locale="ru_RU"> </description>
+        </option>
+      </options>
+    </setting>
+    <setting var="show_neighboring_categories" control_type="checkbox">
+      <value/>
+      <name locale="en_US">Show sibling categories in category selection menu</name>
+      <name locale="ru_RU">Показывать соседние категории в меню выбора категорий</name>
+      <description locale="en_US">Sibling categories are displayed if a current category contains no subcategories.</description>
+      <description locale="ru_RU">Соседние категории отображаются, если у текущей категории нет подкатегорий.</description>
+    </setting>
+    <setting var="checkout_payment_success_title" control_type="text">
+      <name locale="en_US">Successful payment page title</name>
+      <name locale="ru_RU">Заголовок страницы с сообщением об успешной оплате</name>
+      <value locale="en_US">Оплата получена</value>
+      <value locale="ru_RU">Оплата получена</value>
+      <value locale="uk_UA">Оплата получена</value>
+    </setting>
+    <setting var="checkout_payment_success_description" control_type="text">
+      <name locale="en_US">Successful payment message</name>
+      <name locale="ru_RU">Сообщение после завершения оплаты заказа</name>
+      <value locale="en_US">Мы вскоре обработаем ваш заказ и свяжемся с вами в ближайшее время.</value>
+      <value locale="ru_RU">Мы вскоре обработаем ваш заказ и свяжемся с вами в ближайшее время.</value>
+      <value locale="uk_UA">Ми незабаром опрацюємо ваше замовлення і зв'яжемося з вами найближчим часом.</value>
+    </setting>
+  </settings>
+  <thumbs>
+    <thumb>48x48</thumb>
+    <thumb>96x96</thumb>
+    <thumb>200</thumb>
+    <thumb>0x320</thumb>
+    <thumb>750</thumb>
+    <thumb>970</thumb>
+  </thumbs>
+  <locales>
+    <locale>
+      <msgid>Choose Model Phone</msgid>
+      <msgstr locale="ru_RU">Выберите модель смартфона</msgstr>
+      <msgstr locale="uk_UA">Виберіть модель смартфона</msgstr>
+    </locale>
+    <locale>
+      <msgid>Product code</msgid>
+      <msgstr locale="en_US">Product code</msgstr>
+      <msgstr locale="ru_RU">Код товара</msgstr>
+      <msgstr locale="uk_UA">Код товару</msgstr>
+    </locale>
+    <locale>
+      <msgid>Share</msgid>
+      <msgstr locale="ru_RU">Поделиться</msgstr>
+      <msgstr locale="uk_UA">Поділитися</msgstr>
+    </locale>
+    <locale>
+      <msgid>Feature</msgid>
+      <msgstr locale="ru_RU">Характеристики</msgstr>
+      <msgstr locale="uk_UA">Характеристики</msgstr>
+    </locale>
+    <locale>
+      <msgid>Feature Empty</msgid>
+      <msgstr locale="ru_RU">Характеристики отсутствуют</msgstr>
+      <msgstr locale="uk_UA">характеристики відсутні</msgstr>
+    </locale>
+    <locale>
+      <msgid>Color</msgid>
+      <msgstr locale="ru_RU">Цвет</msgstr>
+      <msgstr locale="uk_UA">Колір</msgstr>
+    </locale>
+    <locale>
+      <msgid>Description</msgid>
+      <msgstr locale="ru_RU">Описание</msgstr>
+      <msgstr locale="uk_UA">Опис</msgstr>
+    </locale>
+    <locale>
+      <msgid>Description Empty</msgid>
+      <msgstr locale="ru_RU">Описание отсутствует</msgstr>
+      <msgstr locale="uk_UA">Опис відсутній</msgstr>
+    </locale>
+    <locale>
+      <msgid>Go Description</msgid>
+      <msgstr locale="ru_RU">Перейти к описанию</msgstr>
+      <msgstr locale="uk_UA">Перейти до опису</msgstr>
+    </locale>
+    <locale>
+      <msgid>Buyers photo</msgid>
+      <msgstr locale="ru_RU">Фото покупателей</msgstr>
+      <msgstr locale="uk_UA">Фото покупців</msgstr>
+    </locale>
+    <locale>
+      <msgid>No reviews</msgid>
+      <msgstr locale="en_US">No reviews</msgstr>
+      <msgstr locale="ru_RU">Нет отзывов</msgstr>
+      <msgstr locale="uk_UA">Немає відгуків</msgstr>
+    </locale>
+    <locale>
+      <msgid>There are reviews</msgid>
+      <msgstr locale="en_US">There are reviews</msgstr>
+      <msgstr locale="ru_RU">Есть отзывы</msgstr>
+      <msgstr locale="uk_UA">Є відгуки</msgstr>
+    </locale>
+    <locale>
+      <msgid>Review</msgid>
+      <msgstr locale="ru_RU">Отзыв</msgstr>
+      <msgstr locale="uk_UA">Відгук</msgstr>
+    </locale>
+    <locale>
+      <msgid>Reviews</msgid>
+      <msgstr locale="ru_RU">Отзывы</msgstr>
+      <msgstr locale="uk_UA">Відгуки</msgstr>
+    </locale>
+    <locale>
+      <msgid>More Reviews</msgid>
+      <msgstr locale="ru_RU">Еще отзывы</msgstr>
+      <msgstr locale="uk_UA">Ще відгуки</msgstr>
+    </locale>
+    <locale>
+      <msgid>Write a feedback</msgid>
+      <msgstr locale="ru_RU">Написать отзыв</msgstr>
+      <msgstr locale="uk_UA">Написати відгук</msgstr>
+    </locale>
+    <locale>
+      <msgid>Your mark</msgid>
+      <msgstr locale="ru_RU">Ваша оценка</msgstr>
+      <msgstr locale="uk_UA">Ваша оцінка</msgstr>
+    </locale>
+    <locale>
+      <msgid>Mark 5</msgid>
+      <msgstr locale="ru_RU">Отлично</msgstr>
+      <msgstr locale="uk_UA">Відмінно</msgstr>
+    </locale>
+    <locale>
+      <msgid>Mark 4</msgid>
+      <msgstr locale="ru_RU">Хорошо</msgstr>
+      <msgstr locale="uk_UA">Добре</msgstr>
+    </locale>
+    <locale>
+      <msgid>Mark 3</msgid>
+      <msgstr locale="ru_RU">Нормально</msgstr>
+      <msgstr locale="uk_UA">Нормально</msgstr>
+    </locale>
+    <locale>
+      <msgid>Mark 2</msgid>
+      <msgstr locale="ru_RU">Плохо</msgstr>
+      <msgstr locale="uk_UA">Погано</msgstr>
+    </locale>
+    <locale>
+      <msgid>Mark 1</msgid>
+      <msgstr locale="ru_RU">Ужасно</msgstr>
+      <msgstr locale="uk_UA">Жахливо</msgstr>
+    </locale>
+    <locale>
+      <msgid>Leave Reviews 1</msgid>
+      <msgstr locale="ru_RU">Оставьте</msgstr>
+      <msgstr locale="uk_UA">Залиште</msgstr>
+    </locale>
+    <locale>
+      <msgid>Leave Reviews 2</msgid>
+      <msgstr locale="ru_RU">отзыв об этом товаре</msgstr>
+      <msgstr locale="uk_UA">відгук про цей товар</msgstr>
+    </locale>
+    <locale>
+      <msgid>Leave Reviews 3</msgid>
+      <msgstr locale="ru_RU">первым!</msgstr>
+      <msgstr locale="uk_UA">першим!</msgstr>
+    </locale>
+    <locale>
+      <msgid>Review 2</msgid>
+      <msgstr locale="ru_RU">Отзыва</msgstr>
+      <msgstr locale="uk_UA">Відгука</msgstr>
+    </locale>
+    <locale>
+      <msgid>Review 3</msgid>
+      <msgstr locale="ru_RU">Отзывов</msgstr>
+      <msgstr locale="uk_UA">Відгуків</msgstr>
+    </locale>
+    <locale>
+      <msgid>There are reviews</msgid>
+      <msgstr locale="en_US">There are reviews</msgstr>
+      <msgstr locale="ru_RU">Есть отзывы</msgstr>
+      <msgstr locale="uk_UA">Є відгуки</msgstr>
+    </locale>
+    <locale>
+      <msgid>All reviews</msgid>
+      <msgstr locale="en_US">All reviews</msgstr>
+      <msgstr locale="ru_RU">Все отзывы</msgstr>
+      <msgstr locale="uk_UA">Всі відгуки</msgstr>
+    </locale>
+    <locale>
+      <msgid>Free</msgid>
+      <msgstr locale="ru_RU">бесплатно</msgstr>
+      <msgstr locale="uk_UA">безкоштовно</msgstr>
+    </locale>
+    <locale>
+      <msgid>In Kiev</msgid>
+      <msgstr locale="ru_RU">По Киеву</msgstr>
+      <msgstr locale="uk_UA">по Києву</msgstr>
+    </locale>
+    <locale>
+      <msgid>The next day</msgid>
+      <msgstr locale="ru_RU">на следующий день</msgstr>
+      <msgstr locale="uk_UA">на наступний день</msgstr>
+    </locale>
+    <locale>
+      <msgid>In Ukraine</msgid>
+      <msgstr locale="ru_RU">По Украине</msgstr>
+      <msgstr locale="uk_UA">По Україні</msgstr>
+    </locale>
+    <locale>
+      <msgid>According to carrier tariffs</msgid>
+      <msgstr locale="ru_RU">согласно тарифам перевозчика</msgstr>
+      <msgstr locale="uk_UA">відповідно до тарифів перевізника</msgstr>
+    </locale>
+    <locale>
+      <msgid>Self delivery</msgid>
+      <msgstr locale="ru_RU">Самовывоз</msgstr>
+      <msgstr locale="uk_UA">Самовивіз</msgstr>
+    </locale>
+    <locale>
+      <msgid>Self delivery adress</msgid>
+      <msgstr locale="ru_RU">м. Шулявская</msgstr>
+      <msgstr locale="uk_UA">м. Шулявская</msgstr>
+    </locale>
+    <locale>
+      <msgid>Pay</msgid>
+      <msgstr locale="ru_RU">Оплата</msgstr>
+      <msgstr locale="uk_UA">Оплата</msgstr>
+    </locale>
+    <locale>
+      <msgid>Pay Description</msgid>
+      <msgstr locale="ru_RU">Наличными, картой через терминал, безналичным расчетом, наложенным платежем, перевод через Приват24</msgstr>
+      <msgstr locale="uk_UA">Готівкою, картою через термінал, безготівковим розрахунком, післяплатою, переклад через Приват24</msgstr>
+    </locale>
+    <locale>
+      <msgid>Return</msgid>
+      <msgstr locale="ru_RU">Возврат</msgstr>
+      <msgstr locale="uk_UA">Повернення</msgstr>
+    </locale>
+    <locale>
+      <msgid>Return Description</msgid>
+      <msgstr locale="ru_RU">Возврат или обмен товара возможен в течение 14 дней. Возврат или обмен возможны при наличии чека и упаковки товара.</msgstr>
+      <msgstr locale="uk_UA">Повернення або обмін товару можливий протягом 14 днів. Повернення або обмін можливі при наявності чека і упаковки товару.</msgstr>
+    </locale>
+    <locale>
+      <msgid>Additionally info</msgid>
+      <msgstr locale="ru_RU">Доп. информация</msgstr>
+      <msgstr locale="uk_UA">Доп. інформація</msgstr>
+    </locale>
+    <locale>
+      <msgid>Additionally info 1</msgid>
+      <msgstr locale="ru_RU">Оттенок товара может отличаться от изображения на сайте из-за особенностей настроек экрана и браузера.</msgstr>
+      <msgstr locale="uk_UA">Відтінок товару може відрізнятися від зображення на сайті через особливості налаштувань екрану і браузера.</msgstr>
+    </locale>
+    <locale>
+      <msgid>Additionally info 2</msgid>
+      <msgstr locale="ru_RU">Комплектация изделия может быть изменена производителем без предварительного уведомления</msgstr>
+      <msgstr locale="uk_UA">Комплектація виробу може бути змінена виробником без попереднього повідомлення</msgstr>
+    </locale>
+    <locale>
+      <msgid>Additionally info 3</msgid>
+      <msgstr locale="ru_RU">Уточнить комплектацию, характеристики и наличие конкретного товара Вы сможете у консультантов интернет-магазина.</msgstr>
+      <msgstr locale="uk_UA">Уточнити комплектацію, характеристики і наявність конкретного товару Ви зможете у консультантів інтернет-магазину.</msgstr>
+    </locale>
+    <locale>
+      <msgid>Together cheaper</msgid>
+      <msgstr locale="ru_RU">Вместе дешевле</msgstr>
+      <msgstr locale="uk_UA">Разом дешевше</msgstr>
+    </locale>
+    <locale>
+      <msgid>Buy kit</msgid>
+      <msgstr locale="ru_RU">Купить комплект</msgstr>
+      <msgstr locale="uk_UA">Купити комплект</msgstr>
+    </locale>
+    <locale>
+      <msgid>Customer reviews and ratings</msgid>
+      <msgstr locale="en_US">Customer reviews and ratings</msgstr>
+      <msgstr locale="ru_RU">Отзывы и оценки покупателей</msgstr>
+      <msgstr locale="uk_UA">Відгуки та оцінки покупців</msgstr>
+    </locale>
+    <locale>
+      <msgid>Sorting</msgid>
+      <msgstr locale="en_US">Sorting</msgstr>
+      <msgstr locale="ru_RU">Сортировка</msgstr>
+      <msgstr locale="uk_UA">Сортування</msgstr>
+    </locale>
+    <locale>
+      <msgid>Table</msgid>
+      <msgstr locale="en_US">Table</msgstr>
+      <msgstr locale="ru_RU">Таблица</msgstr>
+      <msgstr locale="uk_UA">Таблиця</msgstr>
+    </locale>
+    <locale>
+      <msgid>Thumbs</msgid>
+      <msgstr locale="en_US">Thumbs</msgstr>
+      <msgstr locale="ru_RU">Плитка</msgstr>
+      <msgstr locale="uk_UA">Плитка</msgstr>
+    </locale>
+    <locale>
+      <msgid>Bonus program</msgid>
+      <msgstr locale="en_US">Bonus program</msgstr>
+      <msgstr locale="ru_RU">Бонусная программа</msgstr>
+      <msgstr locale="uk_UA">Бонусна програма</msgstr>
+    </locale>
+    <locale>
+      <msgid>Used bonus</msgid>
+      <msgstr locale="en_US">Used bonus</msgstr>
+      <msgstr locale="ru_RU">Используемые бонусные баллы</msgstr>
+      <msgstr locale="uk_UA">Використовувані бонусні бали</msgstr>
+    </locale>
+    <locale>
+      <msgid>Next</msgid>
+      <msgstr locale="en_US">Next</msgstr>
+      <msgstr locale="ru_RU">Далее</msgstr>
+      <msgstr locale="uk_UA">Далі</msgstr>
+    </locale>
+    <locale>
+      <msgid>Shipping method</msgid>
+      <msgstr locale="en_US">Shipping method</msgstr>
+      <msgstr locale="ru_RU">Способ доставки</msgstr>
+      <msgstr locale="uk_UA"> Спосіб доставки</msgstr>
+    </locale>
+    <locale>
+      <msgid>Payment method</msgid>
+      <msgstr locale="en_US">Payment method</msgstr>
+      <msgstr locale="ru_RU">Способ оплаты</msgstr>
+      <msgstr locale="uk_UA"> Спосіб оплати</msgstr>
+    </locale>
+    <locale>
+      <msgid>Amount</msgid>
+      <msgstr locale="en_US">Amount</msgstr>
+      <msgstr locale="ru_RU">Сумма</msgstr>
+      <msgstr locale="uk_UA">Сума</msgstr>
+    </locale>
+    <locale>
+      <msgid>Added</msgid>
+      <msgstr locale="en_US">Added</msgstr>
+      <msgstr locale="ru_RU">Добавлен</msgstr>
+      <msgstr locale="uk_UA">Доданий</msgstr>
+    </locale>
+    <locale>
+      <msgid>Send order</msgid>
+      <msgstr locale="en_US">Send order</msgstr>
+      <msgstr locale="ru_RU">Отправить заказ</msgstr>
+      <msgstr locale="uk_UA">Відправити замовлення</msgstr>
+    </locale>
+    <locale>
+      <msgid>Product page</msgid>
+      <msgstr locale="en_US">Product page</msgstr>
+      <msgstr locale="ru_RU">Карточка товара</msgstr>
+      <msgstr locale="uk_UA">Картка товару</msgstr>
+    </locale>
+    <locale>
+      <msgid>Product reviews</msgid>
+      <msgstr locale="en_US">Product reviews</msgstr>
+      <msgstr locale="ru_RU">Отзывы на товар</msgstr>
+      <msgstr locale="uk_UA">Відгуки на товар</msgstr>
+    </locale>
+    <locale>
+      <msgid>Show product features</msgid>
+      <msgstr locale="en_US">Show product features</msgstr>
+      <msgstr locale="ru_RU">Показывать характеристики товаров</msgstr>
+      <msgstr locale="uk_UA">Показувати характеристики товарів</msgstr>
+    </locale>
+    <locale>
+      <msgid>Search results for</msgid>
+      <msgstr locale="en_US">Search results for</msgstr>
+      <msgstr locale="ru_RU">Результаты поиска по запросу</msgstr>
+      <msgstr locale="uk_UA">Результати пошуку за запитом</msgstr>
+    </locale>
+    <locale>
+      <msgid>Filters</msgid>
+      <msgstr locale="en_US">Filters</msgstr>
+      <msgstr locale="ru_RU">Фильтр товаров</msgstr>
+      <msgstr locale="uk_UA">Фільтр товарів</msgstr>
+    </locale>
+    <locale>
+      <msgid>Filter</msgid>
+      <msgstr locale="en_US">Filter</msgstr>
+      <msgstr locale="ru_RU">Фильтр</msgstr>
+      <msgstr locale="uk_UA">Фільтр</msgstr>
+    </locale>
+    <locale>
+      <msgid>Reset</msgid>
+      <msgstr locale="en_US">Reset</msgstr>
+      <msgstr locale="ru_RU">Сбросить</msgstr>
+      <msgstr locale="uk_UA">Скинути</msgstr>
+    </locale>
+    <locale>
+      <msgid>Please add new products to the cart</msgid>
+      <msgstr locale="en_US">Please add new products to the cart</msgstr>
+      <msgstr locale="ru_RU">Пожалуйста, добавьте новые товары в корзину</msgstr>
+      <msgstr locale="uk_UA">Будь ласка, додайте нові товари в кошик</msgstr>
+    </locale>
+    <locale>
+      <msgid>All products have been removed from the cart.</msgid>
+      <msgstr locale="en_US">All products have been removed from the cart.</msgstr>
+      <msgstr locale="ru_RU">Все товары удалены из корзины.</msgstr>
+      <msgstr locale="uk_UA"> Всі товари видалені з корзини.</msgstr>
+    </locale>
+    <locale>
+      <msgid>Related</msgid>
+      <msgstr locale="en_US">Related</msgstr>
+      <msgstr locale="ru_RU">Рекомендуемые</msgstr>
+      <msgstr locale="uk_UA"> Рекомендовані</msgstr>
+    </locale>
+    <locale>
+      <msgid>To comparison</msgid>
+      <msgstr locale="en_US">To comparison</msgstr>
+      <msgstr locale="ru_RU">К сравнению</msgstr>
+      <msgstr locale="uk_UA">До порівняння</msgstr>
+    </locale>
+    <locale>
+      <msgid>In comparison list</msgid>
+      <msgstr locale="en_US">In comparison list</msgstr>
+      <msgstr locale="ru_RU">В сравнении</msgstr>
+      <msgstr locale="uk_UA">В порівнянні</msgstr>
+    </locale>
+    <locale>
+      <msgid>Delete all products</msgid>
+      <msgstr locale="en_US">Delete all products</msgstr>
+      <msgstr locale="ru_RU">Удалить все товары</msgstr>
+      <msgstr locale="uk_UA">Видалити усі товари</msgstr>
+    </locale>
+    <locale>
+      <msgid>Catalog view</msgid>
+      <msgstr locale="en_US">Catalog view</msgstr>
+      <msgstr locale="ru_RU">Вид каталога</msgstr>
+      <msgstr locale="uk_UA">Вид каталогу</msgstr>
+    </locale>
+    <locale>
+      <msgid>Do you really want to delete product from cart?</msgid>
+      <msgstr locale="en_US">Do you really want to delete product from cart?</msgstr>
+      <msgstr locale="ru_RU">Вы уверены, что хотите удалить товар из корзины?</msgstr>
+      <msgstr locale="uk_UA">Ви впевнені, що хочете видалити товар з кошика?</msgstr>
+    </locale>
+    <locale>
+      <msgid>Back to shopping</msgid>
+      <msgstr locale="en_US">Back to shopping</msgstr>
+      <msgstr locale="ru_RU">Вернуться к покупкам</msgstr>
+      <msgstr locale="uk_UA">Повернутися до покупок</msgstr>
+    </locale>
+    <locale>
+      <msgid>Coupon code</msgid>
+      <msgstr locale="en_US">Coupon code</msgstr>
+      <msgstr locale="ru_RU">Код купона</msgstr>
+      <msgstr locale="uk_UA">Код купона</msgstr>
+    </locale>
+    <locale>
+      <msgid>Items cost</msgid>
+      <msgstr locale="en_US">Items cost</msgstr>
+      <msgstr locale="ru_RU">Стоимость товаров</msgstr>
+      <msgstr locale="uk_UA">Вартість предметів</msgstr>
+    </locale>
+    <locale>
+      <msgid>Shipping cost</msgid>
+      <msgstr locale="en_US">Shipping cost</msgstr>
+      <msgstr locale="ru_RU">Стоимость доставки</msgstr>
+      <msgstr locale="uk_UA">Вартість доставки</msgstr>
+    </locale>
+    <locale>
+      <msgid>Select shipping</msgid>
+      <msgstr locale="en_US">Select shipping</msgstr>
+      <msgstr locale="ru_RU">Выбрать доставку</msgstr>
+      <msgstr locale="uk_UA">Обрати доставку</msgstr>
+    </locale>
+    <locale>
+      <msgid>Total</msgid>
+      <msgstr locale="en_US">Total</msgstr>
+      <msgstr locale="ru_RU">Всего</msgstr>
+      <msgstr locale="uk_UA">Всього</msgstr>
+    </locale>
+    <locale>
+      <msgid>Total less shipping cost</msgid>
+      <msgstr locale="en_US">Total less shipping cost</msgstr>
+      <msgstr locale="ru_RU">Всего без учета доставки</msgstr>
+      <msgstr locale="uk_UA">Разом без урахування доставки</msgstr>
+    </locale>
+    <locale>
+      <msgid>We successfully accepted your order, and will contact you asap.</msgid>
+      <msgstr locale="ru_RU">Мы свяжемся с вами в ближайшее время.</msgstr>
+      <msgstr locale="uk_UA">Ми зв'яжемося з вами найближчим часом</msgstr>
+    </locale>
+    <locale>
+      <msgid>Your order number is</msgid>
+      <msgstr locale="ru_RU">номер вашего заказа:</msgstr>
+      <msgstr locale="uk_UA">номер вашого замовлення:</msgstr>
+    </locale>
+    <locale>
+      <msgid>Your name</msgid>
+      <msgstr locale="ru_RU">Ваше имя</msgstr>
+      <msgstr locale="uk_UA">Ваше ім'я</msgstr>
+    </locale>
+    <locale>
+      <msgid>Your email</msgid>
+      <msgstr locale="ru_RU">Ваш e-mail</msgstr>
+      <msgstr locale="uk_UA">Ваш e-mail</msgstr>
+    </locale>
+    <locale>
+      <msgid>Your comment</msgid>
+      <msgstr locale="ru_RU">Ваш комментарий</msgstr>
+      <msgstr locale="uk_UA">Ваш комментар</msgstr>
+    </locale>
+    <locale>
+      <msgid>Buy in 1 click</msgid>
+      <msgstr locale="ru_RU">Купить в 1 клик</msgstr>
+      <msgstr locale="uk_UA">Купити в 1 клік</msgstr>
+    </locale>
+    <locale>
+      <msgid>Enter your phone number and we will call you back shortly</msgid>
+      <msgstr locale="ru_RU">Введите ваш телефон и в ближайшее время мы вам перезвоним</msgstr>
+      <msgstr locale="uk_UA">Введіть ваш телефон і найближчим часом ми вам передзвонимо</msgstr>
+    </locale>
+    <locale>
+      <msgid>I Agree With</msgid>
+      <msgstr locale="ru_RU">Я соглашаюсь с</msgstr>
+      <msgstr locale="uk_UA">Я погоджуюся з</msgstr>
+    </locale>
+    <locale>
+      <msgid>Your order is being processed</msgid>
+      <msgstr locale="ru_RU">Ваш заказ обрабатывается.</msgstr>
+      <msgstr locale="uk_UA">Ваше замовлення обробляється.</msgstr>
+    </locale>
+    <locale>
+      <msgid>Our manager will contact you, or wait</msgid>
+      <msgstr locale="ru_RU">Наш менеджер свяжется с вами, или ожидайте</msgstr>
+      <msgstr locale="uk_UA">Наш менеджер зв'яжеться з вами, або чекайте</msgstr>
+    </locale>
+    <locale>
+      <msgid>Invoice number</msgid>
+      <msgstr locale="ru_RU">Номер накладной</msgstr>
+      <msgstr locale="uk_UA">Номер накладної</msgstr>
+    </locale>
+    <locale>
+      <msgid>just out of stock and unavailable for order. We are sorry for the inconvenience.</msgid>
+      <msgstr locale="ru_RU">только что закончился на складе и недоступен для заказа. Приносим извинения за неудобства</msgstr>
+      <msgstr locale="uk_UA">щойно закінчився на складі і недоступний для замовлення. Приносимо вибачення за незручності</msgstr>
+    </locale>
+    <locale>
+      <msgid>Unfortunately</msgid>
+      <msgstr locale="ru_RU">К сожалению</msgstr>
+      <msgstr locale="uk_UA">На жаль</msgstr>
+    </locale>
+    <locale>
+      <msgid>Invoice number</msgid>
+      <msgstr locale="ru_RU">Номер накладной</msgstr>
+      <msgstr locale="uk_UA">Номер накладної</msgstr>
+    </locale>
+    <locale>
+      <msgid>Pay in installments</msgid>
+      <msgstr locale="ru_RU">Оплатить частями</msgstr>
+      <msgstr locale="uk_UA">Оплатити частинами</msgstr>
+    </locale>
+    <locale>
+      <msgid>Pay in installments info</msgid>
+      <msgstr locale="ru_RU">Минимальный платеж "Оплата частями" 300 грн</msgstr>
+      <msgstr locale="uk_UA">Мінімальний платіж "Оплата частинами" 300 грн</msgstr>
+    </locale>
+    <locale>
+      <msgid>Add to Cart</msgid>
+      <msgstr locale="ru_RU">Добавить в корзину</msgstr>
+      <msgstr locale="uk_UA">Додати в кошик</msgstr>
+    </locale>
+    <locale>
+      <msgid>Thank you for the order!</msgid>
+      <msgstr locale="ru_RU">Спасибо за заказ!</msgstr>
+      <msgstr locale="uk_UA">Дякую за замовлення!</msgstr>
+    </locale>
+    <locale>
+      <msgid>Privacy policy 2</msgid>
+      <msgstr locale="ru_RU">Политикой конфиденциальности</msgstr>
+      <msgstr locale="uk_UA">Політикой конфіденційності</msgstr>
+    </locale>
+  </locales>
+</theme>

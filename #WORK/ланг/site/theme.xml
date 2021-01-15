@@ -1,0 +1,1291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE theme PUBLIC "wa-app-theme" "http://www.webasyst.com/wa-content/xml/wa-app-theme.dtd">
+<theme id="NewBilka" app="site" vendor="webasyst" author="webasyst" version="1.3.14" edition="47" source_theme_id="hypermarket" system="0">
+  <name locale="en_US">Копировать Hypermarket</name>
+  <name locale="ru_RU">NewBilka</name>
+  <instruction locale="en_US">https://support.webasyst.com/26761/design-theme-hypermarket/</instruction>
+  <instruction locale="ru_RU">https://support.webasyst.ru/26716/design-theme-hypermarket/</instruction>
+  <support locale="en_US">https://support.webasyst.com</support>
+  <support locale="ru_RU">https://support.webasyst.ru</support>
+  <files>
+    <!--site resources-->
+    <file path="css/custom.css" custom="0" modified="1">
+      <description locale="en_US">Core CSS file</description>
+      <description locale="ru_RU"/>
+    </file>
+    <file path="js/custom.js" custom="0" modified="1">
+      <description locale="ru_RU"/>
+    </file>
+    <!--templates-->
+    <file path="breadcrumbs.html">
+      <description locale="en_US">Breadcrumbs</description>
+      <description locale="ru_RU">Хлебные крошки</description>
+    </file>
+    <file path="breadcrumbs.layout.html">
+        </file>
+    <file path="error.html" custom="0" modified="1">
+      <description locale="en_US">Error page</description>
+      <description locale="ru_RU"/>
+    </file>
+    <file path="footer.html">
+      <description locale="en_US">Footer</description>
+      <description locale="ru_RU">Футер</description>
+    </file>
+    <file path="footer.layout.html" custom="0" modified="1">
+      <description locale="ru_RU"></description>
+    </file>
+    <file path="forgotpassword.html">
+      <description locale="en_US">Forgot password</description>
+      <description locale="ru_RU">Страница восстановления пароля</description>
+    </file>
+    <file path="head.html">
+      <description locale="en_US">Site head</description>
+      <description locale="ru_RU">Секция head</description>
+    </file>
+    <file path="header.html">
+      <description locale="en_US">Site header</description>
+      <description locale="ru_RU">Шапка сайта</description>
+    </file>
+    <file path="header.layout.html" custom="0" modified="1">
+      <description locale="en_US">Site header layout</description>
+      <description locale="ru_RU"/>
+    </file>
+    <file path="index.html" custom="0" modified="1">
+      <description locale="en_US">Core page layout</description>
+      <description locale="ru_RU"/>
+    </file>
+    <file path="login.adapters.html" custom="0">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="login.html">
+      <description locale="en_US">Login page</description>
+      <description locale="ru_RU">Страница авторизации</description>
+    </file>
+    <file path="main.html">
+      <description locale="en_US">Main page content</description>
+      <description locale="ru_RU">Основное содержимое страницы</description>
+    </file>
+    <file path="my.nav.html">
+        </file>
+    <file path="my.profile.html">
+      <description locale="en_US">User profile page</description>
+      <description locale="ru_RU">Страница профиля пользовтеля</description>
+    </file>
+    <file path="page.html">
+      <description locale="en_US">Info page content</description>
+      <description locale="ru_RU">Содержимое информационной страницы</description>
+    </file>
+    <file path="page.welcome.html" custom="0">
+      <description locale="en_US">Welcome page content</description>
+      <description locale="ru_RU"/>
+    </file>
+    <file path="pane.html" custom="0" modified="0">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="sidebar.html">
+      <description locale="en_US">Sidebar</description>
+      <description locale="ru_RU">Боковая панель</description>
+    </file>
+    <file path="sidebar.layout.html" custom="0">
+      <description locale="ru_RU"/>
+    </file>
+    <file path="signup.html">
+      <description locale="en_US">Signup page content</description>
+      <description locale="ru_RU">Страница регистрации</description>
+    </file>
+  </files>
+  <settings>
+    <setting var="site_divider_1" control_type="group_divider">
+      <value/>
+      <name locale="en_US">Site background and lateral banners</name>
+      <name locale="ru_RU">Фон сайта и боковые баннеры</name>
+    </setting>
+    <setting var="background_color" control_type="color">
+      <value>#ffffff</value>
+      <name locale="en_US">Background color</name>
+      <name locale="ru_RU">Цвет фона</name>
+      <description locale="en_US">Default color: #ffffff (white)</description>
+      <description locale="ru_RU">Цвет по умолчанию: #ffffff (белый)</description>
+    </setting>
+    <setting var="site_divider_1_1" control_type="group_divider">
+      <value>site_divider_1/site_divider_1_1</value>
+      <name locale="en_US">Left-side banner</name>
+      <name locale="ru_RU">Банер слева</name>
+    </setting>
+    <setting var="background_banner_left_image" control_type="image">
+      <value/>
+      <filename>img/background_banner_left_image.*</filename>
+      <name locale="en_US">Image</name>
+      <name locale="ru_RU">Изображение</name>
+    </setting>
+    <setting var="background_banner_left_link" control_type="text">
+      <name locale="en_US">Link</name>
+      <name locale="ru_RU">Ссылка</name>
+      <value locale="en_US">Ссылка</value>
+      <value locale="ru_RU">Ссылка</value>
+      <value locale="uk_UA">Посилання</value>
+    </setting>
+    <setting var="site_divider_1_2" control_type="group_divider">
+      <value>site_divider_1/site_divider_1_2</value>
+      <name locale="en_US">Right-side banner</name>
+      <name locale="ru_RU">Банер справа</name>
+    </setting>
+    <setting var="background_banner_right_image" control_type="image">
+      <value/>
+      <filename>img/background_banner_right_image.*</filename>
+      <name locale="en_US">Image</name>
+      <name locale="ru_RU">Изображение</name>
+    </setting>
+    <setting var="background_banner_right_link" control_type="text">
+      <name locale="en_US">Link</name>
+      <name locale="ru_RU">Ссылка</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="site_divider_2" control_type="group_divider">
+      <value/>
+      <name locale="en_US">Site header</name>
+      <name locale="ru_RU">Шапка сайта</name>
+    </setting>
+    <setting var="site_divider_2_1" control_type="group_divider">
+      <value>site_divider_2/site_divider_2_1</value>
+      <name locale="en_US">Logor</name>
+      <name locale="ru_RU">Логотип</name>
+    </setting>
+    <setting var="logo" control_type="image">
+      <value>img/logo.png</value>
+      <filename>img/logo.*</filename>
+      <name locale="en_US">Logo</name>
+      <name locale="ru_RU">Логотип</name>
+    </setting>
+    <setting var="logo_tip" control_type="text">
+      <name locale="en_US">Business scope (slogan)</name>
+      <name locale="ru_RU">Сфера деятельности (слоган)</name>
+      <value locale="en_US">Website + online store + CRM</value>
+      <value locale="ru_RU">Сайт + интернет-магазин + CRM</value>
+      <value locale="uk_UA">Website + online store + CRM</value>
+    </setting>
+    <setting var="site_divider_2_2" control_type="group_divider">
+      <value>site_divider_2/site_divider_2_2</value>
+      <name locale="en_US">Primary phone</name>
+      <name locale="ru_RU">Основной телефон</name>
+    </setting>
+    <setting var="site_paragraph_1" control_type="paragraph">
+      <value/>
+      <name locale="en_US">Phone nuber — general Store setting is used.</name>
+      <name locale="ru_RU">Номер телефона — используется общая настройка «Магазина».</name>
+    </setting>
+    <setting var="tip_the_phone_1" control_type="text">
+      <name locale="en_US">Comment below the main phone</name>
+      <name locale="ru_RU">Комментарий под основным телефоном</name>
+      <description locale="en_US">Used also in the lower cap</description>
+      <description locale="ru_RU">Используется также внизу страницы</description>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="site_divider_2_3" control_type="group_divider">
+      <value>site_divider_2/site_divider_2_3</value>
+      <name locale="en_US">Additional phone number</name>
+      <name locale="ru_RU">Дополнительный телефон</name>
+    </setting>
+    <setting var="additional_phone" control_type="text">
+      <name locale="en_US">Phone number</name>
+      <name locale="ru_RU">Номер телефона</name>
+      <value locale="en_US">123123</value>
+      <value locale="ru_RU">123123</value>
+      <value locale="uk_UA">123123</value>
+    </setting>
+    <setting var="tip_the_phone_2" control_type="text">
+      <name locale="en_US">Comment below the additional phone</name>
+      <name locale="ru_RU">Комментарий под дополнительным телефоном</name>
+      <description locale="en_US">Used also in the lower cap</description>
+      <description locale="ru_RU">Используется также внизу страницы</description>
+      <value locale="en_US">фыва</value>
+      <value locale="ru_RU">фыва</value>
+      <value locale="uk_UA">фыва</value>
+    </setting>
+    <setting var="site_divider_2_4" control_type="group_divider">
+      <value>site_divider_2/site_divider_2_4</value>
+      <name locale="en_US">Address and operating time</name>
+      <name locale="ru_RU">Адрес и время работы</name>
+    </setting>
+    <setting var="store_address" control_type="text">
+      <name locale="en_US">Store address</name>
+      <name locale="ru_RU">Адрес магазина</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="use_shop_schedule" control_type="checkbox">
+      <value>1</value>
+      <name locale="ru_RU">Показывать график работы магазина на текущую неделю из настроек Shop-Script</name>
+      <name locale="en_US">Show online store’s working schedule for current week from Shop-Script settings</name>
+      <description locale="ru_RU">При включении игнорируется настройка «Сокращенный график работы».</description>
+      <description locale="en_US">When enabled, “Brief working schedule” setting is ignored.</description>
+    </setting>
+    <setting var="manual_schedule" control_type="text">
+      <name locale="ru_RU">Сокращенный график работы</name>
+      <name locale="en_US">Brief working schedule</name>
+      <description locale="ru_RU">Например: Пн—Сб 08:00–18:00</description>
+      <description locale="en_US">Example: Mo—Sa 08:00–18:00</description>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="site_divider_2_5" control_type="group_divider">
+      <value>site_divider_2/site_divider_2_5</value>
+      <name locale="en_US">Menu</name>
+      <name locale="ru_RU">Меню</name>
+    </setting>
+    <setting var="header_links" control_type="select">
+      <value>wa-apps</value>
+      <name locale="en_US">Main menu</name>
+      <name locale="ru_RU">Основное меню</name>
+      <description locale="en_US">Main navigation menu links may be defined either by Site’s {$wa-&gt;apps()} menu setting or by the list of selected app’s info pages.</description>
+      <description locale="ru_RU">Ссылки верхнего меню навигации могут определяться либо настройкой меню {$wa-&gt;apps()} в приложении «Сайт», либо информационными страницами выбранного приложения.</description>
+      <options>
+        <option value="wa-apps">
+          <name locale="en_US">Site app → Settings → {$wa-&gt;apps()}</name>
+          <name locale="ru_RU">Приложение «Сайт» → Настройки → {$wa-&gt;apps()}</name>
+        </option>
+        <option value="site-pages">
+          <name locale="en_US">Site app pages</name>
+          <name locale="ru_RU">Страницы приложения «Сайт»</name>
+        </option>
+        <option value="shop-pages">
+          <name locale="en_US">Shop app pages</name>
+          <name locale="ru_RU">Страницы приложения «Магазин»</name>
+        </option>
+        <option value="none">
+          <name locale="en_US">None</name>
+          <name locale="ru_RU">Не показывать</name>
+        </option>
+      </options>
+    </setting>
+    <setting var="catalog_font_width" control_type="radio">
+      <value>normal</value>
+      <name locale="en_US">Catalog menu font size</name>
+      <name locale="ru_RU">Размер шрифта меню каталога</name>
+      <options>
+        <option value="normal">
+          <name locale="en_US">Normal</name>
+          <name locale="ru_RU">Нормальный</name>
+          <description locale="en_US"> </description>
+          <description locale="ru_RU"> </description>
+        </option>
+        <option value="big">
+          <name locale="en_US">Large</name>
+          <name locale="ru_RU">Большой</name>
+          <description locale="en_US"> </description>
+          <description locale="ru_RU"> </description>
+        </option>
+      </options>
+    </setting>
+    <setting var="site_divider_2_6" control_type="group_divider">
+      <value>site_divider_2/site_divider_2_6</value>
+      <name locale="en_US">Promo</name>
+      <name locale="ru_RU">Акция</name>
+    </setting>
+    <setting var="promotion_name" control_type="text">
+      <name locale="en_US">Promo campaign title</name>
+      <name locale="ru_RU">Название акции</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="promotion_uri" control_type="text">
+      <name locale="en_US">Link to promo campaign</name>
+      <name locale="ru_RU">Ссылка на акцию</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="site_divider_3" control_type="group_divider">
+      <value/>
+      <name locale="en_US">Left sidebar</name>
+      <name locale="ru_RU">Панель слева</name>
+    </setting>
+    <setting var="news_blog_id" control_type="text">
+      <name locale="en_US">News blog</name>
+      <name locale="ru_RU">Блог новостей</name>
+      <description locale="en_US">Enter the ID of a blog if you want to show news only from one blog. Or keep this field empty to show news from all blogs.</description>
+      <description locale="ru_RU">Введите ID блога, если нужно показывать новости только из одного блога. Или оставьте поле пустым, чтобы показывать новости из всех блогов.</description>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="site_divider_3_1" control_type="group_divider">
+      <value>site_divider_3/site_divider_3_1</value>
+      <name locale="en_US">Banner</name>
+      <name locale="ru_RU">Баннер</name>
+    </setting>
+    <setting var="sidebar_banner_image" control_type="image">
+      <value/>
+      <filename>img/sidebar_banner_image.*</filename>
+      <name locale="en_US">Image</name>
+      <name locale="ru_RU">Изображение</name>
+      <description locale="en_US">Banner width is 240px.</description>
+      <description locale="ru_RU">Ширина баннера — 240 пикселей.</description>
+    </setting>
+    <setting var="sidebar_banner_link" control_type="text">
+      <name locale="en_US">Link</name>
+      <name locale="ru_RU">Ссылка</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="site_divider_3_2" control_type="group_divider">
+      <value>site_divider_3/site_divider_3_2</value>
+      <name locale="en_US">Social network widgets</name>
+      <name locale="ru_RU">Виджеты соц. сетей</name>
+    </setting>
+    <setting var="facebook_likebox_code" control_type="text">
+      <name locale="en_US">Facebook Page Plugin code</name>
+      <name locale="ru_RU">Виджет «Фейсбука»</name>
+      <description locale="en_US">Paste your Facebook page badge code here. Get the code from Facebook website at https://developers.facebook.com/docs/plugins/page-plugin.</description>
+      <description locale="ru_RU">Вставьте в это поле код виджета вашей страницы на «Фейсбуке». Получить код: https://developers.facebook.com/docs/plugins/page-plugin.</description>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="twitter_timeline_code" control_type="text">
+      <name locale="en_US">Twitter Timeline code</name>
+      <name locale="ru_RU">Виджет «Твиттера»</name>
+      <description locale="en_US">Paste your Twitter Timeline code here. Get the code at https://twitter.com/settings/widgets.</description>
+      <description locale="ru_RU">Вставьте в это поле код ленты «Твиттера». Получить код: https://twitter.com/settings/widgets.</description>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="vk_widget_code" control_type="text">
+      <name locale="en_US">VK Page Widget code</name>
+      <name locale="ru_RU">Виджет «Вконтакте»</name>
+      <description locale="en_US">Paste your VK community widget code here. Get the code at http://vk.com/dev/Community.</description>
+      <description locale="ru_RU">Вставьте в это поле код виджета вашего сообщества во «Вконтакте». Получить код: http://vk.com/dev/Community.</description>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="site_divider_3_3" control_type="group_divider">
+      <value>site_divider_3/site_divider_3_3</value>
+      <name locale="en_US">Shipping</name>
+      <name locale="ru_RU">Доставка</name>
+    </setting>
+    <setting var="info_block_1_icon" control_type="image">
+      <value>img/icons/sidebar/icon.cart.svg</value>
+      <filename>img/icons/sidebar/info_block_1_icon.*</filename>
+      <name locale="en_US">Icon</name>
+      <name locale="ru_RU">Иконка</name>
+    </setting>
+    <setting var="info_block_1_header" control_type="text">
+      <name locale="en_US">Header</name>
+      <name locale="ru_RU">Заголовок</name>
+      <value locale="en_US">Shipping</value>
+      <value locale="ru_RU">Доставка</value>
+      <value locale="uk_UA">Shipping</value>
+    </setting>
+    <setting var="info_block_1_content" control_type="text">
+      <name locale="en_US">Description</name>
+      <name locale="ru_RU">Описание</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="info_block_1_uri" control_type="text">
+      <name locale="en_US">Link</name>
+      <name locale="ru_RU">Ссылка</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="info_block_1_view" control_type="select">
+      <value/>
+      <name locale="en_US">Display mode</name>
+      <name locale="ru_RU">Вариант отображения</name>
+      <options>
+        <option value="">
+          <name locale="en_US">Do not show</name>
+          <name locale="ru_RU">Не показывать</name>
+        </option>
+        <option value="sidebar">
+          <name locale="en_US">Home page, on the left</name>
+          <name locale="ru_RU">На главной странице — слева</name>
+        </option>
+        <option value="checkout">
+          <name locale="en_US">During checkout, to the right of contact fields</name>
+          <name locale="ru_RU">При оформлении заказа — справа от контактных полей</name>
+        </option>
+        <option value="both">
+          <name locale="en_US">On the home page and during checkout</name>
+          <name locale="ru_RU">На главной странице и при оформлении заказа</name>
+        </option>
+      </options>
+    </setting>
+    <setting var="site_divider_3_4" control_type="group_divider">
+      <value>site_divider_3/site_divider_3_4</value>
+      <name locale="en_US">Payment</name>
+      <name locale="ru_RU">Оплата</name>
+    </setting>
+    <setting var="info_block_2_icon" control_type="image">
+      <value>img/icons/sidebar/icon.credit.svg</value>
+      <filename>img/icons/sidebar/info_block_2_icon.*</filename>
+      <name locale="en_US">Icon</name>
+      <name locale="ru_RU">Иконка</name>
+    </setting>
+    <setting var="info_block_2_header" control_type="text">
+      <name locale="en_US">Header</name>
+      <name locale="ru_RU">Заголовок</name>
+      <value locale="en_US">Payment</value>
+      <value locale="ru_RU">Оплата</value>
+      <value locale="uk_UA">Оплата</value>
+    </setting>
+    <setting var="info_block_2_content" control_type="text">
+      <name locale="en_US">Description</name>
+      <name locale="ru_RU">Описание</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="info_block_2_uri" control_type="text">
+      <name locale="en_US">Link</name>
+      <name locale="ru_RU">Ссылка</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="info_block_2_view" control_type="select">
+      <value/>
+      <name locale="en_US">Display mode</name>
+      <name locale="ru_RU">Вариант отображения</name>
+      <options>
+        <option value="">
+          <name locale="en_US">Do not show</name>
+          <name locale="ru_RU">Не показывать</name>
+        </option>
+        <option value="sidebar">
+          <name locale="en_US">Home page, on the left</name>
+          <name locale="ru_RU">На главной странице — слева</name>
+        </option>
+        <option value="checkout">
+          <name locale="en_US">During checkout, to the right of contact fields</name>
+          <name locale="ru_RU">При оформлении заказа — справа от контактных полей</name>
+        </option>
+        <option value="both">
+          <name locale="en_US">On the home page and during checkout</name>
+          <name locale="ru_RU">На главной странице и при оформлении заказа</name>
+        </option>
+      </options>
+    </setting>
+    <setting var="site_divider_3_5" control_type="group_divider">
+      <value>site_divider_5/site_divider_3_5</value>
+      <name locale="en_US">Pickup point</name>
+      <name locale="ru_RU">Пункт самовывоза</name>
+    </setting>
+    <setting var="info_block_3_icon" control_type="image">
+      <value>img/icons/sidebar/icon.shop.svg</value>
+      <filename>img/icons/sidebar/info_block_3_icon.*</filename>
+      <name locale="en_US">Icon</name>
+      <name locale="ru_RU">Иконка</name>
+    </setting>
+    <setting var="info_block_3_header" control_type="text">
+      <name locale="en_US">Header</name>
+      <name locale="ru_RU">Заголовок</name>
+      <value locale="en_US">Pickup point</value>
+      <value locale="ru_RU">Пункт самовывоза</value>
+      <value locale="uk_UA">Pickup point</value>
+    </setting>
+    <setting var="info_block_3_content" control_type="text">
+      <name locale="en_US">Description</name>
+      <name locale="ru_RU">Описание</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="info_block_3_uri" control_type="text">
+      <name locale="en_US">Link</name>
+      <name locale="ru_RU">Ссылка</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="info_block_3_view" control_type="select">
+      <value/>
+      <name locale="en_US">Display mode</name>
+      <name locale="ru_RU">Вариант отображения</name>
+      <options>
+        <option value="">
+          <name locale="en_US">Do not show</name>
+          <name locale="ru_RU">Не показывать</name>
+        </option>
+        <option value="sidebar">
+          <name locale="en_US">Home page, on the left</name>
+          <name locale="ru_RU">На главной странице — слева</name>
+        </option>
+        <option value="checkout">
+          <name locale="en_US">During checkout, to the right of contact fields</name>
+          <name locale="ru_RU">При оформлении заказа — справа от контактных полей</name>
+        </option>
+        <option value="both">
+          <name locale="en_US">On the home page and during checkout</name>
+          <name locale="ru_RU">На главной странице и при оформлении заказа</name>
+        </option>
+      </options>
+    </setting>
+    <setting var="site_divider_3_6" control_type="group_divider">
+      <value>site_divider_5/site_divider_3_6</value>
+      <name locale="en_US">Warranty</name>
+      <name locale="ru_RU">Гарантия</name>
+    </setting>
+    <setting var="info_block_4_icon" control_type="image">
+      <value>img/icons/sidebar/icon.guarantees.svg</value>
+      <filename>img/icons/sidebar/info_block_4_icon.*</filename>
+      <name locale="en_US">Icon</name>
+      <name locale="ru_RU">Иконка</name>
+    </setting>
+    <setting var="info_block_4_header" control_type="text">
+      <name locale="en_US">Header</name>
+      <name locale="ru_RU">Заголовок</name>
+      <value locale="en_US">Warranty</value>
+      <value locale="ru_RU">Гарантия</value>
+      <value locale="uk_UA">Гарантія</value>
+    </setting>
+    <setting var="info_block_4_content" control_type="text">
+      <name locale="en_US">Description</name>
+      <name locale="ru_RU">Описание</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="info_block_4_uri" control_type="text">
+      <name locale="en_US">Link</name>
+      <name locale="ru_RU">Ссылка</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="info_block_4_view" control_type="select">
+      <value/>
+      <name locale="en_US">Display mode</name>
+      <name locale="ru_RU">Вариант отображения</name>
+      <options>
+        <option value="">
+          <name locale="en_US">Do not show</name>
+          <name locale="ru_RU">Не показывать</name>
+        </option>
+        <option value="sidebar">
+          <name locale="en_US">Home page, on the left</name>
+          <name locale="ru_RU">На главной странице — слева</name>
+        </option>
+        <option value="checkout">
+          <name locale="en_US">During checkout, to the right of contact fields</name>
+          <name locale="ru_RU">При оформлении заказа — справа от контактных полей</name>
+        </option>
+        <option value="both">
+          <name locale="en_US">On the home page and during checkout</name>
+          <name locale="ru_RU">На главной странице и при оформлении заказа</name>
+        </option>
+      </options>
+    </setting>
+    <setting var="site_divider_3_7" control_type="group_divider">
+      <value>site_divider_5/site_divider_3_7</value>
+      <name locale="en_US">Service</name>
+      <name locale="ru_RU">Сервис</name>
+    </setting>
+    <setting var="info_block_5_icon" control_type="image">
+      <value>img/icons/sidebar/icon.service.svg</value>
+      <filename>img/icons/sidebar/info_block_5_icon.*</filename>
+      <name locale="en_US">Icon</name>
+      <name locale="ru_RU">Иконка</name>
+    </setting>
+    <setting var="info_block_5_header" control_type="text">
+      <name locale="en_US">Header</name>
+      <name locale="ru_RU">Заголовок</name>
+      <value locale="en_US">Service</value>
+      <value locale="ru_RU">Сервис</value>
+      <value locale="uk_UA">Сервіс</value>
+    </setting>
+    <setting var="info_block_5_content" control_type="text">
+      <name locale="en_US">Description</name>
+      <name locale="ru_RU">Описание</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="info_block_5_uri" control_type="text">
+      <name locale="en_US">Link</name>
+      <name locale="ru_RU">Ссылка</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="info_block_5_view" control_type="select">
+      <value/>
+      <name locale="en_US">Display mode</name>
+      <name locale="ru_RU">Вариант отображения</name>
+      <options>
+        <option value="">
+          <name locale="en_US">Do not show</name>
+          <name locale="ru_RU">Не показывать</name>
+        </option>
+        <option value="sidebar">
+          <name locale="en_US">Home page, on the left</name>
+          <name locale="ru_RU">На главной странице — слева</name>
+        </option>
+        <option value="checkout">
+          <name locale="en_US">During checkout, to the right of contact fields</name>
+          <name locale="ru_RU">При оформлении заказа — справа от контактных полей</name>
+        </option>
+        <option value="both">
+          <name locale="en_US">On the home page and during checkout</name>
+          <name locale="ru_RU">На главной странице и при оформлении заказа</name>
+        </option>
+      </options>
+    </setting>
+    <setting var="site_divider_4" control_type="group_divider">
+      <value/>
+      <name locale="en_US">Footer</name>
+      <name locale="ru_RU">Футер</name>
+    </setting>
+    <setting var="footer_rating_widget" control_type="text">
+      <name locale="en_US">Yandex.Market widget</name>
+      <name locale="ru_RU">Виджет отзывов «Яндекс.Маркета»</name>
+      <description locale="en_US">Paste the code of the feedback widget for your store. Get the code: &lt;a href="https://partner.market.yandex.ru"&gt;https://partner.market.yandex.ru&lt;/a&gt;.</description>
+      <description locale="ru_RU">Вставьте в это поле код виджета отзывов о вашем магазине. Получить код: &lt;a href="https://partner.market.yandex.ru"&gt;https://partner.market.yandex.ru&lt;/a&gt;.</description>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="age_limit" control_type="text">
+      <name locale="en_US">Age limit</name>
+      <name locale="ru_RU">Ограничение по возрасту</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="site_copyright" control_type="text">
+      <name locale="en_US">Copyright information</name>
+      <name locale="ru_RU">Информация об интеллектуальных правах</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="footer_phones_available" control_type="checkbox">
+      <value>1</value>
+      <name locale="en_US">Show main phone number in footer</name>
+      <name locale="ru_RU">Показывать основной телефонный номер внизу страниц</name>
+    </setting>
+    <setting var="site_divider_4_1" control_type="group_divider">
+      <value>site_divider_4/site_divider_4_1</value>
+      <name locale="en_US">Banner</name>
+      <name locale="ru_RU">Баннер</name>
+    </setting>
+    <setting var="bottom_banner_image" control_type="image">
+      <value/>
+      <filename>img/bottom_banner_image.*</filename>
+      <name locale="en_US">Image</name>
+      <name locale="ru_RU">Изображение</name>
+      <description locale="en_US">Banner width is 1240px</description>
+      <description locale="ru_RU">Ширина баннера — 1240 пикселей</description>
+    </setting>
+    <setting var="bottom_banner_href" control_type="text">
+      <name locale="en_US">Link</name>
+      <name locale="ru_RU">Ссылка</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+    <setting var="site_divider_4_2" control_type="group_divider">
+      <value>site_divider_4/site_divider_4_2</value>
+      <name locale="en_US">Subscription form</name>
+      <name locale="ru_RU">Форма подписки</name>
+      <tooltip locale="en_US">Works with the application "Mailer"</tooltip>
+      <tooltip locale="ru_RU">Работает при наличии приложения "Рассылки"</tooltip>
+    </setting>
+    <setting var="footer_subscribe_form_use" control_type="checkbox">
+      <value>1</value>
+      <name locale="en_US">Render form</name>
+      <name locale="ru_RU">Выводить форму</name>
+      <description locale="en_US">A subscription form is displayed only if Mailer app is installed. Subscribers are added to the common subsciber list.</description>
+      <description locale="ru_RU">Форма подписки отображается, только если установлено приложение «Рассылки». Подписчики добавляются в общий список подписчиков.</description>
+    </setting>
+    <setting var="footer_subscribe_form_title" control_type="text">
+      <name locale="en_US">Heading</name>
+      <name locale="ru_RU">Заголовок</name>
+      <value locale="en_US">Subscribe to promotions and discounts</value>
+      <value locale="ru_RU">Подписаться на акции и скидки</value>
+      <value locale="uk_UA">Підписатися на акції та знижки</value>
+    </setting>
+    <setting var="footer_subscribe_personal_data" control_type="text">
+      <name locale="en_US">Personal data protection message</name>
+      <name locale="ru_RU">Информация об обработке персональных данных</name>
+      <value locale="en_US">By clicking on the confirmation button, I accept the terms &lt;a href="---SEP THERE A LINK TO THE DOCUMENT !---" target="_blank"&gt; personal data processing policies &lt;/a&gt;</value>
+      <value locale="ru_RU">Нажимая на кнопку подтверждения, я принимаю условия &lt;a href="---ВСТАВЬТЕ СЮДА ССЫЛКУ НА ДОКУМЕНТ!---" target="_blank"&gt;политики обработки персональных данных&lt;/a&gt;</value>
+      <value locale="uk_UA">Натискаючи на кнопку підтвердження, я приймаю умови &lt;a href="---ВСТАВЬТЕ СЮДИ ЗАСЛАННЯ НА ДОКУМЕНТ!---" target="_blank"&gt; політики обробки персональних даних &lt;/a&gt;</value>
+    </setting>
+    <setting var="site_divider_4_3" control_type="group_divider">
+      <value>site_divider_4/site_divider_4_3</value>
+      <name locale="en_US">Payment</name>
+      <name locale="ru_RU">Оплата</name>
+    </setting>
+    <setting var="footer_payment_available" control_type="checkbox">
+      <value>1</value>
+      <name locale="en_US">We accept</name>
+      <name locale="ru_RU">Мы принимаем к оплате</name>
+      <description locale="en_US">The logos of setup payment plugins are shown.</description>
+      <description locale="ru_RU">Будут показаны логотипы настроенных платежных плагинов.</description>
+    </setting>
+    <setting var="footer_payment_title" control_type="text">
+      <name locale="en_US">Description of available payment options</name>
+      <name locale="ru_RU">Описание доступных способов оплаты</name>
+      <value locale="en_US">We accept for payment</value>
+      <value locale="ru_RU">Мы принимаем к оплате</value>
+      <value locale="uk_UA">Ми приймаємо до оплати</value>
+    </setting>
+    <setting var="site_divider_4_4" control_type="group_divider">
+      <value>site_divider_4/site_divider_4_4</value>
+      <name locale="en_US">Links to social networks</name>
+      <name locale="ru_RU">Ссылки на соц. сети</name>
+    </setting>
+    <setting var="vk_page_link" control_type="text">
+      <name locale="en_US">VK page link</name>
+      <name locale="ru_RU">Ссылка на страницу во «Вконтакте»</name>
+      <description locale="en_US">Also used in “Subscribe to blog” section.</description>
+      <description locale="ru_RU">Используется также в блоке «Подписаться на блог».</description>
+      <value locale="en_US">#</value>
+      <value locale="ru_RU">#</value>
+      <value locale="uk_UA">#</value>
+    </setting>
+    <setting var="fb_page_link" control_type="text">
+      <name locale="en_US">Facebook page link</name>
+      <name locale="ru_RU">Ссылка на страницу в «Фейсбуке»</name>
+      <description locale="en_US">Also used in “Subscribe to blog” section.</description>
+      <description locale="ru_RU">Используется также в блоке «Подписаться на блог».</description>
+      <value locale="en_US">#</value>
+      <value locale="ru_RU">#</value>
+      <value locale="uk_UA">#</value>
+    </setting>
+    <setting var="od_page_link" control_type="text">
+      <name locale="en_US">Odnoklassniki page link</name>
+      <name locale="ru_RU">Ссылка на страницу в «Одноклассниках»</name>
+      <value locale="en_US">#</value>
+      <value locale="ru_RU">#</value>
+      <value locale="uk_UA">#</value>
+    </setting>
+    <setting var="mail_page_link" control_type="text">
+      <name locale="en_US">My.mail.ru page link</name>
+      <name locale="ru_RU">Ссылка на страницу в «Моем мире» Mail.ru</name>
+      <value locale="en_US">#</value>
+      <value locale="ru_RU">#</value>
+      <value locale="uk_UA">#</value>
+    </setting>
+    <setting var="tw_page_link" control_type="text">
+      <name locale="en_US">Twitter page link</name>
+      <name locale="ru_RU">Ссылка на страницу в «Твиттере»</name>
+      <description locale="en_US">Also used in “Subscribe to blog” section.</description>
+      <description locale="ru_RU">Используется также в блоке «Подписаться на блог».</description>
+      <value locale="en_US">#</value>
+      <value locale="ru_RU">#</value>
+      <value locale="uk_UA">#</value>
+    </setting>
+    <setting var="instagram_page_link" control_type="text">
+      <name locale="en_US">Instagram page link</name>
+      <name locale="ru_RU">Ссылка на страницу в «Инстаграме»</name>
+      <value locale="en_US">#</value>
+      <value locale="ru_RU">#</value>
+      <value locale="uk_UA">#</value>
+    </setting>
+    <setting var="youtube_page_link" control_type="text">
+      <name locale="en_US">YouTube page link</name>
+      <name locale="ru_RU">Ссылка на страницу в «Ютюбе»</name>
+      <value locale="en_US">#</value>
+      <value locale="ru_RU">#</value>
+      <value locale="uk_UA">#</value>
+    </setting>
+    <setting var="foursquare_page_link" control_type="text">
+      <name locale="en_US">Foursquare page link</name>
+      <name locale="ru_RU">Ссылка на страницу в «Форсквер»</name>
+      <value locale="en_US">#</value>
+      <value locale="ru_RU">#</value>
+      <value locale="uk_UA">#</value>
+    </setting>
+    <setting var="site_divider_5" control_type="group_divider">
+      <value/>
+      <name locale="en_US">Long product lists and custom CSS</name>
+      <name locale="ru_RU">Длинные списки и дополнительные стили</name>
+    </setting>
+    <setting var="pagination" control_type="select">
+      <value>lazyloading</value>
+      <name locale="en_US">Displaying of long product lists</name>
+      <name locale="ru_RU">Отображение длинных списков товаров</name>
+      <description locale="ru_RU">Применяется к спискам товаров в категориях и результатах поиска.</description>
+      <description locale="en_US">For category-listing pages and search results.</description>
+      <options>
+        <option value="lazyloading">
+          <name locale="en_US">Automatically load content on page scrolling</name>
+          <name locale="ru_RU">Автоматически загружать содержимое при прокручивании страницы</name>
+        </option>
+        <option value="paging">
+          <name locale="en_US">Paginated lists (1 2 3 4)</name>
+          <name locale="ru_RU">Постраничная навигация (1 2 3 4)</name>
+        </option>
+      </options>
+    </setting>
+    <setting var="additional_styles" control_type="text">
+      <name locale="en_US">Additional CSS styles</name>
+      <name locale="ru_RU">Дополнительные CSS-стили</name>
+      <value locale="en_US"></value>
+      <value locale="ru_RU"></value>
+      <value locale="uk_UA"></value>
+    </setting>
+  </settings>
+  <locales>
+    <locale>
+      <msgid>Home</msgid>
+      <msgstr locale="en_US">Home</msgstr>
+      <msgstr locale="ru_RU">Главная</msgstr>
+      <msgstr locale="uk_UA">Головна</msgstr>
+    </locale>
+    <locale>
+      <msgid>About shop</msgid>
+      <msgstr locale="en_US">About shop</msgstr>
+      <msgstr locale="ru_RU">О магазине</msgstr>
+      <msgstr locale="uk_UA">Про магазин</msgstr>
+    </locale>
+    <locale>
+      <msgid>Contacts</msgid>
+      <msgstr locale="en_US">Contacts</msgstr>
+      <msgstr locale="ru_RU">Контакти</msgstr>
+      <msgstr locale="uk_UA">Контакти</msgstr>
+    </locale>
+    <locale>
+      <msgid>Payment and delivery</msgid>
+      <msgstr locale="en_US">Payment and delivery</msgstr>
+      <msgstr locale="ru_RU">Оплата и доставка</msgstr>
+      <msgstr locale="uk_UA">Оплата і доставка</msgstr>
+    </locale>
+    <locale>
+      <msgid>Warranty</msgid>
+      <msgstr locale="en_US">Warranty</msgstr>
+      <msgstr locale="ru_RU">Гарантия</msgstr>
+      <msgstr locale="uk_UA">Гарантія</msgstr>
+    </locale>
+    <locale>
+      <msgid>News</msgid>
+      <msgstr locale="en_US">News</msgstr>
+      <msgstr locale="ru_RU">Новости</msgstr>
+      <msgstr locale="uk_UA">Новини</msgstr>
+    </locale>
+    <locale>
+      <msgid>Bilka Adress</msgid>
+      <msgstr locale="en_US">Kiev, m. Shulyavskaya, st. Academician Yangel 2</msgstr>
+      <msgstr locale="ru_RU">Киев, м. Шулявская, ул. Академика Янгеля 2</msgstr>
+      <msgstr locale="uk_UA">Київ, м. Шулявська, вул. Академіка Янгеля 2</msgstr>
+    </locale>
+    <locale>
+      <msgid>Bilka Schedule</msgid>
+      <msgstr locale="en_US">Mon-Fri: 10: 00-19: 00, Sat: 10:00 - 14:00, Sun - closed</msgstr>
+      <msgstr locale="ru_RU">Пн-Пт: 10:00-19:00, Сб: 10:00 - 14:00, Вс - выходной</msgstr>
+      <msgstr locale="uk_UA">Пн-Пт: 10: 00-19: 00, Сб: 10:00 - 14:00, Нд - вихідний</msgstr>
+    </locale>
+    <locale>
+      <msgid>Bilka Description</msgid>
+      <msgstr locale="en_US">Accessories for mobile phones and tablets</msgstr>
+      <msgstr locale="ru_RU">Аксессуары для мобильных телефонов и планшетов</msgstr>
+      <msgstr locale="uk_UA">Аксесуари для мобільних телефонів і планшетів</msgstr>
+    </locale>
+    <locale>
+      <msgid>Catalog</msgid>
+      <msgstr locale="en_US">Catalog</msgstr>
+      <msgstr locale="ru_RU">Каталог</msgstr>
+      <msgstr locale="uk_UA">Каталог</msgstr>
+    </locale>
+    <locale>
+      <msgid>Catalog text min</msgid>
+      <msgstr locale="en_US">In our work, we traditionally pay special attention to the choice of shapes, colors and solutions for various models of devices. That is why in the bilka.com.ua catalog you can ...</msgstr>
+      <msgstr locale="ru_RU">Особое внимание в своей работе мы традиционно уделяем выбору форм, цветов и решений для самых разных моделей девайсов. Именно поэтому в каталоге bilka.com.ua Вы сможете ...</msgstr>
+      <msgstr locale="uk_UA">Особливу увагу в своїй роботі ми традиційно приділяємо вибору форм, кольорів і рішень для самих різних моделей девайсів. Саме тому в каталозі bilka.com.ua Ви зможете ...</msgstr>
+    </locale>
+    <locale>
+      <msgid>Catalog text 1</msgid>
+      <msgstr locale="en_US">In our work we traditionally pay special attention to the choice of shapes, colors and solutions for a variety of device models. That is why in the bilka.com.ua catalog you can easily select and buy mobile accessories for phones Samsung, HTC, iPhone, Sony, Asus, Google Nexus, Lenovo, LG, Meizu, Huawei, Xiaomi and Nokia (Microsoft Lumia). Likewise, there will be no difficulty in ordering tablet accessories for Samsung, Asus, Lenovo, iPad, Meizu, Xiaomi and Sony.</msgstr>
+      <msgstr locale="ru_RU">Особое внимание в своей работе мы традиционно уделяем выбору форм, цветов и решений для самых разных моделей девайсов. Именно поэтому в каталоге bilka.com.ua Вы сможете без труда выбрать и купить мобильные аксессуары для телефонов Samsung, HTC, iPhone, Sony, Asus, Google Nexus, Lenovo, LG, Meizu, Huawei, Xiaomi и Nokia (Microsoft Lumia). Таким же образом не возникнет никаких трудностей с тем, чтобы заказать аксессуары для планшета Samsung, Asus, Lenovo, iPad, Meizu, Xiaomi и Sony.</msgstr>
+      <msgstr locale="uk_UA">Особливу увагу в своїй роботі ми традиційно приділяємо вибору форм, кольорів і рішень для самих різних моделей девайсів. Саме тому в каталозі bilka.com.ua Ви зможете легко вибрати і купити мобільні аксесуари для телефонів Samsung, HTC, iPhone, Sony, Asus, Google Nexus, Lenovo, LG, Meizu, Huawei, Xiaomi і Nokia (Microsoft Lumia). Таким же чином не виникне ніяких труднощів з тим, щоб замовити аксесуари для планшета Samsung, Asus, Lenovo, iPad, Meizu, Xiaomi і Sony.</msgstr>
+    </locale>
+    <locale>
+      <msgid>Catalog text 2</msgid>
+      <msgstr locale="en_US">It is also important that the online store of mobile accessories for smartphones and tablets bilka.com.ua brings to your attention not only traditional accessories - covers, batteries and cables - but also original additions to your smartphone. These include, for example, touch-sensitive gloves, wireless chargers, or photography lenses. It is now possible to buy accessories for mobile phones and tablets in Ukraine on one site - quickly, conveniently and inexpensively!</msgstr>
+      <msgstr locale="ru_RU">Важно и то, что интернет-магазин мобильных аксессуаров для смартфонов и планшетов bilka.com.ua предлагает Вашему вниманию не только традиционные принадлежности - чехлы, аккумуляторы и кабели, - но и оригинальные дополнения к смартфону. К таким можно отнести, например, сенсорные перчатки, беспроводные зарядные устройства или линзы для фотографирования. Купить аксессуары для мобильных телефонов и планшетов в Украине теперь можно на одном сайте — быстро, удобно и недорого!</msgstr>
+      <msgstr locale="uk_UA">Важливо і те, що інтернет-магазин мобільних аксесуарів для смартфонів і планшетів bilka.com.ua пропонує Вашій увазі не тільки традиційні приналежності - чохли, акумулятори та кабелі, - але і оригінальні доповнення до смартфону. До таких можна віднести, наприклад, сенсорні рукавички, бездротові зарядні пристрої або лінзи для фотографування. Купити аксесуари для мобільних телефонів і планшетів в Україні тепер можна на одному сайті - швидко, зручно і недорого!</msgstr>
+    </locale>
+    <locale>
+      <msgid>Greeting</msgid>
+      <msgstr locale="en_US">Hello</msgstr>
+      <msgstr locale="ru_RU">Здраствуйте</msgstr>
+      <msgstr locale="uk_UA">Добридень</msgstr>
+    </locale>
+    <locale>
+      <msgid>My account</msgid>
+      <msgstr locale="en_US">My account</msgstr>
+      <msgstr locale="ru_RU">Личный кабинет</msgstr>
+      <msgstr locale="uk_UA">Особистий кабінет</msgstr>
+    </locale>
+    <locale>
+      <msgid>My profile</msgid>
+      <msgstr locale="en_US">My profile</msgstr>
+      <msgstr locale="ru_RU">Мой профиль</msgstr>
+      <msgstr locale="uk_UA">Мій профіль</msgstr>
+    </locale>
+    <locale>
+      <msgid>My orders</msgid>
+      <msgstr locale="en_US">My orders</msgstr>
+      <msgstr locale="ru_RU">Мои заказы</msgstr>
+      <msgstr locale="uk_UA">Мої замовлення</msgstr>
+    </locale>
+    <locale>
+      <msgid>Login</msgid>
+      <msgstr locale="en_US">Login</msgstr>
+      <msgstr locale="ru_RU">Войти</msgstr>
+      <msgstr locale="uk_UA">Увійти</msgstr>
+    </locale>
+    <locale>
+      <msgid>Logout</msgid>
+      <msgstr locale="en_US">Logout</msgstr>
+      <msgstr locale="ru_RU">Выйти</msgstr>
+      <msgstr locale="uk_UA">Вийти</msgstr>
+    </locale>
+    <locale>
+      <msgid>Registration</msgid>
+      <msgstr locale="en_US">Registration</msgstr>
+      <msgstr locale="ru_RU">Регистрация</msgstr>
+      <msgstr locale="uk_UA">Реєстрація</msgstr>
+    </locale>
+    <locale>
+      <msgid>Search</msgid>
+      <msgstr locale="en_US">Search...</msgstr>
+      <msgstr locale="ru_RU">Я ищу...</msgstr>
+      <msgstr locale="uk_UA">Я шукаю...</msgstr>
+    </locale>
+    <locale>
+      <msgid>All categories</msgid>
+      <msgstr locale="en_US">All categories</msgstr>
+      <msgstr locale="ru_RU">Все категории</msgstr>
+      <msgstr locale="uk_UA">Всі категорії</msgstr>
+    </locale>
+    <locale>
+      <msgid>Popular queries</msgid>
+      <msgstr locale="en_US">Popular queries</msgstr>
+      <msgstr locale="ru_RU">Популярные запросы</msgstr>
+      <msgstr locale="uk_UA">Популярні запити</msgstr>
+    </locale>
+    <locale>
+      <msgid>Covers and accessories</msgid>
+      <msgstr locale="en_US">Covers and accessories</msgstr>
+      <msgstr locale="ru_RU">Чехлы и аксессуары</msgstr>
+      <msgstr locale="uk_UA">Чохли та аксесуари</msgstr>
+    </locale>
+    <locale>
+      <msgid>Accessories</msgid>
+      <msgstr locale="en_US">Accessories</msgstr>
+      <msgstr locale="ru_RU">Аксессуары</msgstr>
+      <msgstr locale="uk_UA">Аксесуари</msgstr>
+    </locale>
+    <locale>
+      <msgid>for computers</msgid>
+      <msgstr locale="en_US">for computers</msgstr>
+      <msgstr locale="ru_RU">для компьютеров</msgstr>
+      <msgstr locale="uk_UA">для комп'ютерів</msgstr>
+    </locale>
+    <locale>
+      <msgid>and laptops</msgid>
+      <msgstr locale="en_US">and laptops</msgstr>
+      <msgstr locale="ru_RU">и ноутбуков</msgstr>
+      <msgstr locale="uk_UA">і ноутбуків</msgstr>
+    </locale>
+    <locale>
+      <msgid>Wireless chargers</msgid>
+      <msgstr locale="en_US">Wireless chargers</msgstr>
+      <msgstr locale="ru_RU">Беспроводные зарядки</msgstr>
+      <msgstr locale="uk_UA">Бездротові зарядки</msgstr>
+    </locale>
+    <locale>
+      <msgid>New items</msgid>
+      <msgstr locale="en_US">New items</msgstr>
+      <msgstr locale="ru_RU">Новинки</msgstr>
+      <msgstr locale="uk_UA">Новинки</msgstr>
+    </locale>
+    <locale>
+      <msgid>Top sales</msgid>
+      <msgstr locale="en_US">Top sales</msgstr>
+      <msgstr locale="ru_RU">Топ продаж</msgstr>
+      <msgstr locale="uk_UA">Топ продажів</msgstr>
+    </locale>
+    <locale>
+      <msgid>Rec Items</msgid>
+      <msgstr locale="ru_RU">Рекомендованные товары</msgstr>
+      <msgstr locale="uk_UA">Рекомендовані товари</msgstr>
+    </locale>
+    <locale>
+      <msgid>Log in with your customer password or via the services listed above</msgid>
+      <msgstr locale="ru_RU">Войдите со своим паролем покупателя или воспользуйтесь перечисленными выше сервисами</msgstr>
+      <msgstr locale="uk_UA">Увійдіть зі своїм паролем покупця або скористайтеся переліченими вище сервісами</msgstr>
+    </locale>
+    <locale>
+      <msgid>Connect this account to your accounts in social networks to automatically log in without entering a password</msgid>
+      <msgstr locale="ru_RU">Подключите этот аккаунт к вашим аккаунтам в соцсетях, чтобы входить на сайт автоматически — без ввода пароля</msgstr>
+    </locale>
+    <locale>
+      <msgid>All news</msgid>
+      <msgstr locale="en_US">All news</msgstr>
+      <msgstr locale="ru_RU">Все новости</msgstr>
+      <msgstr locale="uk_UA">Всі новини</msgstr>
+    </locale>
+    <locale>
+      <msgid>About our store</msgid>
+      <msgstr locale="en_US">About our store</msgstr>
+      <msgstr locale="ru_RU">О нашем магазине</msgstr>
+      <msgstr locale="uk_UA">Про наш магазин</msgstr>
+    </locale>
+    <locale>
+      <msgid>About our store text</msgid>
+      <msgstr locale="en_US">Welcome to the online store of accessories for mobile phones and tablets Bilka! We offer a wide range of covers, protective films and glasses, batteries, adapter cables, wireless and wireless chargers, car holders, monopods, bluetooth speakers, touch gloves, headphones, memory cards and other accessories - only high-quality accessories for mobile devices at reasonable prices that can pleasantly surprise every owner of a mobile phone or tablet.</msgstr>
+      <msgstr locale="ru_RU">Добро пожаловать в интернет-магазин аксессуаров для мобильных телефонов и планшетов Билка! Мы предлагаем широкий ассортимент чехлов, защитных пленок и стёкол, аккумуляторов, кабелей-переходников, зарядок обычных и беспроводных, автодержателей, моноподов, bluetooth-колонок, сенсорных перчаток, наушников, карт памяти и других принадлежностей — только качественные аксессуары для мобильных устройств по адекватным ценам, способных приятно удивить каждого обладателя мобильного телефона или планшета.</msgstr>
+      <msgstr locale="uk_UA">Ласкаво просимо в інтернет-магазин аксесуарів для мобільних телефонів і планшетів Білка! Ми пропонуємо широкий асортимент чохлів, захисних плівок і стекол, акумуляторів, кабелів-перехідників, зарядок звичайних і бездротових, Автодержатель, моноподів, bluetooth-колонок, сенсорних рукавичок, навушників, карт пам'яті та інших аксесуарів - тільки якісні аксесуари для мобільних пристроїв за адекватними цінами , здатних приємно здивувати кожного власника мобільного телефону або планшета.</msgstr>
+    </locale>
+    <locale>
+      <msgid>Bilka Store</msgid>
+      <msgstr locale="en_US">Online store of mobile accessories</msgstr>
+      <msgstr locale="ru_RU">Интернет-магазин мобильных аксессуаров</msgstr>
+      <msgstr locale="uk_UA">Інтернет-магазин мобільних аксесуарів</msgstr>
+    </locale>
+    <locale>
+      <msgid>How to choose?</msgid>
+      <msgstr locale="en_US">How to choose?</msgstr>
+      <msgstr locale="ru_RU">Как выбрать?</msgstr>
+      <msgstr locale="uk_UA">Як вибрати?</msgstr>
+    </locale>
+    <locale>
+      <msgid>How to choose text min</msgid>
+      <msgstr locale="en_US">To make the sale of mobile accessories in the online store extremely convenient for the consumer, we have collected enough information about each model. Choose and buy ...</msgstr>
+      <msgstr locale="ru_RU">Для того чтобы продажа мобильных аксессуаров в интернет-магазине была предельно удобной для потребителя, мы собрали достаточно информации о каждой модели. Выбрать и купить ...</msgstr>
+      <msgstr locale="uk_UA">Для того щоб продаж мобільних аксесуарів в інтернет-магазині була гранично зручною для споживача, ми зібрали достатньо інформації про кожну модель. Вибрати і купити ..</msgstr>
+    </locale>
+    <locale>
+      <msgid>How to choose text 1</msgid>
+      <msgstr locale="en_US">To make the sale of mobile accessories in the online store extremely convenient for the consumer, we have collected enough information about each model. It is easy to choose and buy accessories for smartphones and tablets, because high-resolution photos from different angles, detailed descriptions, compatibility tables with models and technical specifications help in this. If this is not enough for you, contact our consultant! An experienced specialist will help you to buy cases and accessories for tablets and mobile phones accurately.</msgstr>
+      <msgstr locale="ru_RU">Для того чтобы продажа мобильных аксессуаров в интернет-магазине была предельно удобной для потребителя, мы собрали достаточно информации о каждой модели. Выбрать и купить аксессуары для смартфонов и планшетов — просто, ведь в этом помогают фото большого разрешения с разных ракурсов, подробные описания, таблицы совместимости с моделями и технические характеристики. В том случае, если этого Вам окажется недостаточно, — свяжитесь с нашим консультантом! Опытный специалист поможет купить чехлы и аксессуары для планшетов и мобильных телефонов безошибочно.</msgstr>
+      <msgstr locale="uk_UA">Для того щоб продаж мобільних аксесуарів в інтернет-магазині була гранично зручною для споживача, ми зібрали достатньо інформації про кожну модель. Вибрати й купити аксесуари для смартфонів і планшетів - просто, адже в цьому допомагають фото високої розподільчої здатності з різних ракурсів, докладні описи, таблиці сумісності з моделями і технічні характеристики. У тому випадку, якщо цього Вам виявиться недостатньо, - зв'яжіться з нашим консультантом! Досвідчений фахівець допоможе купити чохли та аксесуари для планшетів і мобільних телефонів безпомилково.</msgstr>
+    </locale>
+    <locale>
+      <msgid>How to choose text 2</msgid>
+      <msgstr locale="en_US">Please also note that in each section of the catalog you can filter products by types of accessories and your device model. This will allow you to see exactly what is guaranteed to work for a particular phone or tablet, without wasting time looking through all the options.</msgstr>
+      <msgstr locale="ru_RU">Обратите внимание также на то, что в каждом разделе каталога Вы можете отфильтровать товары по типам аксессуаров и Вашей модели устройства. Это позволит увидеть именно то, что гарантированно подойдет для конкретного телефона или планшета, не тратя время на просмотр всех вариантов.</msgstr>
+      <msgstr locale="uk_UA">Зверніть увагу також на те, що в кожному розділі каталогу Ви можете відфільтрувати товари за типами аксесуарів і Вашої моделі пристрою. Це дозволить побачити саме те, що гарантовано підійде для конкретного телефону або планшета, не витрачаючи час на перегляд всіх варіантів.</msgstr>
+    </locale>
+    <locale>
+      <msgid>Delivery</msgid>
+      <msgstr locale="en_US">Delivery</msgstr>
+      <msgstr locale="ru_RU">Доставка</msgstr>
+      <msgstr locale="uk_UA">Доставка</msgstr>
+    </locale>
+    <locale>
+      <msgid>Delivery text min</msgid>
+      <msgstr locale="en_US">In order to become closer to customers in various cities and towns of Ukraine, we work closely with delivery services and are ready to promptly send your ...</msgstr>
+      <msgstr locale="ru_RU">Для того чтобы стать ближе к клиентам в самых разных городах и населенных пунктах Украины, мы тесно сотрудничаем со службами доставки и готовы оперативно отправить Ваш ...</msgstr>
+      <msgstr locale="uk_UA">Для того щоб стати ближче до клієнтів в самих різних містах і населених пунктах України, ми тісно співпрацюємо зі службами доставки і готові оперативно відправити Ваш ...</msgstr>
+    </locale>
+    <locale>
+      <msgid>Delivery text 1</msgid>
+      <msgstr locale="en_US">In order to become closer to customers in various cities and towns of Ukraine, we work closely with delivery services and are ready to promptly send your order exactly where it will be convenient for you to receive it. Every day through Novaya Pochta, UkrPochta, Intime, Deliveri and other operators, we send accessories for mobile phones, smartphones and tablets to Kharkiv, Dnepropetrovsk, Lviv, Zaporozhye, Odessa, Kirovograd, Chernigov, Sumy, Chernivtsi, Vinnitsa, Ivano-Frankivsk, Lutsk , Kryvyi Rih and many other cities. Thus, the Bilka online store is an opportunity to buy mobile accessories in Ukraine with convenient delivery without any geographic restrictions.</msgstr>
+      <msgstr locale="ru_RU">Для того чтобы стать ближе к клиентам в самых разных городах и населенных пунктах Украины, мы тесно сотрудничаем со службами доставки и готовы оперативно отправить Ваш заказ именно туда, где Вам будет удобно его получить. Каждый день через Новую Почту, УкрПочту, Интайм, Деливери и других операторов мы отправляем аксессуары для мобильных телефонов, смартфонов и планшетов в Харьков, Днепропетровск, Львов, Запорожье, Одессу, Кировоград, Чернигов, Сумы, Черновцы, Винницу, Ивано-Франковск, Луцк, Кривой Рог и многие другие города. Таким образом, интернет-магазин Билка — это возможность купить мобильные аксессуары в Украине с удобной доставкой без каких-либо географических ограничений.</msgstr>
+      <msgstr locale="uk_UA">Для того щоб стати ближче до клієнтів в самих різних містах і населених пунктах України, ми тісно співпрацюємо зі службами доставки і готові оперативно відправити Ваше замовлення саме туди, де Вам буде зручно його отримати. Кожен день через Нову Пошту, Укрпошту, Інтайм, Делівері та інших операторів ми відправляємо аксесуари для мобільних телефонів, смартфонів і планшетів в Харків, Дніпропетровськ, Львів, Запоріжжя, Одесу, Кіровоград, Чернігів, Суми, Чернівці, Вінницю, Івано-Франківськ, Луцьк , Кривий Ріг та багато інших міст. Таким чином, інтернет-магазин Білка - це можливість купити мобільні аксесуари в Україні зі зручною доставкою без будь-яких географічних обмежень.</msgstr>
+    </locale>
+    <locale>
+      <msgid>Delivery text 2</msgid>
+      <msgstr locale="en_US">It is even more convenient with our help to buy mobile accessories in Kiev, because we are ready to deliver them on the same day to the address you named. You can find out more about the conditions and cost of delivery</msgstr>
+      <msgstr locale="ru_RU">Еще удобнее с нашей помощью купить мобильные аксессуары в Киеве, ведь мы готовы доставить их в тот же день по названному Вами адресу. Больше об условиях и стоимости доставки Вы можете узнать</msgstr>
+      <msgstr locale="uk_UA">Ще зручніше з нашою допомогою купити мобільні аксесуари в Києві, адже ми готові доставити їх в той же день за названою Вами адресою. Більше про умови та вартість доставки Ви можете дізнатися</msgstr>
+    </locale>
+    <locale>
+      <msgid>Here</msgid>
+      <msgstr locale="en_US">here</msgstr>
+      <msgstr locale="ru_RU">здесь</msgstr>
+      <msgstr locale="uk_UA">тут</msgstr>
+    </locale>
+    <locale>
+      <msgid>Accessories prices</msgid>
+      <msgstr locale="en_US">Accessories prices</msgstr>
+      <msgstr locale="ru_RU">Цены на аксессуары</msgstr>
+      <msgstr locale="uk_UA">Ціни на аксесуари</msgstr>
+    </locale>
+    <locale>
+      <msgid>Accessories prices text min</msgid>
+      <msgstr locale="en_US">Online store of accessories for tablets and mobile phones is, first of all, an opportunity to save money on purchases. This advantage fully embodies the mobile site ...</msgstr>
+      <msgstr locale="ru_RU">Интернет-магазин аксессуаров для планшетов и мобильных телефонов — это, прежде всего, возможность сэкономить на покупке. Это преимущество в полной мере воплощает в жизнь сайт мобильных ...</msgstr>
+      <msgstr locale="uk_UA">Інтернет-магазин аксесуарів для планшетів і мобільних телефонів - це, перш за все, можливість заощадити на покупці. Ця перевага в повній мірі втілює в життя сайт мобільних ...</msgstr>
+    </locale>
+    <locale>
+      <msgid>Accessories prices text</msgid>
+      <msgstr locale="en_US">Online store of accessories for tablets and mobile phones is, first of all, an opportunity to save money on purchases. This advantage fully embodies the website of mobile accessories bilka.com.ua. Efficient logistics, minimal running costs and well-established supply chains allow us to offer attractive prices for accessories for tablets and mobile phones (smartphones). On average, their cost is 5-65% lower than in the retail network of your city. It's easy to make sure of this - look at the accessories you are interested in in the catalog right now!</msgstr>
+      <msgstr locale="ru_RU">Интернет-магазин аксессуаров для планшетов и мобильных телефонов — это, прежде всего, возможность сэкономить на покупке. Это преимущество в полной мере воплощает в жизнь сайт мобильных аксессуаров bilka.com.ua. Эффективная логистика, минимальные текущие расходы и налаженные каналы поставок позволяют предлагать привлекательные цены на аксессуары для планшетов и мобильных телефонов (смартфонов). В среднем их стоимость на 5-65% ниже, чем в розничной торговой сети Вашего города. Убедиться в этом просто - посмотрите интересующие Вас принадлежности в каталоге прямо сейчас!</msgstr>
+      <msgstr locale="uk_UA">Інтернет-магазин аксесуарів для планшетів і мобільних телефонів - це, перш за все, можливість заощадити на покупці. Ця перевага в повній мірі втілює в життя сайт мобільних аксесуарів bilka.com.ua. Ефективна логістика, мінімальні поточні витрати і налагоджені канали поставок дозволяють пропонувати привабливі ціни на аксесуари для планшетів і мобільних телефонів (смартфонів). В середньому їх вартість на 5-65% нижче, ніж у роздрібній торговельній мережі Вашого міста. Переконатися в цьому просто - подивіться, що цікавлять Вас приналежності в каталозі прямо зараз!</msgstr>
+    </locale>
+    <locale>
+      <msgid>Latest reviews</msgid>
+      <msgstr locale="en_US">Latest reviews</msgstr>
+      <msgstr locale="ru_RU">Последние отзывы</msgstr>
+      <msgstr locale="uk_UA">Останні відгуки</msgstr>
+    </locale>
+    <locale>
+      <msgid>Privacy policy</msgid>
+      <msgstr locale="en_US">Privacy policy</msgstr>
+      <msgstr locale="ru_RU">Политика конфиденциальности</msgstr>
+      <msgstr locale="uk_UA">Політика конфіденційності</msgstr>
+    </locale>
+    <locale>
+      <msgid>Menu</msgid>
+      <msgstr locale="en_US">Menu</msgstr>
+      <msgstr locale="ru_RU">Меню</msgstr>
+      <msgstr locale="uk_UA">Меню</msgstr>
+    </locale>
+    <locale>
+      <msgid>Webnauts</msgid>
+      <msgstr locale="en_US">Made by Webnauts with</msgstr>
+      <msgstr locale="ru_RU">Сделано в Webnauts c</msgstr>
+      <msgstr locale="uk_UA">Зроблено в Webnauts c</msgstr>
+    </locale>
+    <locale>
+      <msgid>Webnauts Best</msgid>
+      <msgstr locale="en_US">Best IT Company</msgstr>
+      <msgstr locale="ru_RU">Лучшая IT-Компания</msgstr>
+      <msgstr locale="uk_UA">Краща IT-Компанія</msgstr>
+    </locale>
+    <locale>
+      <msgid>Accessories for</msgid>
+      <msgstr locale="en_US">Accessories for</msgstr>
+      <msgstr locale="ru_RU">Аксессуары для</msgstr>
+      <msgstr locale="uk_UA">Аксесуари для</msgstr>
+    </locale>
+    <locale>
+      <msgid>Contact information</msgid>
+      <msgstr locale="en_US">Contact information</msgstr>
+      <msgstr locale="ru_RU">Контактная информация</msgstr>
+      <msgstr locale="uk_UA">Контактна інформація</msgstr>
+    </locale>
+    <locale>
+      <msgid>Bilka Adress Footer</msgid>
+      <msgstr locale="en_US">03057 Kiev, st. Yangel, 2</msgstr>
+      <msgstr locale="ru_RU">03057 Киев, ул. Янгеля, 2</msgstr>
+      <msgstr locale="uk_UA">03057 Київ, вул. Янгеля, 2</msgstr>
+    </locale>
+    <locale>
+      <msgid>More info</msgid>
+      <msgstr locale="ru_RU">Подробнее</msgstr>
+    </locale>
+    <locale>
+      <msgid>Compare</msgid>
+      <msgstr locale="ru_RU">Сравнение</msgstr>
+    </locale>
+    <locale>
+      <msgid>Empty</msgid>
+      <msgstr locale="ru_RU">Пусто</msgstr>
+      <msgstr locale="uk_UA">Пусто</msgstr>
+    </locale>
+    <locale>
+      <msgid>Place order</msgid>
+      <msgstr locale="en_US">Place order</msgstr>
+      <msgstr locale="ru_RU">Оформить заказ</msgstr>
+      <msgstr locale="uk_UA">Оформити замовлення</msgstr>
+    </locale>
+    <locale>
+      <msgid>Search results for</msgid>
+      <msgstr locale="ru_RU">Результаты поиска по запросу</msgstr>
+    </locale>
+    <locale>
+      <msgid>We accept for payment</msgid>
+      <msgstr locale="ru_RU">Мы принимаем к оплате</msgstr>
+    </locale>
+    <locale>
+      <msgid>For Login</msgid>
+      <msgstr locale="ru_RU">Для входа в личный кабинет используйте</msgstr>
+      <msgstr locale="uk_UA">Для входу в особистий кабінет використовуйте</msgstr>
+    </locale>
+    <locale>
+      <msgid>Login Registration</msgid>
+      <msgstr locale="ru_RU">Вход/Регистрацию</msgstr>
+      <msgstr locale="uk_UA">Вхід / Реєстрацію</msgstr>
+    </locale>
+    <locale>
+      <msgid>Login Private</msgid>
+      <msgstr locale="ru_RU">Вход</msgstr>
+      <msgstr locale="uk_UA">Вхід</msgstr>
+    </locale>
+    <locale>
+      <msgid>Registration Private</msgid>
+      <msgstr locale="ru_RU">Регистрация</msgstr>
+      <msgstr locale="uk_UA">Реєстрація</msgstr>
+    </locale>
+    <locale>
+      <msgid>Forgot Private</msgid>
+      <msgstr locale="ru_RU">Востановить пароль</msgstr>
+      <msgstr locale="uk_UA">Відновити пароль</msgstr>
+    </locale>
+    <locale>
+      <msgid>N Order</msgid>
+      <msgstr locale="ru_RU">№ заказа</msgstr>
+      <msgstr locale="uk_UA">№ замовлення</msgstr>
+    </locale>
+    <locale>
+      <msgid>Products</msgid>
+      <msgstr locale="ru_RU">Товары</msgstr>
+      <msgstr locale="uk_UA">Товари</msgstr>
+    </locale>
+    <locale>
+      <msgid>Recipient data</msgid>
+      <msgstr locale="ru_RU">Данные получателя</msgstr>
+      <msgstr locale="uk_UA">Дані одержувача</msgstr>
+    </locale>
+    <locale>
+      <msgid>Quantity</msgid>
+      <msgstr locale="ru_RU">Количество</msgstr>
+      <msgstr locale="uk_UA">Кількість</msgstr>
+    </locale>
+    <locale>
+      <msgid>Cost</msgid>
+      <msgstr locale="ru_RU">Стоимость</msgstr>
+      <msgstr locale="uk_UA">Вартість</msgstr>
+    </locale>
+    <locale>
+      <msgid>Discount</msgid>
+      <msgstr locale="ru_RU">Скидка</msgstr>
+      <msgstr locale="uk_UA">Знижка</msgstr>
+    </locale>
+    <locale>
+      <msgid>Sum</msgid>
+      <msgstr locale="ru_RU">Сумма</msgstr>
+      <msgstr locale="uk_UA">Сума</msgstr>
+    </locale>
+    <locale>
+      <msgid>More</msgid>
+      <msgstr locale="ru_RU">Еще</msgstr>
+      <msgstr locale="uk_UA">Ще</msgstr>
+    </locale>
+    <locale>
+      <msgid>Show more</msgid>
+      <msgstr locale="ru_RU">Показать еще</msgstr>
+      <msgstr locale="uk_UA">Показати ще</msgstr>
+    </locale>
+    <locale>
+      <msgid>FAQ</msgid>
+      <msgstr locale="ru_RU">Часто задаваемые вопросы</msgstr>
+      <msgstr locale="uk_UA">Питання, що часто задаются</msgstr>
+    </locale>
+  </locales>
+  <requirements>
+    <requirement property="app.shop" value="&gt;=8" strict="true">
+        </requirement>
+    <requirement property="php" value="&gt;=5.6" strict="true">
+        </requirement>
+  </requirements>
+</theme>
