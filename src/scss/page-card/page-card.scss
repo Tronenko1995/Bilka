@@ -248,6 +248,7 @@
                 max-height: 400px;
                 background: #fff;
                 position: relative;
+                overflow: hidden;
                 &-sticker {
                     position: absolute;
                     left: 24px;
@@ -1048,6 +1049,19 @@
                 font-size: 14px;
                 line-height: 20px;
                 color: $colorDark;
+
+                & p,
+                & ul,
+                & ol {
+                    margin-bottom: 15px;
+                }
+                & h3,
+                & h4,
+                & h5,
+                & h6 {
+                    margin-top: 25px;
+                    margin-bottom: 15px;
+                }
                 & a {
                     color: $color3;
                     &:hover {

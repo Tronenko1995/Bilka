@@ -237,3 +237,43 @@ sup.required {
         padding: 5px 15px;
     }
 }
+
+.lang {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: $color2;
+    margin-right: 35px;
+    &__link {
+        color: $color2;
+    }
+    &__link.active {
+        color: $color3;
+    }
+}
+
+@media(max-width: 1200px) {
+    .lang {
+        margin-right: 0px;
+        margin-top: 4px;
+    }
+}
+
+.description__private-office-text-link {
+    max-width: 100px;
+}
+
+.empty-orders {
+    font-family: Gilroy;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #929299;
+    margin-top: 30px;
+}

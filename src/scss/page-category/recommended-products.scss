@@ -7,6 +7,10 @@
 	padding-bottom: 112px;
 	background: $mainBgColor;
 
+	&.similar {
+		padding-bottom: 0;
+	}
+
 	&__wrap {
 		width: 1170px;
 		display: flex;
@@ -20,6 +24,16 @@
 		line-height: 43px;
 		color: $colorDark;
 		margin-bottom: 32px;
+	}
+	.main-container__item .badge {
+		background-color: #f37a22 !important;
+		position: absolute;
+		width: 200px;
+		left: 35px;
+		top: 16px;
+		display: flex;
+		justify-content: center;
+		color: #fff;
 	}
 }
 
@@ -812,6 +826,9 @@
 	.recommended-products {
 		padding-top: 100px;
 		padding-bottom: 100px;
+		&.similar {
+			padding-bottom: 0;
+		}
 
 		&__wrap {
 			padding: 0 15px;
