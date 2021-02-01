@@ -507,3 +507,7 @@
 .page-find .breadcrumb {
     display: none !important;
 }
+
+.page-card .page-card__wrap .page-card__container .not-allowed {
+    cursor: not-allowed !important;
+}
