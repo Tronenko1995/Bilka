@@ -1,6 +1,8 @@
 @import 'colors';
 
 .mobile-menu {
+	display: flex;
+	flex-direction: column;
 	position: absolute;
 	width: 324px;
 	left: -324px;
@@ -19,6 +21,7 @@
 		justify-content: space-between;
 		align-items: center;
 		background: $color4;
+		order: -3;
 
 		&-logo {
 			display: flex;
@@ -29,6 +32,7 @@
 		display: flex;
 		align-content: center;
 		position: relative;
+		order: -2;
 
 		&-burger {
 			display: flex;
@@ -91,6 +95,15 @@
 		flex-direction: column;
 		padding: 16px 0 19px 15px;
 		position: relative;
+		&:before {
+			content: '';
+			background: #e5e5ec;
+			height: 1px;
+			width: 100%;
+			position: absolute;
+			bottom: 100%;
+			left: 0;
+		}
 
 		&-item {
 			padding-bottom: 19px;
@@ -240,7 +253,8 @@
 	&__phones {
 		display: flex;
 		align-items: flex-start;
-		padding: 16px 0 0 15px;
+		padding: 16px 0 16px 15px;
+		order: -1;
 		
 		&-for-svg {
 			display: flex;

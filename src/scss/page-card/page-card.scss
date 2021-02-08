@@ -317,8 +317,14 @@
                         color: $color2;
                     }
                 }
+                .slick-current .page-card__container-left-customer_photos-block,
+                .swiper-slide-thumb-active .page-card__container-left-customer_photos-block {
+                    border: 1px solid $color3;
+                }
+
                 &-slider {
                     margin-top: 24px;
+                    // padding: 0 21px;
                     &-item {
 
                     }
@@ -331,7 +337,7 @@
                         cursor: pointer;
                         background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAyMSAyMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNDc0NSAxMUwxMy44MDU3IDE1LjUzNzVMMTIuNTY4NSAxNi44MzM3TDcgMTFMMTIuNTY4NSA1LjE2NjMyTDEzLjgwNTcgNi40NjI0OUw5LjQ3NDUgMTFaIiBmaWxsPSIjOTI5Mjk5Ii8+Cjwvc3ZnPgo=');
                         background-repeat: no-repeat;
-                        top: -47px;
+                        top: 50%;
 
                         &:hover {
                             background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iMjEiIGhlaWdodD0iMjIiIHZpZXdCb3g9IjAgMCAyMSAyMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNDc0NSAxMUwxMy44MDU3IDE1LjUzNzVMMTIuNTY4NSAxNi44MzM3TDcgMTFMMTIuNTY4NSA1LjE2NjMyTDEzLjgwNTcgNi40NjI0OUw5LjQ3NDUgMTFaIiBmaWxsPSIjRjM3QTIyIi8+Cjwvc3ZnPgo=');
@@ -340,27 +346,31 @@
                     }
                     .slick-prev {
                         // background-size: cover;
-                        left: 176px;
+                        left: 0px;
+                        transform: translateY(-50%);
 
                     }
                     .slick-next {
-                        transform: rotate(180deg);
+                        transform: translateY(-50%) rotate(180deg);
                         // background-size: cover;
                         background-repeat: no-repeat;
-                        left: 200px;
+                        right: 0px;
                     }
                 }
                 &-block {
-                    width: 87px;
-                    height: 82px;
+                    width: 88px;
+                    height: 88px;
                     border: 1px solid $color4;
-                    border-radius: 4px;
+                    border-radius: 2px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     &-img {
                         max-width: 85px;
                         height: auto;
+                    }
+                    & img {
+                        cursor: pointer;
                     }
                 }
             }
