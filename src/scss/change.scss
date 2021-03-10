@@ -508,6 +508,7 @@
     display: none !important;
 }
 
+<<<<<<< HEAD
 /*стили для поиска*/
 .searchpro__dropdown {
     scrollbar-color: #f37a22 #e5e5ec;
@@ -529,4 +530,8 @@
     margin-top: 10px;
     padding: 10px;
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.06);
+=======
+.page-card .page-card__wrap .page-card__container .not-allowed {
+    cursor: not-allowed !important;
+>>>>>>> 71086d67777ba9f276c56914a6986a144c441748
 }
