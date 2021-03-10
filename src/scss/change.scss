@@ -507,3 +507,26 @@
 .page-find .breadcrumb {
     display: none !important;
 }
+
+/*стили для поиска*/
+.searchpro__dropdown {
+    scrollbar-color: #f37a22 #e5e5ec;
+    scrollbar-width: thin;
+    border: none !important;
+    box-shadow: none !important;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+        background-color: #e5e5ec;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #f37a22;
+        border-radius: 27px;
+    }
+}
+.js-searchpro__dropdown {
+    background: rgb(255, 255, 255);
+    margin-top: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.06);
+}
