@@ -106,6 +106,7 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #e5e5ec;
+    align-items: center;
     & .page-card__container-right-block-bottom-button {
       max-width: 245px;
       border-radius: 4px;
@@ -136,5 +137,65 @@
     line-height: 16px;
     border-bottom: 1px solid rgba(47, 129, 237, 0.2);
     color: #2f80ed;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-article {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 92%;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 500px) {
+  .blog-article {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 92%;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    &__compare {
+      flex-wrap: wrap;
+
+      & div:not(:last-child) {
+        margin-bottom: 30px;
+      }
+    }
+
+    & .page-card__container-right-block-bottom-button {
+      width: 44px;
+      height: 45px;
+      background: #fff;
+      border: 1px solid #f37a22;
+      border-radius: 4px;
+      cursor: pointer;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      overflow: hidden;
+      background-image: url("data:image/svg+xml,%3Csvg fill='%23f37a22' width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.99996 6.41402L0.756958 3.17202L2.17196 1.75702L5.41396 5.00002H20.656C20.8118 5.00001 20.9655 5.03643 21.1048 5.10639C21.2441 5.17634 21.3651 5.27788 21.4582 5.40291C21.5513 5.52795 21.6138 5.673 21.6409 5.82651C21.6679 5.98001 21.6587 6.13771 21.614 6.28702L19.214 14.287C19.1522 14.4931 19.0257 14.6738 18.8531 14.8022C18.6805 14.9307 18.4711 15 18.256 15H5.99996V17H17V19H4.99996C4.73474 19 4.48039 18.8947 4.29285 18.7071C4.10531 18.5196 3.99996 18.2652 3.99996 18V6.41402ZM5.49996 23C5.10213 23 4.7206 22.842 4.4393 22.5607C4.15799 22.2794 3.99996 21.8978 3.99996 21.5C3.99996 21.1022 4.15799 20.7207 4.4393 20.4394C4.7206 20.1581 5.10213 20 5.49996 20C5.89778 20 6.27931 20.1581 6.56062 20.4394C6.84192 20.7207 6.99996 21.1022 6.99996 21.5C6.99996 21.8978 6.84192 22.2794 6.56062 22.5607C6.27931 22.842 5.89778 23 5.49996 23ZM17.5 23C17.1021 23 16.7206 22.842 16.4393 22.5607C16.158 22.2794 16 21.8978 16 21.5C16 21.1022 16.158 20.7207 16.4393 20.4394C16.7206 20.1581 17.1021 20 17.5 20C17.8978 20 18.2793 20.1581 18.5606 20.4394C18.8419 20.7207 19 21.1022 19 21.5C19 21.8978 18.8419 22.2794 18.5606 22.5607C18.2793 22.842 17.8978 23 17.5 23Z'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+
+      & .page-card__container-right-block-bottom-button-text {
+        visibility: hidden;
+      }
+
+      &:hover {
+        background-color: #f37a22;
+        background-image: url("data:image/svg+xml,%3Csvg fill='white' width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.99996 6.41402L0.756958 3.17202L2.17196 1.75702L5.41396 5.00002H20.656C20.8118 5.00001 20.9655 5.03643 21.1048 5.10639C21.2441 5.17634 21.3651 5.27788 21.4582 5.40291C21.5513 5.52795 21.6138 5.673 21.6409 5.82651C21.6679 5.98001 21.6587 6.13771 21.614 6.28702L19.214 14.287C19.1522 14.4931 19.0257 14.6738 18.8531 14.8022C18.6805 14.9307 18.4711 15 18.256 15H5.99996V17H17V19H4.99996C4.73474 19 4.48039 18.8947 4.29285 18.7071C4.10531 18.5196 3.99996 18.2652 3.99996 18V6.41402ZM5.49996 23C5.10213 23 4.7206 22.842 4.4393 22.5607C4.15799 22.2794 3.99996 21.8978 3.99996 21.5C3.99996 21.1022 4.15799 20.7207 4.4393 20.4394C4.7206 20.1581 5.10213 20 5.49996 20C5.89778 20 6.27931 20.1581 6.56062 20.4394C6.84192 20.7207 6.99996 21.1022 6.99996 21.5C6.99996 21.8978 6.84192 22.2794 6.56062 22.5607C6.27931 22.842 5.89778 23 5.49996 23ZM17.5 23C17.1021 23 16.7206 22.842 16.4393 22.5607C16.158 22.2794 16 21.8978 16 21.5C16 21.1022 16.158 20.7207 16.4393 20.4394C16.7206 20.1581 17.1021 20 17.5 20C17.8978 20 18.2793 20.1581 18.5606 20.4394C18.8419 20.7207 19 21.1022 19 21.5C19 21.8978 18.8419 22.2794 18.5606 22.5607C18.2793 22.842 17.8978 23 17.5 23Z'%3E%3C/path%3E%3C/svg%3E");
+      }
+    }
   }
 }
