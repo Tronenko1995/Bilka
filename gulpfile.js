@@ -45,6 +45,7 @@ const cssFiles = [
   './src/scss/include/modal.scss',
   './src/scss/include/new-accordion.scss',
   './src/scss/include/new-faq.scss',
+  './src/scss/include/notify.scss',
   './src/scss/404/404.scss',
   './src/scss/page-category/page-category.scss',
   './src/scss/page-category/sidebar.scss',
