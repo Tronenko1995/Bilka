@@ -434,58 +434,30 @@
     }
 }
 
-/*гарантия на 12 месяцев*/
-.page-category {
-    .main-container__item {
-        .badge {
-            background-color: #f37a22 !important;
-            position: absolute;
-            width: 200px;
-            left: 35px;
-            top: 16px;
-            display: flex;
-            justify-content: center;
-            span {
-                font-family: Gilroy;
-                font-style: normal;
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 16px;
-                color: #fff;
-                padding: 2px 0;
-            }
-        }
+/* наклейка с гарантией */
+.badge {
+    background-color: #f37a22 !important;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    span {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #fff;
+        padding: 2px 0;
     }
 }
-@media (max-width: 630px) {
-
-    .page-category {
-        .main-container__item {
-            .badge {
-                left: 72px;
-            }
-        }
-    }
-}
-
 .page-card {
     .badge {
-        background-color: #f37a22!important;
-        position: absolute;
         width: 393px;
         left: 22px;
         top: -20px;
-        display: flex;
-        justify-content: center;
-        span {
-            font-family: Gilroy;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 16px;
-            color: #fff;
-            padding: 2px 0;
-        }
     }
 }
 @media (max-width: 525px) {
@@ -508,7 +480,6 @@
     display: none !important;
 }
 
-<<<<<<< HEAD
 /*стили для поиска*/
 .searchpro__dropdown {
     scrollbar-color: #f37a22 #e5e5ec;
@@ -530,8 +501,7 @@
     margin-top: 10px;
     padding: 10px;
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.06);
-=======
+}
 .page-card .page-card__wrap .page-card__container .not-allowed {
     cursor: not-allowed !important;
->>>>>>> 71086d67777ba9f276c56914a6986a144c441748
 }

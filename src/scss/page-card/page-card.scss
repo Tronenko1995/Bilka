@@ -400,6 +400,7 @@
                 &-list {
                     margin-left: 45px;
                     display: flex;
+                    flex-wrap: wrap;
                     &-item {
                         width: 33px;
                         height: 33px;
@@ -4763,8 +4764,9 @@
                         }
                     }
                     &-img {
-                        margin: 4px 30px 3px 30px;
-                        max-width: 286px;
+                        // margin: 4px 30px 3px 30px;
+                        // max-width: 286px;
+                            margin: 0;
     //                     height: auto;
                     }
                 }
