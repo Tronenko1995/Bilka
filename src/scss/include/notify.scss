@@ -1,0 +1,49 @@
+.notify {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: #219653;
+    z-index: 100;
+    opacity: 0;
+    animation: fadeOut 3s linear forwards;
+    &__text {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 18px;
+        color: #fff;
+        padding-bottom: 10px;
+        text-align: left;
+        &--success {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+    }
+    &__progress {
+        width: 0;
+        height: 10px;
+        background: rgba(255,255,255,0.5);
+        position: absolute;
+        bottom: 10px;
+        left: 3%;
+        border-radius: 12px;
+        animation: runProgress 2s linear forwards 0.7s;
+    }
+
+    @keyframes runProgress {
+        0%{ width: 0%; }
+        100%{ width: 94%; }
+    }
+
+    @keyframes fadeOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; transform: translateY(0px);}
+    99% { opacity: 0; transform: translateY(-25px);}
+    100% { opacity: 0; }
+    }
+}

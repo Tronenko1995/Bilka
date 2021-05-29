@@ -45,6 +45,7 @@ const cssFiles = [
   './src/scss/include/modal.scss',
   './src/scss/include/new-accordion.scss',
   './src/scss/include/new-faq.scss',
+  './src/scss/include/notify.scss',
   './src/scss/404/404.scss',
   './src/scss/page-category/page-category.scss',
   './src/scss/page-category/sidebar.scss',
@@ -65,7 +66,9 @@ const cssFiles = [
   './src/scss/page/one-step.scss',
   './src/scss/page/page-compare.scss',
   './src/scss/page/private-office.scss',
-  './src/scss/change.scss'
+  './src/scss/change.scss',
+  './src/scss/blog.scss',
+  './src/scss/blog-article.scss'
 ]
 // //Порядок подключения js файлов
 // const jsFiles = [
