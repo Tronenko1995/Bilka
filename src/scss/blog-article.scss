@@ -111,6 +111,10 @@
       max-width: 245px;
       border-radius: 4px;
     }
+
+    & form {
+      width: 245px;
+    }
   }
 
   &__price {
@@ -147,6 +151,12 @@
     flex-wrap: wrap;
     max-width: 92%;
     margin: 0 auto;
+
+    &__controls {
+      & form {
+        width: auto;
+      }
+    }
   }
 }
 @media (max-width: 500px) {
