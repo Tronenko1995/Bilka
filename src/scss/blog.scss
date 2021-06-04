@@ -53,6 +53,9 @@
 
   &__contents-item {
     list-style: none;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
 
     &:not(:last-child) {
       margin-bottom: 10px;
