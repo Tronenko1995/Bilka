@@ -45,12 +45,22 @@
       flex-direction: column;
       margin-top: 24px;
       margin-left: 12px;
+
+      &--tags-cloud {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
     }
     &-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 12px;
+
+      &--tag {
+        padding-right: 5px;
+        margin-bottom: 0;
+      }
 
       &.active {
         .sidebar__nav-link {
