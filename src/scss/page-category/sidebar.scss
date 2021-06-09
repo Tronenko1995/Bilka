@@ -31,6 +31,9 @@
     background: #fff;
     border-radius: 4px;
     padding: 30px 20px;
+    &--seo-cities {
+      display: none;
+    }
 
     &-title {
       font-family: Gilroy;
@@ -441,14 +444,18 @@
       align-items: center;
       margin-top: 16px;
 
-      &-title {
-        // font-family: Gilroy;
-        // font-style: normal;
-        // font-weight: 600;
-        // font-size: 16px;
-        // line-height: 19px;
-        // color: $colorDark;
+      &--seo-cities {
+        display: block;
       }
+
+      // &-title {
+      // font-family: Gilroy;
+      // font-style: normal;
+      // font-weight: 600;
+      // font-size: 16px;
+      // line-height: 19px;
+      // color: $colorDark;
+      // }
       &-items {
         display: none;
         // flex-direction: column;
