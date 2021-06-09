@@ -32,7 +32,7 @@
     border-radius: 4px;
     padding: 30px 20px;
     &--seo-cities {
-      display: none;
+      display: block;
     }
 
     &-title {
@@ -445,7 +445,7 @@
       margin-top: 16px;
 
       &--seo-cities {
-        display: block;
+        display: none;
       }
 
       // &-title {
