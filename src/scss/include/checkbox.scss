@@ -35,6 +35,53 @@
     opacity: 0;
 
     &:checked+label::before {
-        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgd2lkdGg9IjkiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDkgOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cmVjdCB3aWR0aD0iOSIgaGVpZ2h0PSI5IiByeD0iMiIgZmlsbD0iI0YzN0EyMiIvPg0KPC9zdmc+');;
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgd2lkdGg9IjkiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDkgOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgICA8cmVjdCB3aWR0aD0iOSIgaGVpZ2h0PSI5IiByeD0iMiIgZmlsbD0iI0YzN0EyMiIvPg0KPC9zdmc+');
+    }
+}
+
+.bilka-label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    &__text {
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #202026;
+        display: flex;
+        align-items: center;
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            min-width: 14px;
+            height: 14px;
+            min-height: 14px;
+            border: 1px solid #d3d3d6;
+            background: #e7e7ea;
+            border-radius: 2px;
+            margin-right: 12px;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+    }     
+    &:hover {
+        color: $color3;
+    }
+    &__checkbox {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        &:checked+span::before {
+            background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTYgMTYiPg0KPHJlY3QgZmlsbD0iI2YzN2EyMiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iMiIvPg0KPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTYuNjMsMTAuMTIsMTIuNzUsNGwuOTUuOTRMNi42MywxMiwyLjM4LDcuNzZsMS0uOTRaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMC4wNCAwKSIvPjwvc3ZnPg==');
+            border: none;
+            width: 16px;
+            height: 16px;
+            min-width: 16px;
+            min-height: 16px;
+        }
     }
 }

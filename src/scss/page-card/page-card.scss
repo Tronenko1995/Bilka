@@ -365,6 +365,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    cursor: pointer;
                     &-img {
                         max-width: 85px;
                         height: auto;
@@ -512,16 +513,6 @@
                         width: 100%;
                     }
                     
-
-                    &:after {
-                        background: $color4;
-                        content: '';
-                        position: absolute;
-                        width: calc(100% - 40px);
-                        height: 1px;
-                        top: 100%;
-                        left: 20px;
-                    }
                     &-price {
                         margin-top: 2px;
                         font-family: Gilroy;
@@ -664,6 +655,17 @@
                     padding-right: 20px;
                     border-left: 1px solid $color4;
                     border-right: 1px solid $color4;
+                    position: relative;
+
+                    &:after {
+                        background: $color4;
+                        content: '';
+                        position: absolute;
+                        width: calc(100% - 40px);
+                        height: 1px;
+                        bottom: 100%;
+                        left: 20px;
+                    }
 
                     &-list {
                         &-item {

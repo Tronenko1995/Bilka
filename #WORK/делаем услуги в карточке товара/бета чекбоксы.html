@@ -1,0 +1,158 @@
+{strip}
+
+{$_is_dialog = $wa->get('cart')}
+
+{if $_is_dialog}
+    {include file="./product.cart.dialog.html" inline}
+{else}
+
+<form class="page-card__container-right-block" id="jsFormCard" method="post" action="{$wa->getUrl('/frontendCart/add')}">
+    <div class="page-card__container-right-block-top">
+        <div class="page-card__container-right-block-top-price js-product-price" data-price="{shop_currency($product.price, null, null, 0)}"><span class="jsPrice">{shop_currency($product.price, null, null, 0)}</span> <span class="page-card__container-right-block-top-price--currency">₴</span></div>
+        <div class="page-card__container-right-block-top-info">
+            {if !$sku.available}
+            <p class="page-card__container-right-block-top-info-text"><span class="stock-none">[`This product is not available for purchase`]</span></p>
+            {elseif !$wa->shop->settings('ignore_stock_count') && !($sku.count === null || $sku.count > 0)}
+            <p class="page-card__container-right-block-top-info-text">
+                <span class="stock-none">{if $wa->shop->settings('ignore_stock_count')}[`Pre-order only`]{else}[`Out of stock`]{/if}</span>
+            </p>
+            {else}
+            <p class="page-card__container-right-block-top-info-text"><span class="stock-high">[`In stock`]</span></p>
+            {/if}
+            <button class="page-card__container-right-block-top-info-button jsBuyOneClick">[`Buy in 1 click`]</button>
+            <p class="page-card__container-right-block-top-info-link">
+                <span class="page-card__container-right-block-top-info-link-text">[`Pay in installments`]</span>
+                <span class="page-card__container-right-block-top-info-link-svg"></span>
+                <span class="page-card__container-right-block-top-info-link-block">
+                    <span class="page-card__container-right-block-top-info-link-block-text">[`Pay in installments info`]</span>
+                </span>
+            </p>
+
+        </div>
+    </div>
+    {if $services}
+    <div class="page-card__container-right-block-center">
+
+        <div class="services hide">
+            <ul class="services__list">
+                {foreach $services as $s}
+                <li class="services__item">
+                    <!-- <div class="service-{$s.id}"> -->
+                        <!-- <input class="new-checkbox page-card__container-right-block-center-checkbox" data-price="{shop_currency($s.price, $s.currency, null, 0)}" type="checkbox" name="services[]" value="{$s.id}" id="{$s.id}"> -->
+                        <!-- <label class="new-label page-card__container-right-block-center-checkbox-label" for="{$s.id}"> -->
+                            <!-- <span class="page-card__container-right-block-center-checkbox-text">{*$s.name|escape*} {*if $s.price && !isset($s.variants)*}{*$s.price*} ₴{*/if*}</span> -->
+                        <!-- </label> -->
+                        <!-- <p class="services__name">{$s.name|escape} {if $s.price && !isset($s.variants)}{$s.price} ₴{/if}</p> -->
+                        <label class="bilka-label">
+                            <input class="bilka-label__checkbox" data-price="{shop_currency($s.price, $s.currency, null, 0)}" type="checkbox" name="services[]" value="{$s.id}" id="{$s.id}">
+                            <span class="bilka-label__text">{$s.name|escape} {if $s.price && !isset($s.variants)}{$s.price} ₴{/if}</span>
+                        </label>
+                        {if isset($s.variants)}
+                        <ul class="service__list">
+                            {foreach $s.variants as $v}
+                            <li class="service__item service-variants" data-variant-id="{$s.variant_id}" name="service_variant[{$s.id}]">
+                                <label class="bilka-label">
+                                    <input class="bilka-label__checkbox" data-price="{shop_currency($v.price, $s.currency, null, 0)}" type="radio" name="service[{$s.id}]" value="{$v.id}">
+                                    <span class="bilka-label__text">{$v.name|escape} {if $v.price && isset($v.price)}( +{shop_currency($v.price)}) {/if}</span>
+                                </label>
+                            </li>
+                            {/foreach}
+                        </ul>
+                        <!-- <select data-variant-id="{$s.variant_id}" class="service-variants" name="service_variant[{$s.id}]" disabled> -->
+                            {*foreach $s.variants as $v*}
+                            <!-- <option {if $s.variant_id == $v.id}selected{/if} data-price="{shop_currency($v.price, $s.currency, null, 0)}" value="{$v.id}">{$v.name|escape} {shop_currency($v.price, $s.currency)}</option> -->
+                            {*/foreach*}
+                        </select>
+                        {else}
+                        <input type="hidden" name="service_variant[{$s.id}]" value="{$s.variant_id}">
+                        {/if}
+                    <!-- </div> -->
+                </li>
+                {/foreach}
+            </ul>
+
+            
+                <!-- <input type="checkbox" class="new-checkbox page-card__container-right-block-center-checkbox" name="name1" id="id100" value="yes">
+                <label for="id100" class="new-label page-card__container-right-block-center-checkbox-label">
+                    <span class="page-card__container-right-block-center-checkbox-text">Поклейка защитного стекла при самовывозе (+50 ₴)</span>
+                </label> -->
+            </div>
+    </div>
+    {/if}
+    <div class="page-card__container-right-block-bottom">
+        <button class="page-card__container-right-block-bottom-button js-submit-button" type="submit">
+            <span class="svg-basket page-card__container-right-block-bottom-button-svg"></span>
+            <span class="page-card__container-right-block-bottom-button-text">[`Add to Cart`]</span>
+        </button>
+    </div>
+    <input type="hidden" name="product_id" value="{$product.id}">
+    <!-- {shopBistrozakazPlugin::button($product)} -->
+    {foreach $features_selectable as $f}
+    <input type="hidden" data-feature-id="{$f.id}" class="js-sku-feature sku-feature" name="features[{$f.id}]" value="{ifset($default_sku_features[$f.id])}">
+    {/foreach}
+</form>
+
+<div id="buyOneClick" class="modal__buy-one-click mfp-hide">
+    <div class="modal__buy-one-click-head">
+        <p class="modal__buy-one-click-head-title">[`Buy in 1 click`]</p>
+        <p class=" modal__buy-one-click-head-title modal__buy-one-click-head-title--success">[`Thank you for the order!`]</p>
+    </div>
+    <div class="modal__buy-one-click-body">
+        <form id="cartform" method="post" action="{$wa->getUrl('/frontendCart/add')}">
+            <div class="cart-box-left">
+            {if $product.sku_type}
+            {$default_sku_features = $product.sku_features}
+            {$product_available = $product.status}
+            {if $theme_settings.selectable_features_control != 'inline'}
+                <div class="options hide">
+                {foreach $features_selectable as $f}
+                    <select data-feature-id="{$f.id}" class="sku-feature" name="features[{$f.id}]">
+                        {foreach $f.values as $v_id => $v}
+                        <option value="{$v_id}" {if $v_id == ifset($default_sku_features[$f.id])}selected{/if}>{$v}</option>
+                        {/foreach}
+                    </select>
+                {/foreach}
+                </div>
+            {/if}
+            {/if}
+            </div>
+            <input type="hidden" form="cartform" name="product_id" value="{$product.id}">
+            {shopBistrozakazPlugin::button($product)}
+        </form>
+        <form action="" class="modal__buy-one-click-form--success">
+                <div class="modal__buy-one-click-body-img"></div>
+                <p class="modal__buy-one-click-body-title">[`Your order is being processed.`]<br> [`Our manager will contact you, or wait`]<br> [`Invoice number`].</p>
+                <button class="modal__buy-one-click-body-button">[`Mark 4`]</button>
+        </form>
+        <p class="no-item-text">[`Unfortunately`], <span id="nameProduct"></span>[`just out of stock and unavailable for order. We are sorry for the inconvenience.`]</p>
+    </div>
+
+</div>
+
+<script>
+    ( function($) {
+        var $form = $("#jsFormCard").removeAttr("id");
+        
+        new window.waTheme.init.shop.Product({
+            $form: $form,
+            is_dialog: false,
+            currency: {json_encode($currency_info)},
+            services: {if count($product.skus) > 1 or $product.sku_type}{json_encode($sku_services)}{else}false{/if},
+            features: {if $product.sku_type}{json_encode($sku_features_selectable)}{else}false{/if},
+            skus: {$product.skus|json_encode},
+            locales: {
+                to_compare: "[`To comparison`]",
+                in_compare: "[`In comparison list`]",
+                added: "[`Added`]",
+                buy: "{if $wa->shop->cart->total() > 0}[`Add to cart`]{else}[`Buy now`]{/if}"
+            }
+        });
+    })(jQuery);
+</script>
+
+<!-- билка скрипт в один клик -->
+{/if}
+
+
+
+{/strip}

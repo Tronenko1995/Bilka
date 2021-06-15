@@ -1,0 +1,19 @@
+.services {
+    padding-bottom: 24px;
+    &__name {
+        font-family: Gilroy;
+        font-style: normal;
+        font-size: 13px;
+        line-height: 17px;
+        font-weight: 400;
+        color: #202026;
+    }
+    &__list {
+    }
+    &__item {
+        margin-bottom: 12px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
