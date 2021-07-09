@@ -19,6 +19,7 @@ const cache = require('gulp-cache');
 
 //Порядок подключения css файлов
 const cssFiles = [
+  './src/scss/default.scss',
   './src/scss/config.scss',
   './src/scss/fonts.scss',
   './src/scss/header.scss',
