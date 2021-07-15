@@ -1,0 +1,30 @@
+@media (max-width: 768px) {
+  .searchpro__page-categories {
+    &--inline {
+      overflow: hidden;
+      max-height: 100px;
+      position: relative;
+
+      &::before {
+        position: absolute;
+        content: "";
+        background-image: url("data:image/svg+xml,%3Csvg class='about-bottom__item-arrow jsWatchArrow' width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.66664 10.7814L12.2426 7.20541L13.1853 8.14808L7.99997 13.3334L2.81464 8.14808L3.7573 7.20541L7.3333 10.7814L7.3333 2.66675L8.66664 2.66675L8.66664 10.7814Z'%3E%3C/path%3E%3C/svg%3E%0A");
+        background-repeat: no-repeat;
+        bottom: 11px;
+        right: 15px;
+        width: 16px;
+        height: 16px;
+      }
+
+      &:hover::before {
+        background-image: url("data:image/svg+xml,%3Csvg class='about-bottom__item-arrow jsWatchArrow' width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23f37a22' d='M8.66664 10.7814L12.2426 7.20541L13.1853 8.14808L7.99997 13.3334L2.81464 8.14808L3.7573 7.20541L7.3333 10.7814L7.3333 2.66675L8.66664 2.66675L8.66664 10.7814Z'%3E%3C/path%3E%3C/svg%3E%0A");
+      }
+      &-open {
+        max-height: unset;
+        &::before {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}

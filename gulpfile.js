@@ -72,6 +72,7 @@ const cssFiles = [
   './src/scss/blog-article.scss',
   './src/scss/services.scss',
   './src/scss/service.scss',
+  './src/scss/searchpro.scss',
 ]
 // //Порядок подключения js файлов
 // const jsFiles = [
