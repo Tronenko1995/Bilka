@@ -27,4 +27,14 @@
       }
     }
   }
+
+  .search {
+    position: static;
+  }
+
+  .js-searchpro__dropdown,
+  .js-searchpro__helper {
+    width: 98vw !important;
+    left: 1vw;
+  }
 }
